@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OfficeAdmin — Personal AI Operations</title>
+  <meta name="description" content="A personal AI operations system running Shaffer Construction. Built by Mike Shaffer.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">officeadmin<span>.io</span></a>
+      <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="architecture.html">Architecture</a></li>
+        <li><a href="modules.html">Modules</a></li>
+        <li><a href="stack.html">Stack</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page">
+    <section class="hero">
+      <div class="container">
+        <div class="hero-label">Personal AI Ops</div>
+        <h1>One system runs the whole business.</h1>
+        <p>OfficeAdmin is a personal AI operations system built to run Shaffer Construction, a Los Angeles electrical contractor. Its agent, AIVA, handles email, estimates, scheduling, contacts, voice memos, and a dozen other things that used to be manual.</p>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-value">50+</div>
+            <div class="hero-stat-label">Modules</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">~90</div>
+            <div class="hero-stat-label">Entities</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">1</div>
+            <div class="hero-stat-label">Mac Mini</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">What it actually does</h2>
+        <p class="section-subtitle">Every operational task that used to happen by hand now either runs automatically or gets drafted for review.</p>
+
+        <div class="overview-grid">
+          <div class="overview-card">
+            <h3>Email triage</h3>
+            <p>Watches Gmail, classifies messages as action items, FYI, or noise. Drafts replies in Mike's voice and queues them for approval before sending.</p>
+          </div>
+          <div class="overview-card">
+            <h3>Estimates and invoices</h3>
+            <p>Programmatic access to QuickBooks Online. Creates estimates, invoices, bills, and customer records without opening the app.</p>
+          </div>
+          <div class="overview-card">
+            <h3>Contact management</h3>
+            <p>Direct read/write to Apple Contacts via SQLite. Every customer, vendor, and crew member is an entity with linked tasks, work records, and communication history.</p>
+          </div>
+          <div class="overview-card">
+            <h3>Voice memos</h3>
+            <p>Transcribes recordings with AssemblyAI and identifies speakers using Pinecone voice embeddings. Meeting notes turn into tasks and entity updates automatically.</p>
+          </div>
+          <div class="overview-card">
+            <h3>Scheduling and crews</h3>
+            <p>Integrates with QuickBooks Time for crew scheduling and timesheets. Calendar events sync across Apple Calendar and Google Calendar.</p>
+          </div>
+          <div class="overview-card">
+            <h3>Knowledge graph</h3>
+            <p>MemPalace is a SQLite knowledge graph with thousands of entities and relationships, extracted from conversations, documents, and agent sessions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background: var(--bg-surface);">
+      <div class="container">
+        <h2 class="section-title">How it works</h2>
+        <p class="section-subtitle">A Mac Mini at home runs the whole system. Everything else connects to it.</p>
+
+        <div class="overview-grid">
+          <div class="overview-card" style="background: var(--bg);">
+            <h3>The brain</h3>
+            <p>A Mac Mini running Python CLIs, n8n workflows, tmux-managed agent sessions, MCP servers, and Claude model calls. It is always on and always connected.</p>
+          </div>
+          <div class="overview-card" style="background: var(--bg);">
+            <h3>The reach</h3>
+            <p>Phones, laptops, and speakers throughout the house are all participants. Everything syncs via Tailscale VPN and iCloud. AIVA can talk to Mike through iMessage, voice, or push notifications.</p>
+          </div>
+          <div class="overview-card" style="background: var(--bg);">
+            <h3>The memory</h3>
+            <p>A GitHub repo serves as both an operational workspace and a lightweight CRM. Each person and company gets an entity folder with profile data, tasks, and work records.</p>
+          </div>
+        </div>
+
+        <p style="text-align: center; margin-top: var(--space-lg);">
+          <a href="architecture.html" style="color: var(--accent); font-weight: 500;">See the full architecture diagram &rarr;</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Meet AIVA</h2>
+        <p class="section-subtitle">AIVA is the AI agent that runs the system. It is not a chatbot and not a SaaS product. It is a personal operations system that Mike built for himself.</p>
+        <div class="overview-grid" style="grid-template-columns: 1fr;">
+          <div class="overview-card">
+            <p style="font-size: 0.95rem; line-height: 1.7;">AIVA manages background agent sessions in tmux, runs scheduled jobs, responds to iMessages via BlueBubbles, drafts emails in Mike's voice using a learned rule set, and coordinates across 50+ modules. It can speak out loud through connected devices, show interactive prompts on Mike's phone, browse the web with Playwright, and manage smart home devices through Home Assistant. When it writes something that needs approval, it creates an Apple Reminder. When it learns something new, it stores it in MemPalace. The system is real, running in production, and handles the daily operations of a construction business.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <p>Built by Mike Shaffer. Powered by Claude, Python, and a Mac Mini.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

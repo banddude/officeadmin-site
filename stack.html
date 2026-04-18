@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stack — OfficeAdmin</title>
+  <meta name="description" content="The technology behind OfficeAdmin. Languages, services, and infrastructure.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">officeadmin<span>.io</span></a>
+      <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="architecture.html">Architecture</a></li>
+        <li><a href="modules.html">Modules</a></li>
+        <li><a href="stack.html" class="active">Stack</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page">
+    <section class="hero" style="padding-bottom: var(--space-lg);">
+      <div class="container">
+        <h1>Stack</h1>
+        <p>Everything runs on a Mac Mini. No Kubernetes, no containers, no cloud compute. Just Python, SQLite, and tmux.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="stack-grid">
+
+          <div class="stack-group">
+            <h3>Languages</h3>
+            <ul>
+              <li><strong>Python 3</strong> — primary language for all CLIs and modules</li>
+              <li><strong>Bash</strong> — agent orchestration, system scripts, CLI wrappers</li>
+              <li><strong>Node.js</strong> — QuickBooks OAuth, some API integrations</li>
+              <li><strong>JavaScript</strong> — n8n workflow expressions</li>
+            </ul>
+          </div>
+
+          <div class="stack-group">
+            <h3>AI and LLMs</h3>
+            <ul>
+              <li><strong>Claude (Anthropic)</strong> — primary reasoning engine via Claude Code and API</li>
+              <li><strong>MCP Servers</strong> — tool access layer connecting Claude to all modules</li>
+              <li><strong>AssemblyAI</strong> — speech-to-text with speaker diarization</li>
+              <li><strong>Pinecone</strong> — vector embeddings for speaker identification</li>
+            </ul>
+          </div>
+
+          <div class="stack-group">
+            <h3>Databases</h3>
+            <ul>
+              <li><strong>SQLite</strong> — MemPalace knowledge graph, conversations, contacts, messages</li>
+              <li><strong>GitHub</strong> — entity CRM (JSON + Markdown files in a repo)</li>
+              <li><strong>Apple Notes</strong> — AIVA's soul/personality source (iCloud-synced)</li>
+            </ul>
+          </div>
+
+          <div class="stack-group">
+            <h3>Apple Ecosystem</h3>
+            <ul>
+              <li><strong>EventKit</strong> — Calendar and Reminders access</li>
+              <li><strong>PyObjC</strong> — Python bridge to macOS frameworks</li>
+              <li><strong>iCloud</strong> — sync for Notes, Reminders, Calendar, voice memos</li>
+              <li><strong>APNS</strong> — push notifications to all devices</li>
+              <li><strong>Messages.app</strong> — chat.db access for iMessage search</li>
+            </ul>
+          </div>
+
+          <div class="stack-group">
+            <h3>Networking</h3>
+            <ul>
+              <li><strong>Tailscale</strong> — mesh VPN connecting all devices</li>
+              <li><strong>Cloudflare</strong> — DNS, Workers, edge routing, SSL</li>
+              <li><strong>Cloudflare Tunnel</strong> — secure ingress without port forwarding</li>
+              <li><strong>Railway</strong> — n8n workflow hosting</li>
+            </ul>
+          </div>
+
+          <div class="stack-group">
+            <h3>Business APIs</h3>
+            <ul>
+              <li><strong>QuickBooks Online</strong> — accounting, estimates, invoices</li>
+              <li><strong>Google Workspace</strong> — Gmail, Calendar, Drive, Sheets, Chat</li>
+              <li><strong>QuickBooks Time</strong> — crew scheduling and timesheets</li>
+              <li><strong>Alpaca Markets</strong> — stock and crypto trading</li>
+            </ul>
+          </div>
+
+          <div class="stack-group">
+            <h3>Communication</h3>
+            <ul>
+              <li><strong>BlueBubbles</strong> — cross-platform iMessage relay</li>
+              <li><strong>Home Assistant</strong> — smart home device control</li>
+              <li><strong>Playwright</strong> — browser automation (MCP server)</li>
+              <li><strong>Flask</strong> — notify API server for message routing</li>
+            </ul>
+          </div>
+
+          <div class="stack-group">
+            <h3>Infrastructure</h3>
+            <ul>
+              <li><strong>Mac Mini</strong> — the one server that runs everything</li>
+              <li><strong>tmux</strong> — background agent session management</li>
+              <li><strong>launchd</strong> — macOS daemon supervision</li>
+              <li><strong>macOS Keychain</strong> — credential storage for all OAuth tokens</li>
+              <li><strong>GitHub Actions</strong> — entity CRM validators</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div style="margin-top: var(--space-2xl); padding: var(--space-lg); background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);">
+          <h2 class="section-title" style="font-size: 1.1rem;">Why a Mac Mini?</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; margin-top: var(--space-sm);">
+            Most of what AIVA does requires access to macOS-native APIs. Contacts, Reminders, Calendar, Notes, and Messages all use Apple frameworks (EventKit, PyObjC, SQLite databases in ~/Library). iCloud sync means changes on the Mac Mini show up on Mike's phone instantly. The Apple ecosystem is the integration layer. A Linux server would need to replicate all of that from scratch.
+          </p>
+          <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; margin-top: var(--space-sm);">
+            The Mac Mini sits at home, always on, connected via Tailscale. Cloudflare Tunnels handle secure ingress. There is no cloud compute bill for the core system. The only hosted services are Railway (n8n) and the various third-party APIs.
+          </p>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <p>Built by Mike Shaffer. Powered by Claude, Python, and a Mac Mini.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Architecture — OfficeAdmin</title>
+  <meta name="description" content="How OfficeAdmin's modules connect. Architecture diagram of a personal AI operations system.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .arch-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .arch-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .arch-legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+    .arch-detail-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--space-md);
+      margin-top: var(--space-lg);
+      min-height: 80px;
+      transition: border-color 0.2s;
+    }
+    .arch-detail-panel.active {
+      border-color: var(--accent);
+    }
+    .arch-detail-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: var(--space-xs);
+    }
+    .arch-detail-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .arch-detail-placeholder {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+
+    .arch-svg-node {
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .arch-svg-node:hover {
+      opacity: 0.85;
+    }
+    .arch-flow-section {
+      margin-top: var(--space-2xl);
+    }
+    .flow-step {
+      display: flex;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+      align-items: flex-start;
+    }
+    .flow-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .flow-content h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.2rem;
+    }
+    .flow-content p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">officeadmin<span>.io</span></a>
+      <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="architecture.html" class="active">Architecture</a></li>
+        <li><a href="modules.html">Modules</a></li>
+        <li><a href="stack.html">Stack</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page">
+    <section class="hero" style="padding-bottom: var(--space-lg);">
+      <div class="container">
+        <h1>Architecture</h1>
+        <p>How the pieces connect. Tap any node to see details.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="arch-legend">
+          <div class="arch-legend-item"><div class="arch-legend-dot" style="background: #6c8aff;"></div> Core / Agent</div>
+          <div class="arch-legend-item"><div class="arch-legend-dot" style="background: #34d399;"></div> Communication</div>
+          <div class="arch-legend-item"><div class="arch-legend-dot" style="background: #f59e0b;"></div> Business</div>
+          <div class="arch-legend-item"><div class="arch-legend-dot" style="background: #a78bfa;"></div> Knowledge</div>
+          <div class="arch-legend-item"><div class="arch-legend-dot" style="background: #f472b6;"></div> Apple / Devices</div>
+          <div class="arch-legend-item"><div class="arch-legend-dot" style="background: #94a3b8;"></div> External Service</div>
+        </div>
+
+        <div class="arch-container">
+          <div class="arch-diagram" id="archDiagram">
+            <svg viewBox="0 0 900 680" xmlns="http://www.w3.org/2000/svg" style="font-family: Inter, sans-serif;">
+              <defs>
+                <marker id="arrow" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6" fill="none" stroke="#333" stroke-width="1"/>
+                </marker>
+                <marker id="arrow-accent" markerWidth="6" markerHeight="6" refX="6" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6" fill="none" stroke="#444" stroke-width="1"/>
+                </marker>
+              </defs>
+
+              <!-- ===== CONNECTION LINES ===== -->
+              <!-- AIVA core to subsystems -->
+              <line x1="450" y1="95" x2="150" y2="195" stroke="#2a2a3a" stroke-width="1" marker-end="url(#arrow)"/>
+              <line x1="450" y1="95" x2="350" y2="195" stroke="#2a2a3a" stroke-width="1" marker-end="url(#arrow)"/>
+              <line x1="450" y1="95" x2="550" y2="195" stroke="#2a2a3a" stroke-width="1" marker-end="url(#arrow)"/>
+              <line x1="450" y1="95" x2="750" y2="195" stroke="#2a2a3a" stroke-width="1" marker-end="url(#arrow)"/>
+
+              <!-- Comms → children -->
+              <line x1="110" y1="235" x2="85" y2="310" stroke="#1a3a2a" stroke-width="1" marker-end="url(#arrow)"/>
+              <line x1="180" y1="235" x2="220" y2="310" stroke="#1a3a2a" stroke-width="1" marker-end="url(#arrow)"/>
+
+              <!-- Knowledge → children -->
+              <line x1="350" y1="235" x2="350" y2="310" stroke="#2a2040" stroke-width="1" marker-end="url(#arrow)"/>
+
+              <!-- Business → children -->
+              <line x1="520" y1="235" x2="500" y2="310" stroke="#3a3020" stroke-width="1" marker-end="url(#arrow)"/>
+              <line x1="580" y1="235" x2="640" y2="310" stroke="#3a3020" stroke-width="1" marker-end="url(#arrow)"/>
+
+              <!-- Agents → children -->
+              <line x1="720" y1="235" x2="720" y2="370" stroke="#2a2a3a" stroke-width="1" marker-end="url(#arrow)"/>
+              <line x1="780" y1="235" x2="850" y2="370" stroke="#2a2a3a" stroke-width="1" marker-end="url(#arrow)"/>
+
+              <!-- Row 3 → Row 4 (Apple layer) -->
+              <line x1="85" y1="350" x2="85" y2="490" stroke="#3a2030" stroke-width="1" marker-end="url(#arrow)"/>
+              <line x1="220" y1="350" x2="235" y2="490" stroke="#3a2030" stroke-width="1" marker-end="url(#arrow)"/>
+              <line x1="350" y1="350" x2="385" y2="490" stroke="#3a2030" stroke-width="1" marker-end="url(#arrow)"/>
+
+              <!-- Business → external services -->
+              <line x1="500" y1="350" x2="535" y2="490" stroke="#2a2a30" stroke-width="1" marker-end="url(#arrow)"/>
+              <line x1="640" y1="350" x2="685" y2="490" stroke="#2a2a30" stroke-width="1" marker-end="url(#arrow)"/>
+
+              <!-- Agent children → Talk -->
+              <line x1="750" y1="415" x2="830" y2="490" stroke="#2a2030" stroke-width="1" marker-end="url(#arrow)"/>
+
+              <!-- Row 4 → External APIs (row 5) -->
+              <line x1="535" y1="530" x2="340" y2="590" stroke="#222" stroke-width="1" marker-end="url(#arrow)"/>
+              <line x1="535" y1="530" x2="490" y2="590" stroke="#222" stroke-width="1" marker-end="url(#arrow)"/>
+              <line x1="450" y1="95" x2="640" y2="590" stroke="#222" stroke-width="1" stroke-dasharray="4,4"/>
+              <line x1="220" y1="350" x2="190" y2="590" stroke="#222" stroke-width="1" stroke-dasharray="4,4"/>
+
+              <!-- Cross connections (dashed) -->
+              <line x1="350" y1="350" x2="450" y2="215" stroke="#222230" stroke-width="1" stroke-dasharray="4,4"/>
+
+              <!-- ===== NODES ===== -->
+
+              <!-- AIVA Core -->
+              <g class="arch-svg-node" data-node="aiva">
+                <rect x="370" y="50" width="160" height="45" rx="8" fill="#1a1a2e" stroke="#6c8aff" stroke-width="1.5"/>
+                <text x="450" y="78" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">AIVA</text>
+              </g>
+
+              <!-- Row 2: Major subsystems -->
+              <g class="arch-svg-node" data-node="comms">
+                <rect x="60" y="195" width="180" height="40" rx="8" fill="#0f1f1a" stroke="#34d399" stroke-width="1.5"/>
+                <text x="150" y="220" text-anchor="middle" fill="#34d399" font-size="12" font-weight="500">Comms Pipeline</text>
+              </g>
+
+              <g class="arch-svg-node" data-node="knowledge">
+                <rect x="270" y="195" width="160" height="40" rx="8" fill="#1a1530" stroke="#a78bfa" stroke-width="1.5"/>
+                <text x="350" y="220" text-anchor="middle" fill="#a78bfa" font-size="12" font-weight="500">Knowledge Layer</text>
+              </g>
+
+              <g class="arch-svg-node" data-node="business">
+                <rect x="470" y="195" width="160" height="40" rx="8" fill="#1f1a0f" stroke="#f59e0b" stroke-width="1.5"/>
+                <text x="550" y="220" text-anchor="middle" fill="#f59e0b" font-size="12" font-weight="500">Business Systems</text>
+              </g>
+
+              <g class="arch-svg-node" data-node="agents">
+                <rect x="670" y="195" width="160" height="40" rx="8" fill="#1a1a2e" stroke="#6c8aff" stroke-width="1.5"/>
+                <text x="750" y="220" text-anchor="middle" fill="#6c8aff" font-size="12" font-weight="500">Agent Runtime</text>
+              </g>
+
+              <!-- Row 3: Module children (left: comms, center: knowledge, right: business) -->
+              <g class="arch-svg-node" data-node="imessage">
+                <rect x="20" y="310" width="130" height="40" rx="6" fill="#0f1f1a" stroke="#34d399" stroke-width="1"/>
+                <text x="85" y="335" text-anchor="middle" fill="#34d399" font-size="11" font-weight="500">iMessage</text>
+              </g>
+
+              <g class="arch-svg-node" data-node="drafter">
+                <rect x="165" y="310" width="115" height="40" rx="6" fill="#0f1f1a" stroke="#34d399" stroke-width="1"/>
+                <text x="222" y="335" text-anchor="middle" fill="#34d399" font-size="11" font-weight="500">Drafter</text>
+              </g>
+
+              <g class="arch-svg-node" data-node="mempalace">
+                <rect x="300" y="310" width="110" height="40" rx="6" fill="#1a1530" stroke="#a78bfa" stroke-width="1"/>
+                <text x="355" y="335" text-anchor="middle" fill="#a78bfa" font-size="11" font-weight="500">MemPalace</text>
+              </g>
+
+              <g class="arch-svg-node" data-node="quickbooks">
+                <rect x="435" y="310" width="120" height="40" rx="6" fill="#1f1a0f" stroke="#f59e0b" stroke-width="1"/>
+                <text x="495" y="335" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="500">QuickBooks</text>
+              </g>
+
+              <g class="arch-svg-node" data-node="google">
+                <rect x="575" y="310" width="120" height="40" rx="6" fill="#1f1a0f" stroke="#f59e0b" stroke-width="1"/>
+                <text x="635" y="335" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="500">Google APIs</text>
+              </g>
+
+              <!-- Row 3b: Agent children (offset down-right) -->
+              <g class="arch-svg-node" data-node="tmux">
+                <rect x="660" y="375" width="130" height="40" rx="6" fill="#1a1a2e" stroke="#6c8aff" stroke-width="1"/>
+                <text x="725" y="400" text-anchor="middle" fill="#6c8aff" font-size="11" font-weight="500">tmux Sessions</text>
+              </g>
+
+              <g class="arch-svg-node" data-node="n8n">
+                <rect x="808" y="375" width="80" height="40" rx="6" fill="#1a1a2e" stroke="#6c8aff" stroke-width="1"/>
+                <text x="848" y="400" text-anchor="middle" fill="#6c8aff" font-size="11" font-weight="500">n8n</text>
+              </g>
+
+              <!-- Row 4: Apple / Devices / Services -->
+              <g class="arch-svg-node" data-node="contacts">
+                <rect x="20" y="490" width="120" height="40" rx="6" fill="#1f1525" stroke="#f472b6" stroke-width="1"/>
+                <text x="80" y="515" text-anchor="middle" fill="#f472b6" font-size="11" font-weight="500">Contacts</text>
+              </g>
+
+              <g class="arch-svg-node" data-node="reminders">
+                <rect x="160" y="490" width="130" height="40" rx="6" fill="#1f1525" stroke="#f472b6" stroke-width="1"/>
+                <text x="225" y="515" text-anchor="middle" fill="#f472b6" font-size="11" font-weight="500">Reminders</text>
+              </g>
+
+              <g class="arch-svg-node" data-node="calendar">
+                <rect x="310" y="490" width="130" height="40" rx="6" fill="#1f1525" stroke="#f472b6" stroke-width="1"/>
+                <text x="375" y="515" text-anchor="middle" fill="#f472b6" font-size="11" font-weight="500">Calendar</text>
+              </g>
+
+              <g class="arch-svg-node" data-node="voice">
+                <rect x="460" y="490" width="130" height="40" rx="6" fill="#1a1a25" stroke="#94a3b8" stroke-width="1"/>
+                <text x="525" y="515" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="500">Voice Pipeline</text>
+              </g>
+
+              <g class="arch-svg-node" data-node="homeassistant">
+                <rect x="610" y="490" width="140" height="40" rx="6" fill="#1a1a25" stroke="#94a3b8" stroke-width="1"/>
+                <text x="680" y="515" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="500">Home Assistant</text>
+              </g>
+
+              <g class="arch-svg-node" data-node="talk">
+                <rect x="770" y="490" width="110" height="40" rx="6" fill="#1f1525" stroke="#f472b6" stroke-width="1"/>
+                <text x="825" y="515" text-anchor="middle" fill="#f472b6" font-size="11" font-weight="500">Talk / Canvas</text>
+              </g>
+
+              <!-- Row 5: External services -->
+              <g class="arch-svg-node" data-node="github">
+                <rect x="130" y="590" width="120" height="35" rx="6" fill="#111118" stroke="#555" stroke-width="1"/>
+                <text x="190" y="613" text-anchor="middle" fill="#888" font-size="10" font-weight="500">GitHub CRM</text>
+              </g>
+
+              <g class="arch-svg-node" data-node="assemblyai">
+                <rect x="280" y="590" width="120" height="35" rx="6" fill="#111118" stroke="#555" stroke-width="1"/>
+                <text x="340" y="613" text-anchor="middle" fill="#888" font-size="10" font-weight="500">AssemblyAI</text>
+              </g>
+
+              <g class="arch-svg-node" data-node="pinecone">
+                <rect x="430" y="590" width="120" height="35" rx="6" fill="#111118" stroke="#555" stroke-width="1"/>
+                <text x="490" y="613" text-anchor="middle" fill="#888" font-size="10" font-weight="500">Pinecone</text>
+              </g>
+
+              <g class="arch-svg-node" data-node="claude">
+                <rect x="580" y="590" width="120" height="35" rx="6" fill="#111118" stroke="#555" stroke-width="1"/>
+                <text x="640" y="613" text-anchor="middle" fill="#888" font-size="10" font-weight="500">Claude API</text>
+              </g>
+
+              <g class="arch-svg-node" data-node="tailscale">
+                <rect x="730" y="590" width="120" height="35" rx="6" fill="#111118" stroke="#555" stroke-width="1"/>
+                <text x="790" y="613" text-anchor="middle" fill="#888" font-size="10" font-weight="500">Tailscale</text>
+              </g>
+
+            </svg>
+          </div>
+          <p class="arch-hint">Scroll right to see the full diagram.</p>
+        </div>
+
+        <div class="arch-detail-panel" id="archDetail">
+          <p class="arch-detail-placeholder">Tap a node in the diagram to see details.</p>
+        </div>
+
+        <!-- Data flow example -->
+        <div class="arch-flow-section">
+          <h2 class="section-title">Example: Email arrives</h2>
+          <p class="section-subtitle">Here is what happens when a new email hits Mike's inbox.</p>
+
+          <div style="margin-top: var(--space-lg);">
+            <div class="flow-step">
+              <div class="flow-num">1</div>
+              <div class="flow-content">
+                <h4>Gmail scanner runs</h4>
+                <p>The comms pipeline scanner checks Gmail for new messages. It runs on a schedule (morning scan at 7:45 AM PT, afternoon watchers at 3:00-3:45 PM).</p>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-num">2</div>
+              <div class="flow-content">
+                <h4>Classification</h4>
+                <p>Each message is classified into tiers. Tier 1 messages (routine, predictable replies) get auto-drafted and auto-sent. Tier 2 messages get a notification. Tier 3 messages need human review.</p>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-num">3</div>
+              <div class="flow-content">
+                <h4>Drafter writes the reply</h4>
+                <p>The Drafter module reads entity context, routing rules, and Mike's writing conventions. It writes a reply in Mike's voice. Up to 5 drafts run in parallel.</p>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-num">4</div>
+              <div class="flow-content">
+                <h4>Approval or auto-send</h4>
+                <p>Tier 1 drafts go out automatically at 9:30 AM. Everything else becomes an Apple Reminder for Mike to review. He approves, edits, or rejects from his phone.</p>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-num">5</div>
+              <div class="flow-content">
+                <h4>Knowledge extraction</h4>
+                <p>Key information from the conversation is extracted and stored in MemPalace. Contact details, project references, and action items get linked to the right entities in the CRM.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <p>Built by Mike Shaffer. Powered by Claude, Python, and a Mac Mini.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/architecture.js"></script>
+</body>
+</html>

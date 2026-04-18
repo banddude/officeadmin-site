@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modules — OfficeAdmin</title>
+  <meta name="description" content="The modules that make up OfficeAdmin. Each one handles a specific part of running a construction business.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">officeadmin<span>.io</span></a>
+      <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="architecture.html">Architecture</a></li>
+        <li><a href="modules.html" class="active">Modules</a></li>
+        <li><a href="stack.html">Stack</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page">
+    <section class="hero" style="padding-bottom: var(--space-lg);">
+      <div class="container">
+        <h1>Modules</h1>
+        <p>Each module handles a specific piece of the operation. Tap any module to expand it.</p>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <h2 class="section-title" style="font-size: 1.1rem; color: var(--text-muted); font-weight: 500;">Communications</h2>
+        <div class="modules-list">
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Email Triage</div>
+                <div class="module-brief">Watches Gmail, classifies messages, drafts replies</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>The comms pipeline scanner checks Gmail on a schedule. Morning scan at 7:45 AM, afternoon watchers at 3:00-3:45 PM. Each message is classified into one of three tiers.</p>
+              <p><strong>Tier 1</strong> messages are routine and predictable. These get auto-drafted and auto-sent at 9:30 AM without Mike touching them. <strong>Tier 2</strong> messages get a notification. <strong>Tier 3</strong> messages need human review and get queued as Apple Reminders.</p>
+              <div class="module-example">Scanner → Classifier → Dispatcher → Drafter (x5) → Approval Queue</div>
+              <p>
+                <span class="module-tag">Python</span>
+                <span class="module-tag">Gmail API</span>
+                <span class="module-tag">Claude</span>
+                <span class="module-tag">Scheduled</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Drafter</div>
+                <div class="module-brief">Writes in Mike's voice using learned rules</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>The Drafter reads entity context, routing rules, and Mike's writing conventions before composing any message. It produces emails, iMessages, and other written communication that sounds like Mike wrote them.</p>
+              <p>There is a learning pipeline. When Mike corrects a draft, the correction is distilled into a rule and added to the drafting conventions file. Over time, the drafts get better without retraining anything.</p>
+              <div class="module-example">Entity context + ROUTING.md + DRAFTING.md → Claude → Draft → Mike's corrections → Updated rules</div>
+              <p>
+                <span class="module-tag">Claude</span>
+                <span class="module-tag">Rule learning</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">iMessage</div>
+                <div class="module-brief">Two-way messaging with AIVA from Mike's phone</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>Reads the native macOS Messages database (chat.db) via SQLite for search and history. Sends messages through BlueBubbles, a cross-platform relay that acts as a channel provider.</p>
+              <p>Mike can message AIVA from his phone like texting a person. AIVA can also send proactive notifications. Access is controlled by an allowlist with pairing approval, so not just anyone can message the system.</p>
+              <p>
+                <span class="module-tag">Python</span>
+                <span class="module-tag">SQLite</span>
+                <span class="module-tag">BlueBubbles</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Notify</div>
+                <div class="module-brief">Notification routing across all devices</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>A Flask API server running as a daemon on the Mac Mini. It provides an HTTP interface for sending notifications via iMessage, Talk (voice), or agent sessions. Other modules call it when they need to get Mike's attention.</p>
+              <p>
+                <span class="module-tag">Python</span>
+                <span class="module-tag">Flask</span>
+                <span class="module-tag">Daemon</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Talk / Canvas</div>
+                <div class="module-brief">Voice and visual output on Mike's devices</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>Talk pushes text-to-speech notifications to all of Mike's devices simultaneously using Apple Push Notification Service. AIVA can literally speak out loud through connected speakers.</p>
+              <p>Canvas is a phone-based HTML UI. AIVA can push interactive prompts, confirmation dialogs, and simple forms to Mike's phone screen. This is how AIVA shows information that does not fit in a text message.</p>
+              <p>
+                <span class="module-tag">APNS</span>
+                <span class="module-tag">TTS</span>
+                <span class="module-tag">HTML UI</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <h2 class="section-title" style="font-size: 1.1rem; color: var(--text-muted); font-weight: 500; margin-top: var(--space-xl);">Knowledge and Memory</h2>
+        <div class="modules-list">
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">MemPalace</div>
+                <div class="module-brief">SQLite knowledge graph with thousands of entities</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>A SQLite-backed knowledge graph organized into rooms and drawers. Stores entities, relationships (triples), and facts extracted from conversations, documents, and agent sessions.</p>
+              <p>Supports graph traversal, search, timeline queries, and tunnel discovery (finding non-obvious connections between concepts). Uses priority-based ingest ordering: agent sessions first, then memory, cron runs, Claude projects, and Codex artifacts.</p>
+              <div class="module-example">mempalace search "Shaffer Construction"
+mempalace kg-query "who works for"
+mempalace traverse entity-123 --depth 3</div>
+              <p>
+                <span class="module-tag">Python</span>
+                <span class="module-tag">SQLite</span>
+                <span class="module-tag">CLI</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Voice Pipeline</div>
+                <div class="module-brief">Transcription and speaker identification from recordings</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>iPhone recordings sync via iCloud to the Mac Mini. A launchd watcher detects new files and triggers the transcription pipeline.</p>
+              <p>AssemblyAI handles speech-to-text with speaker diarization. Pinecone stores voice embeddings so the system can identify who is speaking across all recordings, even in new conversations. Transcripts feed into MemPalace for knowledge extraction and get linked to the relevant entities.</p>
+              <div class="module-example">iPhone → iCloud sync → launchd watcher → AssemblyAI → Pinecone speaker ID → SQLite → MemPalace</div>
+              <p>
+                <span class="module-tag">Python</span>
+                <span class="module-tag">AssemblyAI</span>
+                <span class="module-tag">Pinecone</span>
+                <span class="module-tag">launchd</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">CRM / Entity System</div>
+                <div class="module-brief">GitHub-backed relationship management</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>The banddude/mikeshaffer GitHub repo is the operational backbone. Every customer, vendor, crew member, and family member gets an entity folder with a JSON profile, task files, and work records in Markdown.</p>
+              <p>Work lifecycle tracks from lead to payment: lead, bidding, bid, negotiating, awarded, scheduled, in_progress, complete, invoiced, paid. GitHub Actions run validators on every push to keep the data clean.</p>
+              <div class="module-example">entities/
+  acme-corp/
+    entity.json      # profile data
+    tasks/            # task files
+    work/             # job records, scope docs
+    notes.md          # free-form notes</div>
+              <p>
+                <span class="module-tag">GitHub</span>
+                <span class="module-tag">JSON</span>
+                <span class="module-tag">GitHub Actions</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <h2 class="section-title" style="font-size: 1.1rem; color: var(--text-muted); font-weight: 500; margin-top: var(--space-xl);">Business Operations</h2>
+        <div class="modules-list">
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">QuickBooks CLI</div>
+                <div class="module-brief">Programmatic access to accounting and invoicing</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>A Python and Node CLI with about 40 files that wraps the QuickBooks Online REST API. OAuth credentials stored in macOS Keychain. Creates and manages estimates, invoices, bills, customers, and vendors without opening the QuickBooks app.</p>
+              <p>Also integrates with QuickBooks Time (formerly TSheets) for crew scheduling and timesheets. Contact records in Apple Contacts link to QuickBooks customer profiles via URL labels.</p>
+              <p>
+                <span class="module-tag">Python</span>
+                <span class="module-tag">Node.js</span>
+                <span class="module-tag">OAuth</span>
+                <span class="module-tag">REST API</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Google APIs</div>
+                <div class="module-brief">Gmail, Calendar, Drive, Chat across two accounts</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>Unified Python CLI for Google Workspace covering Gmail (send, reply, forward, search), Google Calendar (events, availability), Google Drive (file management), Sheets, Docs, and Chat.</p>
+              <p>Supports two authentication modes: personal OAuth for mikejshaffer@gmail.com and a Workspace service account for the @shaffercon.com business domain. Both run through the same CLI.</p>
+              <p>
+                <span class="module-tag">Python</span>
+                <span class="module-tag">OAuth</span>
+                <span class="module-tag">Service Account</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Electrical Estimating</div>
+                <div class="module-brief">Service call pricing for Shaffer Construction</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>Generates electrical construction estimates and service call pricing. Takes scope descriptions and produces itemized estimates based on material costs, labor rates, and markup rules specific to Shaffer Construction's pricing model.</p>
+              <p>
+                <span class="module-tag">Python</span>
+                <span class="module-tag">Domain-specific</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <h2 class="section-title" style="font-size: 1.1rem; color: var(--text-muted); font-weight: 500; margin-top: var(--space-xl);">Apple Ecosystem</h2>
+        <div class="modules-list">
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Contacts</div>
+                <div class="module-brief">Direct SQLite access to Apple Contacts</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>Reads and writes to the macOS Contacts database directly via SQLite, bypassing AppleScript for speed. Every person in the system has a Contacts entry that links to their entity folder in the CRM repo via URL labels.</p>
+              <p>This is the identity bridge. When a phone number comes in through iMessage or a name appears in an email, the contacts module resolves it to a canonical entity.</p>
+              <p>
+                <span class="module-tag">Python</span>
+                <span class="module-tag">SQLite</span>
+                <span class="module-tag">PyObjC</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Reminders</div>
+                <div class="module-brief">Apple Reminders as the universal approval queue</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>Apple Reminders is the approval queue for the entire system. Every draft email, generated estimate, and identified task becomes a Reminder. Mike reviews and approves from his phone, iPad, or Mac.</p>
+              <p>Reminders sync via iCloud, so they show up everywhere. Tasks also mirror to entity folders in the GitHub CRM. The subtask tool allows breaking complex reminders into actionable steps.</p>
+              <p>
+                <span class="module-tag">EventKit</span>
+                <span class="module-tag">iCloud Sync</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Calendar</div>
+                <div class="module-brief">EventKit integration for scheduling</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>EventKit-based Apple Calendar integration for creating, reading, and managing events. Works across both iCloud and Google calendars. Used for scheduling crew work, client meetings, and AIVA's own job schedule.</p>
+              <p>
+                <span class="module-tag">EventKit</span>
+                <span class="module-tag">Python</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Notes</div>
+                <div class="module-brief">Apple Notes as AIVA's soul and memory source</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>Apple Notes syncs across all devices and serves as the canonical source for AIVA's personality and memory. The Memory module reads from specific Notes entries to generate provider-specific instruction files (AGENTS.md, CLAUDE.md) with hot-reload on edit.</p>
+              <p>
+                <span class="module-tag">Apple Notes</span>
+                <span class="module-tag">iCloud Sync</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <h2 class="section-title" style="font-size: 1.1rem; color: var(--text-muted); font-weight: 500; margin-top: var(--space-xl);">Infrastructure</h2>
+        <div class="modules-list">
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Agent Runtime</div>
+                <div class="module-brief">Background agent sessions in tmux</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>Background agent sessions run in tmux with per-agent workspaces and runtime configs. The <code>agents</code> CLI manages session lifecycle, the <code>agent-revive</code> CLI restarts crashed sessions, and the <code>tell</code> CLI sends commands to running sessions.</p>
+              <p>This is how AIVA handles tasks that take minutes or hours without blocking the main conversation. Long builds, research tasks, and multi-step workflows all run as background agents.</p>
+              <p>
+                <span class="module-tag">Bash</span>
+                <span class="module-tag">tmux</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">n8n Workflows</div>
+                <div class="module-brief">Event-driven automation on Railway</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>n8n runs on Railway and handles webhook-triggered workflows and multi-step automations. The Cloudflare Worker routes n8n-specific paths (/webhook, /workflows, /api, /home) to the Railway deployment.</p>
+              <p>
+                <span class="module-tag">n8n</span>
+                <span class="module-tag">Railway</span>
+                <span class="module-tag">Webhooks</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Home Assistant</div>
+                <div class="module-brief">Smart home device control</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>Controls smart home devices via the Home Assistant API. Lights, media players, sensors, and automations. AIVA can turn things on and off, check states, and trigger scenes.</p>
+              <p>Configuration is version-controlled in git with a clear separation between stable config and mutable runtime state.</p>
+              <p>
+                <span class="module-tag">Home Assistant</span>
+                <span class="module-tag">Git-versioned</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Chrome CLI</div>
+                <div class="module-brief">Playwright-based browser automation</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>Wraps Playwright as an MCP server for browser automation. AIVA can navigate web pages, fill forms, take screenshots, and extract data. Used for tasks that require interacting with web applications that do not have APIs.</p>
+              <p>
+                <span class="module-tag">Playwright</span>
+                <span class="module-tag">MCP</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Shaffer Blogger</div>
+                <div class="module-brief">SEO blog posts for shaffercon.com</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>Generates and publishes SEO-optimized blog posts about EV charging infrastructure for Shaffer Construction's website. Content is managed in GitHub and deployed automatically.</p>
+              <p>
+                <span class="module-tag">GitHub</span>
+                <span class="module-tag">SEO</span>
+                <span class="module-tag">Content</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Cloudflare</div>
+                <div class="module-brief">DNS, Workers, cache, and SSL management</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>Manages Cloudflare infrastructure via API. DNS records, Workers (including the one serving this site), cache purging, and SSL/TLS configuration. Helper functions make common operations one-liners.</p>
+              <p>
+                <span class="module-tag">Cloudflare API</span>
+                <span class="module-tag">Bash</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <p>Built by Mike Shaffer. Powered by Claude, Python, and a Mac Mini.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
