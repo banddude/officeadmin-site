@@ -3,23 +3,23 @@
   var details = {
     aiva: {
       title: "AIVA — The Agent (.aiva/ layer)",
-      desc: "The central AI agent running on a Mac Mini. The ~/.aiva/ directory is the custom infrastructure layer: 50+ modules, skills, scripts, MCP servers, state management, and orchestration logic. It sits between open-source tools (OpenClaw, MemPalace, n8n) and the agent brains (Claude, GLM-5.1), tying everything together into a coherent operations system."
+      desc: "The central AI agent running on a Mac Mini. The ~/.aiva/ directory is the custom infrastructure layer: 50+ modules, skills, scripts, MCP servers, state management, and orchestration logic. It sits between open-source tools (OpenClaw, MemPalace) and the agent brains (Claude, GLM-5.1), tying everything together into a coherent operations system."
     },
     comms: {
       title: "Communications Pipeline",
       desc: "End-to-end message processing. A morning scanner checks Gmail and iMessage at 7:45 AM. Messages get classified into tiers (auto-send, notify, or review). The dispatcher fans out to up to 5 parallel drafters. An auto-sender releases Tier 1 drafts at 9:30 AM. Afternoon watchers run at 3:00-3:45 PM for follow-ups."
     },
     knowledge: {
-      title: "Knowledge Layer",
-      desc: "Two separate entity systems. The operational CRM (GitHub repo, 85 manually curated entities with dashed slugs) handles day-to-day business. MemPalace (open-source knowledge graph, 3,580 auto-extracted entities with underscored IDs, 6,810 temporal triples) stores long-term memory from session history. They serve different purposes and are not yet connected."
+      title: "Knowledge Layer — Three Memory Stores",
+      desc: "Three separate memory systems working together. (1) Operational CRM: 86 manually curated entity folders in a GitHub repo — source of truth for identity and operations. (2) OpenClaw Memory: SQLite database with FTS and vector embeddings for fast short-term semantic recall. (3) MemPalace: long-term temporal knowledge graph with 3,580 entities and 6,810 triples, auto-extracted by GLM-5.1. Plus MEMORY.md, the promoted-facts file that dreaming writes and every session reads."
     },
     business: {
       title: "Business Systems",
       desc: "QuickBooks Online integration for estimates, invoices, bills, and customer records. Google Workspace access for Gmail, Calendar, Drive, Sheets, and Chat. TSheets for crew scheduling and timesheets."
     },
     agents: {
-      title: "Agent Runtime",
-      desc: "Background agent sessions managed in tmux. Each agent gets its own workspace and runtime config. The agent-revive CLI can restart crashed sessions. n8n handles event-driven workflow automation. Scheduled jobs run on cron with specific time slots throughout the day."
+      title: "OpenClaw Runtime",
+      desc: "OpenClaw is the agent orchestration layer. It schedules 83 cron jobs (9 currently enabled), routes messages across channels (iMessage, Google Chat), hosts the MCP gateway that exposes AIVA's skills, runs subagents in isolated sessions, and maintains its own short-term memory cache. Background agent sessions run in tmux with per-agent workspaces managed by the agents CLI."
     },
     imessage: {
       title: "iMessage Integration",
@@ -45,9 +45,9 @@
       title: "tmux Sessions",
       desc: "Background agent sessions run in tmux, managed by the agents module. Each session has its own workspace and can be revived if it crashes. The 'tell' CLI sends commands to running sessions. This is how AIVA runs long tasks (like building this website) without blocking the main chat."
     },
-    n8n: {
-      title: "n8n Workflows",
-      desc: "Event-driven automation platform running on Railway. Handles webhook-triggered workflows and complex multi-step automations. The Cloudflare Worker routes n8n paths (/webhook, /workflows, /api) to the Railway deployment while the static site is served from GitHub Pages."
+    dreaming: {
+      title: "Dreaming — Memory Consolidation",
+      desc: "Scheduled background reflection passes that run on OpenClaw's cron. The core job runs at 3 AM daily: it scores short-term recalls from OpenClaw's memory cache and promotes entries that pass threshold (minScore 0.8, minRecallCount 3, 14-day half-life) into MEMORY.md. Additional passes include morning review (6:15 AM), evening reflection (8:45 PM), memory maintenance (Mon/Thu 3:30 AM), weekly executive synthesis (Monday 7 AM), and deep reflection (Tue/Fri 4 AM). This is how AIVA consolidates memory while the operator sleeps."
     },
     contacts: {
       title: "Apple Contacts",
@@ -75,7 +75,7 @@
     },
     github: {
       title: "GitHub CRM (operational entities)",
-      desc: "A private GitHub repo holds 85 manually curated entities with dashed slugs (acme-corp, jane-doe). Each entity folder has a JSON profile, tasks, and work records. This is the working CRM that email triage, the Drafter, and daily sync scripts read from. Separate from the 3,580 auto-extracted MemPalace entities. GitHub Actions run validators on every push."
+      desc: "A private GitHub repo holds 86 manually curated entities with dashed slugs (acme-corp, jane-doe). Each entity folder has a JSON profile, tasks, and work records. This is the working CRM that email triage, the Drafter, and daily sync scripts read from. Source of truth for identity and operational state. Separate from the 3,580 auto-extracted MemPalace entities."
     },
     assemblyai: {
       title: "AssemblyAI",

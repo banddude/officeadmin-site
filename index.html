@@ -32,16 +32,20 @@
       <div class="container">
         <div class="hero-label">AI Ops</div>
         <h1>One system runs the whole business.</h1>
-        <p>OfficeAdmin is an AI operations system designed to run a small business. Its agent, AIVA, handles email, estimates, scheduling, contacts, voice memos, and a dozen other things that used to be manual.</p>
+        <p>A personal AI operations system that runs a small business, remembers its history, and reflects on its own memory while the operator sleeps. Its agent, AIVA, handles email, estimates, scheduling, contacts, voice memos, and dozens of other things that used to be manual.</p>
 
         <div class="hero-stats">
           <div class="hero-stat">
-            <div class="hero-stat-value">50+</div>
-            <div class="hero-stat-label">Modules</div>
+            <div class="hero-stat-value">86</div>
+            <div class="hero-stat-label">CRM entities</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-value">~90</div>
-            <div class="hero-stat-label">Entities</div>
+            <div class="hero-stat-value">6,810</div>
+            <div class="hero-stat-label">Knowledge triples</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-value">83</div>
+            <div class="hero-stat-label">Scheduled jobs</div>
           </div>
           <div class="hero-stat">
             <div class="hero-stat-value">1</div>
@@ -78,8 +82,8 @@
             <p>Integrates with QuickBooks Time for crew scheduling and timesheets. Calendar events sync across Apple Calendar and Google Calendar.</p>
           </div>
           <div class="overview-card">
-            <h3>Knowledge graph</h3>
-            <p>MemPalace (open-source) stores 3,580 auto-extracted entities and 6,810 temporal triples from session history. A separate GitHub repo holds 85 manually curated entities for daily operations.</p>
+            <h3>Three-tier memory</h3>
+            <p>An operational CRM (86 curated entities), a short-term recall cache with full-text and vector search, and a long-term knowledge graph (3,580 entities, 6,810 temporal triples). Scheduled dreaming passes consolidate short-term memory into durable storage overnight.</p>
           </div>
         </div>
       </div>
@@ -93,7 +97,7 @@
         <div class="overview-grid">
           <div class="overview-card" style="background: var(--bg);">
             <h3>The brain</h3>
-            <p>A Mac Mini running the custom .aiva/ layer on top of open-source tools (OpenClaw, MemPalace, n8n) with Claude as the reasoning engine. It is always on and always connected.</p>
+            <p>A Mac Mini running the custom .aiva/ layer on top of open-source tools (OpenClaw, MemPalace) with Claude as the reasoning engine. It is always on and always connected.</p>
           </div>
           <div class="overview-card" style="background: var(--bg);">
             <h3>The reach</h3>
@@ -101,7 +105,7 @@
           </div>
           <div class="overview-card" style="background: var(--bg);">
             <h3>The memory</h3>
-            <p>A GitHub repo serves as both an operational workspace and a lightweight CRM. Each person and company gets an entity folder with profile data, tasks, and work records.</p>
+            <p>Three memory stores work together: a curated CRM for daily operations, a short-term recall cache for fast semantic search, and a long-term knowledge graph for historical context. Scheduled dreaming passes consolidate recent memory into durable storage.</p>
           </div>
         </div>
 
@@ -117,8 +121,8 @@
         <p class="section-subtitle">AIVA is the AI agent that runs the system. It is not a chatbot and not a SaaS product. It is an operations system built for a real business.</p>
         <div class="overview-grid" style="grid-template-columns: 1fr;">
           <div class="overview-card">
-            <p style="font-size: 0.95rem; line-height: 1.7;">The core of the system is <code>~/.aiva/</code>, a custom infrastructure layer. It contains 50+ modules, skills, scripts, MCP servers, and orchestration logic. It sits on top of open-source tools like OpenClaw (terminal UI), MemPalace (knowledge graph), n8n (workflow automation), and BlueBubbles (iMessage bridge), connecting them to Apple frameworks, business APIs, and Claude as the reasoning engine.</p>
-            <p style="font-size: 0.95rem; line-height: 1.7; margin-top: 0.75rem;">AIVA manages background agent sessions in tmux, runs scheduled jobs, responds to iMessages, drafts emails in the operator's voice using a learned rule set, and coordinates everything. It can speak out loud through connected devices, show interactive prompts on the operator's phone, and manage smart home devices through Home Assistant. When it writes something that needs approval, it creates an Apple Reminder. When it learns something new, it stores it in MemPalace. The system is real, running in production, and handles the daily operations of a small business.</p>
+            <p style="font-size: 0.95rem; line-height: 1.7;">The core of the system is <code>~/.aiva/</code>, a custom infrastructure layer. It contains 50+ modules, skills, scripts, MCP servers, and orchestration logic. It sits on top of open-source tools like OpenClaw (agent orchestration, scheduling, message routing, MCP gateway), MemPalace (knowledge graph), and BlueBubbles (iMessage bridge), connecting them to Apple frameworks, business APIs, and Claude as the reasoning engine.</p>
+            <p style="font-size: 0.95rem; line-height: 1.7; margin-top: 0.75rem;">AIVA manages background agent sessions, runs 80+ scheduled jobs, routes messages across channels, drafts emails in the operator's voice using a learned rule set, and coordinates everything. It can speak out loud through connected devices, show interactive prompts on the operator's phone, and manage smart home devices through Home Assistant. When it writes something that needs approval, it creates an Apple Reminder. When it learns something new, it stores it across three memory tiers. At night, scheduled dreaming passes consolidate short-term recall into long-term knowledge — like how human sleep consolidates memory. The system is real, running in production, and handles the daily operations of a small business.</p>
           </div>
         </div>
       </div>

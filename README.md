@@ -1,6 +1,6 @@
 # officeadmin.io
 
-Public site for OfficeAdmin / AIVA, an AI operations system designed to run a small business.
+Public site for OfficeAdmin / AIVA, a personal AI operations system that runs a small business.
 
 Live at [officeadmin.io](https://officeadmin.io).
 
@@ -23,7 +23,6 @@ Plain HTML/CSS/JS. No build step, no framework, no dependencies.
 
 - GitHub Pages serves the static files from the `main` branch
 - A Cloudflare Worker (`officeadmin-router`) proxies requests from officeadmin.io to GitHub Pages
-- The same worker routes n8n paths (`/webhook`, `/workflows`, etc.) to Railway
 
 ## Updating
 

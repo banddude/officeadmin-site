@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Modules — OfficeAdmin</title>
-  <meta name="description" content="The modules that make up OfficeAdmin. Each one handles a specific part of running a construction business.">
+  <meta name="description" content="The modules that make up OfficeAdmin. Each one handles a specific part of running a small business.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -138,28 +138,220 @@
 
         </div>
 
-        <h2 class="section-title" style="font-size: 1.1rem; color: var(--text-muted); font-weight: 500; margin-top: var(--space-xl);">Knowledge and Memory</h2>
+        <h2 class="section-title" style="font-size: 1.1rem; color: var(--text-muted); font-weight: 500; margin-top: var(--space-xl);">Memory Architecture</h2>
+        <p class="section-subtitle">AIVA has three distinct memory stores, a promoted-facts file, and scheduled dreaming passes that consolidate short-term recall into long-term knowledge.</p>
         <div class="modules-list">
 
           <div class="module-item">
             <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
               <div>
-                <div class="module-name">MemPalace (open-source + wrapper)</div>
-                <div class="module-brief">Third-party knowledge graph with a custom integration layer</div>
+                <div class="module-name">1. Operational CRM</div>
+                <div class="module-brief">86 manually curated entities — source of truth for identity and operations</div>
               </div>
               <div class="module-chevron">&#9662;</div>
             </div>
             <div class="module-body">
-              <p>MemPalace is an open-source SQLite knowledge graph tool. It is a third-party project. The .aiva/ layer includes a thin module wrapper that handles ingest ordering, launchd scheduling, and priority queuing for the extraction pipeline.</p>
-              <p>The MemPalace knowledge graph currently holds 3,580 entities and 6,810 temporal triples (subject/predicate/object relations with valid_from/valid_to timestamps). Entity types include person, company, tool, project, concept, place, property, event, and vehicle. All of this is auto-extracted from AI session history by GLM-5.1.</p>
+              <p>A private GitHub repo serves as the working CRM. 86 structured entity folders, one per customer, vendor, crew member, or associate. Each entity has a JSON profile, tasks, and work records. Slugs are dashed: <code>acme-corp</code>, <code>jane-doe</code>.</p>
+              <p>Work lifecycle tracks from lead to payment: lead, bidding, bid, negotiating, awarded, scheduled, in_progress, complete, invoiced, paid. GitHub Actions run validators on every push. Email triage, the Drafter, daily sync, and contact URL linking all read from here.</p>
+              <p>This is the source of truth for identity and operational state. When a phone number comes in or a name appears in an email, it resolves to an entity here.</p>
+              <div class="module-example">~/entities/
+  acme-corp/
+    entity.json      # profile data
+    tasks/            # task files
+    work/             # job records, scope docs</div>
+              <p>
+                <span class="module-tag">GitHub</span>
+                <span class="module-tag">JSON</span>
+                <span class="module-tag">86 entities</span>
+                <span class="module-tag">Source of truth</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">2. OpenClaw Short-Term Memory</div>
+                <div class="module-brief">Recall cache with full-text search and vector embeddings</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>OpenClaw maintains its own SQLite memory database at <code>~/.openclaw/memory/main.sqlite</code>. Recent session content is chunked and indexed with both FTS5 (full-text search) and vector embeddings for fast semantic recall across recent work.</p>
+              <p>This is the fast-access layer. When AIVA needs to remember what happened in recent conversations, it queries this cache first. The data here is relatively recent and unfiltered — everything from the last few weeks of agent sessions.</p>
+              <p>This cache is also the primary input for the dreaming passes. Scheduled background jobs score and filter entries from here, promoting the most durable and frequently-referenced knowledge into long-term storage.</p>
+              <p>
+                <span class="module-tag">SQLite</span>
+                <span class="module-tag">FTS5</span>
+                <span class="module-tag">Vector embeddings</span>
+                <span class="module-tag">Semantic search</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">3. MemPalace Knowledge Graph</div>
+                <div class="module-brief">3,580 entities, 6,810 temporal triples — long-term historical memory</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>MemPalace is an open-source SQLite knowledge graph. It holds the long-term historical memory of everything the system has processed: 3,580 entities and 6,810 triples with temporal bounds (valid_from/valid_to) so the system can reason about what was true when.</p>
+              <p>Entity types include person, company, tool, project, concept, place, property, event, and vehicle. All auto-extracted from Claude, Codex, and OpenClaw session logs by GLM-5.1 in chronological order. The .aiva/ layer wraps it with a thin module for ingest ordering, launchd scheduling, and priority queuing.</p>
+              <p>Entity IDs are underscored (<code>acme_corp</code>, <code>quickbooks</code>). The CRM is the working set for daily ops. MemPalace is the historical record of everything the system has ever known.</p>
               <p>
                 <span class="module-tag">Open source</span>
                 <span class="module-tag">SQLite</span>
                 <span class="module-tag">GLM-5.1</span>
                 <span class="module-tag">3,580 entities</span>
+                <span class="module-tag">6,810 triples</span>
+                <span class="module-tag">Temporal</span>
               </p>
             </div>
           </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">MEMORY.md — Promoted Facts</div>
+                <div class="module-brief">Durable context loaded into every agent session</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>A long-term promoted-facts file that sits at the root of the operational workspace. Dreaming passes write to it. Every agent session loads it as durable context, so AIVA always has access to the most important accumulated knowledge without needing to query a database.</p>
+              <p>This is the output of the memory consolidation pipeline: the distilled, high-confidence facts that survived the scoring and promotion process.</p>
+              <p>
+                <span class="module-tag">Markdown</span>
+                <span class="module-tag">Auto-promoted</span>
+                <span class="module-tag">Session context</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <h2 class="section-title" style="font-size: 1.1rem; color: var(--text-muted); font-weight: 500; margin-top: var(--space-xl);">Dreaming — Memory Consolidation</h2>
+        <p class="section-subtitle">AIVA does not just respond to messages. It actively reviews its memory while the operator sleeps, promoting useful knowledge into durable storage — like how human sleep consolidates memory.</p>
+        <div class="modules-list">
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Memory Dreaming Promotion</div>
+                <div class="module-brief">3:00 AM daily — promotes short-term recalls into MEMORY.md</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>The core dreaming job. Runs at 3 AM every day (currently <strong>enabled</strong>). Scores weighted short-term recalls from OpenClaw's memory cache and promotes entries that pass the threshold into MEMORY.md.</p>
+              <p>Promotion criteria: minimum score of 0.8, at least 3 recall counts, at least 3 unique queries referencing the entry, 14-day half-life decay, maximum 30-day window. Only the most durable, frequently-referenced knowledge makes it through.</p>
+              <div class="module-example">OpenClaw memory → score + filter → promote → MEMORY.md</div>
+              <p>
+                <span class="module-tag">Cron</span>
+                <span class="module-tag">3 AM daily</span>
+                <span class="module-tag">Enabled</span>
+                <span class="module-tag">Scoring</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Morning Review</div>
+                <div class="module-brief">6:15 AM — reviews memory and preps for the day</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>Reviews recent memory files and current long-term memory. Identifies patterns, unresolved threads, upcoming obligations, and useful preparations for the day ahead. Produces an internal executive summary.</p>
+              <p>
+                <span class="module-tag">Cron</span>
+                <span class="module-tag">6:15 AM</span>
+                <span class="module-tag">Reflection</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Evening Reflection</div>
+                <div class="module-brief">8:45 PM — reflects on the day, flags what was left hanging</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>Reflects on the day using recent memory and session context. Identifies what mattered, what should be remembered long-term, what was left hanging, and what tomorrow needs.</p>
+              <p>
+                <span class="module-tag">Cron</span>
+                <span class="module-tag">8:45 PM</span>
+                <span class="module-tag">Reflection</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Memory Maintenance</div>
+                <div class="module-brief">3:30 AM Mon/Thu — distills insights, flags stale items</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>Runs twice a week in the early morning. Reviews recent daily memory files and MEMORY.md. Distills durable insights from recent memory, flags stale items, identifies repeated themes, and promotes candidates into long-term memory.</p>
+              <p>
+                <span class="module-tag">Cron</span>
+                <span class="module-tag">3:30 AM Mon/Thu</span>
+                <span class="module-tag">Maintenance</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Weekly Executive Synthesis</div>
+                <div class="module-brief">Monday 7 AM — weekly priorities, neglected areas, progress</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>Weekly synthesis of priorities, neglected areas, and progress. Reviews recent memory, active patterns, obligations, and system health. Identifies process improvements, agent implications, and organizational insights.</p>
+              <p>
+                <span class="module-tag">Cron</span>
+                <span class="module-tag">Monday 7 AM</span>
+                <span class="module-tag">Synthesis</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">Deep Reflection</div>
+                <div class="module-brief">Tue/Fri 4 AM — deeper learning and pattern recognition</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>A deeper reflection pass that digs creatively through the system's world to find patterns, neglected relationships, recurring concerns, hidden obligations, unspoken priorities, and system connections that other passes might miss.</p>
+              <p>
+                <span class="module-tag">Cron</span>
+                <span class="module-tag">Tue/Fri 4 AM</span>
+                <span class="module-tag">Deep learning</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <h2 class="section-title" style="font-size: 1.1rem; color: var(--text-muted); font-weight: 500; margin-top: var(--space-xl);">Knowledge Intake</h2>
+        <div class="modules-list">
 
           <div class="module-item">
             <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
@@ -178,50 +370,6 @@
                 <span class="module-tag">AssemblyAI</span>
                 <span class="module-tag">Pinecone</span>
                 <span class="module-tag">launchd</span>
-              </p>
-            </div>
-          </div>
-
-          <div class="module-item">
-            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
-              <div>
-                <div class="module-name">Operational CRM (GitHub repo)</div>
-                <div class="module-brief">85 manually curated entities for day-to-day operations</div>
-              </div>
-              <div class="module-chevron">&#9662;</div>
-            </div>
-            <div class="module-body">
-              <p>A private GitHub repo serves as the working CRM. 85 entities, one folder per customer, vendor, crew member, or associate. Each entity has a JSON profile, tasks, and work records. Slugs are dashed: <code>acme-corp</code>, <code>jane-doe</code>.</p>
-              <p>Work lifecycle tracks from lead to payment: lead, bidding, bid, negotiating, awarded, scheduled, in_progress, complete, invoiced, paid. GitHub Actions run validators on every push. Email triage, the Drafter, daily sync, and contact URL linking all read from here.</p>
-              <div class="module-example">entities/
-  acme-corp/
-    entity.json      # profile data
-    tasks/            # task files
-    work/             # job records, scope docs</div>
-              <p>
-                <span class="module-tag">GitHub</span>
-                <span class="module-tag">JSON</span>
-                <span class="module-tag">85 entities</span>
-              </p>
-            </div>
-          </div>
-
-          <div class="module-item">
-            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
-              <div>
-                <div class="module-name">MemPalace knowledge graph (auto-extracted)</div>
-                <div class="module-brief">3,580 entities and 6,810 triples from session history</div>
-              </div>
-              <div class="module-chevron">&#9662;</div>
-            </div>
-            <div class="module-body">
-              <p>This is separate from the operational CRM. The MemPalace knowledge graph is auto-populated by the mempalace-extract pipeline, which reads Claude, Codex, and OpenClaw session JSONL files, sends them to GLM-5.1, and stores the extracted knowledge as entities and triples.</p>
-              <p>Entity IDs are underscored (<code>acme_corp</code>, <code>quickbooks</code>, <code>supabase</code>). Triples have temporal bounds (valid_from/valid_to) so the system can reason about what was true when. The CRM is the working set for daily ops. MemPalace is the long-term memory. They are not yet connected.</p>
-              <p>
-                <span class="module-tag">SQLite</span>
-                <span class="module-tag">GLM-5.1</span>
-                <span class="module-tag">6,810 triples</span>
-                <span class="module-tag">Temporal</span>
               </p>
             </div>
           </div>
@@ -273,13 +421,13 @@
           <div class="module-item">
             <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
               <div>
-                <div class="module-name">Electrical Estimating</div>
-                <div class="module-brief">Service call pricing and estimates</div>
+                <div class="module-name">Estimating Engine</div>
+                <div class="module-brief">Service pricing and job estimates</div>
               </div>
               <div class="module-chevron">&#9662;</div>
             </div>
             <div class="module-body">
-              <p>Generates construction estimates and service call pricing. Takes scope descriptions and produces itemized estimates based on material costs, labor rates, and markup rules specific to the business.</p>
+              <p>Generates job estimates and service call pricing. Takes scope descriptions and produces itemized estimates based on material costs, labor rates, and markup rules specific to the business.</p>
               <p>
                 <span class="module-tag">Python</span>
                 <span class="module-tag">Domain-specific</span>
@@ -372,15 +520,31 @@
             <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
               <div>
                 <div class="module-name">OpenClaw (open-source)</div>
-                <div class="module-brief">Terminal UI layer for interactive agent sessions</div>
+                <div class="module-brief">Agent orchestration, scheduling, message routing, MCP gateway</div>
               </div>
               <div class="module-chevron">&#9662;</div>
             </div>
             <div class="module-body">
-              <p>OpenClaw is an open-source terminal UI that sits above .aiva/, providing the interactive session interface for working with agents. OpenClaw is a third-party project that the system uses as its primary TUI layer.</p>
+              <p>OpenClaw is far more than a terminal UI. It is the agent orchestration layer that schedules every cron job, routes messages across channels (iMessage, Google Chat), hosts the MCP gateway that exposes AIVA's skills to agent sessions, and runs subagents in isolated workspaces.</p>
+              <p><strong>Scheduler:</strong> 83 registered cron jobs (9 currently enabled) covering digests, email processing, habit tracking, dreaming passes, learning scans, and memory maintenance. Each job targets either the main agent session or an isolated subagent.</p>
+              <p><strong>Message routing:</strong> Incoming messages from iMessage (BlueBubbles) and Google Chat arrive at OpenClaw's gateway, which dispatches them to the right agent session with full context. Channel-specific model overrides, typing indicators, and delivery policies are all configured per-channel.</p>
+              <p><strong>MCP gateway:</strong> A local HTTP gateway (port 18789) that exposes all AIVA skills, tools, and modules as MCP endpoints. Agent sessions connect through this gateway to access the full system.</p>
+              <p><strong>Short-term memory:</strong> OpenClaw maintains its own SQLite memory database with full-text search (FTS5) and vector embeddings. Recent session content is chunked and indexed for fast semantic recall. This cache feeds the dreaming passes that distill durable knowledge into long-term storage.</p>
+              <p><strong>Subagents:</strong> Isolated agent sessions with their own configs and workspaces. Used for parallel task execution, background builds, and long-running research without blocking the main conversation.</p>
+              <div class="module-example">~/.openclaw/
+  openclaw.json       # gateway config, channels, hooks, skills
+  cron/jobs.json      # 83 scheduled jobs
+  memory/main.sqlite  # short-term recall (FTS + vector)
+  subagents/          # isolated agent configs
+  flows/registry.sqlite  # workflow registry
+  agents/main/sessions/  # session logs → MemPalace extract</div>
               <p>
                 <span class="module-tag">Open source</span>
-                <span class="module-tag">TUI</span>
+                <span class="module-tag">MCP Gateway</span>
+                <span class="module-tag">Cron</span>
+                <span class="module-tag">Message Router</span>
+                <span class="module-tag">SQLite</span>
+                <span class="module-tag">83 jobs</span>
               </p>
             </div>
           </div>
@@ -399,24 +563,6 @@
               <p>
                 <span class="module-tag">Bash</span>
                 <span class="module-tag">tmux</span>
-              </p>
-            </div>
-          </div>
-
-          <div class="module-item">
-            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
-              <div>
-                <div class="module-name">n8n Workflows</div>
-                <div class="module-brief">Event-driven automation on Railway</div>
-              </div>
-              <div class="module-chevron">&#9662;</div>
-            </div>
-            <div class="module-body">
-              <p>n8n runs on Railway and handles webhook-triggered workflows and multi-step automations. The Cloudflare Worker routes n8n-specific paths (/webhook, /workflows, /api, /home) to the Railway deployment.</p>
-              <p>
-                <span class="module-tag">n8n</span>
-                <span class="module-tag">Railway</span>
-                <span class="module-tag">Webhooks</span>
               </p>
             </div>
           </div>
