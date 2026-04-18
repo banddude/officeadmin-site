@@ -2,8 +2,8 @@
 (function () {
   var details = {
     aiva: {
-      title: "AIVA — The Agent",
-      desc: "The central AI agent running on a Mac Mini. AIVA orchestrates all other modules, manages background sessions in tmux, runs scheduled jobs, responds to iMessages, and coordinates across 50+ modules. It calls Claude for reasoning and uses learned rules to write in Mike's voice."
+      title: "AIVA — The Agent (Mike's .aiva/ layer)",
+      desc: "The central AI agent running on a Mac Mini. The ~/.aiva/ directory is the custom infrastructure Mike built: 50+ modules, skills, scripts, MCP servers, state management, and orchestration logic. It sits between open-source tools (OpenClaw, MemPalace, n8n) and the agent brains (Claude, GLM-5.1), tying everything together into a coherent operations system."
     },
     comms: {
       title: "Communications Pipeline",
@@ -11,7 +11,7 @@
     },
     knowledge: {
       title: "Knowledge Layer",
-      desc: "MemPalace is a SQLite knowledge graph that stores entities, relationships, and facts extracted from conversations, documents, and agent sessions. It uses priority-based ingest ordering: agent sessions first, then memory, cron runs, Claude projects, and Codex artifacts."
+      desc: "Two separate entity systems. The operational CRM (GitHub repo, 85 manually curated entities with dashed slugs) handles day-to-day business. MemPalace (open-source knowledge graph, 3,580 auto-extracted entities with underscored IDs, 6,810 temporal triples) stores long-term memory from session history. They serve different purposes and are not yet connected."
     },
     business: {
       title: "Business Systems",
@@ -30,8 +30,8 @@
       desc: "An LLM module that writes in Mike's voice. It reads entity context, routing rules (ROUTING.md), and drafting conventions (DRAFTING.md) before composing. Mike's corrections are distilled back into the rule set through a learning pipeline, so the drafts improve over time."
     },
     mempalace: {
-      title: "MemPalace",
-      desc: "SQLite-backed knowledge graph. Stores thousands of entities and triples organized into rooms and drawers. Extracts high-signal context from agent sessions, conversations, and documents. Supports graph traversal, search, timeline queries, and tunnel discovery between related concepts."
+      title: "MemPalace (open-source)",
+      desc: "An open-source SQLite knowledge graph tool that Mike did not build. He wrote a thin wrapper module at ~/.aiva/modules/mempalace/ that handles ingest ordering and launchd scheduling. The mempalace-extract pipeline reads Claude, Codex, and OpenClaw session JSONL files, sends them to GLM-5.1 for extraction, and stores the results. Currently holds 3,580 entities and 6,810 temporal triples."
     },
     quickbooks: {
       title: "QuickBooks CLI",
@@ -74,8 +74,8 @@
       desc: "Text-to-speech notifications pushed to all of Mike's devices simultaneously. Canvas provides a phone-based HTML UI for AIVA to show interactive prompts, confirmations, and simple forms. Uses Apple Push Notification Service (APNS) for delivery."
     },
     github: {
-      title: "GitHub CRM",
-      desc: "The banddude/mikeshaffer repo is both code and CRM. Each person and company gets an entity folder (entities/<slug>/) with profile data (entity.json), tasks (tasks/*.json), and work records (work/*.md). GitHub Actions run validators on every push. Work lifecycle tracks from lead through to payment."
+      title: "GitHub CRM (operational entities)",
+      desc: "The banddude/mikeshaffer repo holds 85 manually curated entities with dashed slugs (jason-madsen, paul-yamamoto). Each entity folder has a JSON profile, tasks, and work records. This is the working CRM that email triage, the Drafter, and daily sync scripts read from. Separate from the 3,580 auto-extracted MemPalace entities. GitHub Actions run validators on every push."
     },
     assemblyai: {
       title: "AssemblyAI",
@@ -87,7 +87,7 @@
     },
     claude: {
       title: "Claude API",
-      desc: "Anthropic's Claude models power AIVA's reasoning. Used for email classification, draft composition, entity extraction, conversation understanding, and general task execution. AIVA runs on Claude Code with MCP servers providing tool access to all modules."
+      desc: "Anthropic's Claude is the primary agent brain. Used for email classification, draft composition, conversation understanding, and general task execution. AIVA runs on Claude Code with MCP servers providing tool access to all modules. GLM-5.1 handles batch knowledge extraction for the MemPalace pipeline."
     },
     tailscale: {
       title: "Tailscale",

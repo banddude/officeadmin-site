@@ -79,7 +79,7 @@
           </div>
           <div class="overview-card">
             <h3>Knowledge graph</h3>
-            <p>MemPalace is a SQLite knowledge graph with thousands of entities and relationships, extracted from conversations, documents, and agent sessions.</p>
+            <p>MemPalace (open-source) stores 3,580 auto-extracted entities and 6,810 temporal triples from session history. A separate GitHub repo holds 85 manually curated entities for daily operations.</p>
           </div>
         </div>
       </div>
@@ -93,7 +93,7 @@
         <div class="overview-grid">
           <div class="overview-card" style="background: var(--bg);">
             <h3>The brain</h3>
-            <p>A Mac Mini running Python CLIs, n8n workflows, tmux-managed agent sessions, MCP servers, and Claude model calls. It is always on and always connected.</p>
+            <p>A Mac Mini running Mike's custom .aiva/ layer on top of open-source tools (OpenClaw, MemPalace, n8n) with Claude as the reasoning engine. It is always on and always connected.</p>
           </div>
           <div class="overview-card" style="background: var(--bg);">
             <h3>The reach</h3>
@@ -117,7 +117,8 @@
         <p class="section-subtitle">AIVA is the AI agent that runs the system. It is not a chatbot and not a SaaS product. It is a personal operations system that Mike built for himself.</p>
         <div class="overview-grid" style="grid-template-columns: 1fr;">
           <div class="overview-card">
-            <p style="font-size: 0.95rem; line-height: 1.7;">AIVA manages background agent sessions in tmux, runs scheduled jobs, responds to iMessages via BlueBubbles, drafts emails in Mike's voice using a learned rule set, and coordinates across 50+ modules. It can speak out loud through connected devices, show interactive prompts on Mike's phone, browse the web with Playwright, and manage smart home devices through Home Assistant. When it writes something that needs approval, it creates an Apple Reminder. When it learns something new, it stores it in MemPalace. The system is real, running in production, and handles the daily operations of a construction business.</p>
+            <p style="font-size: 0.95rem; line-height: 1.7;">The core of the system is <code>~/.aiva/</code>, a custom infrastructure layer Mike built from scratch. It contains 50+ modules, skills, scripts, MCP servers, and orchestration logic. It sits on top of open-source tools like OpenClaw (terminal UI), MemPalace (knowledge graph), n8n (workflow automation), and BlueBubbles (iMessage bridge), connecting them to Apple frameworks, business APIs, and Claude as the reasoning engine.</p>
+            <p style="font-size: 0.95rem; line-height: 1.7; margin-top: 0.75rem;">AIVA manages background agent sessions in tmux, runs scheduled jobs, responds to iMessages, drafts emails in Mike's voice using a learned rule set, and coordinates everything. It can speak out loud through connected devices, show interactive prompts on Mike's phone, and manage smart home devices through Home Assistant. When it writes something that needs approval, it creates an Apple Reminder. When it learns something new, it stores it in MemPalace. The system is real, running in production, and handles the daily operations of a construction business.</p>
           </div>
         </div>
       </div>

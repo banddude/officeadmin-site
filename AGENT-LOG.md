@@ -27,3 +27,13 @@
 - Purged Cloudflare cache
 - Verified all four pages load correctly at officeadmin.io
 - Added favicon, README
+
+## 2026-04-18 03:00 — Attribution corrections (AGENT-BRIEF-ADDENDUM)
+
+- Stack page rewritten with 5-tier layering: Hardware, System services, Open-source tools, .aiva/ (Mike's layer), Agent brains
+- OpenClaw credited as open-source TUI (Mike did not build it), added to Modules/Infrastructure
+- MemPalace credited as open-source knowledge graph with Mike-authored wrapper module
+- Two entity systems distinguished: operational CRM (85 curated entities, dashed slugs) vs MemPalace KG (3,580 auto-extracted entities, 6,810 temporal triples, underscored IDs)
+- Architecture diagram detail text updated for knowledge layer, MemPalace, AIVA, GitHub CRM, and Claude nodes
+- Home page updated to highlight .aiva/ as Mike's custom layer and reference open-source dependencies
+- GLM-5.1 credited for batch knowledge extraction

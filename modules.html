@@ -144,21 +144,19 @@
           <div class="module-item">
             <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
               <div>
-                <div class="module-name">MemPalace</div>
-                <div class="module-brief">SQLite knowledge graph with thousands of entities</div>
+                <div class="module-name">MemPalace (open-source + wrapper)</div>
+                <div class="module-brief">Third-party knowledge graph with a Mike-authored integration layer</div>
               </div>
               <div class="module-chevron">&#9662;</div>
             </div>
             <div class="module-body">
-              <p>A SQLite-backed knowledge graph organized into rooms and drawers. Stores entities, relationships (triples), and facts extracted from conversations, documents, and agent sessions.</p>
-              <p>Supports graph traversal, search, timeline queries, and tunnel discovery (finding non-obvious connections between concepts). Uses priority-based ingest ordering: agent sessions first, then memory, cron runs, Claude projects, and Codex artifacts.</p>
-              <div class="module-example">mempalace search "Shaffer Construction"
-mempalace kg-query "who works for"
-mempalace traverse entity-123 --depth 3</div>
+              <p>MemPalace is an open-source SQLite knowledge graph tool. Mike did not build it. He wrote a thin module wrapper that handles ingest ordering, launchd scheduling, and priority queuing for the extraction pipeline.</p>
+              <p>The MemPalace knowledge graph currently holds 3,580 entities and 6,810 temporal triples (subject/predicate/object relations with valid_from/valid_to timestamps). Entity types include person, company, tool, project, concept, place, property, event, and vehicle. All of this is auto-extracted from Mike's AI session history by GLM-5.1.</p>
               <p>
-                <span class="module-tag">Python</span>
+                <span class="module-tag">Open source</span>
                 <span class="module-tag">SQLite</span>
-                <span class="module-tag">CLI</span>
+                <span class="module-tag">GLM-5.1</span>
+                <span class="module-tag">3,580 entities</span>
               </p>
             </div>
           </div>
@@ -187,24 +185,43 @@ mempalace traverse entity-123 --depth 3</div>
           <div class="module-item">
             <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
               <div>
-                <div class="module-name">CRM / Entity System</div>
-                <div class="module-brief">GitHub-backed relationship management</div>
+                <div class="module-name">Operational CRM (GitHub repo)</div>
+                <div class="module-brief">85 manually curated entities for day-to-day operations</div>
               </div>
               <div class="module-chevron">&#9662;</div>
             </div>
             <div class="module-body">
-              <p>The banddude/mikeshaffer GitHub repo is the operational backbone. Every customer, vendor, crew member, and family member gets an entity folder with a JSON profile, task files, and work records in Markdown.</p>
-              <p>Work lifecycle tracks from lead to payment: lead, bidding, bid, negotiating, awarded, scheduled, in_progress, complete, invoiced, paid. GitHub Actions run validators on every push to keep the data clean.</p>
+              <p>The banddude/mikeshaffer GitHub repo is the working CRM. 85 entities, one folder per customer, vendor, crew member, family member, or place. Each entity has a JSON profile, tasks, and work records. Slugs are dashed: <code>jason-madsen</code>, <code>paul-yamamoto</code>.</p>
+              <p>Work lifecycle tracks from lead to payment: lead, bidding, bid, negotiating, awarded, scheduled, in_progress, complete, invoiced, paid. GitHub Actions run validators on every push. Email triage, the Drafter, daily sync, and contact URL linking all read from here.</p>
               <div class="module-example">entities/
-  acme-corp/
+  jason-madsen/
     entity.json      # profile data
     tasks/            # task files
-    work/             # job records, scope docs
-    notes.md          # free-form notes</div>
+    work/             # job records, scope docs</div>
               <p>
                 <span class="module-tag">GitHub</span>
                 <span class="module-tag">JSON</span>
-                <span class="module-tag">GitHub Actions</span>
+                <span class="module-tag">85 entities</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">MemPalace knowledge graph (auto-extracted)</div>
+                <div class="module-brief">3,580 entities and 6,810 triples from session history</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>This is separate from the operational CRM. The MemPalace knowledge graph is auto-populated by the mempalace-extract pipeline, which reads Claude, Codex, and OpenClaw session JSONL files, sends them to GLM-5.1, and stores the extracted knowledge as entities and triples.</p>
+              <p>Entity IDs are underscored (<code>mike_shaffer</code>, <code>shaffer_construction</code>, <code>supabase</code>). Triples have temporal bounds (valid_from/valid_to) so the system can reason about what was true when. The CRM is the working set for daily ops. MemPalace is the long-term memory. They are not yet connected.</p>
+              <p>
+                <span class="module-tag">SQLite</span>
+                <span class="module-tag">GLM-5.1</span>
+                <span class="module-tag">6,810 triples</span>
+                <span class="module-tag">Temporal</span>
               </p>
             </div>
           </div>
@@ -350,6 +367,23 @@ mempalace traverse entity-123 --depth 3</div>
 
         <h2 class="section-title" style="font-size: 1.1rem; color: var(--text-muted); font-weight: 500; margin-top: var(--space-xl);">Infrastructure</h2>
         <div class="modules-list">
+
+          <div class="module-item">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">OpenClaw (open-source)</div>
+                <div class="module-brief">Terminal UI layer for interactive agent sessions</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>OpenClaw is an open-source terminal UI that sits above .aiva/, providing the interactive session interface for working with agents. Mike did not build OpenClaw. It is a third-party project that the system uses as its primary TUI layer.</p>
+              <p>
+                <span class="module-tag">Open source</span>
+                <span class="module-tag">TUI</span>
+              </p>
+            </div>
+          </div>
 
           <div class="module-item">
             <div class="module-header" onclick="this.parentElement.classList.toggle('open')">

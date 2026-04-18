@@ -37,36 +37,108 @@
 
     <section class="section" style="padding-top: 0;">
       <div class="container">
+
+        <h2 class="section-title">The layers</h2>
+        <p class="section-subtitle">The system is built in five layers. Mike built the middle one. Everything else is open-source tooling, Apple frameworks, or third-party APIs.</p>
+
+        <div class="modules-list" style="margin-top: var(--space-lg);">
+          <div class="module-item open">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">1. Hardware</div>
+                <div class="module-brief">Mac Mini (Intel i9) at aiva.local, running macOS</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>A Mac Mini sits at home, always on, connected to everything via Tailscale mesh VPN. Cloudflare Tunnels handle secure ingress without port forwarding. Phones, laptops, and speakers throughout the house are all participants on the same network.</p>
+            </div>
+          </div>
+
+          <div class="module-item open">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">2. System services</div>
+                <div class="module-brief">macOS daemons, tunnels, and session management</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>
+                <span class="module-tag">launchd</span>
+                <span class="module-tag">tmux</span>
+                <span class="module-tag">nginx</span>
+                <span class="module-tag">cloudflared</span>
+                <span class="module-tag">Tailscale</span>
+                <span class="module-tag">macOS Keychain</span>
+              </p>
+              <p>launchd supervises all daemons and scheduled jobs. tmux manages background agent sessions. nginx handles local reverse proxy for OAuth callbacks. cloudflared provides secure tunnels to Cloudflare. All credentials live in macOS Keychain.</p>
+            </div>
+          </div>
+
+          <div class="module-item open">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">3. Open-source tools</div>
+                <div class="module-brief">Third-party software Mike uses but did not build</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>
+                <span class="module-tag">OpenClaw</span>
+                <span class="module-tag">MemPalace</span>
+                <span class="module-tag">n8n</span>
+                <span class="module-tag">BlueBubbles</span>
+                <span class="module-tag">Akaunting</span>
+                <span class="module-tag">Home Assistant</span>
+                <span class="module-tag">Playwright</span>
+              </p>
+              <p><strong>OpenClaw</strong> is an open-source terminal UI that sits above .aiva, providing the interactive agent session layer. <strong>MemPalace</strong> is an open-source SQLite knowledge graph tool. Mike wraps it with a thin module for ingest ordering and launchd integration, but MemPalace itself is a separate project. <strong>n8n</strong> handles event-driven workflow automation, hosted on Railway. <strong>BlueBubbles</strong> is the cross-platform iMessage bridge. <strong>Akaunting</strong> is the open-source business hub.</p>
+            </div>
+          </div>
+
+          <div class="module-item open">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">4. .aiva/ — Mike's layer</div>
+                <div class="module-brief">The custom infrastructure Mike built to tie everything together</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p>This is what Mike actually built. The <code>~/.aiva/</code> directory contains all the custom modules, skills, scripts, MCP servers, state management, and orchestration logic that make the system work as a whole.</p>
+              <p>It includes the email triage pipeline, the Drafter (voice-matching composition with learning rules), the voice memo transcription pipeline, the contacts/QuickBooks/Google CLIs, the Talk CLI and Canvas phone UI, the notify API server, the agent session manager, the daily sync scripts, and all the glue that connects open-source tools to Apple frameworks to third-party APIs.</p>
+              <p>
+                <span class="module-tag">Python 3</span>
+                <span class="module-tag">Bash</span>
+                <span class="module-tag">Node.js</span>
+                <span class="module-tag">50+ modules</span>
+                <span class="module-tag">MCP servers</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="module-item open">
+            <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
+              <div>
+                <div class="module-name">5. Agent brains</div>
+                <div class="module-brief">The LLMs that power reasoning and extraction</div>
+              </div>
+              <div class="module-chevron">&#9662;</div>
+            </div>
+            <div class="module-body">
+              <p><strong>Claude</strong> (Anthropic) is the primary reasoning engine. AIVA runs on Claude Code with MCP servers providing tool access to all modules. Claude handles email classification, draft composition, conversation understanding, and general task execution.</p>
+              <p><strong>GLM-5.1</strong> handles batch knowledge extraction for MemPalace. It reads session logs from Claude, Codex, and OpenClaw, extracts entities and relationships, and writes them into the knowledge graph.</p>
+              <p><strong>AssemblyAI</strong> provides speech-to-text with speaker diarization. <strong>Pinecone</strong> stores voice embeddings for speaker identification across recordings.</p>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="section-title" style="margin-top: var(--space-2xl);">Detailed inventory</h2>
+        <p class="section-subtitle">Everything the system touches, organized by category.</p>
+
         <div class="stack-grid">
-
-          <div class="stack-group">
-            <h3>Languages</h3>
-            <ul>
-              <li><strong>Python 3</strong> — primary language for all CLIs and modules</li>
-              <li><strong>Bash</strong> — agent orchestration, system scripts, CLI wrappers</li>
-              <li><strong>Node.js</strong> — QuickBooks OAuth, some API integrations</li>
-              <li><strong>JavaScript</strong> — n8n workflow expressions</li>
-            </ul>
-          </div>
-
-          <div class="stack-group">
-            <h3>AI and LLMs</h3>
-            <ul>
-              <li><strong>Claude (Anthropic)</strong> — primary reasoning engine via Claude Code and API</li>
-              <li><strong>MCP Servers</strong> — tool access layer connecting Claude to all modules</li>
-              <li><strong>AssemblyAI</strong> — speech-to-text with speaker diarization</li>
-              <li><strong>Pinecone</strong> — vector embeddings for speaker identification</li>
-            </ul>
-          </div>
-
-          <div class="stack-group">
-            <h3>Databases</h3>
-            <ul>
-              <li><strong>SQLite</strong> — MemPalace knowledge graph, conversations, contacts, messages</li>
-              <li><strong>GitHub</strong> — entity CRM (JSON + Markdown files in a repo)</li>
-              <li><strong>Apple Notes</strong> — AIVA's soul/personality source (iCloud-synced)</li>
-            </ul>
-          </div>
 
           <div class="stack-group">
             <h3>Apple Ecosystem</h3>
@@ -100,23 +172,12 @@
           </div>
 
           <div class="stack-group">
-            <h3>Communication</h3>
+            <h3>Data stores</h3>
             <ul>
-              <li><strong>BlueBubbles</strong> — cross-platform iMessage relay</li>
-              <li><strong>Home Assistant</strong> — smart home device control</li>
-              <li><strong>Playwright</strong> — browser automation (MCP server)</li>
-              <li><strong>Flask</strong> — notify API server for message routing</li>
-            </ul>
-          </div>
-
-          <div class="stack-group">
-            <h3>Infrastructure</h3>
-            <ul>
-              <li><strong>Mac Mini</strong> — the one server that runs everything</li>
-              <li><strong>tmux</strong> — background agent session management</li>
-              <li><strong>launchd</strong> — macOS daemon supervision</li>
-              <li><strong>macOS Keychain</strong> — credential storage for all OAuth tokens</li>
-              <li><strong>GitHub Actions</strong> — entity CRM validators</li>
+              <li><strong>SQLite</strong> — conversations, contacts, messages, MemPalace KG</li>
+              <li><strong>GitHub repo</strong> — operational CRM (JSON + Markdown entities)</li>
+              <li><strong>Apple Notes</strong> — AIVA personality and memory source</li>
+              <li><strong>Pinecone</strong> — speaker voice embeddings</li>
             </ul>
           </div>
 
