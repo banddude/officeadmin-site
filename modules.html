@@ -50,7 +50,7 @@
             </div>
             <div class="module-body">
               <p>The comms pipeline scanner checks Gmail on a schedule. Morning scan at 7:45 AM, afternoon watchers at 3:00-3:45 PM. Each message is classified into one of three tiers.</p>
-              <p><strong>Tier 1</strong> messages are routine and predictable. These get auto-drafted and auto-sent at 9:30 AM without Mike touching them. <strong>Tier 2</strong> messages get a notification. <strong>Tier 3</strong> messages need human review and get queued as Apple Reminders.</p>
+              <p><strong>Tier 1</strong> messages are routine and predictable. These get auto-drafted and auto-sent at 9:30 AM without operator involvement. <strong>Tier 2</strong> messages get a notification. <strong>Tier 3</strong> messages need human review and get queued as Apple Reminders.</p>
               <div class="module-example">Scanner → Classifier → Dispatcher → Drafter (x5) → Approval Queue</div>
               <p>
                 <span class="module-tag">Python</span>
@@ -65,14 +65,14 @@
             <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
               <div>
                 <div class="module-name">Drafter</div>
-                <div class="module-brief">Writes in Mike's voice using learned rules</div>
+                <div class="module-brief">Writes in the operator's voice using learned rules</div>
               </div>
               <div class="module-chevron">&#9662;</div>
             </div>
             <div class="module-body">
-              <p>The Drafter reads entity context, routing rules, and Mike's writing conventions before composing any message. It produces emails, iMessages, and other written communication that sounds like Mike wrote them.</p>
-              <p>There is a learning pipeline. When Mike corrects a draft, the correction is distilled into a rule and added to the drafting conventions file. Over time, the drafts get better without retraining anything.</p>
-              <div class="module-example">Entity context + ROUTING.md + DRAFTING.md → Claude → Draft → Mike's corrections → Updated rules</div>
+              <p>The Drafter reads entity context, routing rules, and the operator's writing conventions before composing any message. It produces emails, iMessages, and other written communication that sounds like the operator wrote them.</p>
+              <p>There is a learning pipeline. When the operator corrects a draft, the correction is distilled into a rule and added to the drafting conventions file. Over time, the drafts get better without retraining anything.</p>
+              <div class="module-example">Entity context + ROUTING.md + DRAFTING.md → Claude → Draft → Operator corrections → Updated rules</div>
               <p>
                 <span class="module-tag">Claude</span>
                 <span class="module-tag">Rule learning</span>
@@ -84,13 +84,13 @@
             <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
               <div>
                 <div class="module-name">iMessage</div>
-                <div class="module-brief">Two-way messaging with AIVA from Mike's phone</div>
+                <div class="module-brief">Two-way messaging with AIVA from a phone</div>
               </div>
               <div class="module-chevron">&#9662;</div>
             </div>
             <div class="module-body">
               <p>Reads the native macOS Messages database (chat.db) via SQLite for search and history. Sends messages through BlueBubbles, a cross-platform relay that acts as a channel provider.</p>
-              <p>Mike can message AIVA from his phone like texting a person. AIVA can also send proactive notifications. Access is controlled by an allowlist with pairing approval, so not just anyone can message the system.</p>
+              <p>The operator can message AIVA from their phone like texting a person. AIVA can also send proactive notifications. Access is controlled by an allowlist with pairing approval, so not just anyone can message the system.</p>
               <p>
                 <span class="module-tag">Python</span>
                 <span class="module-tag">SQLite</span>
@@ -108,7 +108,7 @@
               <div class="module-chevron">&#9662;</div>
             </div>
             <div class="module-body">
-              <p>A Flask API server running as a daemon on the Mac Mini. It provides an HTTP interface for sending notifications via iMessage, Talk (voice), or agent sessions. Other modules call it when they need to get Mike's attention.</p>
+              <p>A Flask API server running as a daemon on the Mac Mini. It provides an HTTP interface for sending notifications via iMessage, Talk (voice), or agent sessions. Other modules call it when they need to get the operator's attention.</p>
               <p>
                 <span class="module-tag">Python</span>
                 <span class="module-tag">Flask</span>
@@ -121,13 +121,13 @@
             <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
               <div>
                 <div class="module-name">Talk / Canvas</div>
-                <div class="module-brief">Voice and visual output on Mike's devices</div>
+                <div class="module-brief">Voice and visual output on connected devices</div>
               </div>
               <div class="module-chevron">&#9662;</div>
             </div>
             <div class="module-body">
-              <p>Talk pushes text-to-speech notifications to all of Mike's devices simultaneously using Apple Push Notification Service. AIVA can literally speak out loud through connected speakers.</p>
-              <p>Canvas is a phone-based HTML UI. AIVA can push interactive prompts, confirmation dialogs, and simple forms to Mike's phone screen. This is how AIVA shows information that does not fit in a text message.</p>
+              <p>Talk pushes text-to-speech notifications to all connected devices simultaneously using Apple Push Notification Service. AIVA can literally speak out loud through connected speakers.</p>
+              <p>Canvas is a phone-based HTML UI. AIVA can push interactive prompts, confirmation dialogs, and simple forms to the operator's phone screen. This is how AIVA shows information that does not fit in a text message.</p>
               <p>
                 <span class="module-tag">APNS</span>
                 <span class="module-tag">TTS</span>
@@ -145,13 +145,13 @@
             <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
               <div>
                 <div class="module-name">MemPalace (open-source + wrapper)</div>
-                <div class="module-brief">Third-party knowledge graph with a Mike-authored integration layer</div>
+                <div class="module-brief">Third-party knowledge graph with a custom integration layer</div>
               </div>
               <div class="module-chevron">&#9662;</div>
             </div>
             <div class="module-body">
-              <p>MemPalace is an open-source SQLite knowledge graph tool. Mike did not build it. He wrote a thin module wrapper that handles ingest ordering, launchd scheduling, and priority queuing for the extraction pipeline.</p>
-              <p>The MemPalace knowledge graph currently holds 3,580 entities and 6,810 temporal triples (subject/predicate/object relations with valid_from/valid_to timestamps). Entity types include person, company, tool, project, concept, place, property, event, and vehicle. All of this is auto-extracted from Mike's AI session history by GLM-5.1.</p>
+              <p>MemPalace is an open-source SQLite knowledge graph tool. It is a third-party project. The .aiva/ layer includes a thin module wrapper that handles ingest ordering, launchd scheduling, and priority queuing for the extraction pipeline.</p>
+              <p>The MemPalace knowledge graph currently holds 3,580 entities and 6,810 temporal triples (subject/predicate/object relations with valid_from/valid_to timestamps). Entity types include person, company, tool, project, concept, place, property, event, and vehicle. All of this is auto-extracted from AI session history by GLM-5.1.</p>
               <p>
                 <span class="module-tag">Open source</span>
                 <span class="module-tag">SQLite</span>
@@ -191,10 +191,10 @@
               <div class="module-chevron">&#9662;</div>
             </div>
             <div class="module-body">
-              <p>The banddude/mikeshaffer GitHub repo is the working CRM. 85 entities, one folder per customer, vendor, crew member, family member, or place. Each entity has a JSON profile, tasks, and work records. Slugs are dashed: <code>jason-madsen</code>, <code>paul-yamamoto</code>.</p>
+              <p>A private GitHub repo serves as the working CRM. 85 entities, one folder per customer, vendor, crew member, or associate. Each entity has a JSON profile, tasks, and work records. Slugs are dashed: <code>acme-corp</code>, <code>jane-doe</code>.</p>
               <p>Work lifecycle tracks from lead to payment: lead, bidding, bid, negotiating, awarded, scheduled, in_progress, complete, invoiced, paid. GitHub Actions run validators on every push. Email triage, the Drafter, daily sync, and contact URL linking all read from here.</p>
               <div class="module-example">entities/
-  jason-madsen/
+  acme-corp/
     entity.json      # profile data
     tasks/            # task files
     work/             # job records, scope docs</div>
@@ -216,7 +216,7 @@
             </div>
             <div class="module-body">
               <p>This is separate from the operational CRM. The MemPalace knowledge graph is auto-populated by the mempalace-extract pipeline, which reads Claude, Codex, and OpenClaw session JSONL files, sends them to GLM-5.1, and stores the extracted knowledge as entities and triples.</p>
-              <p>Entity IDs are underscored (<code>mike_shaffer</code>, <code>shaffer_construction</code>, <code>supabase</code>). Triples have temporal bounds (valid_from/valid_to) so the system can reason about what was true when. The CRM is the working set for daily ops. MemPalace is the long-term memory. They are not yet connected.</p>
+              <p>Entity IDs are underscored (<code>acme_corp</code>, <code>quickbooks</code>, <code>supabase</code>). Triples have temporal bounds (valid_from/valid_to) so the system can reason about what was true when. The CRM is the working set for daily ops. MemPalace is the long-term memory. They are not yet connected.</p>
               <p>
                 <span class="module-tag">SQLite</span>
                 <span class="module-tag">GLM-5.1</span>
@@ -261,7 +261,7 @@
             </div>
             <div class="module-body">
               <p>Unified Python CLI for Google Workspace covering Gmail (send, reply, forward, search), Google Calendar (events, availability), Google Drive (file management), Sheets, Docs, and Chat.</p>
-              <p>Supports two authentication modes: personal OAuth for mikejshaffer@gmail.com and a Workspace service account for the @shaffercon.com business domain. Both run through the same CLI.</p>
+              <p>Supports two authentication modes: personal OAuth for a personal account and a Workspace service account for the business domain. Both run through the same CLI.</p>
               <p>
                 <span class="module-tag">Python</span>
                 <span class="module-tag">OAuth</span>
@@ -274,12 +274,12 @@
             <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
               <div>
                 <div class="module-name">Electrical Estimating</div>
-                <div class="module-brief">Service call pricing for Shaffer Construction</div>
+                <div class="module-brief">Service call pricing and estimates</div>
               </div>
               <div class="module-chevron">&#9662;</div>
             </div>
             <div class="module-body">
-              <p>Generates electrical construction estimates and service call pricing. Takes scope descriptions and produces itemized estimates based on material costs, labor rates, and markup rules specific to Shaffer Construction's pricing model.</p>
+              <p>Generates construction estimates and service call pricing. Takes scope descriptions and produces itemized estimates based on material costs, labor rates, and markup rules specific to the business.</p>
               <p>
                 <span class="module-tag">Python</span>
                 <span class="module-tag">Domain-specific</span>
@@ -320,7 +320,7 @@
               <div class="module-chevron">&#9662;</div>
             </div>
             <div class="module-body">
-              <p>Apple Reminders is the approval queue for the entire system. Every draft email, generated estimate, and identified task becomes a Reminder. Mike reviews and approves from his phone, iPad, or Mac.</p>
+              <p>Apple Reminders is the approval queue for the entire system. Every draft email, generated estimate, and identified task becomes a Reminder. The operator reviews and approves from their phone, iPad, or Mac.</p>
               <p>Reminders sync via iCloud, so they show up everywhere. Tasks also mirror to entity folders in the GitHub CRM. The subtask tool allows breaking complex reminders into actionable steps.</p>
               <p>
                 <span class="module-tag">EventKit</span>
@@ -377,7 +377,7 @@
               <div class="module-chevron">&#9662;</div>
             </div>
             <div class="module-body">
-              <p>OpenClaw is an open-source terminal UI that sits above .aiva/, providing the interactive session interface for working with agents. Mike did not build OpenClaw. It is a third-party project that the system uses as its primary TUI layer.</p>
+              <p>OpenClaw is an open-source terminal UI that sits above .aiva/, providing the interactive session interface for working with agents. OpenClaw is a third-party project that the system uses as its primary TUI layer.</p>
               <p>
                 <span class="module-tag">Open source</span>
                 <span class="module-tag">TUI</span>
@@ -459,13 +459,13 @@
           <div class="module-item">
             <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
               <div>
-                <div class="module-name">Shaffer Blogger</div>
-                <div class="module-brief">SEO blog posts for shaffercon.com</div>
+                <div class="module-name">Blog Manager</div>
+                <div class="module-brief">SEO blog posts for the business website</div>
               </div>
               <div class="module-chevron">&#9662;</div>
             </div>
             <div class="module-body">
-              <p>Generates and publishes SEO-optimized blog posts about EV charging infrastructure for Shaffer Construction's website. Content is managed in GitHub and deployed automatically.</p>
+              <p>Generates and publishes SEO-optimized blog posts for the business website. Content is managed in GitHub and deployed automatically.</p>
               <p>
                 <span class="module-tag">GitHub</span>
                 <span class="module-tag">SEO</span>
@@ -497,7 +497,7 @@
   </div>
 
   <footer class="footer">
-    <p>Built by Mike Shaffer. Powered by Claude, Python, and a Mac Mini.</p>
+    <p>Powered by Claude, Python, and a Mac Mini.</p>
   </footer>
 
   <script src="js/main.js"></script>

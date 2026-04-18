@@ -39,7 +39,7 @@
       <div class="container">
 
         <h2 class="section-title">The layers</h2>
-        <p class="section-subtitle">The system is built in five layers. Mike built the middle one. Everything else is open-source tooling, Apple frameworks, or third-party APIs.</p>
+        <p class="section-subtitle">The system is built in five layers. The .aiva/ layer is the custom-built part. Everything else is open-source tooling, Apple frameworks, or third-party APIs.</p>
 
         <div class="modules-list" style="margin-top: var(--space-lg);">
           <div class="module-item open">
@@ -80,7 +80,7 @@
             <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
               <div>
                 <div class="module-name">3. Open-source tools</div>
-                <div class="module-brief">Third-party software Mike uses but did not build</div>
+                <div class="module-brief">Third-party open-source software the system uses</div>
               </div>
               <div class="module-chevron">&#9662;</div>
             </div>
@@ -94,20 +94,20 @@
                 <span class="module-tag">Home Assistant</span>
                 <span class="module-tag">Playwright</span>
               </p>
-              <p><strong>OpenClaw</strong> is an open-source terminal UI that sits above .aiva, providing the interactive agent session layer. <strong>MemPalace</strong> is an open-source SQLite knowledge graph tool. Mike wraps it with a thin module for ingest ordering and launchd integration, but MemPalace itself is a separate project. <strong>n8n</strong> handles event-driven workflow automation, hosted on Railway. <strong>BlueBubbles</strong> is the cross-platform iMessage bridge. <strong>Akaunting</strong> is the open-source business hub.</p>
+              <p><strong>OpenClaw</strong> is an open-source terminal UI that sits above .aiva, providing the interactive agent session layer. <strong>MemPalace</strong> is an open-source SQLite knowledge graph tool. The .aiva/ layer wraps it with a thin module for ingest ordering and launchd integration, but MemPalace itself is a separate project. <strong>n8n</strong> handles event-driven workflow automation, hosted on Railway. <strong>BlueBubbles</strong> is the cross-platform iMessage bridge. <strong>Akaunting</strong> is the open-source business hub.</p>
             </div>
           </div>
 
           <div class="module-item open">
             <div class="module-header" onclick="this.parentElement.classList.toggle('open')">
               <div>
-                <div class="module-name">4. .aiva/ — Mike's layer</div>
-                <div class="module-brief">The custom infrastructure Mike built to tie everything together</div>
+                <div class="module-name">4. .aiva/ — The custom layer</div>
+                <div class="module-brief">The custom infrastructure that ties everything together</div>
               </div>
               <div class="module-chevron">&#9662;</div>
             </div>
             <div class="module-body">
-              <p>This is what Mike actually built. The <code>~/.aiva/</code> directory contains all the custom modules, skills, scripts, MCP servers, state management, and orchestration logic that make the system work as a whole.</p>
+              <p>This is the custom-built layer. The <code>~/.aiva/</code> directory contains all the custom modules, skills, scripts, MCP servers, state management, and orchestration logic that make the system work as a whole.</p>
               <p>It includes the email triage pipeline, the Drafter (voice-matching composition with learning rules), the voice memo transcription pipeline, the contacts/QuickBooks/Google CLIs, the Talk CLI and Canvas phone UI, the notify API server, the agent session manager, the daily sync scripts, and all the glue that connects open-source tools to Apple frameworks to third-party APIs.</p>
               <p>
                 <span class="module-tag">Python 3</span>
@@ -186,7 +186,7 @@
         <div style="margin-top: var(--space-2xl); padding: var(--space-lg); background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);">
           <h2 class="section-title" style="font-size: 1.1rem;">Why a Mac Mini?</h2>
           <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; margin-top: var(--space-sm);">
-            Most of what AIVA does requires access to macOS-native APIs. Contacts, Reminders, Calendar, Notes, and Messages all use Apple frameworks (EventKit, PyObjC, SQLite databases in ~/Library). iCloud sync means changes on the Mac Mini show up on Mike's phone instantly. The Apple ecosystem is the integration layer. A Linux server would need to replicate all of that from scratch.
+            Most of what AIVA does requires access to macOS-native APIs. Contacts, Reminders, Calendar, Notes, and Messages all use Apple frameworks (EventKit, PyObjC, SQLite databases in ~/Library). iCloud sync means changes on the Mac Mini show up on the operator's phone instantly. The Apple ecosystem is the integration layer. A Linux server would need to replicate all of that from scratch.
           </p>
           <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; margin-top: var(--space-sm);">
             The Mac Mini sits at home, always on, connected via Tailscale. Cloudflare Tunnels handle secure ingress. There is no cloud compute bill for the core system. The only hosted services are Railway (n8n) and the various third-party APIs.
@@ -198,7 +198,7 @@
   </div>
 
   <footer class="footer">
-    <p>Built by Mike Shaffer. Powered by Claude, Python, and a Mac Mini.</p>
+    <p>Powered by Claude, Python, and a Mac Mini.</p>
   </footer>
 
   <script src="js/main.js"></script>

@@ -1,6 +1,6 @@
 # officeadmin.io
 
-Personal portfolio site for OfficeAdmin / AIVA, the AI operations system running Shaffer Construction.
+Public site for OfficeAdmin / AIVA, an AI operations system designed to run a small business.
 
 Live at [officeadmin.io](https://officeadmin.io).
 
