@@ -1058,6 +1058,398 @@ img {
   }
 }
 
+/* ===== OFFICEADMIN ATLAS OVERRIDES ===== */
+
+.officeadmin-explorer-toolbar,
+.officeadmin-breadcrumbs,
+.officeadmin-scene-card,
+.officeadmin-explorer-detail,
+.officeadmin-journey-board,
+.officeadmin-atlas-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015)),
+    radial-gradient(circle at top right, rgba(108, 138, 255, 0.08), transparent 32%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+}
+
+.officeadmin-journey-board,
+.officeadmin-atlas-card {
+  padding: var(--space-sm);
+}
+
+.officeadmin-journey-board {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.officeadmin-journey-summary h3,
+.officeadmin-atlas-head h3 {
+  font-size: 1.15rem;
+  color: #fff;
+  letter-spacing: -0.02em;
+}
+
+.officeadmin-journey-summary p,
+.officeadmin-atlas-head p {
+  margin-top: 0.35rem;
+  color: var(--text-muted);
+  max-width: 62ch;
+}
+
+.officeadmin-journey-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+}
+
+.officeadmin-journey-step {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 0.5rem 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  cursor: pointer;
+}
+
+.officeadmin-journey-step.active {
+  border-color: var(--accent);
+  background: rgba(108, 138, 255, 0.12);
+}
+
+.officeadmin-journey-step-count {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  display: inline-grid;
+  place-items: center;
+  background: rgba(108, 138, 255, 0.14);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.officeadmin-journey-step-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.officeadmin-journey-step-sep {
+  color: var(--text-dim);
+  font-size: 1rem;
+}
+
+.officeadmin-atlas-head {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  align-items: end;
+  margin-bottom: var(--space-sm);
+}
+
+.officeadmin-atlas {
+  position: relative;
+  border-radius: calc(var(--radius) - 2px);
+  padding: 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.015), rgba(255, 255, 255, 0.005)),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: auto, 22px 22px, 22px 22px;
+}
+
+.officeadmin-atlas-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.officeadmin-atlas-line {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 3;
+}
+
+.officeadmin-atlas-line-active {
+  stroke: rgba(255, 255, 255, 0.2);
+}
+
+.officeadmin-atlas-line-journey {
+  stroke: rgba(108, 138, 255, 0.7);
+  stroke-dasharray: 8 7;
+}
+
+.officeadmin-atlas-lanes {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.officeadmin-atlas-lane-row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 0.9rem;
+  align-items: start;
+}
+
+.officeadmin-atlas-lane-label {
+  display: flex;
+  gap: 0.7rem;
+  align-items: start;
+}
+
+.officeadmin-atlas-lane-label strong {
+  display: block;
+  color: #fff;
+  font-size: 0.92rem;
+}
+
+.officeadmin-atlas-lane-label p {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  margin-top: 0.18rem;
+}
+
+.officeadmin-atlas-lane-dot {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 999px;
+  margin-top: 0.18rem;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.04);
+}
+
+.officeadmin-lane-runtime {
+  background: #7aa2ff;
+}
+
+.officeadmin-lane-workspace {
+  background: #45d0a7;
+}
+
+.officeadmin-lane-memory {
+  background: #f3b85c;
+}
+
+.officeadmin-lane-authority {
+  background: #ef7ca6;
+}
+
+.officeadmin-lane-archive {
+  background: #b093ff;
+}
+
+.officeadmin-atlas-track {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  min-height: 4.5rem;
+  padding: 0.3rem 0;
+}
+
+.officeadmin-atlas-track::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 1.75rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.officeadmin-atlas-stop {
+  position: relative;
+  min-height: 3.4rem;
+  min-width: 11rem;
+  flex: 1 1 11rem;
+  max-width: 15rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(14, 17, 28, 0.88);
+  color: var(--text);
+  border-radius: 1rem;
+  padding: 0.7rem 0.85rem 0.75rem;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+}
+
+.officeadmin-atlas-stop::before {
+  content: "";
+  position: absolute;
+  left: 0.85rem;
+  top: -0.55rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(14, 17, 28, 1), 0 0 0 6px rgba(255, 255, 255, 0.06);
+}
+
+.officeadmin-atlas-stop.connected {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.officeadmin-atlas-stop.journey {
+  border-color: rgba(108, 138, 255, 0.32);
+}
+
+.officeadmin-atlas-stop.active {
+  border-color: var(--accent);
+  background: rgba(23, 29, 50, 0.98);
+  box-shadow: 0 0 0 1px rgba(108, 138, 255, 0.22), 0 16px 28px rgba(0, 0, 0, 0.32);
+}
+
+.officeadmin-atlas-stop-name,
+.officeadmin-atlas-stop-type {
+  display: block;
+}
+
+.officeadmin-atlas-stop-name {
+  color: #fff;
+  font-size: 0.93rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.officeadmin-atlas-stop-type {
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  margin-top: 0.25rem;
+  line-height: 1.35;
+}
+
+.officeadmin-breadcrumbs {
+  padding: 0.9rem 1rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.officeadmin-breadcrumb-structure,
+.officeadmin-breadcrumb-history {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.officeadmin-breadcrumb-structure span {
+  color: var(--text-dim);
+}
+
+.officeadmin-breadcrumb-structure span.active {
+  color: #fff;
+}
+
+.officeadmin-scene-card {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.officeadmin-scene {
+  min-height: 0;
+  grid-template-columns: 1fr minmax(240px, 320px) 1fr;
+}
+
+.officeadmin-scene-column-label {
+  color: var(--text-dim);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.officeadmin-scene-empty {
+  color: var(--text-dim);
+  font-size: 0.88rem;
+  padding: 0.8rem 0;
+}
+
+.officeadmin-scene-center-copy {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.officeadmin-scene-node {
+  background:
+    radial-gradient(circle at top right, rgba(108, 138, 255, 0.12), transparent 30%),
+    rgba(13, 16, 25, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.18);
+}
+
+.officeadmin-scene-node-center {
+  min-height: 0;
+  text-align: left;
+}
+
+.officeadmin-scene-node-type {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.officeadmin-related-strip {
+  padding-top: 0.15rem;
+}
+
+.officeadmin-detail-panel h3 {
+  color: #fff;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+}
+
+.officeadmin-detail-panel p + p,
+.officeadmin-detail-panel p + .officeadmin-inline-metrics {
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 900px) {
+  .officeadmin-atlas-head,
+  .officeadmin-atlas-lane-row {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .officeadmin-atlas-lane-label {
+    margin-bottom: 0.15rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .officeadmin-journey-steps,
+  .officeadmin-breadcrumb-history,
+  .officeadmin-breadcrumb-structure {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .officeadmin-journey-step-sep,
+  .officeadmin-atlas-lines,
+  .officeadmin-atlas-track::before {
+    display: none;
+  }
+
+  .officeadmin-atlas {
+    padding: 0.8rem;
+  }
+
+  .officeadmin-atlas-stop {
+    max-width: none;
+  }
+
+  .officeadmin-atlas-stop::before {
+    display: none;
+  }
+}
+
 .overview-card {
   background: var(--bg-card);
   border: 1px solid var(--border);

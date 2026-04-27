@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=4">
+  <link rel="stylesheet" href="../css/style.css?v=5">
 </head>
 <body>
   <nav class="nav">
@@ -33,7 +33,7 @@
       <div class="container">
         <div class="hero-label">Generated System Map</div>
         <h1>/officeadmin</h1>
-        <p>The read only map for current system shape, progress, context, roots, and status. No hand edited status prose, this page renders a generated snapshot from docs, files, code, and repo state.</p>
+        <p>A generated atlas of the system, where it lives, what owns truth, and how the parts connect.</p>
         <div class="officeadmin-meta">
           <div class="officeadmin-meta-item">
             <div class="officeadmin-meta-label">Snapshot</div>
@@ -55,7 +55,7 @@
     <section class="section" style="padding-top: 0;">
       <div class="container">
         <h2 class="section-title">Snapshot</h2>
-        <p class="section-subtitle">The smallest useful status layer, generated from the real system.</p>
+        <p class="section-subtitle">A compact live read on the system before you drill in.</p>
         <div class="officeadmin-stats" id="snapshotStats"></div>
       </div>
     </section>
@@ -63,7 +63,7 @@
     <section class="section officeadmin-map-section">
       <div class="container">
         <h2 class="section-title">Explorer</h2>
-        <p class="section-subtitle">Navigate the system by lane, path, and direct connections, without dumping everything at once.</p>
+        <p class="section-subtitle">Follow the map, pick a stop, then drill into how it connects and what it owns.</p>
         <div class="officeadmin-explorer-shell">
           <div class="officeadmin-explorer-toolbar">
             <div class="officeadmin-lane-rail" id="laneRail"></div>
@@ -71,6 +71,20 @@
             <div class="officeadmin-search-wrap">
               <input class="officeadmin-search" id="nodeSearch" type="search" placeholder="Jump to AIVA, MemPalace, Google Workspace, archives..." />
               <div class="officeadmin-search-results" id="searchResults"></div>
+            </div>
+          </div>
+          <div class="officeadmin-journey-board" id="journeyBoard"></div>
+          <div class="officeadmin-atlas-card">
+            <div class="officeadmin-atlas-head">
+              <div>
+                <div class="officeadmin-detail-label">System atlas</div>
+                <h3>Five lanes, generated routes, one focused stop at a time.</h3>
+              </div>
+              <p>Colored lines show the active journey and the selected stop’s direct links, without turning the whole map into spaghetti.</p>
+            </div>
+            <div class="officeadmin-atlas" id="systemAtlas">
+              <svg class="officeadmin-atlas-lines" id="atlasLines" aria-hidden="true"></svg>
+              <div class="officeadmin-atlas-lanes" id="atlasLanes"></div>
             </div>
           </div>
           <div class="officeadmin-breadcrumbs" id="breadcrumbs"></div>
@@ -151,7 +165,7 @@
     <p>Generated from the live system snapshot, not from hand edited status copy.</p>
   </footer>
 
-  <script src="../js/main.js?v=4"></script>
-  <script src="../js/officeadmin.js?v=4"></script>
+  <script src="../js/main.js?v=5"></script>
+  <script src="../js/officeadmin.js?v=5"></script>
 </body>
 </html>

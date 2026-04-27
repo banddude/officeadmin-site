@@ -41,6 +41,9 @@ Audit update:
 2. The useful primary interaction is lane -> node -> neighbors -> details -> next node.
 3. Full-width static sections should be reference shelves, not the core experience.
 4. The graph should be focused and legible, not global and overlapping.
+5. The current explorer shell works, but it is still too shallow because it only operates on a tiny root graph.
+6. The generated JSON already contains richer structure, machines, authorities, memory categories, roadmap workstreams, but the graph is barely using it.
+7. The next pass needs to feel more like a transit atlas than a stack of cards.
 
 ## Working Direction
 
@@ -54,6 +57,8 @@ Build a focused graph explorer with:
 6. Detail tabs for overview, ownership, connections, and status.
 7. Search and story paths for common questions.
 8. Progressive disclosure for authorities and workstreams.
+9. A visible atlas view that shows the whole system shape at a glance, without overlap and without requiring raw text scanning.
+10. A generated set of subsystem nodes so the graph is not limited to eight coarse blobs.
 
 ## Active Todos
 
@@ -66,7 +71,12 @@ Build a focused graph explorer with:
 - [x] Reduce long prose by default, keep details on demand.
 - [x] Test on desktop with `agent-browser`.
 - [x] Test with mobile viewport or device emulation in `agent-browser`.
-- [ ] Push, validate deployed behavior, and note remaining gaps.
+- [x] Push, validate deployed behavior, and note remaining gaps.
+- [x] Expand the generated model beyond root nodes, using authorities, memory categories, machines, and subsystem summaries already present in the snapshot.
+- [x] Replace the generic dark-card feel with a clearer visual system atlas aesthetic.
+- [x] Add a visible story path strip for each journey, not just a chip that changes focus silently.
+- [ ] Retest live desktop and mobile after the atlas pass.
+- [ ] Push the atlas pass and validate Cloudflare-served assets on phone.
 
 ## Test Log
 
@@ -78,6 +88,12 @@ Build a focused graph explorer with:
 - Local desktop test with `agent-browser` passed, page loads and explorer interactions work.
 - Mobile emulation test with `agent-browser` on iPhone 16 viewport passed, no horizontal overflow on body width, explorer interactions still work.
 - Asset version must be bumped when explorer JS or CSS changes materially, otherwise live Cloudflare cache can serve mismatched UI assets.
+- Live deployed audit shows the shell loads and interactions work, but the actual graph is still too shallow to explain the system well.
+- The current generated JSON has `roots`, `machines`, `authorities`, `memoryCategories`, and `roadmap.workstreams`, but the core graph still only has 8 roots and 9 edges.
+- A better direction is a generated atlas with visible routes and subsystem stops, not a root-only bubble set.
+- The atlas pass is now using generated subsystem nodes for hosts, module surface, entity workspace, work memory, session history, extraction, identity, Gmail, Drive, QuickBooks, and archive layers.
+- Local `agent-browser` checks passed for route switching, node drilldown, search, and mobile layout.
+- Asset versions were bumped again after the atlas pass to prevent stale CSS or JS mismatches on the live site.
 
 ## Reflection Loop
 
