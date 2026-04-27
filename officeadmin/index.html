@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OfficeAdmin Map — OfficeAdmin</title>
+  <meta name="description" content="Generated read only system map for OfficeAdmin. Current roots, repos, docs, progress, and system status.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">officeadmin<span>.io</span></a>
+      <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../architecture.html">Architecture</a></li>
+        <li><a href="../modules.html">Modules</a></li>
+        <li><a href="../stack.html">Stack</a></li>
+        <li><a href="index.html" class="active">OfficeAdmin</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page">
+    <section class="hero officeadmin-hero">
+      <div class="container">
+        <div class="hero-label">Generated System Map</div>
+        <h1>/officeadmin</h1>
+        <p>The read only map for current system shape, progress, context, roots, and status. No hand edited status prose, this page renders a generated snapshot from docs, files, code, and repo state.</p>
+        <div class="officeadmin-meta">
+          <div class="officeadmin-meta-item">
+            <div class="officeadmin-meta-label">Snapshot</div>
+            <div class="officeadmin-meta-value" id="generatedAt">Loading...</div>
+          </div>
+          <div class="officeadmin-meta-item">
+            <div class="officeadmin-meta-label">Host</div>
+            <div class="officeadmin-meta-value" id="generatedHost">Loading...</div>
+          </div>
+          <div class="officeadmin-meta-item">
+            <div class="officeadmin-meta-label">Refresh</div>
+            <div class="officeadmin-meta-value"><code>node scripts/generate-officeadmin-map.mjs</code></div>
+          </div>
+        </div>
+        <div class="officeadmin-warning-list" id="warningList"></div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <h2 class="section-title">Snapshot</h2>
+        <p class="section-subtitle">The smallest useful status layer, generated from the real system.</p>
+        <div class="officeadmin-stats" id="snapshotStats"></div>
+      </div>
+    </section>
+
+    <section class="section officeadmin-map-section">
+      <div class="container">
+        <h2 class="section-title">System Map</h2>
+        <p class="section-subtitle">Top level roots and attached systems. Tap a node for details.</p>
+        <div class="officeadmin-map-layout">
+          <div class="officeadmin-graph-card">
+            <svg id="systemGraph" viewBox="0 0 960 520" aria-label="System graph"></svg>
+          </div>
+          <div class="officeadmin-detail-card" id="graphDetail">
+            <div class="officeadmin-detail-empty">Select a root to inspect ownership, path, and current metrics.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Repos</h2>
+        <p class="section-subtitle">Git rooted surfaces that make the system explainable and recoverable.</p>
+        <div class="officeadmin-repo-grid" id="repoGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" style="background: var(--bg-surface);">
+      <div class="container">
+        <h2 class="section-title">Authority Model</h2>
+        <p class="section-subtitle">Source of truth rules and mirrored domains pulled from the roadmap and memory map docs.</p>
+        <div class="officeadmin-two-col">
+          <div class="overview-card">
+            <h3>Source Of Truth Rules</h3>
+            <ul class="officeadmin-bullet-list" id="sourceOfTruthList"></ul>
+          </div>
+          <div class="overview-card">
+            <h3>Generated Inputs</h3>
+            <ul class="officeadmin-bullet-list" id="generatedSourcesList"></ul>
+          </div>
+        </div>
+        <div class="officeadmin-table-card">
+          <div class="officeadmin-table-wrap">
+            <table class="officeadmin-table">
+              <thead>
+                <tr>
+                  <th>Domain</th>
+                  <th>Category</th>
+                  <th>Where</th>
+                  <th>Source of truth</th>
+                </tr>
+              </thead>
+              <tbody id="authorityTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Progress</h2>
+        <p class="section-subtitle">Current production readiness workstreams, goals, and next moves.</p>
+        <div class="officeadmin-workstreams" id="workstreams"></div>
+      </div>
+    </section>
+
+    <section class="section" style="background: var(--bg-surface);">
+      <div class="container">
+        <h2 class="section-title">Docs And Code Health</h2>
+        <p class="section-subtitle">How current the canonical docs are, and what the module layer looks like right now.</p>
+        <div class="officeadmin-two-col">
+          <div class="overview-card">
+            <h3>Docs Health</h3>
+            <div id="docsSummary"></div>
+          </div>
+          <div class="overview-card">
+            <h3>Module Topology</h3>
+            <div id="moduleSummary"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Machines</h2>
+        <p class="section-subtitle">Physical placement still matters. This is where the main responsibilities land.</p>
+        <div class="officeadmin-machine-grid" id="machineGrid"></div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer">
+    <p>Generated from the live system snapshot, not from hand edited status copy.</p>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/officeadmin.js"></script>
+</body>
+</html>

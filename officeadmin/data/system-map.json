@@ -1,0 +1,1298 @@
+{
+  "version": 1,
+  "generatedAt": "2026-04-27T21:22:57.984Z",
+  "generatedOnHost": "mike.local",
+  "refreshCommand": "node scripts/generate-officeadmin-map.mjs",
+  "warnings": [],
+  "snapshot": {
+    "modules": 63,
+    "publicCommands": 73,
+    "publicSkills": 53,
+    "docs": 28,
+    "staleDocs": 0,
+    "entities": 2248,
+    "mempalaceTriples": 28061,
+    "openclawSessions": 215,
+    "dirtyRepos": 0,
+    "workstreams": 13,
+    "driveArchive": "31G"
+  },
+  "repos": [
+    {
+      "id": "aiva",
+      "label": "AIVA",
+      "path": "/Users/mikeshaffer/.aiva",
+      "present": true,
+      "branch": "main",
+      "shortSha": "8e87525",
+      "lastCommit": {
+        "subject": "auto: mike 2026-04-27T20:46:07Z",
+        "authoredAt": "2026-04-27T13:46:07-07:00"
+      },
+      "trackedFileCount": 987,
+      "dirtyFileCount": 0,
+      "remoteUrl": "git@github.com:banddude/aiva.git"
+    },
+    {
+      "id": "mikeshaffer",
+      "label": "mikeshaffer",
+      "path": "/Users/mikeshaffer/mikeshaffer",
+      "present": true,
+      "branch": "main",
+      "shortSha": "907b3a4",
+      "lastCommit": {
+        "subject": "auto: aiva 2026-04-27T19:53:14Z",
+        "authoredAt": "2026-04-27T12:53:14-07:00"
+      },
+      "trackedFileCount": 827,
+      "dirtyFileCount": 0,
+      "remoteUrl": "git@github.com:banddude/mikeshaffer.git"
+    },
+    {
+      "id": "officeadmin-site",
+      "label": "officeadmin-site",
+      "path": "/Users/mikeshaffer/tmp/officeadmin-site",
+      "present": true,
+      "branch": "main",
+      "shortSha": null,
+      "lastCommit": {
+        "subject": null,
+        "authoredAt": null
+      },
+      "trackedFileCount": 15,
+      "dirtyFileCount": null,
+      "remoteUrl": "https://github.com/banddude/officeadmin-site.git"
+    }
+  ],
+  "docs": {
+    "count": 28,
+    "byStatus": {
+      "work-in-progress": 27,
+      "current": 1
+    },
+    "byConfidence": {
+      "HIGH": 25,
+      "MEDIUM": 3
+    },
+    "staleThresholdDays": 30,
+    "staleCount": 0,
+    "stale": [],
+    "recentlyVerified": [
+      {
+        "file": "AIVA-OFFICEADMIN-OPERATING-MODEL.md",
+        "title": "AIVA and OfficeAdmin Operating Model",
+        "status": "work-in-progress",
+        "confidence": "MEDIUM",
+        "lastVerified": "2026-04-23",
+        "ageDays": 4,
+        "path": "/Users/mikeshaffer/.aiva/modules/docs/content/AIVA-OFFICEADMIN-OPERATING-MODEL.md"
+      },
+      {
+        "file": "COMMS-PIPELINE.md",
+        "title": "Communications Pipeline",
+        "status": "work-in-progress",
+        "confidence": "HIGH",
+        "lastVerified": "2026-04-23",
+        "ageDays": 4,
+        "path": "/Users/mikeshaffer/.aiva/modules/docs/content/COMMS-PIPELINE.md"
+      },
+      {
+        "file": "MEMORY-MAP.md",
+        "title": "Memory Map",
+        "status": "current",
+        "confidence": "HIGH",
+        "lastVerified": "2026-04-23",
+        "ageDays": 4,
+        "path": "/Users/mikeshaffer/.aiva/modules/docs/content/MEMORY-MAP.md"
+      },
+      {
+        "file": "PRODUCTION-READINESS-ROADMAP.md",
+        "title": "Production Readiness Roadmap",
+        "status": "work-in-progress",
+        "confidence": "MEDIUM",
+        "lastVerified": "2026-04-23",
+        "ageDays": 4,
+        "path": "/Users/mikeshaffer/.aiva/modules/docs/content/PRODUCTION-READINESS-ROADMAP.md"
+      },
+      {
+        "file": "DATA-SOURCES.md",
+        "title": "Data Sources",
+        "status": "work-in-progress",
+        "confidence": "HIGH",
+        "lastVerified": "2026-04-21",
+        "ageDays": 6,
+        "path": "/Users/mikeshaffer/.aiva/modules/docs/content/DATA-SOURCES.md"
+      },
+      {
+        "file": "PIPELINES.md",
+        "title": "Pipelines",
+        "status": "work-in-progress",
+        "confidence": "HIGH",
+        "lastVerified": "2026-04-21",
+        "ageDays": 6,
+        "path": "/Users/mikeshaffer/.aiva/modules/docs/content/PIPELINES.md"
+      },
+      {
+        "file": "SKILLS.md",
+        "title": "Skills",
+        "status": "work-in-progress",
+        "confidence": "HIGH",
+        "lastVerified": "2026-04-20",
+        "ageDays": 7,
+        "path": "/Users/mikeshaffer/.aiva/modules/docs/content/SKILLS.md"
+      },
+      {
+        "file": "SYSTEM-AUDIT-2026-04-20.md",
+        "title": "AIVA System Audit - 2026-04-20",
+        "status": "work-in-progress",
+        "confidence": "HIGH",
+        "lastVerified": "2026-04-20",
+        "ageDays": 7,
+        "path": "/Users/mikeshaffer/.aiva/modules/docs/content/SYSTEM-AUDIT-2026-04-20.md"
+      }
+    ]
+  },
+  "modules": {
+    "count": 63,
+    "byKind": {
+      "tool": 16,
+      "system": 9,
+      "utility": 12,
+      "integration": 22,
+      "model": 4
+    },
+    "byMachine": {
+      "split": 27,
+      "aiva": 33,
+      "source-local": 2,
+      "laptop": 1
+    },
+    "byHostRequirement": {
+      "chrome": 1,
+      "tmux": 1,
+      "php": 1,
+      "mysql": 2,
+      "mapkit-framework": 1,
+      "network-access": 1,
+      "eventkit": 3,
+      "contacts-db": 1,
+      "contacts-account": 1,
+      "google-cli": 1,
+      "stalwart-imap": 1,
+      "ollama": 1,
+      "messages-account": 4,
+      "blackhole-audio": 1,
+      "claude": 1,
+      "oauth-callback": 2,
+      "homeassistant-token": 1,
+      "messages-db": 2,
+      "python3": 1,
+      "xcode": 1,
+      "xcodegen": 1,
+      "fastlane": 1,
+      "asc": 1,
+      "maestro": 1,
+      "kintsugi": 1,
+      "mcporter": 1,
+      "notes-account": 2,
+      "claude-cli": 1,
+      "notify-cli": 1,
+      "notes-db": 1,
+      "reminders-db": 1,
+      "reminders-account": 1,
+      "launchd": 3,
+      "ripgrep": 1,
+      "cloudflared-config": 1,
+      "openclaw-cron": 1,
+      "lsof": 1,
+      "apns": 1,
+      "whisper-cli-or-ssh-laptop": 1,
+      "ffmpeg": 1,
+      "yt-dlp": 1,
+      "node": 1
+    },
+    "publicCommands": 73,
+    "publicSkills": 53,
+    "daemonCount": 6,
+    "topDependencies": [
+      {
+        "id": "comms-pipeline",
+        "name": "Communications Pipeline",
+        "moduleDependencyCount": 4,
+        "authProfileCount": 0,
+        "coreFeatureCount": 0
+      },
+      {
+        "id": "crm",
+        "name": "CRM",
+        "moduleDependencyCount": 4,
+        "authProfileCount": 0,
+        "coreFeatureCount": 1
+      },
+      {
+        "id": "akaunting",
+        "name": "Akaunting",
+        "moduleDependencyCount": 3,
+        "authProfileCount": 0,
+        "coreFeatureCount": 1
+      },
+      {
+        "id": "conversations",
+        "name": "Conversations",
+        "moduleDependencyCount": 3,
+        "authProfileCount": 0,
+        "coreFeatureCount": 2
+      },
+      {
+        "id": "facetime-voice",
+        "name": "FaceTime Voice",
+        "moduleDependencyCount": 3,
+        "authProfileCount": 0,
+        "coreFeatureCount": 2
+      },
+      {
+        "id": "dependency-tracker",
+        "name": "Dependency Tracker",
+        "moduleDependencyCount": 2,
+        "authProfileCount": 0,
+        "coreFeatureCount": 0
+      },
+      {
+        "id": "memory",
+        "name": "Memory (deprecated)",
+        "moduleDependencyCount": 2,
+        "authProfileCount": 0,
+        "coreFeatureCount": 0
+      },
+      {
+        "id": "notify",
+        "name": "Notify",
+        "moduleDependencyCount": 2,
+        "authProfileCount": 0,
+        "coreFeatureCount": 1
+      },
+      {
+        "id": "session-search",
+        "name": "Session Search",
+        "moduleDependencyCount": 2,
+        "authProfileCount": 0,
+        "coreFeatureCount": 1
+      },
+      {
+        "id": "system-inventory",
+        "name": "System Inventory",
+        "moduleDependencyCount": 2,
+        "authProfileCount": 0,
+        "coreFeatureCount": 1
+      }
+    ],
+    "topAuthProfiles": [
+      {
+        "name": "google.personal-oauth",
+        "count": 2
+      },
+      {
+        "name": "google.workspace-login-oauth",
+        "count": 2
+      },
+      {
+        "name": "google.workspace-service-account",
+        "count": 1
+      },
+      {
+        "name": "asc:shaffer-default",
+        "count": 1
+      },
+      {
+        "name": "zai",
+        "count": 1
+      }
+    ]
+  },
+  "machines": [
+    {
+      "id": "aiva-mac-mini",
+      "label": "aiva (Mac mini)",
+      "role": "runtime host",
+      "hostname": "aiva.local",
+      "tailscale": "100.97.82.2",
+      "keyPaths": [
+        "`~/.aiva/` — the code and state root.",
+        "`~/.aiva/state/bin/` — generated public CLI surface.",
+        "`~/.aiva/state/skills/` — generated public skill surface.",
+        "`~/.mempalace/knowledge_graph.sqlite3` — the knowledge graph.",
+        "`~/.openclaw/` — OpenClaw config and sessions.",
+        "`~/mikeshaffer/` — Mike's personal/business repo with entities,"
+      ],
+      "notes": [
+        "Autologin enabled via `/etc/kcpassword` so it boots back into Mike's",
+        "Runs the OpenClaw gateway, the MCP server, the sync daemons, the",
+        "`~/.aiva/` — the code and state root.",
+        "`~/.aiva/state/bin/` — generated public CLI surface.",
+        "`~/.aiva/state/skills/` — generated public skill surface.",
+        "`~/.mempalace/knowledge_graph.sqlite3` — the knowledge graph."
+      ]
+    },
+    {
+      "id": "laptop-mike-s-apple-silicon-laptop",
+      "label": "laptop (Mike's Apple Silicon laptop)",
+      "role": "thin client",
+      "hostname": "mike.local",
+      "tailscale": "100.84.100.63",
+      "keyPaths": [],
+      "notes": [
+        "Daily driver. Mike uses this for actual typing-on-a-keyboard work.",
+        "Has its own copy of `~/.aiva/` and `~/mikeshaffer/` kept in sync with",
+        "Holds the TSheets OAuth credentials that must be accessed via an",
+        "Runtime specifics: node is at `/usr/local/bin/node`, fswatch at"
+      ]
+    },
+    {
+      "id": "imessage-laptop",
+      "label": "imessage laptop",
+      "role": "dedicated BlueBubbles host",
+      "hostname": null,
+      "tailscale": "100.90.35.46",
+      "keyPaths": [],
+      "notes": [
+        "Separate machine from Mike's primary laptop to keep iMessage auth"
+      ]
+    }
+  ],
+  "roadmap": {
+    "sourceOfTruth": [
+      "Code lives in Git and module-owned folders.",
+      "Runtime state lives on AIVA under `~/.aiva/state/`.",
+      "Business doctrine, entities, memory, and commitments live in",
+      "Apple Contacts owns contact identity details.",
+      "QuickBooks owns accounting, estimates, invoices, payments, customers,",
+      "Gmail, iMessage, Google Chat, WhatsApp, Instagram, voice memos, and",
+      "MemPalace owns extracted temporal memory.",
+      "OpenClaw owns its own runtime and dreaming, but its sessions feed"
+    ],
+    "workstreams": [
+      {
+        "id": "1-canonical-inventory",
+        "title": "1. Canonical inventory",
+        "goal": "one living inventory of every capability, service, scheduler,",
+        "deliverables": [
+          "`~/.aiva/modules/system-inventory/SYSTEM-CAPABILITY-INVENTORY.md`.",
+          "Rows for every module, launchd job, OpenClaw cron job, Akaunting",
+          "Each row maps owner, machine, scheduler, port or command, state, logs,"
+        ],
+        "output": [],
+        "nearTermOutcomes": [],
+        "validations": []
+      },
+      {
+        "id": "2-scheduler-rationalization",
+        "title": "2. Scheduler rationalization",
+        "goal": "each recurring thing has exactly one scheduler owner and one",
+        "deliverables": [],
+        "output": [],
+        "nearTermOutcomes": [],
+        "validations": []
+      },
+      {
+        "id": "3-module-hygiene",
+        "title": "3. Module hygiene",
+        "goal": "no live code path exists without module ownership.",
+        "deliverables": [],
+        "output": [],
+        "nearTermOutcomes": [],
+        "validations": []
+      },
+      {
+        "id": "4-backup-and-restore",
+        "title": "4. Backup and restore",
+        "goal": "every important data store has a tested restore path.",
+        "deliverables": [],
+        "output": [],
+        "nearTermOutcomes": [],
+        "validations": []
+      },
+      {
+        "id": "5-communications-and-commitments",
+        "title": "5. Communications and commitments",
+        "goal": "AIVA knows where every ball is.",
+        "deliverables": [],
+        "output": [],
+        "nearTermOutcomes": [],
+        "validations": []
+      },
+      {
+        "id": "6-memory-and-identity",
+        "title": "6. Memory and identity",
+        "goal": "agents stop rebuilding context from scratch.",
+        "deliverables": [],
+        "output": [],
+        "nearTermOutcomes": [],
+        "validations": []
+      },
+      {
+        "id": "7-officeadmin-service-layer",
+        "title": "7. OfficeAdmin service layer",
+        "goal": "`officeadmin.io` becomes an intentional self-hosted service suite,",
+        "deliverables": [],
+        "output": [],
+        "nearTermOutcomes": [],
+        "validations": []
+      },
+      {
+        "id": "8-proactive-awareness",
+        "title": "8. Proactive awareness",
+        "goal": "AIVA notices useful things without becoming noisy.",
+        "deliverables": [],
+        "output": [],
+        "nearTermOutcomes": [],
+        "validations": []
+      },
+      {
+        "id": "phase-0-freeze-the-map",
+        "title": "Phase 0: Freeze the map",
+        "goal": null,
+        "deliverables": [],
+        "output": [],
+        "nearTermOutcomes": [],
+        "validations": []
+      },
+      {
+        "id": "phase-1-make-failures-visible",
+        "title": "Phase 1: Make failures visible",
+        "goal": null,
+        "deliverables": [],
+        "output": [],
+        "nearTermOutcomes": [],
+        "validations": []
+      },
+      {
+        "id": "phase-2-backup-reality-check",
+        "title": "Phase 2: Backup reality check",
+        "goal": null,
+        "deliverables": [],
+        "output": [],
+        "nearTermOutcomes": [],
+        "validations": []
+      },
+      {
+        "id": "phase-3-commitment-control-plane",
+        "title": "Phase 3: Commitment control plane",
+        "goal": null,
+        "deliverables": [],
+        "output": [],
+        "nearTermOutcomes": [],
+        "validations": []
+      },
+      {
+        "id": "phase-4-proactive-awareness-v1",
+        "title": "Phase 4: Proactive awareness v1",
+        "goal": null,
+        "deliverables": [],
+        "output": [],
+        "nearTermOutcomes": [],
+        "validations": []
+      }
+    ]
+  },
+  "roots": [
+    {
+      "id": "aiva",
+      "label": "AIVA",
+      "type": "runtime",
+      "path": "/Users/mikeshaffer/.aiva",
+      "present": true,
+      "description": "Runtime host code, generated command surface, module orchestration, and shared state policy.",
+      "metrics": [
+        {
+          "label": "Modules",
+          "value": 63
+        },
+        {
+          "label": "Public commands",
+          "value": 73
+        },
+        {
+          "label": "Docs",
+          "value": 28
+        }
+      ]
+    },
+    {
+      "id": "mikeshaffer",
+      "label": "mikeshaffer",
+      "type": "workspace",
+      "path": "/Users/mikeshaffer/mikeshaffer",
+      "present": true,
+      "description": "Durable work memory, entity folders, doctrine, drafts, and historical notes.",
+      "metrics": [
+        {
+          "label": "Entity folders",
+          "value": 2248
+        },
+        {
+          "label": "Tracked JSON docs",
+          "value": 203
+        },
+        {
+          "label": "Memory notes",
+          "value": 124
+        }
+      ]
+    },
+    {
+      "id": "mempalace",
+      "label": "MemPalace",
+      "type": "memory",
+      "path": "/Users/mikeshaffer/.mempalace/knowledge_graph.sqlite3",
+      "present": true,
+      "description": "Temporal memory graph and semantic recall substrate for long term context.",
+      "metrics": [
+        {
+          "label": "Entities",
+          "value": 15382
+        },
+        {
+          "label": "Triples",
+          "value": 28061
+        },
+        {
+          "label": "DB size",
+          "value": "29M"
+        }
+      ]
+    },
+    {
+      "id": "openclaw",
+      "label": "OpenClaw",
+      "type": "runtime",
+      "path": "/Users/mikeshaffer/.openclaw",
+      "present": true,
+      "description": "Attached AI runtime for chat, subagents, cron, and session generation.",
+      "metrics": [
+        {
+          "label": "Session files",
+          "value": 215
+        },
+        {
+          "label": "Cron runs",
+          "value": 136
+        },
+        {
+          "label": "Role",
+          "value": "attached runtime"
+        }
+      ]
+    },
+    {
+      "id": "apple-apps",
+      "label": "Apple Apps",
+      "type": "authority",
+      "path": "Contacts, Notes, Reminders, Calendar, Messages",
+      "present": true,
+      "description": "Native authority layer for identity, tasks, notes, calendar, and iMessage source data.",
+      "metrics": [
+        {
+          "label": "Authority rules",
+          "value": 1
+        },
+        {
+          "label": "Docs categories",
+          "value": 1
+        },
+        {
+          "label": "Mode",
+          "value": "source of truth"
+        }
+      ]
+    },
+    {
+      "id": "google-workspace",
+      "label": "Google Workspace",
+      "type": "authority",
+      "path": "Gmail, Drive, Calendar, Chat",
+      "present": true,
+      "description": "Live collaboration and communications surface, with archive and mirror layers around it.",
+      "metrics": [
+        {
+          "label": "Auth profiles",
+          "value": 3
+        },
+        {
+          "label": "Archive mirror",
+          "value": "present"
+        },
+        {
+          "label": "Drive archive",
+          "value": "31G"
+        }
+      ]
+    },
+    {
+      "id": "archives",
+      "label": "Archives",
+      "type": "storage",
+      "path": "/Volumes/MIKES HD, /var/lib/stalwart",
+      "present": true,
+      "description": "Cold storage and mirrored history for Gmail, Google Drive, media, and other large state.",
+      "metrics": [
+        {
+          "label": "Drive archive",
+          "value": "31G"
+        },
+        {
+          "label": "Mail archive",
+          "value": "n/a"
+        },
+        {
+          "label": "Authority mode",
+          "value": "mirror + backup"
+        }
+      ]
+    },
+    {
+      "id": "officeadmin-site",
+      "label": "officeadmin-site",
+      "type": "surface",
+      "path": "/Users/mikeshaffer/tmp/officeadmin-site",
+      "present": true,
+      "description": "Read only generated view over docs, repos, and runtime snapshots for fast system understanding.",
+      "metrics": [
+        {
+          "label": "Files",
+          "value": 15
+        },
+        {
+          "label": "Generated page",
+          "value": "/officeadmin"
+        },
+        {
+          "label": "Refresh",
+          "value": "local generator"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "officeadmin-site",
+      "to": "aiva",
+      "label": "docs + repo state"
+    },
+    {
+      "from": "officeadmin-site",
+      "to": "mikeshaffer",
+      "label": "workspace + entity state"
+    },
+    {
+      "from": "aiva",
+      "to": "mikeshaffer",
+      "label": "reads doctrine + work memory"
+    },
+    {
+      "from": "aiva",
+      "to": "mempalace",
+      "label": "hydrates context"
+    },
+    {
+      "from": "openclaw",
+      "to": "mempalace",
+      "label": "session ingest"
+    },
+    {
+      "from": "aiva",
+      "to": "openclaw",
+      "label": "attached runtime"
+    },
+    {
+      "from": "aiva",
+      "to": "apple-apps",
+      "label": "native authorities"
+    },
+    {
+      "from": "aiva",
+      "to": "google-workspace",
+      "label": "live comms + files"
+    },
+    {
+      "from": "aiva",
+      "to": "archives",
+      "label": "mirrors + backups"
+    }
+  ],
+  "authorities": [
+    {
+      "domain": "AIVA \"Memory\" note",
+      "category": "Agent persona (deprecated)",
+      "where": "Apple Notes, linked on the AIVA Apple contact",
+      "size": "n/a",
+      "sourceOfTruth": "Source of truth. Not actively read anymore."
+    },
+    {
+      "domain": "AIVA \"Soul\" note",
+      "category": "Agent persona (deprecated)",
+      "where": "Apple Notes, linked on the AIVA Apple contact",
+      "size": "n/a",
+      "sourceOfTruth": "Source of truth. Not actively read anymore."
+    },
+    {
+      "domain": "Hydrated AGENTS.md / CLAUDE.md",
+      "category": "Agent persona (deprecated)",
+      "where": "`~/.aiva/state/modules/memory/`",
+      "size": "~28 KB",
+      "sourceOfTruth": "Frozen 2026-03-09. `claude/provider.py` still reads these."
+    },
+    {
+      "domain": "`~/.claude/CLAUDE.md`",
+      "category": "Agent persona (deprecated)",
+      "where": "`~/.claude/CLAUDE.md`",
+      "size": "1.3 KB",
+      "sourceOfTruth": "Hand-maintained small file Claude Code actually reads at startup. Independent of the Memory+Soul pipeline."
+    },
+    {
+      "domain": "iMessage source DB",
+      "category": "Communications archives",
+      "where": "`~/Library/Messages/chat.db`",
+      "size": "221 MB",
+      "sourceOfTruth": "Yes (macOS-owned)"
+    },
+    {
+      "domain": "iMessage mirror",
+      "category": "Communications archives",
+      "where": "`~/.aiva/state/user-imessage-db/`",
+      "size": "25 GB",
+      "sourceOfTruth": "Mirror of chat.db via syncthing from laptop"
+    },
+    {
+      "domain": "Gmail live",
+      "category": "Communications archives",
+      "where": "Gmail (Google)",
+      "size": "n/a",
+      "sourceOfTruth": "Yes (Google-owned)"
+    },
+    {
+      "domain": "Stalwart Gmail archive",
+      "category": "Communications archives",
+      "where": "`/var/lib/stalwart/`",
+      "size": "~45 GB (73k mike + 7k personal + growing)",
+      "sourceOfTruth": "Mirror"
+    },
+    {
+      "domain": "Gmail-to-Stalwart sync state",
+      "category": "Communications archives",
+      "where": "`~/.aiva/state/gmail-to-stalwart-sync/`",
+      "size": "29 MB",
+      "sourceOfTruth": "cursors + dedup index"
+    },
+    {
+      "domain": "WhatsApp state",
+      "category": "Communications archives",
+      "where": "`~/.aiva/state/whatsapp/`",
+      "size": "20 MB",
+      "sourceOfTruth": "via WhatsApp module"
+    },
+    {
+      "domain": "Email labeler state",
+      "category": "Communications archives",
+      "where": "`~/.aiva/state/email-labeler/` + `~/.aiva/state/email-labeler-stalwart/`",
+      "size": "8 KB",
+      "sourceOfTruth": "ingestion cursors"
+    },
+    {
+      "domain": "Notify delivery queue",
+      "category": "Communications archives",
+      "where": "`~/.aiva/state/notify/`",
+      "size": "235 MB",
+      "sourceOfTruth": "outbound message queue"
+    },
+    {
+      "domain": "Apple Contacts",
+      "category": "Identity and entity data",
+      "where": "macOS Contacts app",
+      "size": "n/a",
+      "sourceOfTruth": "Yes (macOS-owned)"
+    },
+    {
+      "domain": "Apple Contacts backup",
+      "category": "Identity and entity data",
+      "where": "`~/.aiva/state/contacts/`",
+      "size": "711 MB (backups + notes_changelog.db)",
+      "sourceOfTruth": "Mirror"
+    },
+    {
+      "domain": "CRM entities",
+      "category": "Identity and entity data",
+      "where": "`~/mikeshaffer/entities/`",
+      "size": "part of 1 GB repo",
+      "sourceOfTruth": "Yes for work-scoped data. Apple Contacts owns human identity."
+    },
+    {
+      "domain": "Identity resolver state",
+      "category": "Identity and entity data",
+      "where": "module-internal overrides",
+      "size": "kb range",
+      "sourceOfTruth": "`identity` module bridges Apple Contacts / CRM / MemPalace / QuickBooks / Email"
+    },
+    {
+      "domain": "Apple Reminders",
+      "category": "Tasks, calendar, notes (Apple)",
+      "where": "macOS Reminders app",
+      "size": "",
+      "sourceOfTruth": "Yes (macOS)"
+    },
+    {
+      "domain": "Apple Calendar",
+      "category": "Tasks, calendar, notes (Apple)",
+      "where": "macOS Calendar / EventKit",
+      "size": "",
+      "sourceOfTruth": "Yes (macOS)"
+    },
+    {
+      "domain": "Apple Notes",
+      "category": "Tasks, calendar, notes (Apple)",
+      "where": "macOS Notes",
+      "size": "",
+      "sourceOfTruth": "Yes (macOS)"
+    }
+  ],
+  "memoryCategories": [
+    {
+      "id": 1,
+      "title": "Agent persona (deprecated)",
+      "owner": "`memory` (deprecated 2026-04-23)",
+      "rows": [
+        {
+          "What": "AIVA \"Memory\" note",
+          "Where": "Apple Notes, linked on the AIVA Apple contact",
+          "Size": "n/a",
+          "Notes": "Source of truth. Not actively read anymore."
+        },
+        {
+          "What": "AIVA \"Soul\" note",
+          "Where": "Apple Notes, linked on the AIVA Apple contact",
+          "Size": "n/a",
+          "Notes": "Source of truth. Not actively read anymore."
+        },
+        {
+          "What": "Hydrated AGENTS.md / CLAUDE.md",
+          "Where": "`~/.aiva/state/modules/memory/`",
+          "Size": "~28 KB",
+          "Notes": "Frozen 2026-03-09. `claude/provider.py` still reads these."
+        },
+        {
+          "What": "`~/.claude/CLAUDE.md`",
+          "Where": "`~/.claude/CLAUDE.md`",
+          "Size": "1.3 KB",
+          "Notes": "Hand-maintained small file Claude Code actually reads at startup. Independent of the Memory+Soul pipeline."
+        }
+      ],
+      "note": "Was: \"the Memory and Soul notes on the AIVA Apple contact, hydrated"
+    },
+    {
+      "id": 2,
+      "title": "Knowledge graph and semantic vectors (MemPalace)",
+      "owner": "`mempalace`",
+      "rows": [
+        {
+          "What": "Knowledge graph SQLite",
+          "Where": "`~/.mempalace/knowledge_graph.sqlite3`",
+          "Size": "24 MB (12,959 entities / 12,795 notes / 23,277 triples)"
+        },
+        {
+          "What": "ChromaDB catalog",
+          "Where": "`~/.mempalace/palace/chroma.sqlite3`",
+          "Size": "22 GB"
+        },
+        {
+          "What": "HNSW vectors",
+          "Where": "`~/.mempalace/palace/<uuid>/data_level0.bin` and companions",
+          "Size": "5.7 GB (3.4M embeddings, 384 dims, float32)"
+        },
+        {
+          "What": "DB backups",
+          "Where": "`~/.mempalace/backups/`",
+          "Size": "~35 MB"
+        },
+        {
+          "What": "Extraction state",
+          "Where": "`~/.aiva/state/mempalace-extract/processed.sqlite3`",
+          "Size": "2.2 MB"
+        },
+        {
+          "What": "Extraction logs",
+          "Where": "`~/.aiva/state/mempalace-extract/*.log`",
+          "Size": "~4 MB"
+        }
+      ],
+      "note": "The real long-term memory. Temporal knowledge graph plus ChromaDB"
+    },
+    {
+      "id": 3,
+      "title": "Deprecated graph memory",
+      "owner": "`memory-graph` (deprecated 2026-04-12)",
+      "rows": [
+        {
+          "What": "Neo4j memory graph",
+          "Where": "empty / unused",
+          "Size": "n/a"
+        }
+      ],
+      "note": "reference; replaced by MemPalace. Candidate for full removal."
+    },
+    {
+      "id": 4,
+      "title": "Session and chat history",
+      "owner": "`session-search` (unified text search across all of the",
+      "rows": [
+        {
+          "What": "Claude Code projects",
+          "Where": "`~/.claude/projects/`",
+          "Size": "2.1 GB across 28 project dirs"
+        },
+        {
+          "What": "Codex sessions",
+          "Where": "`~/.codex/sessions/YYYY/MM/DD/*.jsonl`",
+          "Size": "655 MB across 454 files"
+        },
+        {
+          "What": "OpenClaw agent sessions",
+          "Where": "`~/.openclaw/agents/main/sessions/*.jsonl`",
+          "Size": "397 MB across 178 files"
+        },
+        {
+          "What": "OpenClaw cron runs",
+          "Where": "`~/.openclaw/cron/runs/*.jsonl`",
+          "Size": "included in 397 MB, 105 files"
+        },
+        {
+          "What": "Laptop mirror",
+          "Where": "`~/laptop-mount/`",
+          "Size": "via `com.aiva.mempalace-laptop-sync` every 30 min"
+        }
+      ],
+      "note": "The raw substrate the extraction pipeline reads. Never delete."
+    },
+    {
+      "id": 5,
+      "title": "Voice conversation transcripts",
+      "owner": "`conversations`",
+      "rows": [
+        {
+          "What": "Conversations DB",
+          "Where": "`~/.aiva/state/conversations/conversations.db`",
+          "Size": "59 MB"
+        },
+        {
+          "What": "Conversation backups",
+          "Where": "`~/.aiva/state/conversations/backups/`",
+          "Size": "included above"
+        }
+      ],
+      "note": "Pinecone (external)."
+    },
+    {
+      "id": 6,
+      "title": "Open loops (commitments in flight)",
+      "owner": "`open-loops`",
+      "rows": [
+        {
+          "What": "Open-loop records",
+          "Where": "module state + MemPalace triples"
+        }
+      ],
+      "note": "recent sessions."
+    },
+    {
+      "id": 7,
+      "title": "Communications archives",
+      "owner": "`messages`, `imessage`, `email-labeler`,",
+      "rows": [
+        {
+          "What": "iMessage source DB",
+          "Where": "`~/Library/Messages/chat.db`",
+          "Size": "221 MB",
+          "Source of truth": "Yes (macOS-owned)"
+        },
+        {
+          "What": "iMessage mirror",
+          "Where": "`~/.aiva/state/user-imessage-db/`",
+          "Size": "25 GB",
+          "Source of truth": "Mirror of chat.db via syncthing from laptop"
+        },
+        {
+          "What": "Gmail live",
+          "Where": "Gmail (Google)",
+          "Size": "n/a",
+          "Source of truth": "Yes (Google-owned)"
+        },
+        {
+          "What": "Stalwart Gmail archive",
+          "Where": "`/var/lib/stalwart/`",
+          "Size": "~45 GB (73k mike + 7k personal + growing)",
+          "Source of truth": "Mirror"
+        },
+        {
+          "What": "Gmail-to-Stalwart sync state",
+          "Where": "`~/.aiva/state/gmail-to-stalwart-sync/`",
+          "Size": "29 MB",
+          "Source of truth": "cursors + dedup index"
+        },
+        {
+          "What": "WhatsApp state",
+          "Where": "`~/.aiva/state/whatsapp/`",
+          "Size": "20 MB",
+          "Source of truth": "via WhatsApp module"
+        },
+        {
+          "What": "Email labeler state",
+          "Where": "`~/.aiva/state/email-labeler/` + `~/.aiva/state/email-labeler-stalwart/`",
+          "Size": "8 KB",
+          "Source of truth": "ingestion cursors"
+        },
+        {
+          "What": "Notify delivery queue",
+          "Where": "`~/.aiva/state/notify/`",
+          "Size": "235 MB",
+          "Source of truth": "outbound message queue"
+        }
+      ],
+      "note": "`gmail-to-stalwart-sync` (code under `email-labeler`), `whatsapp`,"
+    },
+    {
+      "id": 8,
+      "title": "Identity and entity data",
+      "owner": "`contacts`, `identity`, `mikeshaffer`",
+      "rows": [
+        {
+          "What": "Apple Contacts",
+          "Where": "macOS Contacts app",
+          "Size": "n/a",
+          "Source of truth": "Yes (macOS-owned)"
+        },
+        {
+          "What": "Apple Contacts backup",
+          "Where": "`~/.aiva/state/contacts/`",
+          "Size": "711 MB (backups + notes_changelog.db)",
+          "Source of truth": "Mirror"
+        },
+        {
+          "What": "CRM entities",
+          "Where": "`~/mikeshaffer/entities/`",
+          "Size": "part of 1 GB repo",
+          "Source of truth": "Yes for work-scoped data. Apple Contacts owns human identity."
+        },
+        {
+          "What": "Identity resolver state",
+          "Where": "module-internal overrides",
+          "Size": "kb range",
+          "Source of truth": "`identity` module bridges Apple Contacts / CRM / MemPalace / QuickBooks / Email"
+        }
+      ],
+      "note": null
+    },
+    {
+      "id": 9,
+      "title": "Tasks, calendar, notes (Apple)",
+      "owner": "`reminders`, `calendar`, `notes`",
+      "rows": [
+        {
+          "What": "Apple Reminders",
+          "Where": "macOS Reminders app",
+          "Source of truth": "Yes (macOS)"
+        },
+        {
+          "What": "Apple Calendar",
+          "Where": "macOS Calendar / EventKit",
+          "Source of truth": "Yes (macOS)"
+        },
+        {
+          "What": "Apple Notes",
+          "Where": "macOS Notes",
+          "Source of truth": "Yes (macOS)"
+        }
+      ],
+      "note": "or AppleScript (osascript-shim)."
+    },
+    {
+      "id": 10,
+      "title": "CRM working docs",
+      "owner": "`mikeshaffer`",
+      "rows": [
+        {
+          "What": "mikeshaffer repo",
+          "Where": "`~/mikeshaffer/` (1 GB total)"
+        },
+        {
+          "What": "Entity folders",
+          "Where": "`~/mikeshaffer/entities/*/` (100 entities)"
+        },
+        {
+          "What": "Drafting patterns",
+          "Where": "`~/mikeshaffer/DRAFTING.md`, `DRAFTING-PATTERNS.md`, `DRAFTING-LEARNED.md`"
+        },
+        {
+          "What": "Dreaming output",
+          "Where": "`~/mikeshaffer/DREAMS.md`"
+        },
+        {
+          "What": "Heartbeat / handoffs",
+          "Where": "`~/mikeshaffer/HEARTBEAT.md`, `~/mikeshaffer/memory/*.md`"
+        },
+        {
+          "What": "Entity model spec",
+          "Where": "`~/mikeshaffer/ENTITY_MODEL_SPEC.md`, `DUAL_INTERFACE_ADDENDUM.md`"
+        },
+        {
+          "What": "Startup docs",
+          "Where": "`~/mikeshaffer/AGENTS.md`"
+        }
+      ],
+      "note": "(`banddude/mikeshaffer`)."
+    },
+    {
+      "id": 11,
+      "title": "Meta-memory (learning about learning)",
+      "owner": "`module-suggester`",
+      "rows": [
+        {
+          "What": "Sessions analyzed (seen)",
+          "Where": "`~/.aiva/state/module-suggester/seen.jsonl`"
+        },
+        {
+          "What": "Rejected proposals",
+          "Where": "`~/.aiva/state/module-suggester/rejected/`"
+        },
+        {
+          "What": "Accepted proposals",
+          "Where": "`~/.aiva/state/module-suggester/accepted/` (currently empty)"
+        },
+        {
+          "What": "Guard-rejected",
+          "Where": "`~/.aiva/state/module-suggester/rejected-by-guard/` (currently empty)"
+        }
+      ],
+      "note": null
+    },
+    {
+      "id": 12,
+      "title": "Operational state (not primary memory, but critical)",
+      "owner": null,
+      "rows": [
+        {
+          "What": "Agent runtime / responder",
+          "Where": "`~/.aiva/state/agents/`, `~/.aiva/state/responder/`",
+          "Size": "5.3 MB + 924 KB"
+        },
+        {
+          "What": "Jobs queue",
+          "Where": "`~/.aiva/state/jobs/`",
+          "Size": "380 KB"
+        },
+        {
+          "What": "Home Assistant DB",
+          "Where": "`~/.aiva/state/homeassistant/config/home-assistant_v2.db`",
+          "Size": "1 GB"
+        },
+        {
+          "What": "Habits",
+          "Where": "`~/.aiva/state/habits/`",
+          "Size": "160 KB"
+        },
+        {
+          "What": "Talk (speech output)",
+          "Where": "`~/.aiva/state/talk/`",
+          "Size": "41 MB"
+        },
+        {
+          "What": "Skills index",
+          "Where": "`~/.aiva/state/skills/`",
+          "Size": "64 KB"
+        },
+        {
+          "What": "Modules state symlinks",
+          "Where": "`~/.aiva/state/modules/`",
+          "Size": "132 KB"
+        },
+        {
+          "What": "Temp scratch",
+          "Where": "`~/.aiva/state/tmp/`",
+          "Size": "1 GB (should be purged periodically)"
+        }
+      ],
+      "note": "Catch-all for state dirs that matter but are neither agent-memory nor"
+    },
+    {
+      "id": 13,
+      "title": "Docs and narrative (the lair)",
+      "owner": "`docs`",
+      "rows": [
+        {
+          "What": "Verification log",
+          "Where": "`~/.aiva/modules/docs/content/VERIFICATION-LOG.md`"
+        },
+        {
+          "What": "System capability inventory",
+          "Where": "`~/.aiva/modules/system-inventory/SYSTEM-CAPABILITY-INVENTORY.md`"
+        },
+        {
+          "What": "Roadmaps / doctrine / pipelines / modules index",
+          "Where": "`~/.aiva/modules/docs/content/*.md`"
+        },
+        {
+          "What": "Restart handoff",
+          "Where": "`~/mikeshaffer/memory/AIVA-PRODUCTION-READINESS-RESTART-2026-04-23.md`"
+        }
+      ],
+      "note": "sync-loop."
+    }
+  ],
+  "generatedSources": [
+    {
+      "label": "AIVA docs",
+      "path": "/Users/mikeshaffer/.aiva/modules/docs/content",
+      "present": true,
+      "type": "docs"
+    },
+    {
+      "label": "AIVA modules",
+      "path": "/Users/mikeshaffer/.aiva/modules",
+      "present": true,
+      "type": "code"
+    },
+    {
+      "label": "AIVA repo",
+      "path": "/Users/mikeshaffer/.aiva",
+      "present": true,
+      "type": "repo"
+    },
+    {
+      "label": "mikeshaffer repo",
+      "path": "/Users/mikeshaffer/mikeshaffer",
+      "present": true,
+      "type": "repo"
+    },
+    {
+      "label": "MemPalace DB",
+      "path": "/Users/mikeshaffer/.mempalace/knowledge_graph.sqlite3",
+      "present": false,
+      "type": "state"
+    },
+    {
+      "label": "OpenClaw sessions",
+      "path": "/Users/mikeshaffer/.openclaw/agents/main/sessions",
+      "present": false,
+      "type": "state"
+    },
+    {
+      "label": "Stalwart archive",
+      "path": "/var/lib/stalwart",
+      "present": false,
+      "type": "archive"
+    },
+    {
+      "label": "GWS drive archive",
+      "path": "/Volumes/MIKES HD/gws-drive-archive",
+      "present": false,
+      "type": "archive"
+    }
+  ]
+}

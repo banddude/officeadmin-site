@@ -11,9 +11,11 @@ index.html          Home page
 architecture.html   Interactive architecture diagram (SVG with click-to-reveal details)
 modules.html        Expandable module list organized by category
 stack.html          Technology inventory
+officeadmin/        Generated read only system map and status surface
 css/style.css       All styles (mobile-first, dark mode)
 js/main.js          Shared nav toggle
 js/architecture.js  Diagram interactivity (node details on click)
+js/officeadmin.js   Generated map rendering
 favicon.svg         Site icon
 ```
 
@@ -27,6 +29,14 @@ Plain HTML/CSS/JS. No build step, no framework, no dependencies.
 ## Updating
 
 Edit files, commit, push. GitHub Pages rebuilds automatically and the Cloudflare Worker picks up the new content (cached for 5 minutes for HTML, 1 hour for assets).
+
+The `/officeadmin` area is backed by a generated snapshot. Refresh it before pushing:
+
+```bash
+node scripts/generate-officeadmin-map.mjs
+```
+
+That script reads from the local AIVA docs and module tree, repo state, and available runtime or archive paths, then writes `officeadmin/data/system-map.json`.
 
 To purge the cache immediately:
 

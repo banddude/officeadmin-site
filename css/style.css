@@ -245,6 +245,325 @@ img {
   margin-top: 0.2rem;
 }
 
+.officeadmin-hero {
+  text-align: left;
+}
+
+.officeadmin-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
+
+.officeadmin-meta-item,
+.officeadmin-stat-card,
+.officeadmin-graph-card,
+.officeadmin-detail-card,
+.officeadmin-table-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.officeadmin-meta-item {
+  padding: var(--space-sm);
+}
+
+.officeadmin-meta-label {
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.officeadmin-meta-value {
+  color: #fff;
+  margin-top: 0.35rem;
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+.officeadmin-warning-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+}
+
+.officeadmin-warning {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  border: 1px solid var(--border);
+}
+
+.officeadmin-warning-warning {
+  background: rgba(245, 158, 11, 0.14);
+  color: #fbbf24;
+}
+
+.officeadmin-warning-error {
+  background: rgba(248, 113, 113, 0.14);
+  color: #fca5a5;
+}
+
+.officeadmin-stats,
+.officeadmin-repo-grid,
+.officeadmin-workstreams,
+.officeadmin-machine-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: var(--space-sm);
+}
+
+.officeadmin-stat-card {
+  padding: var(--space-md);
+}
+
+.officeadmin-stat-value {
+  color: #fff;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.officeadmin-stat-label {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  margin-top: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.officeadmin-map-layout {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: var(--space-sm);
+  align-items: stretch;
+}
+
+.officeadmin-graph-card,
+.officeadmin-detail-card {
+  padding: var(--space-sm);
+  min-height: 380px;
+}
+
+#systemGraph {
+  width: 100%;
+  height: 100%;
+}
+
+.officeadmin-edge line {
+  stroke: rgba(255, 255, 255, 0.16);
+  stroke-width: 2;
+}
+
+.officeadmin-edge text {
+  fill: var(--text-dim);
+  font-size: 11px;
+  text-anchor: middle;
+}
+
+.officeadmin-node {
+  cursor: pointer;
+}
+
+.officeadmin-node rect {
+  fill: url(#officeadminNodeFill);
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 1.5;
+  transition: stroke 0.2s, transform 0.2s;
+}
+
+.officeadmin-node.present rect {
+  stroke: rgba(108, 138, 255, 0.45);
+}
+
+.officeadmin-node.missing rect {
+  stroke: rgba(248, 113, 113, 0.45);
+}
+
+.officeadmin-node.active rect,
+.officeadmin-node:hover rect {
+  stroke: var(--accent);
+}
+
+.officeadmin-node-title,
+.officeadmin-node-subtitle {
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+.officeadmin-node-title {
+  fill: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.officeadmin-node-subtitle {
+  fill: var(--text-muted);
+  font-size: 12px;
+}
+
+.officeadmin-detail-card h3 {
+  color: #fff;
+  font-size: 1.3rem;
+  margin-top: 0.35rem;
+}
+
+.officeadmin-detail-card p {
+  color: var(--text-muted);
+  margin-top: 0.75rem;
+}
+
+.officeadmin-detail-empty {
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.officeadmin-detail-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.32rem 0.65rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.officeadmin-inline-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: var(--space-sm);
+}
+
+.officeadmin-inline-metric {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+  padding: 0.45rem 0.6rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.officeadmin-inline-metric strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.officeadmin-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+}
+
+.officeadmin-bullet-list {
+  list-style: none;
+  margin-top: var(--space-sm);
+  display: grid;
+  gap: 0.55rem;
+}
+
+.officeadmin-bullet-list li {
+  color: var(--text-muted);
+  padding-left: 1rem;
+  position: relative;
+}
+
+.officeadmin-bullet-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65rem;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.officeadmin-table-card {
+  margin-top: var(--space-sm);
+  overflow: hidden;
+}
+
+.officeadmin-table-wrap {
+  overflow-x: auto;
+}
+
+.officeadmin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.officeadmin-table th,
+.officeadmin-table td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.officeadmin-table th {
+  color: #fff;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.officeadmin-table td {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.officeadmin-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: var(--space-sm);
+}
+
+.officeadmin-chip {
+  display: inline-flex;
+  padding: 0.38rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.officeadmin-small-copy {
+  margin-top: 0.65rem;
+  color: var(--text-dim);
+  font-size: 0.83rem;
+}
+
+@media (max-width: 900px) {
+  .officeadmin-map-layout,
+  .officeadmin-two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .officeadmin-hero {
+    text-align: center;
+  }
+
+  .officeadmin-inline-metrics {
+    justify-content: center;
+  }
+}
+
 /* ===== QUICK OVERVIEW ===== */
 
 .overview-grid {
