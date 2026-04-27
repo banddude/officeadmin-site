@@ -77,6 +77,7 @@ Build a focused graph explorer with:
 - Rebuilt the page around a focused explorer with lanes, journeys, search, breadcrumb path, centered focus node, neighbor graph, detail tabs, and collapsed reference shelves.
 - Local desktop test with `agent-browser` passed, page loads and explorer interactions work.
 - Mobile emulation test with `agent-browser` on iPhone 16 viewport passed, no horizontal overflow on body width, explorer interactions still work.
+- Asset version must be bumped when explorer JS or CSS changes materially, otherwise live Cloudflare cache can serve mismatched UI assets.
 
 ## Reflection Loop
 
