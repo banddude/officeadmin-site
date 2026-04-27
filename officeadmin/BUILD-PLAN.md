@@ -94,6 +94,7 @@ Build a focused graph explorer with:
 - The atlas pass is now using generated subsystem nodes for hosts, module surface, entity workspace, work memory, session history, extraction, identity, Gmail, Drive, QuickBooks, and archive layers.
 - Local `agent-browser` checks passed for route switching, node drilldown, search, and mobile layout.
 - Asset versions were bumped again after the atlas pass to prevent stale CSS or JS mismatches on the live site.
+- The worker plus Pages stack appears to cache asset bodies by filename more stubbornly than the query string implied, so the next mitigation is dedicated OfficeAdmin asset filenames instead of only `?v=` changes.
 
 ## Reflection Loop
 
