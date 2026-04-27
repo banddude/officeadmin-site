@@ -62,73 +62,34 @@
 
     <section class="section officeadmin-map-section">
       <div class="container">
-        <h2 class="section-title">System Map</h2>
-        <p class="section-subtitle">Top level roots, what each one owns, and how they connect. Tap a card for details.</p>
-        <div class="officeadmin-map-layout">
-          <div class="officeadmin-graph-card">
-            <div class="officeadmin-story-rail" id="storyRail"></div>
-            <div class="officeadmin-root-grid" id="rootGrid"></div>
-            <div class="officeadmin-edge-list" id="edgeList"></div>
+        <h2 class="section-title">Explorer</h2>
+        <p class="section-subtitle">Navigate the system by lane, path, and direct connections, without dumping everything at once.</p>
+        <div class="officeadmin-explorer-shell">
+          <div class="officeadmin-explorer-toolbar">
+            <div class="officeadmin-lane-rail" id="laneRail"></div>
+            <div class="officeadmin-journey-rail" id="journeyRail"></div>
+            <div class="officeadmin-search-wrap">
+              <input class="officeadmin-search" id="nodeSearch" type="search" placeholder="Jump to AIVA, MemPalace, Google Workspace, archives..." />
+              <div class="officeadmin-search-results" id="searchResults"></div>
+            </div>
           </div>
-          <div class="officeadmin-detail-card" id="graphDetail">
-            <div class="officeadmin-detail-empty">Select a root to inspect ownership, path, and current metrics.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">Tracked Surfaces</h2>
-        <p class="section-subtitle">The git backed surfaces in the system, shown by role and authority, not just by repo name.</p>
-        <div class="officeadmin-repo-grid" id="repoGrid"></div>
-      </div>
-    </section>
-
-    <section class="section" style="background: var(--bg-surface);">
-      <div class="container">
-        <h2 class="section-title">Authority Model</h2>
-        <p class="section-subtitle">Source of truth rules and mirrored domains pulled from the roadmap and memory map docs.</p>
-        <div class="officeadmin-two-col">
-          <div class="overview-card">
-            <h3>Source Of Truth Rules</h3>
-            <ul class="officeadmin-bullet-list" id="sourceOfTruthList"></ul>
-          </div>
-          <div class="overview-card">
-            <h3>Generated Inputs</h3>
-            <ul class="officeadmin-bullet-list" id="generatedSourcesList"></ul>
-          </div>
-        </div>
-        <div class="officeadmin-authority-grid" id="authorityCards"></div>
-        <div class="officeadmin-center-action">
-          <button class="officeadmin-toggle-button" id="authorityToggle" type="button" hidden>Show more authorities</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">Progress</h2>
-        <p class="section-subtitle">Current production readiness workstreams, goals, and next moves.</p>
-        <div class="officeadmin-workstreams" id="workstreams"></div>
-        <div class="officeadmin-center-action">
-          <button class="officeadmin-toggle-button" id="workstreamToggle" type="button" hidden>Show more workstreams</button>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" style="background: var(--bg-surface);">
-      <div class="container">
-        <h2 class="section-title">Docs And Code Health</h2>
-        <p class="section-subtitle">How current the canonical docs are, and what the module layer looks like right now.</p>
-        <div class="officeadmin-two-col">
-          <div class="overview-card">
-            <h3>Docs Health</h3>
-            <div id="docsSummary"></div>
-          </div>
-          <div class="overview-card">
-            <h3>Module Topology</h3>
-            <div id="moduleSummary"></div>
+          <div class="officeadmin-breadcrumbs" id="breadcrumbs"></div>
+          <div class="officeadmin-explorer-layout">
+            <div class="officeadmin-scene-card">
+              <div class="officeadmin-scene" id="focusScene">
+                <svg class="officeadmin-scene-lines" id="focusSceneLines" aria-hidden="true"></svg>
+                <div class="officeadmin-scene-column officeadmin-scene-column-left" id="focusLeft"></div>
+                <div class="officeadmin-scene-center" id="focusCenter"></div>
+                <div class="officeadmin-scene-column officeadmin-scene-column-right" id="focusRight"></div>
+              </div>
+              <div class="officeadmin-related-strip" id="focusRelated"></div>
+            </div>
+            <div class="officeadmin-detail-card officeadmin-explorer-detail">
+              <div class="officeadmin-detail-tabs" id="detailTabs"></div>
+              <div class="officeadmin-detail-panel" id="detailPanel">
+                <div class="officeadmin-detail-empty">Select a part of the system to inspect it.</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -136,9 +97,52 @@
 
     <section class="section">
       <div class="container">
-        <h2 class="section-title">Machines</h2>
-        <p class="section-subtitle">Physical placement still matters. This is where the main responsibilities land.</p>
-        <div class="officeadmin-machine-grid" id="machineGrid"></div>
+        <h2 class="section-title">Reference Shelves</h2>
+        <p class="section-subtitle">Secondary detail that stays available without taking over the whole page.</p>
+        <div class="officeadmin-reference-list">
+          <details class="officeadmin-reference-item">
+            <summary>Tracked surfaces</summary>
+            <div class="officeadmin-repo-grid" id="repoGrid"></div>
+          </details>
+          <details class="officeadmin-reference-item">
+            <summary>Authority model</summary>
+            <div class="officeadmin-two-col">
+              <div class="overview-card">
+                <h3>Source Of Truth Rules</h3>
+                <ul class="officeadmin-bullet-list" id="sourceOfTruthList"></ul>
+              </div>
+              <div class="overview-card">
+                <h3>Generated Inputs</h3>
+                <ul class="officeadmin-bullet-list" id="generatedSourcesList"></ul>
+              </div>
+            </div>
+            <div class="officeadmin-authority-grid" id="authorityCards"></div>
+            <div class="officeadmin-center-action">
+              <button class="officeadmin-toggle-button" id="authorityToggle" type="button" hidden>Show more authorities</button>
+            </div>
+          </details>
+          <details class="officeadmin-reference-item">
+            <summary>Progress and health</summary>
+            <div class="officeadmin-workstreams" id="workstreams"></div>
+            <div class="officeadmin-center-action">
+              <button class="officeadmin-toggle-button" id="workstreamToggle" type="button" hidden>Show more workstreams</button>
+            </div>
+            <div class="officeadmin-two-col officeadmin-reference-health">
+              <div class="overview-card">
+                <h3>Docs Health</h3>
+                <div id="docsSummary"></div>
+              </div>
+              <div class="overview-card">
+                <h3>Module Topology</h3>
+                <div id="moduleSummary"></div>
+              </div>
+            </div>
+          </details>
+          <details class="officeadmin-reference-item">
+            <summary>Machines</summary>
+            <div class="officeadmin-machine-grid" id="machineGrid"></div>
+          </details>
+        </div>
       </div>
     </section>
   </div>
