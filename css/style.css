@@ -358,6 +358,45 @@ img {
   gap: var(--space-sm);
 }
 
+.officeadmin-story-rail {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-bottom: var(--space-sm);
+}
+
+.officeadmin-story-card {
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.8rem;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.officeadmin-story-card.active,
+.officeadmin-story-card:hover {
+  border-color: var(--accent);
+  background: rgba(108, 138, 255, 0.08);
+}
+
+.officeadmin-story-title {
+  display: block;
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.officeadmin-story-copy {
+  display: block;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  line-height: 1.45;
+  margin-top: 0.4rem;
+}
+
 .officeadmin-root-card {
   width: 100%;
   text-align: left;
@@ -471,6 +510,50 @@ img {
   margin-top: 0.75rem;
 }
 
+.officeadmin-connection-group {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border);
+}
+
+.officeadmin-connection-heading {
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.officeadmin-connection-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.75rem;
+}
+
+.officeadmin-connection-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.officeadmin-connection-chip strong {
+  color: var(--text-dim);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.officeadmin-connection-chip span {
+  color: #fff;
+  font-weight: 500;
+}
+
 .officeadmin-detail-empty {
   color: var(--text-dim);
   font-style: italic;
@@ -553,6 +636,25 @@ img {
   margin-top: var(--space-sm);
 }
 
+.officeadmin-center-action {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-sm);
+}
+
+.officeadmin-toggle-button {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+}
+
+.officeadmin-toggle-button:hover {
+  border-color: var(--accent);
+}
+
 .officeadmin-chip-list {
   display: flex;
   flex-wrap: wrap;
@@ -582,6 +684,7 @@ img {
     grid-template-columns: 1fr;
   }
 
+  .officeadmin-story-rail,
   .officeadmin-root-grid,
   .officeadmin-authority-grid {
     grid-template-columns: 1fr;
@@ -614,6 +717,7 @@ img {
     gap: 0.35rem;
   }
 
+  .officeadmin-connection-chip,
   .officeadmin-edge-chip {
     border-radius: var(--radius-sm);
     width: 100%;

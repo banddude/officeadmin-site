@@ -33,6 +33,45 @@ const repoPresentation = {
   },
 };
 
+const lanePresentation = {
+  runtime: {
+    label: "Runtime",
+    summary: "What runs the system and executes work.",
+    roots: ["aiva", "openclaw"],
+  },
+  workspace: {
+    label: "Workspace",
+    summary: "Where durable work state and operator memory live.",
+    roots: ["mikeshaffer", "officeadmin-site"],
+  },
+  memory: {
+    label: "Memory",
+    summary: "How context survives across time and sessions.",
+    roots: ["mempalace"],
+  },
+  authority: {
+    label: "Authorities",
+    summary: "The systems that actually own truth.",
+    roots: ["apple-apps", "google-workspace"],
+  },
+  archive: {
+    label: "Archives",
+    summary: "Cold storage and mirrored history.",
+    roots: ["archives"],
+  },
+};
+
+function buildAdjacency(edges) {
+  const map = new Map();
+  for (const edge of edges || []) {
+    if (!map.has(edge.from)) map.set(edge.from, []);
+    if (!map.has(edge.to)) map.set(edge.to, []);
+    map.get(edge.from).push({ id: edge.to, label: edge.label, direction: "out" });
+    map.get(edge.to).push({ id: edge.from, label: edge.label, direction: "in" });
+  }
+  return map;
+}
+
 function renderSnapshot(data) {
   document.getElementById("generatedAt").textContent = formatDateTime(data.generatedAt);
   document.getElementById("generatedHost").textContent = data.generatedOnHost || "n/a";
@@ -69,11 +108,24 @@ function renderSnapshot(data) {
 }
 
 function renderGraph(data) {
+  const storyRail = document.getElementById("storyRail");
   const rootGrid = document.getElementById("rootGrid");
   const edgeList = document.getElementById("edgeList");
   const rootsById = new Map((data.roots || []).map((root) => [root.id, root]));
+  const adjacency = buildAdjacency(data.edges || []);
 
   const detail = document.getElementById("graphDetail");
+
+  storyRail.innerHTML = Object.entries(lanePresentation)
+    .map(
+      ([laneId, lane]) => `
+        <button class="officeadmin-story-card" data-lane-id="${laneId}" type="button">
+          <span class="officeadmin-story-title">${lane.label}</span>
+          <span class="officeadmin-story-copy">${lane.summary}</span>
+        </button>
+      `
+    )
+    .join("");
 
   rootGrid.innerHTML = (data.roots || [])
     .map((root) => {
@@ -113,6 +165,19 @@ function renderGraph(data) {
   function showRoot(rootId) {
     const root = rootsById.get(rootId);
     if (!root) return;
+    const connected = (adjacency.get(rootId) || [])
+      .map((item) => {
+        const target = rootsById.get(item.id);
+        if (!target) return "";
+        return `
+          <button class="officeadmin-connection-chip" type="button" data-root-id="${target.id}">
+            <strong>${item.direction === "out" ? "Feeds" : "Reads"}</strong>
+            <span>${target.label}</span>
+          </button>
+        `;
+      })
+      .join("");
+
     detail.innerHTML = `
       <div class="officeadmin-detail-label">${root.type}</div>
       <h3>${root.label}</h3>
@@ -121,16 +186,36 @@ function renderGraph(data) {
       <div class="officeadmin-inline-metrics">
         ${(root.metrics || []).map((metric) => chip(metric.label, metric.value)).join("")}
       </div>
+      <div class="officeadmin-connection-group">
+        <div class="officeadmin-connection-heading">Connected parts</div>
+        <div class="officeadmin-connection-list">${connected || '<span class="officeadmin-small-copy">No direct links captured in this snapshot.</span>'}</div>
+      </div>
     `;
 
     rootGrid.querySelectorAll(".officeadmin-root-card").forEach((node) => {
       node.classList.toggle("active", node.dataset.rootId === rootId);
+    });
+
+    storyRail.querySelectorAll(".officeadmin-story-card").forEach((card) => {
+      const lane = lanePresentation[card.dataset.laneId];
+      card.classList.toggle("active", Boolean(lane?.roots.includes(rootId)));
+    });
+
+    detail.querySelectorAll(".officeadmin-connection-chip").forEach((button) => {
+      button.addEventListener("click", () => showRoot(button.dataset.rootId));
     });
   }
 
   rootGrid.querySelectorAll(".officeadmin-root-card").forEach((node) => {
     const activate = () => showRoot(node.dataset.rootId);
     node.addEventListener("click", activate);
+  });
+
+  storyRail.querySelectorAll(".officeadmin-story-card").forEach((node) => {
+    node.addEventListener("click", () => {
+      const lane = lanePresentation[node.dataset.laneId];
+      if (lane?.roots?.[0]) showRoot(lane.roots[0]);
+    });
   });
 
   showRoot("aiva");
@@ -177,42 +262,75 @@ function renderAuthorityModel(data) {
     )
     .join("");
 
-  document.getElementById("authorityCards").innerHTML = (data.authorities || [])
-    .slice(0, 18)
-    .map(
-      (row) => `
-        <div class="overview-card officeadmin-authority-card">
-          <div class="officeadmin-detail-label">${row.category}</div>
-          <h3>${row.domain}</h3>
-          <p><code>${row.where || "n/a"}</code></p>
-          <p>${row.sourceOfTruth}</p>
-        </div>
-      `
-    )
-    .join("");
+  const items = data.authorities || [];
+  const target = document.getElementById("authorityCards");
+  const toggle = document.getElementById("authorityToggle");
+  let expanded = false;
+
+  function paint() {
+    const visible = expanded ? items : items.slice(0, 6);
+    target.innerHTML = visible
+      .map(
+        (row) => `
+          <div class="overview-card officeadmin-authority-card">
+            <div class="officeadmin-detail-label">${row.category}</div>
+            <h3>${row.domain}</h3>
+            <p><code>${row.where || "n/a"}</code></p>
+            <p>${row.sourceOfTruth}</p>
+          </div>
+        `
+      )
+      .join("");
+    toggle.hidden = items.length <= 6;
+    toggle.textContent = expanded ? "Show fewer authorities" : "Show more authorities";
+  }
+
+  toggle.onclick = () => {
+    expanded = !expanded;
+    paint();
+  };
+
+  paint();
 }
 
 function renderWorkstreams(data) {
-  document.getElementById("workstreams").innerHTML = (data.roadmap?.workstreams || [])
-    .map((workstream) => {
-      const items = []
-        .concat(workstream.deliverables || [])
-        .concat(workstream.output || [])
-        .concat(workstream.nearTermOutcomes || [])
-        .slice(0, 4)
-        .map((item) => `<li>${item}</li>`)
-        .join("");
+  const items = data.roadmap?.workstreams || [];
+  const target = document.getElementById("workstreams");
+  const toggle = document.getElementById("workstreamToggle");
+  let expanded = false;
 
-      return `
-        <div class="overview-card">
-          <div class="officeadmin-detail-label">Workstream</div>
-          <h3>${workstream.title}</h3>
-          <p>${workstream.goal || "Goal not parsed."}</p>
-          <ul class="officeadmin-bullet-list">${items}</ul>
-        </div>
-      `;
-    })
-    .join("");
+  function paint() {
+    const visible = expanded ? items : items.slice(0, 6);
+    target.innerHTML = visible
+      .map((workstream) => {
+        const bullets = []
+          .concat(workstream.deliverables || [])
+          .concat(workstream.output || [])
+          .concat(workstream.nearTermOutcomes || [])
+          .slice(0, 3)
+          .map((item) => `<li>${item}</li>`)
+          .join("");
+
+        return `
+          <div class="overview-card">
+            <div class="officeadmin-detail-label">Workstream</div>
+            <h3>${workstream.title}</h3>
+            <p>${workstream.goal || "Goal not parsed."}</p>
+            <ul class="officeadmin-bullet-list">${bullets}</ul>
+          </div>
+        `;
+      })
+      .join("");
+    toggle.hidden = items.length <= 6;
+    toggle.textContent = expanded ? "Show fewer workstreams" : "Show more workstreams";
+  }
+
+  toggle.onclick = () => {
+    expanded = !expanded;
+    paint();
+  };
+
+  paint();
 }
 
 function renderHealth(data) {
