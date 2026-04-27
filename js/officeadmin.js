@@ -12,6 +12,10 @@ function chip(label, value) {
   return `<div class="officeadmin-inline-metric"><span>${label}</span><strong>${value}</strong></div>`;
 }
 
+function byId(id) {
+  return document.getElementById(id);
+}
+
 const repoPresentation = {
   aiva: {
     label: "AIVA",
@@ -73,10 +77,15 @@ function buildAdjacency(edges) {
 }
 
 function renderSnapshot(data) {
-  document.getElementById("generatedAt").textContent = formatDateTime(data.generatedAt);
-  document.getElementById("generatedHost").textContent = data.generatedOnHost || "n/a";
+  const generatedAt = byId("generatedAt");
+  const generatedHost = byId("generatedHost");
+  const warningList = byId("warningList");
+  const snapshotStatsEl = byId("snapshotStats");
+  if (!generatedAt || !generatedHost || !warningList || !snapshotStatsEl) return;
 
-  const warningList = document.getElementById("warningList");
+  generatedAt.textContent = formatDateTime(data.generatedAt);
+  generatedHost.textContent = data.generatedOnHost || "n/a";
+
   warningList.innerHTML = (data.warnings || [])
     .map(
       (warning) =>
@@ -95,7 +104,7 @@ function renderSnapshot(data) {
     ["Drive archive", data.snapshot.driveArchive],
   ];
 
-  document.getElementById("snapshotStats").innerHTML = snapshotStats
+  snapshotStatsEl.innerHTML = snapshotStats
     .map(
       ([label, value]) => `
         <div class="officeadmin-stat-card">
@@ -108,24 +117,26 @@ function renderSnapshot(data) {
 }
 
 function renderGraph(data) {
-  const storyRail = document.getElementById("storyRail");
-  const rootGrid = document.getElementById("rootGrid");
-  const edgeList = document.getElementById("edgeList");
+  const storyRail = byId("storyRail");
+  const rootGrid = byId("rootGrid");
+  const edgeList = byId("edgeList");
+  const detail = byId("graphDetail");
+  if (!rootGrid || !edgeList || !detail) return;
   const rootsById = new Map((data.roots || []).map((root) => [root.id, root]));
   const adjacency = buildAdjacency(data.edges || []);
 
-  const detail = document.getElementById("graphDetail");
-
-  storyRail.innerHTML = Object.entries(lanePresentation)
-    .map(
-      ([laneId, lane]) => `
-        <button class="officeadmin-story-card" data-lane-id="${laneId}" type="button">
-          <span class="officeadmin-story-title">${lane.label}</span>
-          <span class="officeadmin-story-copy">${lane.summary}</span>
-        </button>
-      `
-    )
-    .join("");
+  if (storyRail) {
+    storyRail.innerHTML = Object.entries(lanePresentation)
+      .map(
+        ([laneId, lane]) => `
+          <button class="officeadmin-story-card" data-lane-id="${laneId}" type="button">
+            <span class="officeadmin-story-title">${lane.label}</span>
+            <span class="officeadmin-story-copy">${lane.summary}</span>
+          </button>
+        `
+      )
+      .join("");
+  }
 
   rootGrid.innerHTML = (data.roots || [])
     .map((root) => {
@@ -196,10 +207,12 @@ function renderGraph(data) {
       node.classList.toggle("active", node.dataset.rootId === rootId);
     });
 
-    storyRail.querySelectorAll(".officeadmin-story-card").forEach((card) => {
-      const lane = lanePresentation[card.dataset.laneId];
-      card.classList.toggle("active", Boolean(lane?.roots.includes(rootId)));
-    });
+    if (storyRail) {
+      storyRail.querySelectorAll(".officeadmin-story-card").forEach((card) => {
+        const lane = lanePresentation[card.dataset.laneId];
+        card.classList.toggle("active", Boolean(lane?.roots.includes(rootId)));
+      });
+    }
 
     detail.querySelectorAll(".officeadmin-connection-chip").forEach((button) => {
       button.addEventListener("click", () => showRoot(button.dataset.rootId));
@@ -211,18 +224,22 @@ function renderGraph(data) {
     node.addEventListener("click", activate);
   });
 
-  storyRail.querySelectorAll(".officeadmin-story-card").forEach((node) => {
-    node.addEventListener("click", () => {
-      const lane = lanePresentation[node.dataset.laneId];
-      if (lane?.roots?.[0]) showRoot(lane.roots[0]);
+  if (storyRail) {
+    storyRail.querySelectorAll(".officeadmin-story-card").forEach((node) => {
+      node.addEventListener("click", () => {
+        const lane = lanePresentation[node.dataset.laneId];
+        if (lane?.roots?.[0]) showRoot(lane.roots[0]);
+      });
     });
-  });
+  }
 
   showRoot("aiva");
 }
 
 function renderRepos(data) {
-  document.getElementById("repoGrid").innerHTML = (data.repos || [])
+  const repoGrid = byId("repoGrid");
+  if (!repoGrid) return;
+  repoGrid.innerHTML = (data.repos || [])
     .map((repo) => {
       const presentation = repoPresentation[repo.id] || {
         label: repo.label,
@@ -251,11 +268,17 @@ function renderRepos(data) {
 }
 
 function renderAuthorityModel(data) {
-  document.getElementById("sourceOfTruthList").innerHTML = (data.roadmap?.sourceOfTruth || [])
+  const sourceList = byId("sourceOfTruthList");
+  const generatedList = byId("generatedSourcesList");
+  const target = byId("authorityCards");
+  const toggle = byId("authorityToggle");
+  if (!sourceList || !generatedList || !target) return;
+
+  sourceList.innerHTML = (data.roadmap?.sourceOfTruth || [])
     .map((line) => `<li>${line}</li>`)
     .join("");
 
-  document.getElementById("generatedSourcesList").innerHTML = (data.generatedSources || [])
+  generatedList.innerHTML = (data.generatedSources || [])
     .map(
       (source) =>
         `<li><strong>${source.label}</strong>, <code>${source.path}</code>, ${source.present ? "present" : "missing"}.</li>`
@@ -263,8 +286,6 @@ function renderAuthorityModel(data) {
     .join("");
 
   const items = data.authorities || [];
-  const target = document.getElementById("authorityCards");
-  const toggle = document.getElementById("authorityToggle");
   let expanded = false;
 
   function paint() {
@@ -281,22 +302,27 @@ function renderAuthorityModel(data) {
         `
       )
       .join("");
-    toggle.hidden = items.length <= 6;
-    toggle.textContent = expanded ? "Show fewer authorities" : "Show more authorities";
+    if (toggle) {
+      toggle.hidden = items.length <= 6;
+      toggle.textContent = expanded ? "Show fewer authorities" : "Show more authorities";
+    }
   }
 
-  toggle.onclick = () => {
-    expanded = !expanded;
-    paint();
-  };
+  if (toggle) {
+    toggle.onclick = () => {
+      expanded = !expanded;
+      paint();
+    };
+  }
 
   paint();
 }
 
 function renderWorkstreams(data) {
   const items = data.roadmap?.workstreams || [];
-  const target = document.getElementById("workstreams");
-  const toggle = document.getElementById("workstreamToggle");
+  const target = byId("workstreams");
+  const toggle = byId("workstreamToggle");
+  if (!target) return;
   let expanded = false;
 
   function paint() {
@@ -321,20 +347,26 @@ function renderWorkstreams(data) {
         `;
       })
       .join("");
-    toggle.hidden = items.length <= 6;
-    toggle.textContent = expanded ? "Show fewer workstreams" : "Show more workstreams";
+    if (toggle) {
+      toggle.hidden = items.length <= 6;
+      toggle.textContent = expanded ? "Show fewer workstreams" : "Show more workstreams";
+    }
   }
 
-  toggle.onclick = () => {
-    expanded = !expanded;
-    paint();
-  };
+  if (toggle) {
+    toggle.onclick = () => {
+      expanded = !expanded;
+      paint();
+    };
+  }
 
   paint();
 }
 
 function renderHealth(data) {
-  const docsSummary = document.getElementById("docsSummary");
+  const docsSummary = byId("docsSummary");
+  const moduleSummary = byId("moduleSummary");
+  if (!docsSummary || !moduleSummary) return;
   docsSummary.innerHTML = `
     <div class="officeadmin-inline-metrics">
       ${chip("Docs", data.docs?.count || 0)}
@@ -352,7 +384,6 @@ function renderHealth(data) {
     </ul>
   `;
 
-  const moduleSummary = document.getElementById("moduleSummary");
   moduleSummary.innerHTML = `
     <div class="officeadmin-inline-metrics">
       ${chip("Modules", data.modules?.count || 0)}
@@ -378,7 +409,9 @@ function renderHealth(data) {
 }
 
 function renderMachines(data) {
-  document.getElementById("machineGrid").innerHTML = (data.machines || [])
+  const machineGrid = byId("machineGrid");
+  if (!machineGrid) return;
+  machineGrid.innerHTML = (data.machines || [])
     .map(
       (machine) => `
         <div class="overview-card">
@@ -407,8 +440,11 @@ async function loadOfficeAdmin() {
     renderHealth(data);
     renderMachines(data);
   } catch (error) {
-    document.getElementById("warningList").innerHTML =
-      `<div class="officeadmin-warning officeadmin-warning-error">Could not load generated system data, ${error.message}.</div>`;
+    const warningList = byId("warningList");
+    if (warningList) {
+      warningList.innerHTML =
+        `<div class="officeadmin-warning officeadmin-warning-error">Could not load generated system data, ${error.message}.</div>`;
+    }
   }
 }
 
