@@ -63,10 +63,11 @@
     <section class="section officeadmin-map-section">
       <div class="container">
         <h2 class="section-title">System Map</h2>
-        <p class="section-subtitle">Top level roots and attached systems. Tap a node for details.</p>
+        <p class="section-subtitle">Top level roots, what each one owns, and how they connect. Tap a card for details.</p>
         <div class="officeadmin-map-layout">
           <div class="officeadmin-graph-card">
-            <svg id="systemGraph" viewBox="0 0 960 520" aria-label="System graph"></svg>
+            <div class="officeadmin-root-grid" id="rootGrid"></div>
+            <div class="officeadmin-edge-list" id="edgeList"></div>
           </div>
           <div class="officeadmin-detail-card" id="graphDetail">
             <div class="officeadmin-detail-empty">Select a root to inspect ownership, path, and current metrics.</div>
@@ -77,8 +78,8 @@
 
     <section class="section">
       <div class="container">
-        <h2 class="section-title">Repos</h2>
-        <p class="section-subtitle">Git rooted surfaces that make the system explainable and recoverable.</p>
+        <h2 class="section-title">Tracked Surfaces</h2>
+        <p class="section-subtitle">The git backed surfaces in the system, shown by role and authority, not just by repo name.</p>
         <div class="officeadmin-repo-grid" id="repoGrid"></div>
       </div>
     </section>
@@ -97,21 +98,7 @@
             <ul class="officeadmin-bullet-list" id="generatedSourcesList"></ul>
           </div>
         </div>
-        <div class="officeadmin-table-card">
-          <div class="officeadmin-table-wrap">
-            <table class="officeadmin-table">
-              <thead>
-                <tr>
-                  <th>Domain</th>
-                  <th>Category</th>
-                  <th>Where</th>
-                  <th>Source of truth</th>
-                </tr>
-              </thead>
-              <tbody id="authorityTableBody"></tbody>
-            </table>
-          </div>
-        </div>
+        <div class="officeadmin-authority-grid" id="authorityCards"></div>
       </div>
     </section>
 

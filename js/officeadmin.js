@@ -1,14 +1,3 @@
-const graphLayout = {
-  "officeadmin-site": { x: 150, y: 90 },
-  aiva: { x: 460, y: 90 },
-  mikeshaffer: { x: 460, y: 240 },
-  mempalace: { x: 720, y: 90 },
-  openclaw: { x: 720, y: 240 },
-  "apple-apps": { x: 460, y: 390 },
-  "google-workspace": { x: 720, y: 390 },
-  archives: { x: 150, y: 390 },
-};
-
 function formatDateTime(value) {
   if (!value) return "n/a";
   const date = new Date(value);
@@ -22,6 +11,27 @@ function formatDateTime(value) {
 function chip(label, value) {
   return `<div class="officeadmin-inline-metric"><span>${label}</span><strong>${value}</strong></div>`;
 }
+
+const repoPresentation = {
+  aiva: {
+    label: "AIVA",
+    role: "Runtime core",
+    authority: "Shared runtime logic, module ownership, generated commands, and system state policy.",
+    source: "Core system source",
+  },
+  mikeshaffer: {
+    label: "mikeshaffer",
+    role: "Operator workspace",
+    authority: "Durable work memory, entity folders, doctrine, drafts, and operating history.",
+    source: "Workspace source",
+  },
+  "officeadmin-site": {
+    label: "officeadmin-site",
+    role: "Read only map",
+    authority: "Public or shared explanatory surface for the system. It reads from the real sources of truth, it does not own them.",
+    source: "Derived surface",
+  },
+};
 
 function renderSnapshot(data) {
   document.getElementById("generatedAt").textContent = formatDateTime(data.generatedAt);
@@ -59,53 +69,46 @@ function renderSnapshot(data) {
 }
 
 function renderGraph(data) {
-  const svg = document.getElementById("systemGraph");
+  const rootGrid = document.getElementById("rootGrid");
+  const edgeList = document.getElementById("edgeList");
   const rootsById = new Map((data.roots || []).map((root) => [root.id, root]));
-  const width = 960;
-  const height = 520;
-  svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-
-  const edges = (data.edges || [])
-    .map((edge) => {
-      const from = graphLayout[edge.from];
-      const to = graphLayout[edge.to];
-      if (!from || !to) return "";
-      return `
-        <g class="officeadmin-edge">
-          <line x1="${from.x}" y1="${from.y}" x2="${to.x}" y2="${to.y}" />
-          <text x="${(from.x + to.x) / 2}" y="${(from.y + to.y) / 2 - 10}">${edge.label}</text>
-        </g>
-      `;
-    })
-    .join("");
-
-  const nodes = (data.roots || [])
-    .map((root) => {
-      const point = graphLayout[root.id];
-      if (!point) return "";
-      const statusClass = root.present ? "present" : "missing";
-      return `
-        <g class="officeadmin-node officeadmin-node-${statusClass}" data-root-id="${root.id}" tabindex="0" role="button" aria-label="${root.label}">
-          <rect x="${point.x - 115}" y="${point.y - 42}" width="230" height="84" rx="16"></rect>
-          <text x="${point.x}" y="${point.y - 8}" class="officeadmin-node-title">${root.label}</text>
-          <text x="${point.x}" y="${point.y + 16}" class="officeadmin-node-subtitle">${root.type}</text>
-        </g>
-      `;
-    })
-    .join("");
-
-  svg.innerHTML = `
-    <defs>
-      <linearGradient id="officeadminNodeFill" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stop-color="#151723" />
-        <stop offset="100%" stop-color="#101117" />
-      </linearGradient>
-    </defs>
-    ${edges}
-    ${nodes}
-  `;
 
   const detail = document.getElementById("graphDetail");
+
+  rootGrid.innerHTML = (data.roots || [])
+    .map((root) => {
+      const leadMetric = (root.metrics || [])[0];
+      return `
+        <button class="officeadmin-root-card ${root.present ? "present" : "missing"}" data-root-id="${root.id}" type="button">
+          <div class="officeadmin-root-card-top">
+            <span class="officeadmin-root-title">${root.label}</span>
+            <span class="officeadmin-root-type">${root.type}</span>
+          </div>
+          <p class="officeadmin-root-copy">${root.description}</p>
+          ${
+            leadMetric
+              ? `<div class="officeadmin-root-metric"><span>${leadMetric.label}</span><strong>${leadMetric.value}</strong></div>`
+              : ""
+          }
+        </button>
+      `;
+    })
+    .join("");
+
+  edgeList.innerHTML = (data.edges || [])
+    .map((edge) => {
+      const from = rootsById.get(edge.from);
+      const to = rootsById.get(edge.to);
+      if (!from || !to) return "";
+      return `
+        <div class="officeadmin-edge-chip">
+          <strong>${from.label}</strong>
+          <span>${edge.label}</span>
+          <strong>${to.label}</strong>
+        </div>
+      `;
+    })
+    .join("");
 
   function showRoot(rootId) {
     const root = rootsById.get(rootId);
@@ -120,20 +123,14 @@ function renderGraph(data) {
       </div>
     `;
 
-    svg.querySelectorAll(".officeadmin-node").forEach((node) => {
+    rootGrid.querySelectorAll(".officeadmin-root-card").forEach((node) => {
       node.classList.toggle("active", node.dataset.rootId === rootId);
     });
   }
 
-  svg.querySelectorAll(".officeadmin-node").forEach((node) => {
+  rootGrid.querySelectorAll(".officeadmin-root-card").forEach((node) => {
     const activate = () => showRoot(node.dataset.rootId);
     node.addEventListener("click", activate);
-    node.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        activate();
-      }
-    });
   });
 
   showRoot("aiva");
@@ -142,19 +139,26 @@ function renderGraph(data) {
 function renderRepos(data) {
   document.getElementById("repoGrid").innerHTML = (data.repos || [])
     .map((repo) => {
+      const presentation = repoPresentation[repo.id] || {
+        label: repo.label,
+        role: "Tracked surface",
+        authority: "Git backed system surface.",
+        source: "Tracked surface",
+      };
       const metrics = [
-        chip("Branch", repo.branch || "n/a"),
+        chip("Role", presentation.role),
         chip("Files", repo.trackedFileCount ?? "n/a"),
-        chip("Dirty", repo.dirtyFileCount ?? "excluded"),
+        chip("Branch", repo.branch || "n/a"),
       ].join("");
 
       return `
         <div class="overview-card">
-          <h3>${repo.label}</h3>
-          <p><code>${repo.path}</code></p>
+          <div class="officeadmin-detail-label">${presentation.source}</div>
+          <h3>${presentation.label}</h3>
+          <p>${presentation.authority}</p>
           <div class="officeadmin-inline-metrics">${metrics}</div>
-          <p class="officeadmin-small-copy">${repo.lastCommit?.subject || "No commit info available."}</p>
-          <p class="officeadmin-small-copy">${formatDateTime(repo.lastCommit?.authoredAt)}</p>
+          <p class="officeadmin-small-copy"><code>${repo.path}</code></p>
+          <p class="officeadmin-small-copy">${repo.lastCommit?.subject || "Read only generated surface, commit metadata intentionally de-emphasized."}</p>
         </div>
       `;
     })
@@ -173,16 +177,16 @@ function renderAuthorityModel(data) {
     )
     .join("");
 
-  document.getElementById("authorityTableBody").innerHTML = (data.authorities || [])
+  document.getElementById("authorityCards").innerHTML = (data.authorities || [])
     .slice(0, 18)
     .map(
       (row) => `
-        <tr>
-          <td>${row.domain}</td>
-          <td>${row.category}</td>
-          <td><code>${row.where || "n/a"}</code></td>
-          <td>${row.sourceOfTruth}</td>
-        </tr>
+        <div class="overview-card officeadmin-authority-card">
+          <div class="officeadmin-detail-label">${row.category}</div>
+          <h3>${row.domain}</h3>
+          <p><code>${row.where || "n/a"}</code></p>
+          <p>${row.sourceOfTruth}</p>
+        </div>
       `
     )
     .join("");
