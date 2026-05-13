@@ -5,8 +5,14 @@ Read this whole document before editing. Update it every time the plan changes, 
 ## Status
 
 - **Started:** 2026-05-12
-- **Current phase:** 1 (Generator scaffolding)
-- **Last update:** 2026-05-12 — plan written, generator scaffolding started
+- **Current phase:** 2 (Python parser) — next
+- **Last update:** 2026-05-12 — Phase 1 complete. New generator at `scripts/generate-system-map.mjs` runs end-to-end with seed nodes, schema enforcement, and sanitization assertion. Old `generate-officeadmin-map.mjs` still in place as v1 fallback during transition; will be removed when v2 reaches feature parity.
+
+### Phase 1 — done
+
+- ✅ `scripts/generate-system-map.mjs` scaffolding (schema validators, sanitizer with deny patterns, parser stubs, seed nodes, writer)
+- ✅ Smoke-tested: writes 7 seed nodes to `officeadmin/data/system-map.json`, sanitization assertion green
+- Decision: use Python's native `ast` module for Python parsing instead of tree-sitter (simpler, more accurate for Python). Keep tree-sitter plan for TS/Swift where it's still the right tool.
 
 ## Why v2
 
@@ -90,14 +96,15 @@ The generator has a sanitization function that runs on every node and edge befor
 
 ## Phases
 
-### Phase 1: Generator scaffolding ← WE ARE HERE
+### Phase 1: Generator scaffolding — DONE
 
-- [ ] Stub `scripts/generate-system-map.mjs` with the node/edge schema and writer
-- [ ] Add tree-sitter dependencies (node bindings + python/typescript/swift grammars)
-- [ ] Wire up the sanitization function with a deny-list test fixture
-- [ ] Replace `scripts/generate-officeadmin-map.mjs` (or leave alongside for v1 fallback during transition)
+- [x] Stub `scripts/generate-system-map.mjs` with the node/edge schema and writer
+- [x] Wire up the sanitization function with deny patterns and assertion
+- [x] Seed top-level subsystem + machine nodes
+- [x] Leave v1 generator alongside as fallback during transition
+- Note: skipped tree-sitter dep for Python (using native `ast` instead). Will add tree-sitter only for TS (Phase 4) and Swift (Phase 5).
 
-### Phase 2: Python parser
+### Phase 2: Python parser ← WE ARE HERE
 
 - [ ] Walk `~/.aiva` and `~/mikeshaffer` (paths configurable, defaults via env)
 - [ ] Per file: emit `file` node, then `function`/`class` nodes with `contained_in` edges
