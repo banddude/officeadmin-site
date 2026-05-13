@@ -174,6 +174,90 @@ def should_skip_file(name: str) -> bool:
     return False
 
 
+def resolve_import_target(raw_target: str, source_id: str, internal_ids: set[str], subsystem: str) -> str | None:
+    """Try to resolve a bare import target like `comms_pipeline` against internal node IDs.
+
+    Strategy: try exact, then walk up the source's namespace prefixing the target,
+    then try with the subsystem prefix. Return canonical internal ID or None
+    (None means it's stdlib or third-party — drop the edge).
+    """
+    # Exact match (already canonical, e.g. `aiva.modules.foo`)
+    if raw_target in internal_ids:
+        return raw_target
+
+    # Walk up source's ancestors looking for {ancestor}.{raw_target}
+    parts = source_id.split(".")
+    for i in range(len(parts) - 1, 0, -1):
+        candidate = ".".join(parts[:i] + [raw_target])
+        if candidate in internal_ids:
+            return candidate
+
+    # Try subsystem-prefixed
+    candidate = f"{subsystem}.{raw_target}"
+    if candidate in internal_ids:
+        return candidate
+
+    # Try matching the first component of a dotted import (e.g. `foo.bar.baz` -> walk up)
+    if "." in raw_target:
+        head = raw_target.split(".")[0]
+        for i in range(len(parts) - 1, 0, -1):
+            candidate = ".".join(parts[:i] + [head])
+            if candidate in internal_ids:
+                return candidate
+        candidate = f"{subsystem}.{head}"
+        if candidate in internal_ids:
+            return candidate
+
+    return None
+
+
+def finalize(nodes: list[dict], edges: list[dict], subsystem: str) -> tuple[list[dict], list[dict]]:
+    """Post-process: add containment edges for every node->parent relationship,
+    resolve import targets to internal node IDs (or drop), dedupe edges."""
+    internal_ids = {n["id"] for n in nodes}
+    internal_ids.add(subsystem)  # subsystem node exists in the merged graph
+
+    # Add containment edges from each node to its parent, where not already present
+    existing = {(e["source"], e["target"], e["type"]) for e in edges}
+    for n in nodes:
+        parent = n.get("parent")
+        if not parent:
+            continue
+        key = (n["id"], parent, "contained_in")
+        if key not in existing:
+            edges.append({"source": n["id"], "target": parent, "type": "contained_in"})
+            existing.add(key)
+
+    # Resolve imports; drop external/stdlib
+    resolved_edges: list[dict] = []
+    dropped = 0
+    for e in edges:
+        if e["type"] != "imports":
+            resolved_edges.append(e)
+            continue
+        target = resolve_import_target(e["target"], e["source"], internal_ids, subsystem)
+        if target is None:
+            dropped += 1
+            continue
+        if target == e["source"]:
+            dropped += 1
+            continue
+        resolved_edges.append({**e, "target": target})
+
+    # Dedupe (same source/target/type)
+    seen = set()
+    deduped: list[dict] = []
+    for e in resolved_edges:
+        key = (e["source"], e["target"], e["type"])
+        if key in seen:
+            continue
+        seen.add(key)
+        deduped.append(e)
+
+    print(f"finalize({subsystem}): dropped {dropped} external imports, {len(deduped)} edges after dedupe", file=sys.stderr)
+    return nodes, deduped
+
+
 def walk(root: Path, subsystem: str, allowlist: list[str] | None) -> tuple[list[dict], list[dict]]:
     nodes: list[dict] = []
     edges: list[dict] = []
@@ -209,7 +293,7 @@ def walk(root: Path, subsystem: str, allowlist: list[str] | None) -> tuple[list[
             nodes.extend(fnodes)
             edges.extend(fedges)
 
-    return nodes, edges
+    return finalize(nodes, edges, subsystem)
 
 
 def main() -> int:

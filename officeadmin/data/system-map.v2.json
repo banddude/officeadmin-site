@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-05-13T03:43:36.671Z",
+  "generatedAt": "2026-05-13T03:54:28.684Z",
   "schema": "code-level-graph",
   "nodes": [
     {
@@ -24440,6 +24440,16 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.modules.mikeshaffer.bin.reminders_aiva_log",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.reminders_aiva_log",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_protocol",
+      "type": "imports"
+    },
+    {
       "source": "aiva.modules.mikeshaffer.bin.reminders_aiva_log.cmd_set",
       "target": "aiva.modules.mikeshaffer.bin.reminders_aiva_log",
       "type": "contained_in"
@@ -24528,6 +24538,11 @@
       "source": "aiva.modules.mikeshaffer.bin.entity_dossier.main",
       "target": "aiva.modules.mikeshaffer.bin.entity_dossier",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.reminders_reconcile",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe",
+      "type": "imports"
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_reconcile.utc_now_iso",
@@ -24735,6 +24750,16 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.modules.mikeshaffer.bin.revise_draft",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.revise_draft",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_protocol",
+      "type": "imports"
+    },
+    {
       "source": "aiva.modules.mikeshaffer.bin.revise_draft.utc_now_iso",
       "target": "aiva.modules.mikeshaffer.bin.revise_draft",
       "type": "contained_in"
@@ -24758,6 +24783,16 @@
       "source": "aiva.modules.mikeshaffer.bin.revise_draft.main",
       "target": "aiva.modules.mikeshaffer.bin.revise_draft",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.reminders_mirror",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_protocol",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.reminders_mirror",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe",
+      "type": "imports"
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_mirror._resolve_entity_slug",
@@ -24895,6 +24930,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.modules.mikeshaffer.bin.auto_create_entity",
+      "target": "aiva.modules.mikeshaffer.bin.resolver",
+      "type": "imports"
+    },
+    {
       "source": "aiva.modules.mikeshaffer.bin.auto_create_entity.is_fake_domain",
       "target": "aiva.modules.mikeshaffer.bin.auto_create_entity",
       "type": "contained_in"
@@ -24963,6 +25003,16 @@
       "source": "aiva.modules.mikeshaffer.bin.auto_create_entity.main",
       "target": "aiva.modules.mikeshaffer.bin.auto_create_entity",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.reminders_sync",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.reminders_sync",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_protocol",
+      "type": "imports"
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_sync.clear_pending_draft_reminder",
@@ -25535,6 +25585,16 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.modules.mikeshaffer.bin.tell_aiva",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.tell_aiva",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_protocol",
+      "type": "imports"
+    },
+    {
       "source": "aiva.modules.mikeshaffer.bin.tell_aiva.utc_now_iso",
       "target": "aiva.modules.mikeshaffer.bin.tell_aiva",
       "type": "contained_in"
@@ -25568,6 +25628,11 @@
       "source": "aiva.modules.mikeshaffer.bin.tell_aiva.main",
       "target": "aiva.modules.mikeshaffer.bin.tell_aiva",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.process_action_directive",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_protocol",
+      "type": "imports"
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.process_action_directive.utc_now_iso",
@@ -25940,6 +26005,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.modules.messages.privileged._legacy.db",
+      "target": "aiva.core.message_channel.base",
+      "type": "imports"
+    },
+    {
       "source": "aiva.modules.messages.privileged._legacy.db._apple_ts_to_datetime",
       "target": "aiva.modules.messages.privileged._legacy.db",
       "type": "contained_in"
@@ -25973,6 +26043,11 @@
       "source": "aiva.modules.messages.privileged._legacy.db.fetch_messages_since_rowid",
       "target": "aiva.modules.messages.privileged._legacy.db",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.messages.privileged._legacy.channel",
+      "target": "aiva.core.message_channel.base",
+      "type": "imports"
     },
     {
       "source": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel",
@@ -26145,6 +26220,26 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.modules.gemini.provider",
+      "target": "aiva.modules.gemini.runtime",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.gemini.runtime.adapter",
+      "target": "aiva.core.logger",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.gemini.runtime.adapter",
+      "target": "aiva.core.models",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.gemini.runtime.adapter",
+      "target": "aiva.core.model_runtime.base",
+      "type": "imports"
+    },
+    {
       "source": "aiva.modules.gemini.runtime.adapter.cli_model_for",
       "target": "aiva.modules.gemini.runtime.adapter",
       "type": "contained_in"
@@ -26158,6 +26253,11 @@
       "source": "aiva.modules.gemini.runtime.adapter.GeminiProviderAdapter",
       "target": "aiva.modules.gemini.runtime.adapter",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.gemini.runtime.__init__",
+      "target": "aiva.modules.gemini.runtime.adapter",
+      "type": "imports"
     },
     {
       "source": "aiva.modules.identity.tests.test_identity.ident",
@@ -26455,6 +26555,16 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.modules.commitments.lib.state_machine",
+      "target": "aiva.modules.commitments.lib.schema",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.commitments.lib.state_machine",
+      "target": "aiva.modules.commitments.lib.core",
+      "type": "imports"
+    },
+    {
       "source": "aiva.modules.commitments.lib.projector.rebuild",
       "target": "aiva.modules.commitments.lib.projector",
       "type": "contained_in"
@@ -26510,6 +26620,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.modules.commitments.lib.reconcile.llm",
+      "target": "aiva.modules.commitments.lib.reconcile.prompt",
+      "type": "imports"
+    },
+    {
       "source": "aiva.modules.commitments.lib.reconcile.llm.call_llm",
       "target": "aiva.modules.commitments.lib.reconcile.llm",
       "type": "contained_in"
@@ -26543,6 +26658,11 @@
       "source": "aiva.modules.commitments.lib.reconcile.notify.post_review_digest",
       "target": "aiva.modules.commitments.lib.reconcile.notify",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.commitments.lib.reconcile.decide",
+      "target": "aiva.modules.commitments.lib.core",
+      "type": "imports"
     },
     {
       "source": "aiva.modules.commitments.lib.reconcile.decide._parse_iso",
@@ -26665,6 +26785,16 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.modules.commitments.lib.reconcile.reply_parser",
+      "target": "aiva.modules.commitments.lib.reconcile.decide",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.commitments.lib.reconcile.reply_parser",
+      "target": "aiva.modules.commitments.lib.core",
+      "type": "imports"
+    },
+    {
       "source": "aiva.modules.commitments.lib.reconcile.reply_parser.parse_reply",
       "target": "aiva.modules.commitments.lib.reconcile.reply_parser",
       "type": "contained_in"
@@ -26673,6 +26803,11 @@
       "source": "aiva.modules.commitments.lib.reconcile.reply_parser.apply_replies",
       "target": "aiva.modules.commitments.lib.reconcile.reply_parser",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.google.google_workspace_auth",
+      "target": "aiva.modules.google",
+      "type": "imports"
     },
     {
       "source": "aiva.modules.google.google_workspace_auth._is_on_aiva",
@@ -26718,6 +26853,11 @@
       "source": "aiva.modules.google.google_workspace_auth.workspace_credentials",
       "target": "aiva.modules.google.google_workspace_auth",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.google.cli.google_cli",
+      "target": "aiva.modules.google",
+      "type": "imports"
     },
     {
       "source": "aiva.modules.google.cli.google_cli.load_app_config",
@@ -27460,6 +27600,16 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.modules.open_loops.bin.extract_conversation_commitments",
+      "target": "aiva.modules.open_loops.lib",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.open_loops.bin.extract_conversation_commitments",
+      "target": "aiva.modules.open_loops.bin.record_commitment",
+      "type": "imports"
+    },
+    {
       "source": "aiva.modules.open_loops.bin.extract_conversation_commitments.load_json",
       "target": "aiva.modules.open_loops.bin.extract_conversation_commitments",
       "type": "contained_in"
@@ -27508,6 +27658,11 @@
       "source": "aiva.modules.open_loops.bin.extract_conversation_commitments.main",
       "target": "aiva.modules.open_loops.bin.extract_conversation_commitments",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.open_loops.bin.record_commitment",
+      "target": "aiva.modules.open_loops.lib",
+      "type": "imports"
     },
     {
       "source": "aiva.modules.open_loops.bin.record_commitment.normalize_space",
@@ -27643,6 +27798,11 @@
       "source": "aiva.modules.open_loops.bin.verify_commitment_wiring.main",
       "target": "aiva.modules.open_loops.bin.verify_commitment_wiring",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.open_loops.bin.project_waiting_on",
+      "target": "aiva.modules.open_loops.lib",
+      "type": "imports"
     },
     {
       "source": "aiva.modules.open_loops.bin.project_waiting_on.utc_now_iso",
@@ -27890,6 +28050,31 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.modules.claude.provider",
+      "target": "aiva.core.models",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.claude.provider",
+      "target": "aiva.core.model_runtime.base",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.claude.provider",
+      "target": "aiva.modules.memory.runtime",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.claude.provider",
+      "target": "aiva.modules.claude.runtime",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.claude.provider",
+      "target": "aiva.modules.claude.runtime.sdk_runtime",
+      "type": "imports"
+    },
+    {
       "source": "aiva.modules.claude.provider.clear_claude_sdk_proxy_env",
       "target": "aiva.modules.claude.provider",
       "type": "contained_in"
@@ -28010,6 +28195,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.modules.claude.autocompact.autocompact_watcher",
+      "target": "aiva.modules.claude.autocompact.session_compactor",
+      "type": "imports"
+    },
+    {
       "source": "aiva.modules.claude.autocompact.autocompact_watcher.log",
       "target": "aiva.modules.claude.autocompact.autocompact_watcher",
       "type": "contained_in"
@@ -28043,6 +28233,11 @@
       "source": "aiva.modules.claude.autocompact.autocompact_watcher.status",
       "target": "aiva.modules.claude.autocompact.autocompact_watcher",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.claude.autocompact.session_compactor",
+      "target": "aiva.core.models",
+      "type": "imports"
     },
     {
       "source": "aiva.modules.claude.autocompact.session_compactor._coerce_bool",
@@ -28335,6 +28530,36 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.modules.codex.provider",
+      "target": "aiva.modules.codex.runtime",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.codex.runtime.adapter",
+      "target": "aiva.core.config",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.codex.runtime.adapter",
+      "target": "aiva.core.logger",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.codex.runtime.adapter",
+      "target": "aiva.core.models",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.codex.runtime.adapter",
+      "target": "aiva.modules.memory.runtime",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.codex.runtime.adapter",
+      "target": "aiva.core.model_runtime.base",
+      "type": "imports"
+    },
+    {
       "source": "aiva.modules.codex.runtime.adapter.cli_model_for",
       "target": "aiva.modules.codex.runtime.adapter",
       "type": "contained_in"
@@ -28358,6 +28583,11 @@
       "source": "aiva.modules.codex.runtime.adapter.CodexProviderAdapter",
       "target": "aiva.modules.codex.runtime.adapter",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.codex.runtime.__init__",
+      "target": "aiva.modules.codex.runtime.adapter",
+      "type": "imports"
     },
     {
       "source": "aiva.modules.alpaca.skills.alpaca_trading.speculative_trades.get_latest_quote",
@@ -28463,6 +28693,11 @@
       "source": "aiva.modules.quickbooks.qb_cli.quickbooks_oauth.main",
       "target": "aiva.modules.quickbooks.qb_cli.quickbooks_oauth",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.quickbooks.qb_cli.test_quickbooks_oauth",
+      "target": "aiva.modules.quickbooks.qb_cli.quickbooks_oauth",
+      "type": "imports"
     },
     {
       "source": "aiva.modules.quickbooks.qb_cli.test_quickbooks_oauth.TestSyncEnvFromAiva",
@@ -29240,6 +29475,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.modules.sendblue.channel",
+      "target": "aiva.core.message_channel.base",
+      "type": "imports"
+    },
+    {
       "source": "aiva.modules.sendblue.channel._load_config",
       "target": "aiva.modules.sendblue.channel",
       "type": "contained_in"
@@ -29350,6 +29590,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.modules.skill_creator.skills.skill_creator.scripts.package_skill",
+      "target": "aiva.modules.skill_creator.skills.skill_creator.scripts.quick_validate",
+      "type": "imports"
+    },
+    {
       "source": "aiva.modules.skill_creator.skills.skill_creator.scripts.package_skill.package_skill",
       "target": "aiva.modules.skill_creator.skills.skill_creator.scripts.package_skill",
       "type": "contained_in"
@@ -29383,6 +29628,11 @@
       "source": "aiva.modules.module_suggester.lib.catalog.render_catalog_for_prompt",
       "target": "aiva.modules.module_suggester.lib.catalog",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.module_suggester.lib.scanner",
+      "target": "aiva.modules.module_suggester.lib.seen",
+      "type": "imports"
     },
     {
       "source": "aiva.modules.module_suggester.lib.scanner.Candidate",
@@ -29503,6 +29753,11 @@
       "source": "aiva.modules.module_suggester.lib.proposal._mirror_target_for_update",
       "target": "aiva.modules.module_suggester.lib.proposal",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.module_suggester.lib.materializer",
+      "target": "aiva.modules.module_suggester.lib.proposal",
+      "type": "imports"
     },
     {
       "source": "aiva.modules.module_suggester.lib.materializer.MaterializerError",
@@ -30155,6 +30410,26 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.modules.imessage.privileged._legacy.sender_runtime",
+      "target": "aiva.core.logger",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.imessage.privileged._legacy.sender_runtime",
+      "target": "aiva.core.text",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.imessage.privileged._legacy.sender_runtime",
+      "target": "aiva.core.skills",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.imessage.privileged._legacy.sender_runtime",
+      "target": "aiva.core.config",
+      "type": "imports"
+    },
+    {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime._raw_send",
       "target": "aiva.modules.imessage.privileged._legacy.sender_runtime",
       "type": "contained_in"
@@ -30233,6 +30508,16 @@
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime.send_skill_activation",
       "target": "aiva.modules.imessage.privileged._legacy.sender_runtime",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.imessage.privileged._legacy.db_runtime",
+      "target": "aiva.core.logger",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.imessage.privileged._legacy.db_runtime",
+      "target": "aiva.core.config",
+      "type": "imports"
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.get_last_id",
@@ -30785,6 +31070,16 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.modules.jobs.services.poller",
+      "target": "aiva.modules.jobs.job_shell",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.jobs.services.poller",
+      "target": "aiva.modules.jobs.jobs_runtime_paths",
+      "type": "imports"
+    },
+    {
       "source": "aiva.modules.jobs.services.poller.load_state",
       "target": "aiva.modules.jobs.services.poller",
       "type": "contained_in"
@@ -30848,6 +31143,26 @@
       "source": "aiva.modules.jobs.services.poller.main",
       "target": "aiva.modules.jobs.services.poller",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.glm.provider",
+      "target": "aiva.core.logger",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.glm.provider",
+      "target": "aiva.core.models",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.glm.provider",
+      "target": "aiva.core.model_runtime.base",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.modules.glm.provider",
+      "target": "aiva.modules.claude.runtime.sdk_runtime",
+      "type": "imports"
     },
     {
       "source": "aiva.modules.glm.provider.configure_glm_sdk_env",
@@ -31053,6 +31368,11 @@
       "source": "aiva.modules.instagram.mcp_server.src.server.react",
       "target": "aiva.modules.instagram.mcp_server.src.server",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.instagram.services.webhook_server",
+      "target": "aiva.core.logger",
+      "type": "imports"
     },
     {
       "source": "aiva.modules.instagram.services.webhook_server._load_verify_token",
@@ -32085,6 +32405,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.test_provider_capabilities_smoke",
+      "target": "aiva.core.model_runtime.registry",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.test_provider_capabilities_smoke.test_claude_capabilities",
       "target": "aiva.ops.tests.test_provider_capabilities_smoke",
       "type": "contained_in"
@@ -32108,6 +32433,11 @@
       "source": "aiva.ops.tests.test_provider_capabilities_smoke.test_adapter_methods",
       "target": "aiva.ops.tests.test_provider_capabilities_smoke",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.test_memory_runtime",
+      "target": "aiva.modules.memory",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.test_memory_runtime.test_load_memory_config_defaults",
@@ -32235,6 +32565,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.conftest",
+      "target": "aiva.modules",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.conftest.mock_db_connection",
       "target": "aiva.ops.tests.responder.conftest",
       "type": "contained_in"
@@ -32310,6 +32645,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_imessage_db_vision",
+      "target": "aiva.modules",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_imessage_db_vision.test_normalize_image_to_base64_success",
       "target": "aiva.ops.tests.responder.unit.test_imessage_db_vision",
       "type": "contained_in"
@@ -32318,6 +32658,16 @@
       "source": "aiva.ops.tests.responder.unit.test_imessage_db_vision.test_process_image_attachment_success",
       "target": "aiva.ops.tests.responder.unit.test_imessage_db_vision",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_main",
+      "target": "aiva.core.responder.service",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_main",
+      "target": "aiva.modules",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_responder_main.test_async_main_setup",
@@ -32330,6 +32680,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_session_compactor",
+      "target": "aiva.modules.claude.autocompact",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_session_compactor.test_autocompact_state_management",
       "target": "aiva.ops.tests.responder.unit.test_session_compactor",
       "type": "contained_in"
@@ -32338,6 +32693,11 @@
       "source": "aiva.ops.tests.responder.unit.test_session_compactor.test_compaction_lock_management",
       "target": "aiva.ops.tests.responder.unit.test_session_compactor",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_compaction_state",
+      "target": "aiva.core.compaction",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_state._log_noop",
@@ -32353,6 +32713,16 @@
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_state.test_compaction_state_tracks_background_start_and_swap",
       "target": "aiva.ops.tests.responder.unit.test_claude_compaction_state",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_contact_client_manager_safe_capture",
+      "target": "aiva.core.client_manager",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_contact_client_manager_safe_capture",
+      "target": "aiva.core.model_runtime",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_contact_client_manager_safe_capture.test_rewrite_bash_tool_input_wraps_command",
@@ -32410,6 +32780,16 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_typing_indicator",
+      "target": "aiva.core.message_channel.typing_indicator_compat",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_typing_indicator",
+      "target": "aiva.modules",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_typing_indicator.test_show_working_indicator_enabled",
       "target": "aiva.ops.tests.responder.unit.test_typing_indicator",
       "type": "contained_in"
@@ -32430,6 +32810,16 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_compaction_service",
+      "target": "aiva.core.compaction",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_compaction_service",
+      "target": "aiva.core.compaction_service",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_compaction_service.test_handle_autocompact_command_toggles_via_compactor_api",
       "target": "aiva.ops.tests.responder.unit.test_compaction_service",
       "type": "contained_in"
@@ -32438,6 +32828,21 @@
       "source": "aiva.ops.tests.responder.unit.test_compaction_service.test_trigger_prompt_too_long_compaction_starts_direct_background_job",
       "target": "aiva.ops.tests.responder.unit.test_compaction_service",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_commands",
+      "target": "aiva.core.responder.service",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_commands",
+      "target": "aiva.core.responder.commands",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_commands",
+      "target": "aiva.modules",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_responder_commands.test_command_ui_toggle",
@@ -32475,6 +32880,21 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_extra",
+      "target": "aiva.core.prompting",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_extra",
+      "target": "aiva.modules.claude.provider",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_extra",
+      "target": "aiva.modules.glm.provider",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_claude_client_extra.test_clear_claude_sdk_proxy_env_for_gemini",
       "target": "aiva.ops.tests.responder.unit.test_claude_client_extra",
       "type": "contained_in"
@@ -32493,6 +32913,11 @@
       "source": "aiva.ops.tests.responder.unit.test_claude_client_extra.test_get_skill_name_from_frontmatter_success",
       "target": "aiva.ops.tests.responder.unit.test_claude_client_extra",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_tool_handlers_coverage",
+      "target": "aiva.core.tool_handlers",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_tool_handlers_coverage.TestExtractReadTargetEdgeCases",
@@ -32545,6 +32970,21 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_manager",
+      "target": "aiva.core.client",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_manager",
+      "target": "aiva.core.client_manager",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_manager",
+      "target": "aiva.modules",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_claude_client_manager.test_contact_manager_queue_multiple",
       "target": "aiva.ops.tests.responder.unit.test_claude_client_manager",
       "type": "contained_in"
@@ -32568,6 +33008,16 @@
       "source": "aiva.ops.tests.responder.unit.test_claude_client_manager.test_interrupt_and_queue_soft_preempt_does_not_cancel_active_task",
       "target": "aiva.ops.tests.responder.unit.test_claude_client_manager",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_deep",
+      "target": "aiva.core.responder.service",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_deep",
+      "target": "aiva.modules",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_responder_deep.test_poll_messages_loop_iteration",
@@ -32595,6 +33045,16 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_final",
+      "target": "aiva.core.prompting",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_final",
+      "target": "aiva.modules.claude.provider",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_claude_client_final.test_clear_claude_sdk_proxy_env_fallback",
       "target": "aiva.ops.tests.responder.unit.test_claude_client_final",
       "type": "contained_in"
@@ -32603,6 +33063,16 @@
       "source": "aiva.ops.tests.responder.unit.test_claude_client_final.test_get_skill_name_from_frontmatter_corrupt",
       "target": "aiva.ops.tests.responder.unit.test_claude_client_final",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_tool_handlers",
+      "target": "aiva.core.tool_handlers",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_tool_handlers",
+      "target": "aiva.core.text",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_tool_handlers.test_all_tool_detection",
@@ -32640,6 +33110,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_hot_loadable",
+      "target": "aiva.core.responder.hot_reload",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_hot_loadable.test_reload_all_success",
       "target": "aiva.ops.tests.responder.unit.test_hot_loadable",
       "type": "contained_in"
@@ -32665,6 +33140,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_api_server",
+      "target": "aiva.modules.notify.services.api_server",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_api_server.client",
       "target": "aiva.ops.tests.responder.unit.test_api_server",
       "type": "contained_in"
@@ -32688,6 +33168,21 @@
       "source": "aiva.ops.tests.responder.unit.test_api_server.test_mike_endpoint_send_failure",
       "target": "aiva.ops.tests.responder.unit.test_api_server",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_queue",
+      "target": "aiva.core.model_runtime",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_queue",
+      "target": "aiva.modules",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_queue",
+      "target": "aiva.core.responder.message_queue",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_responder_queue._DummyManager",
@@ -32735,6 +33230,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_claude_sdk_runtime",
+      "target": "aiva.modules.claude.runtime.sdk_runtime",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_claude_sdk_runtime.test_parse_sdk_message_converts_rate_limit_event_to_system_message",
       "target": "aiva.ops.tests.responder.unit.test_claude_sdk_runtime",
       "type": "contained_in"
@@ -32743,6 +33243,11 @@
       "source": "aiva.ops.tests.responder.unit.test_claude_sdk_runtime.test_parse_sdk_message_still_raises_for_unknown_types",
       "target": "aiva.ops.tests.responder.unit.test_claude_sdk_runtime",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_imessage_sender_extra",
+      "target": "aiva.modules",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_imessage_sender_extra.test_send_tapback_ui_disabled",
@@ -32785,9 +33290,19 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_tool_handlers_extra",
+      "target": "aiva.core.tool_handlers",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_tool_handlers_extra.test_extra_extractions",
       "target": "aiva.ops.tests.responder.unit.test_tool_handlers_extra",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_prompting",
+      "target": "aiva.core.prompting",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_prompting.test_build_system_prompt_includes_large_output_guardrail",
@@ -32803,6 +33318,11 @@
       "source": "aiva.ops.tests.responder.unit.test_claude_prompting.test_build_system_prompt_includes_custom_tapback_guidance",
       "target": "aiva.ops.tests.responder.unit.test_claude_prompting",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_imessage_db",
+      "target": "aiva.modules",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_imessage_db.test_fetch_new_messages_logic",
@@ -32823,6 +33343,16 @@
       "source": "aiva.ops.tests.responder.unit.test_imessage_db.test_normalize_image_skips_if_no_pil",
       "target": "aiva.ops.tests.responder.unit.test_imessage_db",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_typing_indicator_extended",
+      "target": "aiva.modules",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_typing_indicator_extended",
+      "target": "aiva.core.message_channel.typing_indicator_compat",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_typing_indicator_extended.TestShowWorkingIndicator",
@@ -32878,6 +33408,21 @@
       "source": "aiva.ops.tests.responder.unit.test_provider_conformance.test_golden_reference_has_expected_messages",
       "target": "aiva.ops.tests.responder.unit.test_provider_conformance",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_tools",
+      "target": "aiva.core.client",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_tools",
+      "target": "aiva.core.types",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_tools",
+      "target": "aiva.modules",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_client_tools._async_noop",
@@ -33060,6 +33605,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_responder_attachments",
+      "target": "aiva.core.responder.attachments",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_responder_attachments._fake_attachment_row",
       "target": "aiva.ops.tests.responder.unit.test_responder_attachments",
       "type": "contained_in"
@@ -33078,6 +33628,11 @@
       "source": "aiva.ops.tests.responder.unit.test_responder_attachments.test_collect_message_attachments_accepts_legacy_processing_kwargs",
       "target": "aiva.ops.tests.responder.unit.test_responder_attachments",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_provider_registry",
+      "target": "aiva.core.model_runtime",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_provider_registry._FakeProviderClient",
@@ -33145,6 +33700,16 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_tool_handlers_exhaustive",
+      "target": "aiva.core.tool_handlers",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_tool_handlers_exhaustive",
+      "target": "aiva.core.text",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_tool_handlers_exhaustive.test_format_bash_exhaustive",
       "target": "aiva.ops.tests.responder.unit.test_tool_handlers_exhaustive",
       "type": "contained_in"
@@ -33190,6 +33755,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_send_file_to_user",
+      "target": "aiva.core.tools.send_file_to_user",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_send_file_to_user.TestGetVolumeMappings",
       "target": "aiva.ops.tests.responder.unit.test_send_file_to_user",
       "type": "contained_in"
@@ -33213,6 +33783,16 @@
       "source": "aiva.ops.tests.responder.unit.test_send_file_to_user.TestSendFileToUser",
       "target": "aiva.ops.tests.responder.unit.test_send_file_to_user",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_codex_adapter",
+      "target": "aiva.core.model_runtime.base",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_codex_adapter",
+      "target": "aiva.modules.codex.runtime.adapter",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_codex_adapter._FakePipe",
@@ -33260,6 +33840,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_imessage_db_final",
+      "target": "aiva.modules",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_imessage_db_final.test_fetch_new_messages_error",
       "target": "aiva.ops.tests.responder.unit.test_imessage_db_final",
       "type": "contained_in"
@@ -33268,6 +33853,11 @@
       "source": "aiva.ops.tests.responder.unit.test_imessage_db_final.test_decode_attributed_body_empty",
       "target": "aiva.ops.tests.responder.unit.test_imessage_db_final",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_imessage_db_exhaustive",
+      "target": "aiva.modules",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_imessage_db_exhaustive.test_decode_attributed_body_error_handling",
@@ -33283,6 +33873,16 @@
       "source": "aiva.ops.tests.responder.unit.test_imessage_db_exhaustive.test_normalize_image_failure_catch_all",
       "target": "aiva.ops.tests.responder.unit.test_imessage_db_exhaustive",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_errors",
+      "target": "aiva.core.responder.service",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_errors",
+      "target": "aiva.modules",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_responder_errors.test_check_inject_queue_empty_message",
@@ -33310,6 +33910,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_config",
+      "target": "aiva.core.config",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_config.test_paths",
       "target": "aiva.ops.tests.responder.unit.test_config",
       "type": "contained_in"
@@ -33318,6 +33923,21 @@
       "source": "aiva.ops.tests.responder.unit.test_config.test_available_commands",
       "target": "aiva.ops.tests.responder.unit.test_config",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_stream_processor",
+      "target": "aiva.core.dispatch",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_stream_processor",
+      "target": "aiva.core.stream_processor",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_stream_processor",
+      "target": "aiva.core.tool_state",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_stream_processor.TextBlock",
@@ -33520,6 +34140,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_api_server_errors",
+      "target": "aiva.modules.notify.services.api_server",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_api_server_errors.client",
       "target": "aiva.ops.tests.responder.unit.test_api_server_errors",
       "type": "contained_in"
@@ -33540,6 +34165,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_imessage_db_extra",
+      "target": "aiva.modules",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_imessage_db_extra.test_save_attachment_duplicate_handling",
       "target": "aiva.ops.tests.responder.unit.test_imessage_db_extra",
       "type": "contained_in"
@@ -33550,9 +34180,34 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_compact",
+      "target": "aiva.modules.claude.autocompact",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_compact",
+      "target": "aiva.modules.claude.autocompact.session_compactor",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_claude_client_compact.test_compact_session_async_sdk_call",
       "target": "aiva.ops.tests.responder.unit.test_claude_client_compact",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_deep",
+      "target": "aiva.core.client",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_deep",
+      "target": "aiva.core.types",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_deep",
+      "target": "aiva.modules",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_client_deep._async_noop",
@@ -33578,6 +34233,16 @@
       "source": "aiva.ops.tests.responder.unit.test_claude_client_deep.test_ask_claude_interruption",
       "target": "aiva.ops.tests.responder.unit.test_claude_client_deep",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_imessage_sender",
+      "target": "aiva.modules",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_imessage_sender",
+      "target": "aiva.core.text",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_imessage_sender.test_extract_markdown_links",
@@ -33635,6 +34300,21 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client",
+      "target": "aiva.core.client",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client",
+      "target": "aiva.core.dispatch",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client",
+      "target": "aiva.modules.claude.provider",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_claude_client.test_clear_claude_sdk_proxy_env",
       "target": "aiva.ops.tests.responder.unit.test_claude_client",
       "type": "contained_in"
@@ -33665,6 +34345,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_contact_manager",
+      "target": "aiva.modules",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_contact_manager.test_normalize_number",
       "target": "aiva.ops.tests.responder.unit.test_contact_manager",
       "type": "contained_in"
@@ -33688,6 +34373,16 @@
       "source": "aiva.ops.tests.responder.unit.test_contact_manager.test_load_contacts_fallback",
       "target": "aiva.ops.tests.responder.unit.test_contact_manager",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_interrupts",
+      "target": "aiva.core.responder.interrupts",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_interrupts",
+      "target": "aiva.modules",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_responder_interrupts.test_clear_bypass_clears_state_and_queue",
@@ -33720,6 +34415,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_bootstrap_message",
+      "target": "aiva.core.client",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_claude_client_bootstrap_message.test_build_message_to_send_without_bootstrap_returns_user_text",
       "target": "aiva.ops.tests.responder.unit.test_claude_client_bootstrap_message",
       "type": "contained_in"
@@ -33733,6 +34433,21 @@
       "source": "aiva.ops.tests.responder.unit.test_claude_client_bootstrap_message.test_build_message_to_send_empty_bootstrap_returns_user_text",
       "target": "aiva.ops.tests.responder.unit.test_claude_client_bootstrap_message",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_deep_extra",
+      "target": "aiva.core.client",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_deep_extra",
+      "target": "aiva.core.types",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_deep_extra",
+      "target": "aiva.modules",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_client_deep_extra._async_noop",
@@ -33758,6 +34473,26 @@
       "source": "aiva.ops.tests.responder.unit.test_claude_client_deep_extra.test_clear_interrupt_flag_runs_before_query_send",
       "target": "aiva.ops.tests.responder.unit.test_claude_client_deep_extra",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_results",
+      "target": "aiva.core.compaction",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_results",
+      "target": "aiva.core.client",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_results",
+      "target": "aiva.core.types",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_results",
+      "target": "aiva.modules",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_client_results._async_noop",
@@ -33825,6 +34560,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_logger",
+      "target": "aiva.core.logger",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_logger.test_log_output",
       "target": "aiva.ops.tests.responder.unit.test_logger",
       "type": "contained_in"
@@ -33833,6 +34573,11 @@
       "source": "aiva.ops.tests.responder.unit.test_logger.test_log_error_graceful",
       "target": "aiva.ops.tests.responder.unit.test_logger",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_text_utils",
+      "target": "aiva.core.text",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_text_utils.test_sanitize_text",
@@ -33855,9 +34600,19 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.ops.tests.responder.unit.test_responder_inject",
+      "target": "aiva.core.responder.inject",
+      "type": "imports"
+    },
+    {
       "source": "aiva.ops.tests.responder.unit.test_responder_inject.test_process_inject_queue_merges_messages_for_idle_contact",
       "target": "aiva.ops.tests.responder.unit.test_responder_inject",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator",
+      "target": "aiva.core.compaction",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator._noop_log",
@@ -33938,6 +34693,11 @@
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestBuildBootstrapForContact",
       "target": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_imessage_db_attachments",
+      "target": "aiva.modules",
+      "type": "imports"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_imessage_db_attachments.TestNormalizeImage",
@@ -34155,6 +34915,16 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.core.dispatch",
+      "target": "aiva.modules",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.dispatch",
+      "target": "aiva.core.logger",
+      "type": "imports"
+    },
+    {
       "source": "aiva.core.dispatch.should_send_tool_message",
       "target": "aiva.core.dispatch",
       "type": "contained_in"
@@ -34170,6 +34940,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.core.keychain_runtime",
+      "target": "aiva.core.machine_runtime",
+      "type": "imports"
+    },
+    {
       "source": "aiva.core.keychain_runtime.local_shared_keychain_path",
       "target": "aiva.core.keychain_runtime",
       "type": "contained_in"
@@ -34183,6 +34958,96 @@
       "source": "aiva.core.keychain_runtime.should_write_secret_to_local_keychain",
       "target": "aiva.core.keychain_runtime",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.client",
+      "target": "aiva.core.logger",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client",
+      "target": "aiva.modules",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client",
+      "target": "aiva.modules.imessage",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client",
+      "target": "aiva.core.compaction",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client",
+      "target": "aiva.core.message_channel.typing_indicator",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client",
+      "target": "aiva.core.text",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client",
+      "target": "aiva.core.skills",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client",
+      "target": "aiva.core.prompting",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client",
+      "target": "aiva.core.dispatch",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client",
+      "target": "aiva.core.tool_state",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client",
+      "target": "aiva.core.stream_processor",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client",
+      "target": "aiva.core.query_runner",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client",
+      "target": "aiva.core.responder",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client",
+      "target": "aiva.core.client_manager",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client",
+      "target": "aiva.core.types",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client",
+      "target": "aiva.core.model_runtime",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client",
+      "target": "aiva.core.model_runtime.handoff_state",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client",
+      "target": "aiva.core.config",
+      "type": "imports"
     },
     {
       "source": "aiva.core.client._is_dead_session_error",
@@ -34225,6 +35090,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.core.prompting",
+      "target": "aiva.core.logger",
+      "type": "imports"
+    },
+    {
       "source": "aiva.core.prompting.build_system_prompt",
       "target": "aiva.core.prompting",
       "type": "contained_in"
@@ -34248,6 +35118,21 @@
       "source": "aiva.core.types.QueryRequest",
       "target": "aiva.core.types",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.stream_processor",
+      "target": "aiva.core.config",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.stream_processor",
+      "target": "aiva.core.model_runtime",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.stream_processor",
+      "target": "aiva.core.tool_handlers",
+      "type": "imports"
     },
     {
       "source": "aiva.core.stream_processor.StreamProcessorContext",
@@ -34345,9 +35230,39 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.core.logger",
+      "target": "aiva.core.config",
+      "type": "imports"
+    },
+    {
       "source": "aiva.core.logger.log",
       "target": "aiva.core.logger",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.client_manager",
+      "target": "aiva.core.prompting",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client_manager",
+      "target": "aiva.core.config",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client_manager",
+      "target": "aiva.core.logger",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client_manager",
+      "target": "aiva.core.models",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.client_manager",
+      "target": "aiva.core.model_runtime",
+      "type": "imports"
     },
     {
       "source": "aiva.core.client_manager._notify_contact_direct",
@@ -34443,6 +35358,26 @@
       "source": "aiva.core.machine_runtime.delegate_cli_to_aiva",
       "target": "aiva.core.machine_runtime",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.query_runner",
+      "target": "aiva.core.compaction_service",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.query_runner",
+      "target": "aiva.core.model_runtime",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.query_runner",
+      "target": "aiva.core.stream_processor",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.query_runner",
+      "target": "aiva.core.types",
+      "type": "imports"
     },
     {
       "source": "aiva.core.query_runner.send_query_with_optional_images",
@@ -34600,6 +35535,16 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.core.compaction_service",
+      "target": "aiva.core.compaction",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.compaction_service",
+      "target": "aiva.core.config",
+      "type": "imports"
+    },
+    {
       "source": "aiva.core.compaction_service.handle_autocompact_command",
       "target": "aiva.core.compaction_service",
       "type": "contained_in"
@@ -34608,6 +35553,16 @@
       "source": "aiva.core.compaction_service.trigger_prompt_too_long_compaction",
       "target": "aiva.core.compaction_service",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.tool_state",
+      "target": "aiva.core.dispatch",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.tool_state",
+      "target": "aiva.core.tool_handlers",
+      "type": "imports"
     },
     {
       "source": "aiva.core.tool_state.ToolTrackingState",
@@ -34643,6 +35598,21 @@
       "source": "aiva.core.tools.send_file_to_user.handle_tool_call",
       "target": "aiva.core.tools.send_file_to_user",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.tools.__init__",
+      "target": "aiva.core.tools.send_file_to_user",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.model_runtime.registry",
+      "target": "aiva.core.models",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.model_runtime.registry",
+      "target": "aiva.core.model_runtime.base",
+      "type": "imports"
     },
     {
       "source": "aiva.core.model_runtime.registry._modules_root",
@@ -34720,6 +35690,21 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.core.model_runtime.__init__",
+      "target": "aiva.core.model_runtime.base",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.model_runtime.__init__",
+      "target": "aiva.core.model_runtime.registry",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.model_runtime.base",
+      "target": "aiva.core.types",
+      "type": "imports"
+    },
+    {
       "source": "aiva.core.model_runtime.base.ModelEntry",
       "target": "aiva.core.model_runtime.base",
       "type": "contained_in"
@@ -34753,6 +35738,16 @@
       "source": "aiva.core.model_runtime.base.ProviderResolution",
       "target": "aiva.core.model_runtime.base",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.auth.oauth_callback_server",
+      "target": "aiva.core.auth.callback_registry",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.auth.oauth_callback_server",
+      "target": "aiva.core.keychain_runtime",
+      "type": "imports"
     },
     {
       "source": "aiva.core.auth.oauth_callback_server.keychain_paths",
@@ -34810,6 +35805,11 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.core.message_channel.registry",
+      "target": "aiva.core.message_channel.base",
+      "type": "imports"
+    },
+    {
       "source": "aiva.core.message_channel.registry.register_channel",
       "target": "aiva.core.message_channel.registry",
       "type": "contained_in"
@@ -34828,6 +35828,26 @@
       "source": "aiva.core.message_channel.registry.load_channels_from_env",
       "target": "aiva.core.message_channel.registry",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.message_channel.__init__",
+      "target": "aiva.core.message_channel.base",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.message_channel.__init__",
+      "target": "aiva.core.message_channel.registry",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.message_channel.__init__",
+      "target": "aiva.core.message_channel.typing_indicator",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.message_channel.typing_indicator",
+      "target": "aiva.core.logger",
+      "type": "imports"
     },
     {
       "source": "aiva.core.message_channel.typing_indicator._channel_typing",
@@ -34860,6 +35880,16 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.core.message_channel.typing_indicator_compat",
+      "target": "aiva.core.message_channel.typing_indicator",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.message_channel.typing_indicator_compat",
+      "target": "aiva.core.logger",
+      "type": "imports"
+    },
+    {
       "source": "aiva.core.message_channel.typing_indicator_compat._channel_typing",
       "target": "aiva.core.message_channel.typing_indicator_compat",
       "type": "contained_in"
@@ -34883,6 +35913,81 @@
       "source": "aiva.core.message_channel.base.Channel",
       "target": "aiva.core.message_channel.base",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.responder.service",
+      "target": "aiva.core.logger",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.service",
+      "target": "aiva.core.config",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.service",
+      "target": "aiva.modules",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.service",
+      "target": "aiva.core.types",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.service",
+      "target": "aiva.core.client",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.service",
+      "target": "aiva.core.channel_bridge",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.service",
+      "target": "aiva.core.message_channel.typing_indicator",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.service",
+      "target": "aiva.core.responder.hot_reload",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.service",
+      "target": "aiva.core.responder",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.service",
+      "target": "aiva.core.responder.commands",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.service",
+      "target": "aiva.core.responder.attachments",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.service",
+      "target": "aiva.core.responder.dispatch",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.service",
+      "target": "aiva.core.responder.inject",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.service",
+      "target": "aiva.core.responder.message_queue",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.service",
+      "target": "aiva.core.responder.startup",
+      "type": "imports"
     },
     {
       "source": "aiva.core.responder.service._allocate_inject_msg_id",
@@ -34945,9 +36050,24 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.core.responder.startup",
+      "target": "aiva.modules",
+      "type": "imports"
+    },
+    {
       "source": "aiva.core.responder.startup.send_startup_ping_and_queue_notice",
       "target": "aiva.core.responder.startup",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.responder.dispatch",
+      "target": "aiva.core.responder.commands",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.dispatch",
+      "target": "aiva.core.responder.interrupts",
+      "type": "imports"
     },
     {
       "source": "aiva.core.responder.dispatch.DispatchResult",
@@ -34960,6 +36080,61 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.core.responder.__init__",
+      "target": "aiva.core.responder.attachments",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.__init__",
+      "target": "aiva.core.responder.commands",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.__init__",
+      "target": "aiva.core.responder.dispatch",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.__init__",
+      "target": "aiva.core.responder.hot_reload",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.__init__",
+      "target": "aiva.core.responder.hot_bindings",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.__init__",
+      "target": "aiva.core.responder.inject",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.__init__",
+      "target": "aiva.core.responder.interrupts",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.__init__",
+      "target": "aiva.core.responder.message_queue",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.__init__",
+      "target": "aiva.core.responder.startup",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.attachments",
+      "target": "aiva.core.logger",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.attachments",
+      "target": "aiva.modules.imessage",
+      "type": "imports"
+    },
+    {
       "source": "aiva.core.responder.attachments._transcribe_audio",
       "target": "aiva.core.responder.attachments",
       "type": "contained_in"
@@ -34970,9 +36145,49 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.core.responder.inject",
+      "target": "aiva.modules",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.inject",
+      "target": "aiva.core.logger",
+      "type": "imports"
+    },
+    {
       "source": "aiva.core.responder.inject.process_inject_queue",
       "target": "aiva.core.responder.inject",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.responder.message_queue",
+      "target": "aiva.modules",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.message_queue",
+      "target": "aiva.core.logger",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.message_queue",
+      "target": "aiva.core.model_runtime",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.message_queue",
+      "target": "aiva.core.types",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.message_queue",
+      "target": "aiva.modules.imessage",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.message_queue",
+      "target": "aiva.core.responder",
+      "type": "imports"
     },
     {
       "source": "aiva.core.responder.message_queue._skill_command_to_user_text",
@@ -34988,6 +36203,21 @@
       "source": "aiva.core.responder.message_queue.process_queued_messages",
       "target": "aiva.core.responder.message_queue",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.responder.interrupts",
+      "target": "aiva.core.logger",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.interrupts",
+      "target": "aiva.core.responder.commands",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.interrupts",
+      "target": "aiva.modules.imessage",
+      "type": "imports"
     },
     {
       "source": "aiva.core.responder.interrupts.CriticalCommandResult",
@@ -35008,6 +36238,41 @@
       "source": "aiva.core.responder.hot_bindings.load_hot_bindings",
       "target": "aiva.core.responder.hot_bindings",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.responder.commands",
+      "target": "aiva.core.compaction_service",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.commands",
+      "target": "aiva.core.config",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.commands",
+      "target": "aiva.modules",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.commands",
+      "target": "aiva.core.model_runtime",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.commands",
+      "target": "aiva.core.model_runtime.handoff_state",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.commands",
+      "target": "aiva.core.logger",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.responder.commands",
+      "target": "aiva.modules.imessage",
+      "type": "imports"
     },
     {
       "source": "aiva.core.responder.commands.is_command",
@@ -35105,6 +36370,16 @@
       "type": "contained_in"
     },
     {
+      "source": "aiva.core.tool_handlers.misc",
+      "target": "aiva.core.text",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.tool_handlers.misc",
+      "target": "aiva.core.tool_handlers.core",
+      "type": "imports"
+    },
+    {
       "source": "aiva.core.tool_handlers.misc.GlobToolHandler",
       "target": "aiva.core.tool_handlers.misc",
       "type": "contained_in"
@@ -35133,6 +36408,16 @@
       "source": "aiva.core.tool_handlers.misc.GenericToolHandler",
       "target": "aiva.core.tool_handlers.misc",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.tool_handlers.__init__",
+      "target": "aiva.core.tool_handlers.core",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.tool_handlers.__init__",
+      "target": "aiva.core.tool_handlers.misc",
+      "type": "imports"
     },
     {
       "source": "aiva.core.tool_handlers.__init__.is_read_tool_name",
@@ -35288,6 +36573,16 @@
       "source": "aiva.core.tool_handlers.__init__.format_generic_tool_message",
       "target": "aiva.core.tool_handlers.__init__",
       "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.tool_handlers.core",
+      "target": "aiva.core.config",
+      "type": "imports"
+    },
+    {
+      "source": "aiva.core.tool_handlers.core",
+      "target": "aiva.core.text",
+      "type": "imports"
     },
     {
       "source": "aiva.core.tool_handlers.core.extract_from_dict",
@@ -35472,6 +36767,1786 @@
     {
       "source": "aiva.mcp_server.server.create_app",
       "target": "aiva.mcp_server.server",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules",
+      "target": "aiva",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.cli",
+      "target": "aiva.modules.mikeshaffer",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin",
+      "target": "aiva.modules.mikeshaffer",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.reminders_aiva_log",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.entity_dossier",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.reminders_reconcile",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.entity_query",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.audit_commitments_json_fate",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.reminders_protocol",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.contacts_remove_ghosts",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.audit_entity_reminders_readers",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.revise_draft",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.reminders_mirror",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.queue_draft",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.migrate_existing_fyi_to_logged",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.auto_create_entity",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.reminders_sync",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.send_one_draft",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.cleanup_terminal_pending_drafts",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.shaffer_forwards",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.send_manual_reply",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.contacts_backfill_ids",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.contacts_dedupe",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.reminders_safe",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.contacts_add_entity_urls",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.resolver",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.learn_from_corrections",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.entity_manage",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.aiva_handoff",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.tell_aiva",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.process_action_directive",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.distill_corrections",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.bin.contacts_audit",
+      "target": "aiva.modules.mikeshaffer.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.tests",
+      "target": "aiva.modules.mikeshaffer",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.tests.test_context",
+      "target": "aiva.modules.mikeshaffer.tests",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.lib",
+      "target": "aiva.modules.mikeshaffer",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mikeshaffer.lib.context",
+      "target": "aiva.modules.mikeshaffer.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.notify",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.notify.services",
+      "target": "aiva.modules.notify",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.notify.services.api_server",
+      "target": "aiva.modules.notify.services",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.system_inventory",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.system_inventory.bin",
+      "target": "aiva.modules.system_inventory",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.system_inventory.bin.generate_inventory",
+      "target": "aiva.modules.system_inventory.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.messages",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.messages.privileged",
+      "target": "aiva.modules.messages",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.messages.privileged._legacy",
+      "target": "aiva.modules.messages.privileged",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.messages.privileged._legacy.sender",
+      "target": "aiva.modules.messages.privileged._legacy",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.messages.privileged._legacy.db",
+      "target": "aiva.modules.messages.privileged._legacy",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.messages.privileged._legacy.channel",
+      "target": "aiva.modules.messages.privileged._legacy",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.memory",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.memory.runtime",
+      "target": "aiva.modules.memory",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.memory.bin",
+      "target": "aiva.modules.memory",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.memory.bin.update_memory_date",
+      "target": "aiva.modules.memory.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.gemini",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.gemini.provider",
+      "target": "aiva.modules.gemini",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.gemini.runtime",
+      "target": "aiva.modules.gemini",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.gemini.runtime.adapter",
+      "target": "aiva.modules.gemini.runtime",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.gemini.runtime.__init__",
+      "target": "aiva.modules.gemini.runtime",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.identity",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.identity.tests",
+      "target": "aiva.modules.identity",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.identity.tests.test_identity",
+      "target": "aiva.modules.identity.tests",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.identity.lib",
+      "target": "aiva.modules.identity",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.identity.lib.identity",
+      "target": "aiva.modules.identity.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.commitments",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.commitments.lib",
+      "target": "aiva.modules.commitments",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.commitments.lib.__init__",
+      "target": "aiva.modules.commitments.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.commitments.lib.core",
+      "target": "aiva.modules.commitments.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.commitments.lib.state_machine",
+      "target": "aiva.modules.commitments.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.commitments.lib.projector",
+      "target": "aiva.modules.commitments.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.commitments.lib.schema",
+      "target": "aiva.modules.commitments.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.commitments.lib.reconcile",
+      "target": "aiva.modules.commitments.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.commitments.lib.reconcile.__init__",
+      "target": "aiva.modules.commitments.lib.reconcile",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.commitments.lib.reconcile.llm",
+      "target": "aiva.modules.commitments.lib.reconcile",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.commitments.lib.reconcile.notify",
+      "target": "aiva.modules.commitments.lib.reconcile",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.commitments.lib.reconcile.decide",
+      "target": "aiva.modules.commitments.lib.reconcile",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.commitments.lib.reconcile.channels",
+      "target": "aiva.modules.commitments.lib.reconcile",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.commitments.lib.reconcile.prompt",
+      "target": "aiva.modules.commitments.lib.reconcile",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.commitments.lib.reconcile.reply_parser",
+      "target": "aiva.modules.commitments.lib.reconcile",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.google",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.google.google_workspace_auth",
+      "target": "aiva.modules.google",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.google.cli",
+      "target": "aiva.modules.google",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.google.cli.google_cli",
+      "target": "aiva.modules.google.cli",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.google.cli.refresh_personal_oauth",
+      "target": "aiva.modules.google.cli",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.open_loops",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.open_loops.bin",
+      "target": "aiva.modules.open_loops",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.open_loops.bin.extract_conversation_commitments",
+      "target": "aiva.modules.open_loops.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.open_loops.bin.record_commitment",
+      "target": "aiva.modules.open_loops.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.open_loops.bin.open_loops",
+      "target": "aiva.modules.open_loops.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.open_loops.bin.synthetic_commitment_e2e",
+      "target": "aiva.modules.open_loops.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.open_loops.bin.verify_commitment_wiring",
+      "target": "aiva.modules.open_loops.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.open_loops.bin.project_waiting_on",
+      "target": "aiva.modules.open_loops.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.open_loops.bin.follow_through_checker",
+      "target": "aiva.modules.open_loops.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.open_loops.tests",
+      "target": "aiva.modules.open_loops",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.open_loops.tests.test_follow_through_checker",
+      "target": "aiva.modules.open_loops.tests",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.open_loops.tests.test_conversation_extractor",
+      "target": "aiva.modules.open_loops.tests",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.open_loops.tests.test_record_commitment",
+      "target": "aiva.modules.open_loops.tests",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.open_loops.lib",
+      "target": "aiva.modules.open_loops",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.open_loops.lib.ledger",
+      "target": "aiva.modules.open_loops.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.claude",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.claude.provider",
+      "target": "aiva.modules.claude",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.claude.bin",
+      "target": "aiva.modules.claude",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.claude.bin.claude_code_handler",
+      "target": "aiva.modules.claude.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.claude.runtime",
+      "target": "aiva.modules.claude",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.claude.runtime.oauth_callback",
+      "target": "aiva.modules.claude.runtime",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.claude.runtime.sdk_runtime",
+      "target": "aiva.modules.claude.runtime",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.claude.runtime.provider_handoff",
+      "target": "aiva.modules.claude.runtime",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.claude.autocompact",
+      "target": "aiva.modules.claude",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.claude.autocompact.autocompact_watcher",
+      "target": "aiva.modules.claude.autocompact",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.claude.autocompact.__init__",
+      "target": "aiva.modules.claude.autocompact",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.claude.autocompact.session_compactor",
+      "target": "aiva.modules.claude.autocompact",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.codex",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.codex.provider",
+      "target": "aiva.modules.codex",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.codex.runtime",
+      "target": "aiva.modules.codex",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.codex.runtime.adapter",
+      "target": "aiva.modules.codex.runtime",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.codex.runtime.__init__",
+      "target": "aiva.modules.codex.runtime",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.alpaca",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.alpaca.skills",
+      "target": "aiva.modules.alpaca",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.alpaca.skills.alpaca_trading",
+      "target": "aiva.modules.alpaca.skills",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.alpaca.skills.alpaca_trading.speculative_trades",
+      "target": "aiva.modules.alpaca.skills.alpaca_trading",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.alpaca.skills.alpaca_trading.buy_crypto",
+      "target": "aiva.modules.alpaca.skills.alpaca_trading",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.alpaca.skills.alpaca_trading.check_portfolio",
+      "target": "aiva.modules.alpaca.skills.alpaca_trading",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.quickbooks",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.quickbooks.qb_cli",
+      "target": "aiva.modules.quickbooks",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.quickbooks.qb_cli.quickbooks_oauth",
+      "target": "aiva.modules.quickbooks.qb_cli",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.quickbooks.qb_cli.test_quickbooks_oauth",
+      "target": "aiva.modules.quickbooks.qb_cli",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.quickbooks.scripts",
+      "target": "aiva.modules.quickbooks",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.quickbooks.scripts.quickbooks_oauth",
+      "target": "aiva.modules.quickbooks.scripts",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.quickbooks.scripts.tsheets_oauth",
+      "target": "aiva.modules.quickbooks.scripts",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mempalace",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mempalace.cli",
+      "target": "aiva.modules.mempalace",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mempalace.services",
+      "target": "aiva.modules.mempalace",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.mempalace.services.daemon",
+      "target": "aiva.modules.mempalace.services",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.email_labeler",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.email_labeler.bin",
+      "target": "aiva.modules.email_labeler",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.email_labeler.bin.email_labeler_stalwart",
+      "target": "aiva.modules.email_labeler.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.email_labeler.bin.email_labeler",
+      "target": "aiva.modules.email_labeler.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.email_labeler.bin.gmail_api_backfill_threaded",
+      "target": "aiva.modules.email_labeler.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync",
+      "target": "aiva.modules.email_labeler.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.email_labeler.bin.gmail_api_backfill",
+      "target": "aiva.modules.email_labeler.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.shaffer_blogger",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.shaffer_blogger.lib",
+      "target": "aiva.modules.shaffer_blogger",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline",
+      "target": "aiva.modules.shaffer_blogger.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.sendblue",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.sendblue.channel",
+      "target": "aiva.modules.sendblue",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.sendblue.lib",
+      "target": "aiva.modules.sendblue",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.sendblue.lib.sendblue_client",
+      "target": "aiva.modules.sendblue.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.skill_creator",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.skill_creator.skills",
+      "target": "aiva.modules.skill_creator",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.skill_creator.skills.skill_creator",
+      "target": "aiva.modules.skill_creator.skills",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.skill_creator.skills.skill_creator.scripts",
+      "target": "aiva.modules.skill_creator.skills.skill_creator",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.skill_creator.skills.skill_creator.scripts.init_skill",
+      "target": "aiva.modules.skill_creator.skills.skill_creator.scripts",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.skill_creator.skills.skill_creator.scripts.package_skill",
+      "target": "aiva.modules.skill_creator.skills.skill_creator.scripts",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.skill_creator.skills.skill_creator.scripts.quick_validate",
+      "target": "aiva.modules.skill_creator.skills.skill_creator.scripts",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.module_suggester",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.module_suggester.lib",
+      "target": "aiva.modules.module_suggester",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.module_suggester.lib.catalog",
+      "target": "aiva.modules.module_suggester.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.module_suggester.lib.scanner",
+      "target": "aiva.modules.module_suggester.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.module_suggester.lib.analyzer",
+      "target": "aiva.modules.module_suggester.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.module_suggester.lib.__init__",
+      "target": "aiva.modules.module_suggester.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.module_suggester.lib.proposal",
+      "target": "aiva.modules.module_suggester.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.module_suggester.lib.materializer",
+      "target": "aiva.modules.module_suggester.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.module_suggester.lib.guard",
+      "target": "aiva.modules.module_suggester.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.module_suggester.lib.seen",
+      "target": "aiva.modules.module_suggester.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.conversations",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.conversations.services",
+      "target": "aiva.modules.conversations",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.conversations.services.speaker_id",
+      "target": "aiva.modules.conversations.services",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.conversations.services.sync_viaim",
+      "target": "aiva.modules.conversations.services",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.conversations.services.aiva_voice_monitor",
+      "target": "aiva.modules.conversations.services",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.conversations.services.speaker_job_worker",
+      "target": "aiva.modules.conversations.services",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.conversations.services.voice_memo_watcher",
+      "target": "aiva.modules.conversations.services",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.conversations.services.process_voice_memo",
+      "target": "aiva.modules.conversations.services",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.conversations.services.viaim_import",
+      "target": "aiva.modules.conversations.services",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.conversations.services.viaim_sync",
+      "target": "aiva.modules.conversations.services",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.conversations.services.suggest_speakers",
+      "target": "aiva.modules.conversations.services",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.imessage",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.imessage.__init__",
+      "target": "aiva.modules.imessage",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.imessage.privileged",
+      "target": "aiva.modules.imessage",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.imessage.privileged._legacy",
+      "target": "aiva.modules.imessage.privileged",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.imessage.privileged._legacy.sender_runtime",
+      "target": "aiva.modules.imessage.privileged._legacy",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.imessage.privileged._legacy.db_runtime",
+      "target": "aiva.modules.imessage.privileged._legacy",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.imessage.privileged._legacy.send_imessage",
+      "target": "aiva.modules.imessage.privileged._legacy",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli",
+      "target": "aiva.modules.imessage.privileged._legacy",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.sync",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.sync.hooks",
+      "target": "aiva.modules.sync",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.sync.hooks.pre_commit_validate",
+      "target": "aiva.modules.sync.hooks",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.jobs",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.jobs.jobs_runtime_paths",
+      "target": "aiva.modules.jobs",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.jobs.job_shell",
+      "target": "aiva.modules.jobs",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.jobs.services",
+      "target": "aiva.modules.jobs",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.jobs.services.poller",
+      "target": "aiva.modules.jobs.services",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.glm",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.glm.provider",
+      "target": "aiva.modules.glm",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.instagram",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.instagram.oauth_server",
+      "target": "aiva.modules.instagram",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.instagram.api",
+      "target": "aiva.modules.instagram",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.instagram.mcp_server",
+      "target": "aiva.modules.instagram",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.instagram.mcp_server.src",
+      "target": "aiva.modules.instagram.mcp_server",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.instagram.mcp_server.src.server",
+      "target": "aiva.modules.instagram.mcp_server.src",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.instagram.services",
+      "target": "aiva.modules.instagram",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.instagram.services.webhook_server",
+      "target": "aiva.modules.instagram.services",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.reminders",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.reminders.src",
+      "target": "aiva.modules.reminders",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.reminders.src.eventkit_store",
+      "target": "aiva.modules.reminders.src",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.comms_pipeline",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.comms_pipeline.bin",
+      "target": "aiva.modules.comms_pipeline",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.comms_pipeline.bin.test_action_scan",
+      "target": "aiva.modules.comms_pipeline.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.comms_pipeline.lib",
+      "target": "aiva.modules.comms_pipeline",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.comms_pipeline.lib.__init__",
+      "target": "aiva.modules.comms_pipeline.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.comms_pipeline.lib.skip_rules",
+      "target": "aiva.modules.comms_pipeline.lib",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.talk",
+      "target": "aiva.modules",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.talk.services",
+      "target": "aiva.modules.talk",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.talk.services.canvas_talk_listener",
+      "target": "aiva.modules.talk.services",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.talk.services.aiva_audio_server",
+      "target": "aiva.modules.talk.services",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.talk.services.aiva_canvas_server",
+      "target": "aiva.modules.talk.services",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.talk.services.canvas_tmux_session",
+      "target": "aiva.modules.talk.services",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.talk.services.canvas_push",
+      "target": "aiva.modules.talk.services",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.modules.talk.services.canvas_ask",
+      "target": "aiva.modules.talk.services",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops",
+      "target": "aiva",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.reconcile_modules",
+      "target": "aiva.ops",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.validate_jobs_json",
+      "target": "aiva.ops",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.aiva_status",
+      "target": "aiva.ops",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.generate_skills_index",
+      "target": "aiva.ops",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.hydrate_docs",
+      "target": "aiva.ops",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.validate_modules",
+      "target": "aiva.ops",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.drift_check_docs",
+      "target": "aiva.ops",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.doctor",
+      "target": "aiva.ops",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.scanner_quality_report",
+      "target": "aiva.ops",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.codex_jsonl_probe",
+      "target": "aiva.ops",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.validate_memory",
+      "target": "aiva.ops",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.validate_skills",
+      "target": "aiva.ops",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.bin",
+      "target": "aiva.ops",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.bin.trim_logs",
+      "target": "aiva.ops.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.bin.safe_capture",
+      "target": "aiva.ops.bin",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests",
+      "target": "aiva.ops",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.test_provider_capabilities_smoke",
+      "target": "aiva.ops.tests",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.conftest",
+      "target": "aiva.ops.tests",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.test_memory_runtime",
+      "target": "aiva.ops.tests",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.test_skip_rules",
+      "target": "aiva.ops.tests",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.test_provider_golden_reference",
+      "target": "aiva.ops.tests",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder",
+      "target": "aiva.ops.tests",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.conftest",
+      "target": "aiva.ops.tests.responder",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.test_integration",
+      "target": "aiva.ops.tests.responder",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit",
+      "target": "aiva.ops.tests.responder",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_imessage_db_vision",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_main",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_session_compactor",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_compaction_state",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_contact_client_manager_safe_capture",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_typing_indicator",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_compaction_service",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_commands",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_extra",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_tool_handlers_coverage",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_manager",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_deep",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_final",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_tool_handlers",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_hot_loadable",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_api_server",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_queue",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_sdk_runtime",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_imessage_sender_extra",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_tool_handlers_extra",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_prompting",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_imessage_db",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_typing_indicator_extended",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_provider_conformance",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_tools",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_attachments",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_provider_registry",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_tool_handlers_exhaustive",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_send_file_to_user",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_codex_adapter",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_imessage_db_final",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_imessage_db_exhaustive",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_errors",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_safe_capture",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_config",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_stream_processor",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_api_server_errors",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_imessage_db_extra",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_compact",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_deep",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_imessage_sender",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_contact_manager",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_interrupts",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_bootstrap_message",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_deep_extra",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_client_results",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_logger",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_text_utils",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_responder_inject",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.tests.responder.unit.test_imessage_db_attachments",
+      "target": "aiva.ops.tests.responder.unit",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.scripts",
+      "target": "aiva.ops",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.scripts.mempalace_priority_mine",
+      "target": "aiva.ops.scripts",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.scripts.rebuild_hnsw",
+      "target": "aiva.ops.scripts",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.ops.scripts.rebuild_hnsw_simple",
+      "target": "aiva.ops.scripts",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core",
+      "target": "aiva",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.channel_bridge",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.config",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.models",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.skills",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.argparse_hints",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.dispatch",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.keychain_runtime",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.client",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.prompting",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.__init__",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.types",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.stream_processor",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.logger",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.client_manager",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.machine_runtime",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.query_runner",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.text",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.compaction",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.compaction_service",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.tool_state",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.tools",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.tools.send_file_to_user",
+      "target": "aiva.core.tools",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.tools.__init__",
+      "target": "aiva.core.tools",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.model_runtime",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.model_runtime.registry",
+      "target": "aiva.core.model_runtime",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.model_runtime.handoff_state",
+      "target": "aiva.core.model_runtime",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.model_runtime.__init__",
+      "target": "aiva.core.model_runtime",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.model_runtime.base",
+      "target": "aiva.core.model_runtime",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.auth",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.auth.oauth_callback_server",
+      "target": "aiva.core.auth",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.auth.callback_registry",
+      "target": "aiva.core.auth",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.message_channel",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.message_channel.registry",
+      "target": "aiva.core.message_channel",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.message_channel.__init__",
+      "target": "aiva.core.message_channel",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.message_channel.typing_indicator",
+      "target": "aiva.core.message_channel",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.message_channel.typing_indicator_compat",
+      "target": "aiva.core.message_channel",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.message_channel.base",
+      "target": "aiva.core.message_channel",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.responder",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.responder.service",
+      "target": "aiva.core.responder",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.responder.startup",
+      "target": "aiva.core.responder",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.responder.dispatch",
+      "target": "aiva.core.responder",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.responder.__init__",
+      "target": "aiva.core.responder",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.responder.attachments",
+      "target": "aiva.core.responder",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.responder.inject",
+      "target": "aiva.core.responder",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.responder.message_queue",
+      "target": "aiva.core.responder",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.responder.interrupts",
+      "target": "aiva.core.responder",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.responder.hot_bindings",
+      "target": "aiva.core.responder",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.responder.commands",
+      "target": "aiva.core.responder",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.responder.hot_reload",
+      "target": "aiva.core.responder",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.tool_handlers",
+      "target": "aiva.core",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.tool_handlers.misc",
+      "target": "aiva.core.tool_handlers",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.tool_handlers.__init__",
+      "target": "aiva.core.tool_handlers",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.core.tool_handlers.core",
+      "target": "aiva.core.tool_handlers",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.mcp_server",
+      "target": "aiva",
+      "type": "contained_in"
+    },
+    {
+      "source": "aiva.mcp_server.server",
+      "target": "aiva.mcp_server",
       "type": "contained_in"
     },
     {
@@ -35875,6 +38950,66 @@
       "type": "contained_in"
     },
     {
+      "source": "mikeshaffer.scripts",
+      "target": "mikeshaffer",
+      "type": "contained_in"
+    },
+    {
+      "source": "mikeshaffer.scripts.imessage_laptop_healthcheck",
+      "target": "mikeshaffer.scripts",
+      "type": "contained_in"
+    },
+    {
+      "source": "mikeshaffer.scripts.proactive_observer",
+      "target": "mikeshaffer.scripts",
+      "type": "contained_in"
+    },
+    {
+      "source": "mikeshaffer.scripts.mempalace_cleanup",
+      "target": "mikeshaffer.scripts",
+      "type": "contained_in"
+    },
+    {
+      "source": "mikeshaffer.scripts.viaim_inspect",
+      "target": "mikeshaffer.scripts",
+      "type": "contained_in"
+    },
+    {
+      "source": "mikeshaffer.scripts.maricar_capacity",
+      "target": "mikeshaffer.scripts",
+      "type": "contained_in"
+    },
+    {
+      "source": "mikeshaffer.speaker_embed",
+      "target": "mikeshaffer",
+      "type": "contained_in"
+    },
+    {
+      "source": "mikeshaffer.speaker_embed.compare_embeddings",
+      "target": "mikeshaffer.speaker_embed",
+      "type": "contained_in"
+    },
+    {
+      "source": "mikeshaffer.speaker_embed.speaker_embedding",
+      "target": "mikeshaffer.speaker_embed",
+      "type": "contained_in"
+    },
+    {
+      "source": "mikeshaffer.speaker_embed.reembed",
+      "target": "mikeshaffer.speaker_embed",
+      "type": "contained_in"
+    },
+    {
+      "source": "mikeshaffer.work",
+      "target": "mikeshaffer",
+      "type": "contained_in"
+    },
+    {
+      "source": "mikeshaffer.work.aiva_save_oauth",
+      "target": "mikeshaffer.work",
+      "type": "contained_in"
+    },
+    {
       "source": "launchd.com_aiva_api_server",
       "target": "aiva.modules.notify.services.api_server",
       "type": "schedules"
@@ -36027,6 +39162,6 @@
   ],
   "counts": {
     "nodes": 2951,
-    "edges": 2520
+    "edges": 3147
   }
 }
