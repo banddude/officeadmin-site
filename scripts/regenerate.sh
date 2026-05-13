@@ -60,6 +60,9 @@ else
 fi
 
 if [[ "$DIRTY" -eq 0 ]]; then
+  # Reset the map file before pull — we're about to regenerate it anyway,
+  # so any local diff would just block the rebase.
+  git checkout -- officeadmin/data/system-map.v2.json 2>/dev/null || true
   if ! git pull --rebase --quiet 2>>"$LOG"; then
     log "FATAL: git pull failed"
     exit 1
