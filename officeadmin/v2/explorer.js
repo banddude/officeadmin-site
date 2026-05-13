@@ -1,5 +1,5 @@
 // VERSION_MARKER_2026_05_12_v4 — anchor logic + zoom floor
-window.__EXPLORER_VERSION__ = "2026-05-12-v4";
+window.__EXPLORER_VERSION__ = "2026-05-12-v5-debug";
 
 // explorer.js — Cytoscape-based renderer for system-map.v2.json.
 //
@@ -81,10 +81,34 @@ const state = {
   searchMode: false,
 };
 
-async function loadData() {
+async function loadData(progress) {
+  progress("fetching data...");
   const res = await fetch("../data/system-map.v2.json", { cache: "no-store" });
-  if (!res.ok) throw new Error(`failed to load system-map.v2.json: ${res.status}`);
-  return res.json();
+  if (!res.ok) throw new Error(`HTTP ${res.status} loading system-map.v2.json`);
+  const len = +(res.headers.get("content-length") || 0);
+  if (!res.body || !len) {
+    progress("parsing data...");
+    return res.json();
+  }
+  // Streamed read with progress so mobile users see it's actually working,
+  // not silently downloading 4MB.
+  const reader = res.body.getReader();
+  const chunks = [];
+  let received = 0;
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    chunks.push(value);
+    received += value.length;
+    const pct = Math.floor((received / len) * 100);
+    progress(`fetching data... ${pct}% (${(received/1024/1024).toFixed(1)}MB / ${(len/1024/1024).toFixed(1)}MB)`);
+  }
+  progress("parsing data...");
+  const text = new TextDecoder().decode(new Blob(chunks).slice(0));
+  // Blob.slice is synchronous but returns a Blob; need to use arrayBuffer instead
+  const blob = new Blob(chunks);
+  const txt = await blob.text();
+  return JSON.parse(txt);
 }
 
 function buildAdjacency(edges) {
@@ -479,18 +503,48 @@ function bindReset() {
   });
 }
 
+function setStatus(msg) {
+  const el = document.getElementById("stats");
+  if (el) el.textContent = msg;
+}
+
+function showFatal(err) {
+  const el = document.getElementById("stats");
+  if (el) {
+    el.style.color = "#c00";
+    el.style.fontWeight = "bold";
+    el.textContent = `ERROR: ${err && err.message ? err.message : String(err)}`;
+  }
+  // Also try to surface in the main area so it isn't tucked under the toolbar
+  const main = document.querySelector("main") || document.body;
+  const banner = document.createElement("div");
+  banner.style.cssText = "position:fixed;top:60px;left:8px;right:8px;background:#fee;border:2px solid #c00;color:#600;padding:12px;font-family:monospace;font-size:12px;z-index:9999;white-space:pre-wrap;overflow:auto;max-height:50vh;";
+  banner.textContent = `Explorer failed.\n\n${err && err.stack ? err.stack : err}`;
+  main.appendChild(banner);
+  console.error("explorer fatal:", err);
+}
+
+// Capture top-level errors so silent failures become visible.
+window.addEventListener("error", (e) => showFatal(e.error || e.message || "unknown error"));
+window.addEventListener("unhandledrejection", (e) => showFatal(e.reason || "unhandled rejection"));
+
 async function main() {
   try {
-    state.data = await loadData();
+    setStatus("starting...");
+    if (typeof cytoscape === "undefined") {
+      throw new Error("cytoscape global not loaded — check CDN scripts");
+    }
+    state.data = await loadData(setStatus);
+    setStatus(`building graph (${state.data.nodes.length} nodes, ${state.data.edges.length} edges)...`);
+    await new Promise(r => setTimeout(r, 0)); // let UI paint
+    renderView(null);
+    setStatus(`${state.data.nodes.length} nodes · ${state.data.edges.length} edges`);
+    bindSearch();
+    bindReset();
+    console.log(`loaded ${state.data.nodes.length} nodes, ${state.data.edges.length} edges`);
   } catch (err) {
-    document.getElementById("stats").textContent = `error: ${err.message}`;
-    console.error(err);
-    return;
+    showFatal(err);
   }
-  renderView(null);
-  bindSearch();
-  bindReset();
-  console.log(`loaded ${state.data.nodes.length} nodes, ${state.data.edges.length} edges`);
 }
 
 main();
