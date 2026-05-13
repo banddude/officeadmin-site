@@ -74,6 +74,26 @@ def safe_label(name: str) -> str:
     return name
 
 
+def _extract_calls(func_node: ast.AST) -> list[str]:
+    """Walk a function/method AST and extract callee names from ast.Call nodes.
+
+    Returns a list of bare callee names (e.g. 'run_pipeline', 'requests.get').
+    These are resolved to canonical node IDs in finalize().
+    """
+    calls = []
+    for node in ast.walk(func_node):
+        if not isinstance(node, ast.Call):
+            continue
+        func = node.func
+        if isinstance(func, ast.Name):
+            calls.append(func.id)
+        elif isinstance(func, ast.Attribute):
+            # For obj.method(), we capture just the attribute name.
+            # Full resolution (obj.type -> module.Class -> method) is deferred.
+            calls.append(func.attr)
+    return calls
+
+
 def parse_file(file_path: Path, root: Path, subsystem: str) -> tuple[list[dict], list[dict]]:
     nodes: list[dict] = []
     edges: list[dict] = []
@@ -109,6 +129,9 @@ def parse_file(file_path: Path, root: Path, subsystem: str) -> tuple[list[dict],
                 "language": "python",
             })
             edges.append({"source": fn_id, "target": file_node_id, "type": "contained_in"})
+            # Collect calls from this function body.
+            for call_name in _extract_calls(node):
+                edges.append({"source": fn_id, "target": call_name, "type": "calls"})
         elif isinstance(node, ast.ClassDef):
             cls_id = f"{file_node_id}.{node.name}"
             nodes.append({
@@ -120,6 +143,21 @@ def parse_file(file_path: Path, root: Path, subsystem: str) -> tuple[list[dict],
                 "language": "python",
             })
             edges.append({"source": cls_id, "target": file_node_id, "type": "contained_in"})
+            # Methods inside the class.
+            for child in ast.iter_child_nodes(node):
+                if isinstance(child, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                    method_id = f"{cls_id}.{child.name}"
+                    nodes.append({
+                        "id": method_id,
+                        "label": child.name,
+                        "kind": "function",
+                        "parent": cls_id,
+                        "subsystem": subsystem,
+                        "language": "python",
+                    })
+                    edges.append({"source": method_id, "target": cls_id, "type": "contained_in"})
+                    for call_name in _extract_calls(child):
+                        edges.append({"source": method_id, "target": call_name, "type": "calls"})
         elif isinstance(node, ast.Import):
             for alias in node.names:
                 target = alias.name.replace("-", "_")
@@ -211,11 +249,53 @@ def resolve_import_target(raw_target: str, source_id: str, internal_ids: set[str
     return None
 
 
+def resolve_call_target(bare_name: str, source_id: str, name_index: dict[str, list[str]], subsystem: str) -> str | None:
+    """Resolve a bare callee name to a canonical function node ID.
+
+    Strategy: look up all nodes with that bare name, then pick the one
+    that shares the longest common prefix with the source. This prefers
+    same-module calls over cross-module calls with the same name.
+    """
+    candidates = name_index.get(bare_name)
+    if not candidates:
+        return None
+
+    if len(candidates) == 1:
+        return candidates[0]
+
+    # Pick the candidate with the longest shared prefix with source_id.
+    best = None
+    best_len = -1
+    for c in candidates:
+        src_parts = source_id.split(".")
+        cnd_parts = c.split(".")
+        shared = 0
+        for a, b in zip(src_parts, cnd_parts):
+            if a == b:
+                shared += 1
+            else:
+                break
+        if shared > best_len:
+            best_len = shared
+            best = c
+    return best
+
+
 def finalize(nodes: list[dict], edges: list[dict], subsystem: str) -> tuple[list[dict], list[dict]]:
     """Post-process: add containment edges for every node->parent relationship,
-    resolve import targets to internal node IDs (or drop), dedupe edges."""
+    resolve import targets to internal node IDs (or drop), resolve calls edges,
+    dedupe edges."""
     internal_ids = {n["id"] for n in nodes}
     internal_ids.add(subsystem)  # subsystem node exists in the merged graph
+
+    # Build a name-to-ids index for call resolution. A bare name like
+    # "run_pipeline" could match many functions; we prefer the closest one
+    # (sharing the most namespace prefix with the caller).
+    name_index: dict[str, list[str]] = {}
+    for nid in internal_ids:
+        parts = nid.split(".")
+        bare = parts[-1]
+        name_index.setdefault(bare, []).append(nid)
 
     # Add containment edges from each node to its parent, where not already present
     existing = {(e["source"], e["target"], e["type"]) for e in edges}
@@ -228,21 +308,33 @@ def finalize(nodes: list[dict], edges: list[dict], subsystem: str) -> tuple[list
             edges.append({"source": n["id"], "target": parent, "type": "contained_in"})
             existing.add(key)
 
-    # Resolve imports; drop external/stdlib
+    # Resolve imports; drop external/stdlib. Resolve calls; drop unresolvable.
     resolved_edges: list[dict] = []
-    dropped = 0
+    imports_dropped = 0
+    calls_dropped = 0
+    calls_resolved = 0
     for e in edges:
-        if e["type"] != "imports":
+        if e["type"] == "imports":
+            target = resolve_import_target(e["target"], e["source"], internal_ids, subsystem)
+            if target is None:
+                imports_dropped += 1
+                continue
+            if target == e["source"]:
+                imports_dropped += 1
+                continue
+            resolved_edges.append({**e, "target": target})
+        elif e["type"] == "calls":
+            target = resolve_call_target(e["target"], e["source"], name_index, subsystem)
+            if target is None:
+                calls_dropped += 1
+                continue
+            if target == e["source"]:
+                calls_dropped += 1
+                continue
+            resolved_edges.append({**e, "target": target})
+            calls_resolved += 1
+        else:
             resolved_edges.append(e)
-            continue
-        target = resolve_import_target(e["target"], e["source"], internal_ids, subsystem)
-        if target is None:
-            dropped += 1
-            continue
-        if target == e["source"]:
-            dropped += 1
-            continue
-        resolved_edges.append({**e, "target": target})
 
     # Dedupe (same source/target/type)
     seen = set()
@@ -254,7 +346,7 @@ def finalize(nodes: list[dict], edges: list[dict], subsystem: str) -> tuple[list
         seen.add(key)
         deduped.append(e)
 
-    print(f"finalize({subsystem}): dropped {dropped} external imports, {len(deduped)} edges after dedupe", file=sys.stderr)
+    print(f"finalize({subsystem}): dropped {imports_dropped} imports, {calls_dropped} calls, resolved {calls_resolved} calls, {len(deduped)} edges total", file=sys.stderr)
     return nodes, deduped
 
 

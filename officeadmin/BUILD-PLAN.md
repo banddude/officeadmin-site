@@ -5,8 +5,8 @@ Read this whole document before editing. Update it every time the plan changes, 
 ## Status
 
 - **Started:** 2026-05-12
-- **Current phase:** Phase 5 (Swift) done. Next: Phase 2.5 part 2 (calls edges).
-- **Last update:** 2026-05-12 — Swift parser shipped. Data: 5244 nodes, 5439 edges. Regex-based parsing for ~/AIVA + claude-island apps.
+- **Current phase:** All 5 work items complete. Ready for review.
+- **Last update:** 2026-05-12 — Phase 2.5 part 2 (calls edges) done. Data: 5849 nodes, 12471 edges. 6427 calls edges between functions.
 
 ### Phase 1 — done
 
@@ -116,7 +116,7 @@ The generator has a sanitization function that runs on every node and edge befor
 - [x] Verified: 2767 + 93 nodes, zero `/Users/`, `/home/`, email, phone, or customer-slug hits in output
 - [x] Phase 2.5: import target normalization — `resolve_import_target` walks source's ancestors + subsystem prefix to canonicalize bare names like `comms_pipeline` → `aiva.modules.comms_pipeline`. External/stdlib imports are dropped. 1408 dangling edges → 259 resolved + 1408 dropped (correct).
 - [x] Phase 2.5: emit `contained_in` edge for every node-to-parent relationship (not just leaf-to-file). Fixes the disconnected-subsystem bug.
-- [ ] Still deferred: `calls` edges between functions (Phase 2.5 part 2)
+- [x] Phase 2.5 part 2: function-level `calls` edges. Walks ast.Call nodes in function/method bodies, resolves callee names to known function IDs using name index + longest-prefix matching. 6427 calls edges resolved. Methods inside classes also now discovered (not just top-level functions).
 - [ ] Still deferred: relative import resolution (`from . import x`)
 
 ### Phase 3: Launchd + SKILL.md + MCP parsers — DONE
