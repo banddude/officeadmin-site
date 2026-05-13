@@ -30,7 +30,7 @@ from pathlib import Path
 
 HOME = Path.home()
 SITE_REPO = HOME / "tmp" / "officeadmin-site"
-PUBLISHED = SITE_REPO / "officeadmin" / "data" / "system-map.v2.json"
+DEFAULT_PUBLISHED = SITE_REPO / "officeadmin" / "data" / "system-map.v2.json"
 ENTITIES_DIR = HOME / "mikeshaffer" / "entities"
 
 # Stop-words: very short or extremely common tokens that would generate
@@ -131,9 +131,10 @@ def is_allowlisted(value: str) -> bool:
     return any(item in lo for item in PUBLIC_ALLOWLIST)
 
 
-def audit() -> int:
-    if not PUBLISHED.exists():
-        print(f"FATAL: published file not found: {PUBLISHED}", file=sys.stderr)
+def audit(target: Path | None = None) -> int:
+    target = target or DEFAULT_PUBLISHED
+    if not target.exists():
+        print(f"FATAL: published file not found: {target}", file=sys.stderr)
         return 2
 
     full_names, precise_contacts = build_deny_terms()
@@ -143,7 +144,7 @@ def audit() -> int:
         file=sys.stderr,
     )
 
-    data = json.loads(PUBLISHED.read_text())
+    data = json.loads(target.read_text())
     violations: list[tuple[str, str, str]] = []
     seen_paths = set()
 
@@ -185,7 +186,7 @@ def audit() -> int:
                 break
 
     if violations:
-        print(f"\nFATAL: {len(violations)} privacy violation(s) found in {PUBLISHED.name}:", file=sys.stderr)
+        print(f"\nFATAL: {len(violations)} privacy violation(s) found in {target.name}:", file=sys.stderr)
         for path, value, reason in violations[:30]:
             print(f"  {reason}\n    at: {path}\n    value: {value!r}", file=sys.stderr)
         if len(violations) > 30:
@@ -198,4 +199,5 @@ def audit() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(audit())
+    arg = Path(sys.argv[1]).expanduser() if len(sys.argv) > 1 else None
+    sys.exit(audit(arg))
