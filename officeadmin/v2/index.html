@@ -76,7 +76,7 @@
     </header>
     <main>
       <div id="cy"></div>
-      <div id="stats">loading…</div>
+      <div id="stats">(stats render once explorer.js runs)</div>
       <div id="legend">
         <h2>nodes</h2>
         <div class="row"><span class="swatch" style="background: var(--node-subsystem)"></span> subsystem</div>
@@ -99,10 +99,46 @@
     </main>
   </div>
 
-  <script src="https://unpkg.com/cytoscape@3.30.4/dist/cytoscape.min.js"></script>
-  <script src="https://unpkg.com/layout-base@2.0.1/layout-base.js"></script>
-  <script src="https://unpkg.com/cose-base@2.2.0/cose-base.js"></script>
-  <script src="https://unpkg.com/cytoscape-fcose@2.2.0/cytoscape-fcose.js"></script>
-  <script src="./explorer.js?v=2026-05-12-v5" type="module"></script>
+  <!-- No-JS visible diagnostic; the explorer module replaces this once it starts. -->
+  <div id="boot" style="position:fixed;top:60px;left:8px;right:8px;background:#1a1d22;border:1px solid #444;color:#9cf;padding:10px 14px;font-family:monospace;font-size:12px;z-index:10000;white-space:pre-wrap;line-height:1.5;">v6 boot — waiting for scripts to load...</div>
+  <script>
+    // Run BEFORE any module imports. Pure script, no dependencies. If you see
+    // "boot script ran" but nothing further, the JS engine is fine but the
+    // CDN scripts or module load is what's stalling.
+    (function () {
+      var b = document.getElementById("boot");
+      var log = [];
+      function update(extra) {
+        if (extra) log.push(extra);
+        b.textContent = "v6 boot — " + log.join(" · ");
+      }
+      update("boot script ran");
+      window.__BOOT_LOG__ = log;
+      window.__BOOT_UPDATE__ = update;
+      window.addEventListener("error", function (e) {
+        update("ERROR: " + (e.message || e.error || "unknown"));
+        b.style.color = "#f88";
+        b.style.borderColor = "#c00";
+      });
+      window.addEventListener("unhandledrejection", function (e) {
+        update("UNHANDLED: " + (e.reason && e.reason.message ? e.reason.message : String(e.reason)));
+        b.style.color = "#f88";
+        b.style.borderColor = "#c00";
+      });
+      // Timeout: if explorer.js doesn't take over within 15s, declare a stall.
+      setTimeout(function () {
+        if (!window.__EXPLORER_VERSION__) {
+          update("STALL — explorer.js did not start within 15s. typeof cytoscape=" + typeof window.cytoscape);
+          b.style.color = "#fc6";
+          b.style.borderColor = "#a60";
+        }
+      }, 15000);
+    })();
+  </script>
+  <script src="https://unpkg.com/cytoscape@3.30.4/dist/cytoscape.min.js" onload="window.__BOOT_UPDATE__('cytoscape loaded')" onerror="window.__BOOT_UPDATE__('cytoscape FAILED to load')"></script>
+  <script src="https://unpkg.com/layout-base@2.0.1/layout-base.js" onload="window.__BOOT_UPDATE__('layout-base loaded')" onerror="window.__BOOT_UPDATE__('layout-base FAILED to load')"></script>
+  <script src="https://unpkg.com/cose-base@2.2.0/cose-base.js" onload="window.__BOOT_UPDATE__('cose-base loaded')" onerror="window.__BOOT_UPDATE__('cose-base FAILED to load')"></script>
+  <script src="https://unpkg.com/cytoscape-fcose@2.2.0/cytoscape-fcose.js" onload="window.__BOOT_UPDATE__('fcose loaded')" onerror="window.__BOOT_UPDATE__('fcose FAILED to load')"></script>
+  <script src="./explorer.js?v=2026-05-12-v6" type="module"></script>
 </body>
 </html>

@@ -1,5 +1,13 @@
 // VERSION_MARKER_2026_05_12_v4 — anchor logic + zoom floor
-window.__EXPLORER_VERSION__ = "2026-05-12-v5-debug";
+window.__EXPLORER_VERSION__ = "2026-05-12-v6-boot";
+// Hide the boot diagnostic once explorer module starts executing.
+(function () {
+  var b = document.getElementById("boot");
+  if (b && window.__BOOT_UPDATE__) {
+    window.__BOOT_UPDATE__("explorer.js module executing");
+    setTimeout(function () { if (b) b.style.display = "none"; }, 2000);
+  }
+})();
 
 // explorer.js — Cytoscape-based renderer for system-map.v2.json.
 //
