@@ -5,8 +5,8 @@ Read this whole document before editing. Update it every time the plan changes, 
 ## Status
 
 - **Started:** 2026-05-12
-- **Current phase:** 2 (Python parser) — next
-- **Last update:** 2026-05-12 — Phase 1 complete. New generator at `scripts/generate-system-map.mjs` runs end-to-end with seed nodes, schema enforcement, and sanitization assertion. Old `generate-officeadmin-map.mjs` still in place as v1 fallback during transition; will be removed when v2 reaches feature parity.
+- **Current phase:** 3 (Launchd + SKILL.md + MCP) — next
+- **Last update:** 2026-05-12 — Phase 2 complete. Python parser at `scripts/parse-python.py` walks AIVA (2767 nodes) and mikeshaffer (93 nodes) using native `ast`. Generator wires the helper in via spawnSync. End-to-end run produces 2865 nodes / 2490 edges with zero sensitive-content audit hits.
 
 ### Phase 1 — done
 
@@ -105,13 +105,20 @@ The generator has a sanitization function that runs on every node and edge befor
 - [x] Leave v1 generator alongside as fallback during transition
 - Note: skipped tree-sitter dep for Python (using native `ast` instead). Will add tree-sitter only for TS (Phase 4) and Swift (Phase 5).
 
-### Phase 2: Python parser ← WE ARE HERE
+### Phase 2: Python parser — DONE (v1)
 
-- [ ] Walk `~/.aiva` and `~/mikeshaffer` (paths configurable, defaults via env)
-- [ ] Per file: emit `file` node, then `function`/`class` nodes with `contained_in` edges
-- [ ] Extract `import` statements → `imports` edges between module nodes
-- [ ] Extract function-call edges where resolvable to a known target
-- [ ] Resolve hierarchy: file → module → subsystem (`aiva` vs `mikeshaffer`)
+- [x] `scripts/parse-python.py` walks roots using Python's native `ast`
+- [x] Per-subsystem allowlist (tight, e.g. mikeshaffer only descends into `scripts`, `speaker-embed`, `work`, `bin`)
+- [x] Hard skip dirs (`entities`, `state`, `backups`, etc.) regardless of where they appear
+- [x] Emits `file`, `module`, `class`, `function` nodes with hierarchy via `parent`
+- [x] Emits `contained_in` and `imports` edges
+- [x] Wired into Node generator via `spawnSync`
+- [x] Verified: 2767 + 93 nodes, zero `/Users/`, `/home/`, email, phone, or customer-slug hits in output
+- [ ] Deferred to Phase 2.5: `calls` edges (need a second pass to resolve call targets against known node IDs)
+- [ ] Deferred to Phase 2.5: relative import resolution (`from . import x`)
+- [ ] Deferred: import target normalization so partial imports like `from comms_pipeline import x` resolve against fully-qualified `aiva.modules.comms_pipeline` node IDs
+
+### Phase 3: Launchd + SKILL.md + MCP parsers ← WE ARE HERE
 
 ### Phase 3: Launchd + SKILL.md + MCP parsers
 

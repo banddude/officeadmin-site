@@ -15,6 +15,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -152,11 +153,40 @@ function assertNoSensitiveContent(nodes, edges) {
 // Parsers. Each returns { nodes: [...], edges: [...] }. Stubs for now.
 // ---------------------------------------------------------------------------
 
+// Per-subsystem Python source allowlists. Empty list = walk everything in the
+// root (respecting parse-python.py's HARD_SKIP_DIRS). Keep these tight to avoid
+// pulling in data directories with sensitive content.
+const PYTHON_ALLOWLISTS = {
+  aiva: ["modules", "ops", "bin", "scripts", "core", "mcp-server", "build"],
+  mikeshaffer: ["scripts", "speaker-embed", "work", "bin"],
+};
+
 async function parsePython(root, subsystem) {
-  // TODO Phase 2: walk dir, parse .py with tree-sitter, emit
-  // file/class/function nodes + imports/calls/contained_in edges.
-  console.warn(`[stub] parsePython(${subsystem}) — Phase 2`);
-  return { nodes: [], edges: [] };
+  if (!fs.existsSync(root)) {
+    console.warn(`parsePython(${subsystem}): root not found at ${root.replace(process.env.HOME, "~")}`);
+    return { nodes: [], edges: [] };
+  }
+  const helper = path.join(__dirname, "parse-python.py");
+  const allow = (PYTHON_ALLOWLISTS[subsystem] || []).join(",");
+  const args = [helper, root, subsystem];
+  if (allow) args.push("--allowlist", allow);
+  const result = spawnSync("python3", args, { encoding: "utf8", maxBuffer: 64 * 1024 * 1024 });
+  if (result.status !== 0) {
+    console.error(`parsePython(${subsystem}) failed:`, result.stderr);
+    return { nodes: [], edges: [] };
+  }
+  if (result.stderr) {
+    // Warnings (e.g. missing root) from the helper.
+    process.stderr.write(result.stderr);
+  }
+  try {
+    const out = JSON.parse(result.stdout);
+    console.log(`parsePython(${subsystem}): ${out.nodes.length} nodes, ${out.edges.length} edges`);
+    return out;
+  } catch (err) {
+    console.error(`parsePython(${subsystem}): failed to parse helper output:`, err);
+    return { nodes: [], edges: [] };
+  }
 }
 
 async function parseLaunchd(root) {
