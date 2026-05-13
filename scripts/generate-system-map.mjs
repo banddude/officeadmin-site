@@ -40,6 +40,9 @@ const SOURCES = {
   // TypeScript sources
   qbCli: process.env.QB_CLI_PATH || path.join(process.env.HOME, ".aiva", "modules", "quickbooks", "qb-cli"),
   openclaw: process.env.OPENCLAW_PATH || path.join(process.env.HOME, ".openclaw", "workspace"),
+  // Swift sources
+  aivaSwift: process.env.AIVA_SWIFT_PATH || path.join(process.env.HOME, "AIVA"),
+  claudeIsland: process.env.CLAUDE_ISLAND_PATH || path.join(process.env.HOME, ".claude", "claude-island"),
 };
 
 // ---------------------------------------------------------------------------
@@ -247,9 +250,18 @@ async function parseTypescript() {
 }
 
 async function parseSwift() {
-  // TODO Phase 5.
-  console.warn(`[stub] parseSwift — Phase 5`);
-  return { nodes: [], edges: [] };
+  // AIVA iOS/macOS apps
+  const aivaResult = runPythonHelper("parse-swift.py", SOURCES.aivaSwift, "ios-apps");
+  console.log(`parseSwift(aiva): ${aivaResult.nodes.length} nodes, ${aivaResult.edges.length} edges`);
+
+  // Claude Island (macOS notch app)
+  const islandResult = runPythonHelper("parse-swift.py", SOURCES.claudeIsland, "ios-apps");
+  console.log(`parseSwift(claude-island): ${islandResult.nodes.length} nodes, ${islandResult.edges.length} edges`);
+
+  return {
+    nodes: [...aivaResult.nodes, ...islandResult.nodes],
+    edges: [...aivaResult.edges, ...islandResult.edges],
+  };
 }
 
 // ---------------------------------------------------------------------------

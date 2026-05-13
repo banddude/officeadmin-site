@@ -5,8 +5,8 @@ Read this whole document before editing. Update it every time the plan changes, 
 ## Status
 
 - **Started:** 2026-05-12
-- **Current phase:** Renderer polish done. Next: accessible tree view.
-- **Last update:** 2026-05-12 — Renderer v2 shipped with semantic zoom + compound nodes. Overview starts with subsystems/machines/first-two-levels (~273 nodes). Zoom thresholds hide/reveal tiers. Compound parent grouping enabled via Cytoscape native parent field.
+- **Current phase:** Phase 5 (Swift) done. Next: Phase 2.5 part 2 (calls edges).
+- **Last update:** 2026-05-12 — Swift parser shipped. Data: 5244 nodes, 5439 edges. Regex-based parsing for ~/AIVA + claude-island apps.
 
 ### Phase 1 — done
 
@@ -160,11 +160,15 @@ The generator has a sanitization function that runs on every node and edge befor
 - [x] Data: 3452 nodes, 3645 edges (was 2951/3147)
 - [ ] Cross-language edges where a TS Worker hits a Python-backed MCP endpoint (deferred)
 
-### Phase 5: Swift parser
+### Phase 5: Swift parser — DONE
 
-- [ ] Identify Swift sources (iOS apps)
-- [ ] Tree-sitter Swift grammar, mirror the others
-- [ ] Cross-language edges where Swift hits a TS/Python endpoint
+- [x] `scripts/parse-swift.py` using regex-based parsing (tree-sitter-swift has version incompatibility with system tree-sitter)
+- [x] Regex matches for func/class/struct/enum/protocol/actor declarations and import statements
+- [x] Comment stripping before parsing to avoid false matches
+- [x] Manual directory walk (not rglob) to avoid xcodeproj/xcworkspace bundle scanning issues
+- [x] Walks ~/AIVA (247 files, subsystem "ios-apps") and ~/.claude/claude-island (214 files, "ios-apps")
+- [x] Data: 5244 nodes, 5439 edges (was 3452/3645)
+- [ ] Cross-language edges where Swift hits TS/Python endpoints (deferred)
 
 ### Phase 6: Renderer
 
