@@ -274,11 +274,14 @@ function applySemanticZoom(cy) {
     cy.nodes().forEach((node) => {
       const tier = node.data("tier") ?? 2;
 
-      // Compound parents: visible if any child is visible.
+      // Compound parents: always show subsystems/machines as anchors;
+      // otherwise visible if any child is at the current tier.
       if (node.isParent()) {
+        const kind = node.data("kind");
+        const anchor = kind === "subsystem" || kind === "machine";
         const children = node.children();
         const anyChildVisible = children.some((c) => (c.data("tier") ?? 2) <= maxTier);
-        node.style("display", anyChildVisible ? "element" : "none");
+        node.style("display", anchor || anyChildVisible ? "element" : "none");
         node.style("label", showLabels ? "data(label)" : "");
         return;
       }
