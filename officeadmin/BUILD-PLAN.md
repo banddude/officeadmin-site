@@ -5,8 +5,8 @@ Read this whole document before editing. Update it every time the plan changes, 
 ## Status
 
 - **Started:** 2026-05-12
-- **Current phase:** Renderer polish (semantic zoom + compound nodes) — next.
-- **Last update:** 2026-05-12 — Phase 2.5 (imports + containment fix), Phase 7 (auto-trigger) done. Live graph at /officeadmin/v2/ now has real connections; auto-regenerates on every commit in ~/.aiva or ~/mikeshaffer, plus hourly launchd safety net.
+- **Current phase:** Renderer polish done. Next: accessible tree view.
+- **Last update:** 2026-05-12 — Renderer v2 shipped with semantic zoom + compound nodes. Overview starts with subsystems/machines/first-two-levels (~273 nodes). Zoom thresholds hide/reveal tiers. Compound parent grouping enabled via Cytoscape native parent field.
 
 ### Phase 1 — done
 
@@ -137,8 +137,9 @@ The generator has a sanitization function that runs on every node and edge befor
 - [x] Edge color legend, node color legend, search box (filters to matches, drops focus mode)
 - [x] Info panel on focus: kind, subsystem, edge summary, full ID
 - [x] Mobile gestures inherent from Cytoscape (pinch zoom, drag pan)
-- [ ] Deferred to v2 of the renderer: true semantic zoom via zoom thresholds (currently it's drill-down by click only)
-- [ ] Deferred: compound nodes for parent grouping (visible bounding boxes around child sets)
+- [x] Semantic zoom via zoom thresholds: low zoom (z<0.4) shows subsystems/machines only, mid (z<0.8) adds modules/skills/jobs, high adds files/classes/functions. Labels hidden at low zoom.
+- [x] Compound nodes enabled: parent field from JSON passed to Cytoscape. fcose nestingFactor=1.2. Contained_in edges styled subtle (dotted, no arrow).
+- [x] Overview now includes two levels deep so zoom-in reveals more detail without re-layout.
 
 ### Phase 4: TypeScript parser
 

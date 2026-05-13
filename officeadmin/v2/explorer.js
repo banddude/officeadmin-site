@@ -1,15 +1,15 @@
 // explorer.js — Cytoscape-based renderer for system-map.v2.json.
 //
 // Behavior:
-//   - Initial view: subsystems + machines + their direct first-level children.
-//     Avoids dumping all 2900+ nodes on screen at once.
-//   - Click a node: focus on that node + its 1-hop neighborhood, re-laid out
-//     with fcose, animated.
-//   - Breadcrumb tracks the focus history; click any breadcrumb crumb to jump
-//     back. Reset button returns to the overview.
-//   - Search: type to filter the full graph; matches drop the focus mode.
-//
-// Data shape comes from scripts/generate-system-map.mjs (schema in BUILD-PLAN.md).
+//   - Overview: subsystems + machines + direct children (~100 nodes).
+//   - Click a node: focus on that node + its 1-hop neighborhood, re-laid out.
+//   - Compound nodes: parent field used for visible grouping via Cytoscape
+//     compound support. fcose handles compound layouts natively.
+//   - Semantic zoom: within any view, zoom thresholds control which tiers
+//     are visible. Low: subsystems/machines. Mid: + modules/skills/jobs.
+//     High: + files/classes/functions. Labels hidden at low zoom.
+//   - Breadcrumb tracks the focus history; reset button returns to overview.
+//   - Search: type to filter; matches drop the focus mode.
 
 const NODE_COLOR = {
   subsystem: "#4a9eff",
@@ -24,6 +24,7 @@ const NODE_COLOR = {
   cli: "#f97316",
   endpoint: "#94a3b8",
 };
+
 const NODE_SIZE = {
   subsystem: 60,
   machine: 48,
@@ -34,7 +35,10 @@ const NODE_SIZE = {
   launchd_job: 28,
   skill: 28,
   mcp_tool: 28,
+  cli: 22,
+  endpoint: 22,
 };
+
 const EDGE_COLOR = {
   contained_in: "#3a3d44",
   imports: "#4a9eff",
@@ -49,22 +53,35 @@ const EDGE_COLOR = {
   depends_on: "#94a3b8",
 };
 
+const KIND_TIER = {
+  subsystem: 0,
+  machine: 0,
+  module: 1,
+  launchd_job: 1,
+  skill: 1,
+  mcp_tool: 1,
+  cli: 1,
+  file: 2,
+  class: 2,
+  function: 2,
+  endpoint: 2,
+};
+
+const ZOOM_LOW = 0.4;
+const ZOOM_MID = 0.8;
+
 const state = {
   data: null,
   cy: null,
-  focusStack: [], // node ids representing breadcrumb history
+  focusStack: [],
+  currentElements: null, // the subgraph currently displayed
+  searchMode: false,
 };
 
 async function loadData() {
   const res = await fetch("../data/system-map.v2.json", { cache: "no-store" });
   if (!res.ok) throw new Error(`failed to load system-map.v2.json: ${res.status}`);
   return res.json();
-}
-
-function nodeMap(nodes) {
-  const m = new Map();
-  for (const n of nodes) m.set(n.id, n);
-  return m;
 }
 
 function buildAdjacency(edges) {
@@ -80,14 +97,18 @@ function buildAdjacency(edges) {
 }
 
 function initialSubgraph(data) {
-  // Subsystems, machines, and their direct first-level children.
   const subsystems = data.nodes.filter((n) => n.kind === "subsystem" || n.kind === "machine");
   const subsystemIds = new Set(subsystems.map((n) => n.id));
+  // First-level children of subsystems/machines.
   const firstLevel = data.nodes.filter((n) => subsystemIds.has(n.parent));
   const all = [...subsystems, ...firstLevel];
   const allIds = new Set(all.map((n) => n.id));
-  const edges = data.edges.filter((e) => allIds.has(e.source) && allIds.has(e.target));
-  return { nodes: all, edges };
+  // Also include second-level children so they're available for zoom-in reveal.
+  const secondLevel = data.nodes.filter((n) => allIds.has(n.parent));
+  const expanded = [...all, ...secondLevel];
+  const expandedIds = new Set(expanded.map((n) => n.id));
+  const edges = data.edges.filter((e) => expandedIds.has(e.source) && expandedIds.has(e.target));
+  return { nodes: expanded, edges };
 }
 
 function focusSubgraph(data, focusId, hops = 1) {
@@ -109,14 +130,14 @@ function focusSubgraph(data, focusId, hops = 1) {
     for (const id of next) frontier.add(id);
   }
 
-  // Also include the focus node's parent chain for context.
+  // Parent chain for context.
   let p = focus.parent;
   while (p) {
     visited.add(p);
     const pn = data.nodes.find((n) => n.id === p);
     p = pn ? pn.parent : null;
   }
-  // And direct children of the focus node.
+  // Direct children of focus.
   for (const n of data.nodes) {
     if (n.parent === focusId) visited.add(n.id);
   }
@@ -127,18 +148,23 @@ function focusSubgraph(data, focusId, hops = 1) {
 }
 
 function toCyElements(sub, focusId) {
+  const subIds = new Set(sub.nodes.map((n) => n.id));
   const cyNodes = sub.nodes.map((n) => ({
     data: {
       id: n.id,
       label: n.label,
       kind: n.kind,
-      parent: n.parent && sub.nodes.some((x) => x.id === n.parent) ? null : null, // we don't use compound nodes yet
+      subsystem: n.subsystem || "",
+      language: n.language || "",
+      // Only set parent if the parent is also in this subgraph (compound node).
+      parent: n.parent && subIds.has(n.parent) ? n.parent : undefined,
+      tier: KIND_TIER[n.kind] ?? 2,
     },
     classes: [n.kind, focusId && n.id === focusId ? "focus" : ""].filter(Boolean).join(" "),
   }));
   const cyEdges = sub.edges.map((e, i) => ({
     data: {
-      id: `e${i}-${e.source}-${e.target}-${e.type}`,
+      id: `e${i}-${e.source}-${e.target}`,
       source: e.source,
       target: e.target,
       type: e.type,
@@ -153,7 +179,7 @@ function buildStyle() {
     {
       selector: "node",
       style: {
-        "background-color": "data(kind)",
+        "background-color": "#333",
         "label": "data(label)",
         "color": "#e4e6eb",
         "font-size": 10,
@@ -165,10 +191,38 @@ function buildStyle() {
         "border-width": 0,
         "width": 22,
         "height": 22,
+        "opacity": 1,
       },
     },
+    ...Object.entries(NODE_COLOR).map(([kind, color]) => ({
+      selector: `node.${kind}`,
+      style: {
+        "background-color": color,
+        "width": NODE_SIZE[kind] || 22,
+        "height": NODE_SIZE[kind] || 22,
+        "font-size": kind === "subsystem" ? 14 : (kind === "module" ? 12 : 10),
+      },
+    })),
     { selector: "node.focus", style: { "border-width": 3, "border-color": "#ffffff" } },
     { selector: "node:selected", style: { "border-width": 3, "border-color": "#4a9eff" } },
+    // Compound parent nodes: subtle background, border, label at top.
+    {
+      selector: "$node > node",
+      style: {
+        "background-color": "#16181c",
+        "background-opacity": 0.25,
+        "border-width": 1,
+        "border-color": "#2a2d33",
+        "border-opacity": 0.6,
+        "font-size": 11,
+        "text-valign": "top",
+        "text-halign": "center",
+        "text-margin-y": 4,
+        "label": "data(label)",
+        "color": "#8b8f96",
+        "padding": 15,
+      },
+    },
     {
       selector: "edge",
       style: {
@@ -177,22 +231,76 @@ function buildStyle() {
         "target-arrow-color": "#3a3d44",
         "target-arrow-shape": "triangle",
         "curve-style": "bezier",
-        "arrow-scale": 0.8,
-        "opacity": 0.7,
+        "arrow-scale": 0.6,
+        "opacity": 0.5,
+      },
+    },
+    ...Object.entries(EDGE_COLOR).map(([type, color]) => ({
+      selector: `edge.${type}`,
+      style: {
+        "line-color": color,
+        "target-arrow-color": color,
+      },
+    })),
+    // contained_in: subtle, no arrow, dotted.
+    {
+      selector: "edge.contained_in",
+      style: {
+        "target-arrow-shape": "none",
+        "line-style": "dotted",
+        "opacity": 0.15,
+        "width": 0.5,
       },
     },
   ];
-  for (const [kind, color] of Object.entries(NODE_COLOR)) {
-    style.push({ selector: `node.${kind}`, style: { "background-color": color, "width": NODE_SIZE[kind] || 22, "height": NODE_SIZE[kind] || 22, "font-size": kind === "subsystem" ? 14 : (kind === "module" ? 12 : 10) } });
-  }
-  for (const [type, color] of Object.entries(EDGE_COLOR)) {
-    style.push({ selector: `edge.${type}`, style: { "line-color": color, "target-arrow-color": color } });
-  }
   return style;
 }
 
-function renderFocus(focusId = null) {
+function applySemanticZoom(cy) {
+  const z = cy.zoom();
+  let maxTier, showLabels;
+  if (z < ZOOM_LOW) {
+    maxTier = 0;
+    showLabels = false;
+  } else if (z < ZOOM_MID) {
+    maxTier = 1;
+    showLabels = true;
+  } else {
+    maxTier = 2;
+    showLabels = true;
+  }
+
+  cy.batch(() => {
+    cy.nodes().forEach((node) => {
+      const tier = node.data("tier") ?? 2;
+
+      // Compound parents: visible if any child is visible.
+      if (node.isParent()) {
+        const children = node.children();
+        const anyChildVisible = children.some((c) => (c.data("tier") ?? 2) <= maxTier);
+        node.style("display", anyChildVisible ? "element" : "none");
+        node.style("label", showLabels ? "data(label)" : "");
+        return;
+      }
+
+      const visible = tier <= maxTier;
+      node.style("display", visible ? "element" : "none");
+      node.style("label", showLabels ? "data(label)" : "");
+    });
+
+    cy.edges().forEach((edge) => {
+      const src = edge.source();
+      const tgt = edge.target();
+      const srcVis = src.style("display") !== "none";
+      const tgtVis = tgt.style("display") !== "none";
+      edge.style("display", srcVis && tgtVis ? "element" : "none");
+    });
+  });
+}
+
+function renderView(focusId = null) {
   const sub = focusId ? focusSubgraph(state.data, focusId, 1) : initialSubgraph(state.data);
+  state.currentElements = sub;
   const elements = toCyElements(sub, focusId);
 
   if (!state.cy) {
@@ -200,19 +308,41 @@ function renderFocus(focusId = null) {
       container: document.getElementById("cy"),
       elements,
       style: buildStyle(),
-      layout: { name: "fcose", animate: false, padding: 30, nodeRepulsion: 8000, idealEdgeLength: 80 },
-      wheelSensitivity: 0.2,
-      minZoom: 0.1,
-      maxZoom: 4,
+      layout: {
+        name: "fcose",
+        animate: false,
+        padding: 40,
+        nodeRepulsion: 10000,
+        idealEdgeLength: 90,
+        nestingFactor: 1.2,
+      },
+      wheelSensitivity: 0.3,
+      minZoom: 0.05,
+      maxZoom: 6,
     });
     state.cy.on("tap", "node", (evt) => onNodeTap(evt.target.id()));
+    state.cy.on("zoom", () => {
+      if (state.searchMode) return;
+      applySemanticZoom(state.cy);
+    });
   } else {
     state.cy.batch(() => {
       state.cy.elements().remove();
       state.cy.add(elements);
     });
-    state.cy.layout({ name: "fcose", animate: "end", animationDuration: 400, padding: 30, nodeRepulsion: 8000, idealEdgeLength: 80 }).run();
+    state.cy.layout({
+      name: "fcose",
+      animate: focusId ? "end" : false,
+      animationDuration: 400,
+      padding: 40,
+      nodeRepulsion: focusId ? 8000 : 10000,
+      idealEdgeLength: focusId ? 80 : 90,
+      nestingFactor: 1.2,
+    }).run();
   }
+
+  // Apply initial semantic zoom.
+  applySemanticZoom(state.cy);
 
   document.getElementById("stats").textContent = `${sub.nodes.length} nodes · ${sub.edges.length} edges`;
   updateBreadcrumb();
@@ -220,20 +350,26 @@ function renderFocus(focusId = null) {
 }
 
 function onNodeTap(id) {
-  // Push onto stack unless it's the same as the current top.
+  if (state.searchMode) {
+    document.getElementById("search").value = "";
+    state.searchMode = false;
+  }
   if (state.focusStack[state.focusStack.length - 1] !== id) {
     state.focusStack.push(id);
   }
-  renderFocus(id);
+  renderView(id);
 }
 
 function updateBreadcrumb() {
   const bc = document.getElementById("breadcrumb");
   bc.innerHTML = "";
-  const crumbs = [{ id: "", label: "all subsystems" }, ...state.focusStack.map((id) => {
-    const n = state.data.nodes.find((x) => x.id === id);
-    return { id, label: n ? n.label : id };
-  })];
+  const crumbs = [
+    { id: "", label: "all subsystems" },
+    ...state.focusStack.map((id) => {
+      const n = state.data.nodes.find((x) => x.id === id);
+      return { id, label: n ? n.label : id };
+    }),
+  ];
   crumbs.forEach((c, i) => {
     if (i > 0) {
       const sep = document.createElement("span");
@@ -245,7 +381,11 @@ function updateBreadcrumb() {
     a.textContent = c.label;
     a.onclick = () => {
       state.focusStack = state.focusStack.slice(0, i);
-      renderFocus(c.id || null);
+      if (c.id) {
+        renderView(c.id);
+      } else {
+        renderView(null);
+      }
     };
     bc.appendChild(a);
   });
@@ -278,20 +418,22 @@ function bindSearch() {
   input.addEventListener("input", (e) => {
     const q = e.target.value.toLowerCase().trim();
     if (!q) {
-      renderFocus(state.focusStack[state.focusStack.length - 1] || null);
+      state.searchMode = false;
+      const focusId = state.focusStack[state.focusStack.length - 1] || null;
+      renderView(focusId);
       return;
     }
+    state.searchMode = true;
     const matches = state.data.nodes.filter((n) =>
       n.label.toLowerCase().includes(q) || n.id.toLowerCase().includes(q)
-    ).slice(0, 200); // cap to keep layout sane
+    ).slice(0, 200);
     const matchIds = new Set(matches.map((n) => n.id));
-    const edges = state.data.edges.filter((e) => matchIds.has(e.source) && matchIds.has(e.target));
-    const elements = toCyElements({ nodes: matches, edges }, null);
+    const elements = toCyElements({ nodes: matches, edges: state.data.edges.filter((e) => matchIds.has(e.source) && matchIds.has(e.target)) }, null);
     state.cy.batch(() => {
       state.cy.elements().remove();
       state.cy.add(elements);
     });
-    state.cy.layout({ name: "fcose", animate: false, padding: 30 }).run();
+    state.cy.layout({ name: "fcose", animate: false, padding: 30, nestingFactor: 1.2 }).run();
     document.getElementById("stats").textContent = `${matches.length} matches`;
   });
 }
@@ -299,8 +441,9 @@ function bindSearch() {
 function bindReset() {
   document.getElementById("resetBtn").addEventListener("click", () => {
     state.focusStack = [];
+    state.searchMode = false;
     document.getElementById("search").value = "";
-    renderFocus(null);
+    renderView(null);
   });
 }
 
@@ -312,7 +455,7 @@ async function main() {
     console.error(err);
     return;
   }
-  renderFocus(null);
+  renderView(null);
   bindSearch();
   bindReset();
   console.log(`loaded ${state.data.nodes.length} nodes, ${state.data.edges.length} edges`);
