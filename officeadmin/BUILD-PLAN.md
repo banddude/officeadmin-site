@@ -5,8 +5,8 @@ Read this whole document before editing. Update it every time the plan changes, 
 ## Status
 
 - **Started:** 2026-05-12
-- **Current phase:** 7 (Auto-trigger) — next. Renderer shipped at `/officeadmin/v2/`.
-- **Last update:** 2026-05-12 — Phase 6 (renderer) shipped. Interactive Cytoscape+fcose page at `officeadmin/v2/`. Click-to-focus, breadcrumb, search, legend, mobile gestures. Initial view is subsystems + direct children to avoid dumping 3000 nodes at once.
+- **Current phase:** Renderer polish (semantic zoom + compound nodes) — next.
+- **Last update:** 2026-05-12 — Phase 2.5 (imports + containment fix), Phase 7 (auto-trigger) done. Live graph at /officeadmin/v2/ now has real connections; auto-regenerates on every commit in ~/.aiva or ~/mikeshaffer, plus hourly launchd safety net.
 
 ### Phase 1 — done
 
@@ -114,9 +114,10 @@ The generator has a sanitization function that runs on every node and edge befor
 - [x] Emits `contained_in` and `imports` edges
 - [x] Wired into Node generator via `spawnSync`
 - [x] Verified: 2767 + 93 nodes, zero `/Users/`, `/home/`, email, phone, or customer-slug hits in output
-- [ ] Deferred to Phase 2.5: `calls` edges (need a second pass to resolve call targets against known node IDs)
-- [ ] Deferred to Phase 2.5: relative import resolution (`from . import x`)
-- [ ] Deferred: import target normalization so partial imports like `from comms_pipeline import x` resolve against fully-qualified `aiva.modules.comms_pipeline` node IDs
+- [x] Phase 2.5: import target normalization — `resolve_import_target` walks source's ancestors + subsystem prefix to canonicalize bare names like `comms_pipeline` → `aiva.modules.comms_pipeline`. External/stdlib imports are dropped. 1408 dangling edges → 259 resolved + 1408 dropped (correct).
+- [x] Phase 2.5: emit `contained_in` edge for every node-to-parent relationship (not just leaf-to-file). Fixes the disconnected-subsystem bug.
+- [ ] Still deferred: `calls` edges between functions (Phase 2.5 part 2)
+- [ ] Still deferred: relative import resolution (`from . import x`)
 
 ### Phase 3: Launchd + SKILL.md + MCP parsers ← WE ARE HERE
 
@@ -159,11 +160,13 @@ The generator has a sanitization function that runs on every node and edge befor
 - [ ] Edge legend, search box, breadcrumb of current focus
 - [ ] Mobile gestures (pinch zoom, drag pan)
 
-### Phase 7: Auto-trigger
+### Phase 7: Auto-trigger — DONE
 
-- [ ] Post-commit hook in ~/.aiva and ~/mikeshaffer that runs the generator, commits to officeadmin-site, pushes
-- [ ] Backup: launchd job every hour as a safety net
-- [ ] Log to `~/.aiva/state/officeadmin-map/last-run.log`
+- [x] `scripts/regenerate.sh` — atomic mkdir lock, pull rebase, generate, commit-if-changed, push
+- [x] Idempotent: `git diff -I 'generatedAt'` ignores timestamp-only churn so repeat runs are no-ops
+- [x] Post-commit hooks in `~/.aiva/.git/hooks/post-commit` and `~/mikeshaffer/.git/hooks/post-commit` (detached via nohup so they never block commits)
+- [x] Launchd safety net at `~/Library/LaunchAgents/io.officeadmin.regenerate-map.plist`, hourly
+- [x] Logs at `~/.aiva/state/officeadmin-map/last-run.log` (trimmed to 200 lines on each run)
 
 ### Phase 8: Private detailed view (later)
 
