@@ -283,7 +283,11 @@ function applySemanticZoom(cy) {
         return;
       }
 
-      const visible = tier <= maxTier;
+      const kind = node.data("kind");
+      // Subsystems and machines are the orientation anchors — keep them
+      // visible at every zoom level. Labels still follow the zoom rule.
+      const alwaysVisible = kind === "subsystem" || kind === "machine";
+      const visible = alwaysVisible || tier <= maxTier;
       node.style("display", visible ? "element" : "none");
       node.style("label", showLabels ? "data(label)" : "");
     });
@@ -330,7 +334,20 @@ function renderView(focusId = null) {
       state.cy.elements().remove();
       state.cy.add(elements);
     });
-    const layout = state.cy.layout({
+    // Ensure initial zoom never drops below a usable threshold (mobile
+    // viewports auto-fit way out and hide everything otherwise).
+    // Listen on the cy core (more reliable than the layout object) BEFORE run.
+    state.cy.one("layoutstop", () => {
+      // After fcose auto-fits, bump zoom if it's below mid threshold so we
+      // start in the "modules + labels" tier rather than "tier 0 only".
+      const z = state.cy.zoom();
+      if (z < ZOOM_MID) {
+        state.cy.zoom(ZOOM_MID);
+        state.cy.center();
+      }
+      applySemanticZoom(state.cy);
+    });
+    state.cy.layout({
       name: "fcose",
       animate: focusId ? "end" : false,
       animationDuration: 400,
@@ -338,17 +355,7 @@ function renderView(focusId = null) {
       nodeRepulsion: focusId ? 8000 : 10000,
       idealEdgeLength: focusId ? 80 : 90,
       nestingFactor: 1.2,
-    });
-    // Ensure initial zoom never drops below a usable threshold (mobile
-    // viewports auto-fit way out and hide everything otherwise).
-    layout.one("layoutstop", () => {
-      if (state.cy.zoom() < ZOOM_LOW) {
-        state.cy.zoom(ZOOM_LOW);
-        state.cy.center();
-        applySemanticZoom(state.cy);
-      }
-    });
-    layout.run();
+    }).run();
   }
 
   // Apply initial semantic zoom.
