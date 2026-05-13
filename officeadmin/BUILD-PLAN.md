@@ -5,8 +5,8 @@ Read this whole document before editing. Update it every time the plan changes, 
 ## Status
 
 - **Started:** 2026-05-12
-- **Current phase:** 6 (Renderer) — next. Skipping TS/Swift (Phases 4/5) until renderer ships, since we already have enough data to visualize.
-- **Last update:** 2026-05-12 — Phase 3 complete. `scripts/parse-system.py` adds 30 launchd jobs, 55 skills, 1 MCP server. End-to-end run produces 2951 nodes / 2520 edges. Pinned generator to `/usr/bin/python3` (Homebrew 3.14 has broken pyexpat). 9/30 schedules edges and 21/55 implements edges resolved against known node IDs; remainder dropped at the final filter step. Punting on full import resolution and TS/Swift to prioritize renderer.
+- **Current phase:** 7 (Auto-trigger) — next. Renderer shipped at `/officeadmin/v2/`.
+- **Last update:** 2026-05-12 — Phase 6 (renderer) shipped. Interactive Cytoscape+fcose page at `officeadmin/v2/`. Click-to-focus, breadcrumb, search, legend, mobile gestures. Initial view is subsystems + direct children to avoid dumping 3000 nodes at once.
 
 ### Phase 1 — done
 
@@ -126,15 +126,18 @@ The generator has a sanitization function that runs on every node and edge befor
 - [ ] Parse all SKILL.md files → `skill` nodes + `implements` edges to module they wrap
 - [ ] Parse MCP registry → `mcp_tool` nodes + `exposes_tool` edges from module to tool
 
-### Phase 6: Renderer ← WE ARE HERE (priority bump — visualize what we already have)
+### Phase 6: Renderer — DONE (v1)
 
-- [ ] New page at `officeadmin/v2/index.html` so we don't disturb the live `/officeadmin`
-- [ ] Cytoscape.js + fcose layout
-- [ ] Load `system-map.v2.json`
-- [ ] Pan, zoom, click-to-focus with neighbor highlight
-- [ ] Semantic zoom: collapse to subsystems when zoomed out
-- [ ] Edge legend (color per edge type), search box
-- [ ] Mobile gestures
+- [x] New page at `officeadmin/v2/index.html` — does not disturb the live `/officeadmin`
+- [x] Cytoscape.js + fcose layout via CDN
+- [x] Loads `system-map.v2.json` (1.2 MB, gzipped on serve)
+- [x] Pan, zoom, click-to-focus with 1-hop neighbor view + parent chain
+- [x] Drill-down via clicks; breadcrumb + reset button to navigate back
+- [x] Edge color legend, node color legend, search box (filters to matches, drops focus mode)
+- [x] Info panel on focus: kind, subsystem, edge summary, full ID
+- [x] Mobile gestures inherent from Cytoscape (pinch zoom, drag pan)
+- [ ] Deferred to v2 of the renderer: true semantic zoom via zoom thresholds (currently it's drill-down by click only)
+- [ ] Deferred: compound nodes for parent grouping (visible bounding boxes around child sets)
 
 ### Phase 4: TypeScript parser
 
