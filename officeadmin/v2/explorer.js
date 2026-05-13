@@ -67,8 +67,8 @@ const KIND_TIER = {
   endpoint: 2,
 };
 
-const ZOOM_LOW = 0.4;
-const ZOOM_MID = 0.8;
+const ZOOM_LOW = 0.15;
+const ZOOM_MID = 0.5;
 
 const state = {
   data: null,
@@ -331,6 +331,15 @@ function renderView(focusId = null) {
     state.cy.on("zoom", () => {
       if (state.searchMode) return;
       applySemanticZoom(state.cy);
+    });
+    // Floor the initial fit zoom: if fcose auto-fits to a near-invisible
+    // level (common on small viewports with many nodes), bump to ZOOM_MID.
+    state.cy.one("layoutstop", () => {
+      if (state.cy.zoom() < ZOOM_LOW) {
+        state.cy.zoom(ZOOM_MID);
+        state.cy.center();
+        applySemanticZoom(state.cy);
+      }
     });
   } else {
     state.cy.batch(() => {
