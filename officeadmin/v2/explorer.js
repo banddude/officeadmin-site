@@ -1,3 +1,6 @@
+// VERSION_MARKER_2026_05_12_v4 — anchor logic + zoom floor
+window.__EXPLORER_VERSION__ = "2026-05-12-v4";
+
 // explorer.js — Cytoscape-based renderer for system-map.v2.json.
 //
 // Behavior:
