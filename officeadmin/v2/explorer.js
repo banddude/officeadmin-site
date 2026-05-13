@@ -330,7 +330,7 @@ function renderView(focusId = null) {
       state.cy.elements().remove();
       state.cy.add(elements);
     });
-    state.cy.layout({
+    const layout = state.cy.layout({
       name: "fcose",
       animate: focusId ? "end" : false,
       animationDuration: 400,
@@ -338,7 +338,17 @@ function renderView(focusId = null) {
       nodeRepulsion: focusId ? 8000 : 10000,
       idealEdgeLength: focusId ? 80 : 90,
       nestingFactor: 1.2,
-    }).run();
+    });
+    // Ensure initial zoom never drops below a usable threshold (mobile
+    // viewports auto-fit way out and hide everything otherwise).
+    layout.one("layoutstop", () => {
+      if (state.cy.zoom() < ZOOM_LOW) {
+        state.cy.zoom(ZOOM_LOW);
+        state.cy.center();
+        applySemanticZoom(state.cy);
+      }
+    });
+    layout.run();
   }
 
   // Apply initial semantic zoom.
