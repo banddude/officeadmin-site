@@ -75,6 +75,15 @@ if ! /usr/local/bin/node scripts/generate-system-map.mjs >>"$LOG" 2>&1; then
   exit 1
 fi
 
+# Privacy audit: read local entity DB, assert no leaks in published JSON.
+# Aborts the push if anything sensitive sneaked in.
+if ! /usr/bin/python3 scripts/audit-privacy.py >>"$LOG" 2>&1; then
+  log "FATAL: privacy audit failed — NOT pushing"
+  # Reset the file we generated, since we won't be using it.
+  git checkout -- officeadmin/data/system-map.v2.json 2>/dev/null || true
+  exit 1
+fi
+
 # Did the map change? Ignore the generatedAt line so trivial reruns are no-ops.
 if git diff --quiet -I '"generatedAt"' -- officeadmin/data/system-map.v2.json; then
   log "no content changes to system-map.v2.json — nothing to push"
