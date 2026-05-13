@@ -11,7 +11,8 @@ Read this whole document before editing. Update it every time the plan changes, 
 ### Phase 1 — done
 
 - ✅ `scripts/generate-system-map.mjs` scaffolding (schema validators, sanitizer with deny patterns, parser stubs, seed nodes, writer)
-- ✅ Smoke-tested: writes 7 seed nodes to `officeadmin/data/system-map.json`, sanitization assertion green
+- ✅ Smoke-tested: writes 7 seed nodes to `officeadmin/data/system-map.v2.json`, sanitization assertion green
+- ⚠️ Note: v2 writes to `system-map.v2.json` (separate file) until parity. The live renderer keeps reading `system-map.json`. Final cutover swaps the filename in one line of the generator.
 - Decision: use Python's native `ast` module for Python parsing instead of tree-sitter (simpler, more accurate for Python). Keep tree-sitter plan for TS/Swift where it's still the right tool.
 
 ## Why v2

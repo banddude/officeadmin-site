@@ -1,0 +1,51 @@
+{
+  "version": 2,
+  "generatedAt": "2026-05-13T03:34:52.212Z",
+  "schema": "code-level-graph",
+  "nodes": [
+    {
+      "id": "aiva",
+      "label": "AIVA",
+      "kind": "subsystem",
+      "subsystem": "aiva"
+    },
+    {
+      "id": "mikeshaffer",
+      "label": "mikeshaffer CRM",
+      "kind": "subsystem",
+      "subsystem": "mikeshaffer"
+    },
+    {
+      "id": "officeadmin-site",
+      "label": "officeadmin.io",
+      "kind": "subsystem",
+      "subsystem": "officeadmin-site"
+    },
+    {
+      "id": "ios-apps",
+      "label": "iOS Apps",
+      "kind": "subsystem",
+      "subsystem": "ios-apps"
+    },
+    {
+      "id": "machine.aiva",
+      "label": "aiva (mac server)",
+      "kind": "machine"
+    },
+    {
+      "id": "machine.laptop",
+      "label": "laptop (M4 air)",
+      "kind": "machine"
+    },
+    {
+      "id": "machine.grandma",
+      "label": "grandma-mac",
+      "kind": "machine"
+    }
+  ],
+  "edges": [],
+  "counts": {
+    "nodes": 7,
+    "edges": 0
+  }
+}

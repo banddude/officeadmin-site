@@ -20,7 +20,9 @@ import { fileURLToPath } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..");
-const OUTPUT_PATH = path.join(REPO_ROOT, "officeadmin", "data", "system-map.json");
+// During v2 development we write to a separate file so the live site keeps
+// serving the v1 map. Swap this to "system-map.json" when v2 reaches parity.
+const OUTPUT_PATH = path.join(REPO_ROOT, "officeadmin", "data", "system-map.v2.json");
 
 // ---------------------------------------------------------------------------
 // Source roots. Override with env vars for testing.
