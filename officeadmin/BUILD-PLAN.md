@@ -1,108 +1,156 @@
-# OfficeAdmin Explorer Build Plan
+# OfficeAdmin Explorer — Build Plan (v2: Code-Level Graph)
 
-Read this whole document every time before editing. Update it every time the plan changes, every time a test reveals something important, and every time the implementation direction shifts. Do not leave it stale. Keep the full goal, current approach, active todos, testing notes, and reflection loop here.
+Read this whole document before editing. Update it every time the plan changes, every time a test reveals something important, and every time the implementation direction shifts. Do not leave it stale.
+
+## Status
+
+- **Started:** 2026-05-12
+- **Current phase:** 1 (Generator scaffolding)
+- **Last update:** 2026-05-12 — plan written, generator scaffolding started
+
+## Why v2
+
+The v1 explorer landed as "big boxes with vague lines between them." It's a static architecture poster, not a navigable system map. It also wasn't live (had to manually run the generator + commit), the renderer didn't support real interaction (no zoom, no pan, no focus), and the underlying JSON described concepts, not code.
+
+v2 rebuilds it as an actual code graph: nodes are real things (files, functions, jobs, MCP tools), edges are typed and labeled, the view morphs when you focus a node, and it semantic-zooms from "subsystem poster" out to "wiring diagram" in. Auto-regenerates on every commit.
 
 ## Goal
 
-Replace the current `/officeadmin` inventory page with an actual system explorer that helps Mike understand the system quickly, navigate it visually, and drill down without overload.
-
-The target experience is:
-
-1. One focused thing at a time.
-2. Clear visible connections to related things.
-3. Easy movement up, down, and sideways through the system.
-4. Storytelling and orientation first, raw detail second.
-5. Works well on phone and laptop.
-6. No horizontal scrolling.
-7. No ugly overlapping graph spaghetti.
-8. Graph, paths, ownership, and context all visible without dumping walls of text.
-9. Generated from real docs, code, repo state, and system snapshot, not hand-edited status prose.
+A live, interactive map of Mike's entire system (Python AIVA modules, TypeScript Workers and tooling, Swift iOS apps, launchd jobs, MCP tools, machines) that you can zoom from architecture-poster level all the way down to function-call level. Click anything and the layout morphs to focus that node and its real neighbors. Always reflects current code with no manual maintenance.
 
 ## Constraints
 
-1. Static site repo, no existing build step.
-2. Must stay generated and read-only.
-3. Must tolerate partial cache mismatch better than before.
-4. Must be testable locally and on the deployed site.
-5. Must be navigable on mobile.
+1. Static site, no build step at deploy time (generator runs at commit time and produces JSON).
+2. Hosted on GitHub Pages, proxied by Cloudflare Worker `officeadmin-router`. No platform change.
+3. Public repo, public site → hard allowlist for what gets into the published JSON. No customer/personal data, no internal file paths, no infra hostnames beyond what's already public.
+4. Must work on mobile (pinch zoom, drag pan).
+5. Generator runs locally (laptop and aiva both), idempotent, fast enough to fit in a git hook.
 
-## Current Understanding
+## Architecture
 
-The current page is still fundamentally a report with UI chrome. It shows data, but it does not support mental modeling. The right paradigm is a focused explorer, not a giant architecture diagram and not a wall of cards. The best reference patterns are:
+```
+[~/.aiva Python]       ─┐
+[~/mikeshaffer Python] ─┤
+[TypeScript Workers]   ─┼──→ generate-system-map.mjs ──→ system-map.json ──→ Cytoscape renderer
+[Swift iOS apps]       ─┤        (tree-sitter)              (sanitized)        (officeadmin/)
+[launchd plists]       ─┤
+[SKILL.md files]       ─┤
+[MCP registry]         ─┘
+```
 
-1. Obsidian local graph, focused graph depth and neighbor exploration.
-2. Neo4j Bloom, graph scene plus detail cards and exploration.
-3. Atlassian Compass, component relationships plus ownership and health.
-4. Stripe docs, clean information architecture and controlled detail exposure.
+Trigger: git post-commit hook in each source repo (~/.aiva, ~/mikeshaffer) runs the generator, commits the new JSON to officeadmin-site, pushes. GitHub Pages rebuilds in ~30s, Cloudflare cache flushes in 5min.
 
-Audit update:
+## Schema
 
-1. The earlier page solved data presence, not understanding.
-2. The useful primary interaction is lane -> node -> neighbors -> details -> next node.
-3. Full-width static sections should be reference shelves, not the core experience.
-4. The graph should be focused and legible, not global and overlapping.
-5. The current explorer shell works, but it is still too shallow because it only operates on a tiny root graph.
-6. The generated JSON already contains richer structure, machines, authorities, memory categories, roadmap workstreams, but the graph is barely using it.
-7. The next pass needs to feel more like a transit atlas than a stack of cards.
+### Node
 
-## Working Direction
+```jsonc
+{
+  "id": "aiva.modules.comms_pipeline.run_pipeline",      // dotted, stable
+  "label": "run_pipeline",                                // display
+  "kind": "function",                                     // see kinds below
+  "parent": "aiva.modules.comms_pipeline",                // hierarchy for semantic zoom
+  "subsystem": "aiva",                                    // top-level grouping
+  "language": "python",                                   // python | typescript | swift | config
+  "tags": ["entrypoint", "scheduled"]                     // optional, for filtering
+  // NO: file paths, customer names, hostnames, emails, addresses
+}
+```
 
-Build a focused graph explorer with:
+**Kinds:** `subsystem`, `repo`, `module`, `file`, `class`, `function`, `cli`, `skill`, `mcp_tool`, `launchd_job`, `machine`, `endpoint`
 
-1. Story lanes for the major system layers.
-2. A single active node.
-3. A graph neighborhood around the active node, with incoming and outgoing relations separated clearly.
-4. Breadcrumbs and visible path history.
-5. Connected node navigation.
-6. Detail tabs for overview, ownership, connections, and status.
-7. Search and story paths for common questions.
-8. Progressive disclosure for authorities and workstreams.
-9. A visible atlas view that shows the whole system shape at a glance, without overlap and without requiring raw text scanning.
-10. A generated set of subsystem nodes so the graph is not limited to eight coarse blobs.
+### Edge
 
-## Active Todos
+```jsonc
+{
+  "source": "aiva.modules.comms_pipeline.run_pipeline",
+  "target": "aiva.modules.drafts.create_draft",
+  "type": "calls",            // see types below
+  "weight": 1                  // optional, e.g. call count
+}
+```
 
-- [x] Audit the current deployed page and local implementation again before replacing structure.
-- [x] Design a focused graph explorer layout that works on phone first.
-- [x] Decide to keep custom focused graph rendering instead of another overlapping global graph.
-- [x] Add breadcrumbs and path history.
-- [x] Add a centered active node with neighbor graph.
-- [x] Add sideways navigation via connected nodes.
-- [x] Reduce long prose by default, keep details on demand.
-- [x] Test on desktop with `agent-browser`.
-- [x] Test with mobile viewport or device emulation in `agent-browser`.
-- [x] Push, validate deployed behavior, and note remaining gaps.
-- [x] Expand the generated model beyond root nodes, using authorities, memory categories, machines, and subsystem summaries already present in the snapshot.
-- [x] Replace the generic dark-card feel with a clearer visual system atlas aesthetic.
-- [x] Add a visible story path strip for each journey, not just a chip that changes focus silently.
-- [ ] Retest live desktop and mobile after the atlas pass.
-- [ ] Push the atlas pass and validate Cloudflare-served assets on phone.
+**Types:** `imports`, `calls`, `schedules`, `triggers`, `reads_from`, `writes_to`, `exposes_tool`, `deploys_to`, `depends_on`, `implements`, `contained_in`
 
-## Test Log
+Each edge type gets a distinct color and a legend entry.
 
-- Initial deployed page loaded data but felt like a wall of text.
-- Initial SVG graph approach was visually poor and overlapped.
-- Replaced with cards and story rails, still not enough of a true explorer.
-- Mixed cached assets caused null access failures, JS was hardened and asset cache-busted.
-- Rebuilt the page around a focused explorer with lanes, journeys, search, breadcrumb path, centered focus node, neighbor graph, detail tabs, and collapsed reference shelves.
-- Local desktop test with `agent-browser` passed, page loads and explorer interactions work.
-- Mobile emulation test with `agent-browser` on iPhone 16 viewport passed, no horizontal overflow on body width, explorer interactions still work.
-- Asset version must be bumped when explorer JS or CSS changes materially, otherwise live Cloudflare cache can serve mismatched UI assets.
-- Live deployed audit shows the shell loads and interactions work, but the actual graph is still too shallow to explain the system well.
-- The current generated JSON has `roots`, `machines`, `authorities`, `memoryCategories`, and `roadmap.workstreams`, but the core graph still only has 8 roots and 9 edges.
-- A better direction is a generated atlas with visible routes and subsystem stops, not a root-only bubble set.
-- The atlas pass is now using generated subsystem nodes for hosts, module surface, entity workspace, work memory, session history, extraction, identity, Gmail, Drive, QuickBooks, and archive layers.
-- Local `agent-browser` checks passed for route switching, node drilldown, search, and mobile layout.
-- Asset versions were bumped again after the atlas pass to prevent stale CSS or JS mismatches on the live site.
-- The worker plus Pages stack appears to cache asset bodies by filename more stubbornly than the query string implied, so the next mitigation is dedicated OfficeAdmin asset filenames instead of only `?v=` changes.
+## Privacy allowlist
 
-## Reflection Loop
+The generator outputs only fields explicitly in the schema above. Anything else gets dropped. Specifically NEVER published:
 
-After each implementation pass:
+- Any path containing `/Users/`, `/home/`, or absolute paths of any kind
+- Any customer, vendor, or contact name (anything pulled from entities/, contacts, QB)
+- Email addresses, phone numbers, addresses
+- API keys, tokens, secrets (obviously)
+- MCP server URLs other than the already-public ones (officeadmin.io, mcp.officeadmin.io)
+- Anything from `~/mikeshaffer/entities/*/` beyond the existence of "an entity layer"
+- Anything from QB, Reminders, Calendar payloads
 
-1. Test locally.
-2. Test with `agent-browser`.
-3. Reflect on whether it actually improves Mike's understanding.
-4. Update this document.
-5. Replan.
-6. Continue working without waiting.
+The generator has a sanitization function that runs on every node and edge before serialization. There are unit tests asserting that known-sensitive strings never appear in the output JSON.
+
+## Phases
+
+### Phase 1: Generator scaffolding ← WE ARE HERE
+
+- [ ] Stub `scripts/generate-system-map.mjs` with the node/edge schema and writer
+- [ ] Add tree-sitter dependencies (node bindings + python/typescript/swift grammars)
+- [ ] Wire up the sanitization function with a deny-list test fixture
+- [ ] Replace `scripts/generate-officeadmin-map.mjs` (or leave alongside for v1 fallback during transition)
+
+### Phase 2: Python parser
+
+- [ ] Walk `~/.aiva` and `~/mikeshaffer` (paths configurable, defaults via env)
+- [ ] Per file: emit `file` node, then `function`/`class` nodes with `contained_in` edges
+- [ ] Extract `import` statements → `imports` edges between module nodes
+- [ ] Extract function-call edges where resolvable to a known target
+- [ ] Resolve hierarchy: file → module → subsystem (`aiva` vs `mikeshaffer`)
+
+### Phase 3: Launchd + SKILL.md + MCP parsers
+
+- [ ] Parse `~/Library/LaunchAgents/*.plist` → `launchd_job` nodes + `schedules` edges to the script they call
+- [ ] Parse all SKILL.md files → `skill` nodes + `implements` edges to module they wrap
+- [ ] Parse MCP registry → `mcp_tool` nodes + `exposes_tool` edges from module to tool
+
+### Phase 4: TypeScript parser
+
+- [ ] Identify TS sources (Workers in officeadmin-site, any other TS repos)
+- [ ] Tree-sitter TS grammar, mirror the Python parser shape (imports, calls)
+- [ ] Cross-language edges where a TS Worker hits a Python-backed MCP endpoint
+
+### Phase 5: Swift parser
+
+- [ ] Identify Swift sources (iOS apps)
+- [ ] Tree-sitter Swift grammar, mirror the others
+- [ ] Cross-language edges where Swift hits a TS/Python endpoint
+
+### Phase 6: Renderer
+
+- [ ] Swap `js/officeadmin.js` for a Cytoscape.js implementation
+- [ ] fcose layout, focus-and-morph on click (re-layout to N-hop neighborhood)
+- [ ] Semantic zoom: collapse to subsystems when zoomed out, expand to functions when zoomed in
+- [ ] Edge legend, search box, breadcrumb of current focus
+- [ ] Mobile gestures (pinch zoom, drag pan)
+
+### Phase 7: Auto-trigger
+
+- [ ] Post-commit hook in ~/.aiva and ~/mikeshaffer that runs the generator, commits to officeadmin-site, pushes
+- [ ] Backup: launchd job every hour as a safety net
+- [ ] Log to `~/.aiva/state/officeadmin-map/last-run.log`
+
+### Phase 8: Private detailed view (later)
+
+- [ ] Optional. Second renderer at `private.officeadmin.io` with full entity/customer data, behind Cloudflare Access
+- [ ] Same renderer code, different data source (no sanitization)
+
+## Testing
+
+- Unit tests on the sanitization function (assert that fixture strings like "Susanna Wolff", `/Users/mikeshaffer`, etc. never make it through)
+- Integration test: run generator end-to-end on the actual repos, grep the output for any sensitive-looking pattern, fail if found
+- Visual regression: snapshot the rendered graph for a known input, fail if it changes unexpectedly
+- Local serve via `python3 -m http.server` from the repo root before pushing
+
+## Open questions
+
+- Hook location: per-repo post-commit, or a single watcher daemon? Leaning per-repo because it's explicit and fast.
+- How fine-grained should function-call edges go? Every call clutters the graph; only edges between modules might be the right default with deeper edges available on focus.
+- Compound nodes vs separate hierarchy field? Cytoscape supports both. Starting with separate `parent` field for flexibility.
