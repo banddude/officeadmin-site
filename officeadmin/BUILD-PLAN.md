@@ -5,8 +5,8 @@ Read this whole document before editing. Update it every time the plan changes, 
 ## Status
 
 - **Started:** 2026-05-12
-- **Current phase:** 3 (Launchd + SKILL.md + MCP) — next
-- **Last update:** 2026-05-12 — Phase 2 complete. Python parser at `scripts/parse-python.py` walks AIVA (2767 nodes) and mikeshaffer (93 nodes) using native `ast`. Generator wires the helper in via spawnSync. End-to-end run produces 2865 nodes / 2490 edges with zero sensitive-content audit hits.
+- **Current phase:** 6 (Renderer) — next. Skipping TS/Swift (Phases 4/5) until renderer ships, since we already have enough data to visualize.
+- **Last update:** 2026-05-12 — Phase 3 complete. `scripts/parse-system.py` adds 30 launchd jobs, 55 skills, 1 MCP server. End-to-end run produces 2951 nodes / 2520 edges. Pinned generator to `/usr/bin/python3` (Homebrew 3.14 has broken pyexpat). 9/30 schedules edges and 21/55 implements edges resolved against known node IDs; remainder dropped at the final filter step. Punting on full import resolution and TS/Swift to prioritize renderer.
 
 ### Phase 1 — done
 
@@ -125,6 +125,16 @@ The generator has a sanitization function that runs on every node and edge befor
 - [ ] Parse `~/Library/LaunchAgents/*.plist` → `launchd_job` nodes + `schedules` edges to the script they call
 - [ ] Parse all SKILL.md files → `skill` nodes + `implements` edges to module they wrap
 - [ ] Parse MCP registry → `mcp_tool` nodes + `exposes_tool` edges from module to tool
+
+### Phase 6: Renderer ← WE ARE HERE (priority bump — visualize what we already have)
+
+- [ ] New page at `officeadmin/v2/index.html` so we don't disturb the live `/officeadmin`
+- [ ] Cytoscape.js + fcose layout
+- [ ] Load `system-map.v2.json`
+- [ ] Pan, zoom, click-to-focus with neighbor highlight
+- [ ] Semantic zoom: collapse to subsystems when zoomed out
+- [ ] Edge legend (color per edge type), search box
+- [ ] Mobile gestures
 
 ### Phase 4: TypeScript parser
 

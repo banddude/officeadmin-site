@@ -25,6 +25,9 @@ const REPO_ROOT = path.resolve(__dirname, "..");
 // serving the v1 map. Swap this to "system-map.json" when v2 reaches parity.
 const OUTPUT_PATH = path.join(REPO_ROOT, "officeadmin", "data", "system-map.v2.json");
 
+// Force the system Python — Homebrew's 3.14 has a broken pyexpat.
+const PYTHON_BIN = "/usr/bin/python3";
+
 // ---------------------------------------------------------------------------
 // Source roots. Override with env vars for testing.
 // ---------------------------------------------------------------------------
@@ -170,7 +173,7 @@ async function parsePython(root, subsystem) {
   const allow = (PYTHON_ALLOWLISTS[subsystem] || []).join(",");
   const args = [helper, root, subsystem];
   if (allow) args.push("--allowlist", allow);
-  const result = spawnSync("python3", args, { encoding: "utf8", maxBuffer: 64 * 1024 * 1024 });
+  const result = spawnSync(PYTHON_BIN, args, { encoding: "utf8", maxBuffer: 64 * 1024 * 1024 });
   if (result.status !== 0) {
     console.error(`parsePython(${subsystem}) failed:`, result.stderr);
     return { nodes: [], edges: [] };
@@ -189,22 +192,41 @@ async function parsePython(root, subsystem) {
   }
 }
 
-async function parseLaunchd(root) {
-  // TODO Phase 3: parse *.plist, emit launchd_job nodes + schedules edges.
-  console.warn(`[stub] parseLaunchd — Phase 3`);
-  return { nodes: [], edges: [] };
+function runPythonHelper(scriptName, ...extraArgs) {
+  const helper = path.join(__dirname, scriptName);
+  const result = spawnSync(PYTHON_BIN, [helper, ...extraArgs], {
+    encoding: "utf8",
+    maxBuffer: 64 * 1024 * 1024,
+  });
+  if (result.status !== 0) {
+    console.error(`${scriptName} failed:`, result.stderr);
+    return { nodes: [], edges: [] };
+  }
+  if (result.stderr) process.stderr.write(result.stderr);
+  try {
+    return JSON.parse(result.stdout);
+  } catch (err) {
+    console.error(`${scriptName}: failed to parse output:`, err);
+    return { nodes: [], edges: [] };
+  }
 }
 
-async function parseSkills(root) {
-  // TODO Phase 3: walk SKILL.md frontmatter, emit skill nodes + implements edges.
-  console.warn(`[stub] parseSkills — Phase 3`);
-  return { nodes: [], edges: [] };
+async function parseLaunchd() {
+  const out = runPythonHelper("parse-system.py", "--only", "launchd");
+  console.log(`parseLaunchd: ${out.nodes.length} nodes, ${out.edges.length} edges`);
+  return out;
+}
+
+async function parseSkills() {
+  const out = runPythonHelper("parse-system.py", "--only", "skills");
+  console.log(`parseSkills: ${out.nodes.length} nodes, ${out.edges.length} edges`);
+  return out;
 }
 
 async function parseMcpRegistry() {
-  // TODO Phase 3: read MCP registry, emit mcp_tool nodes + exposes_tool edges.
-  console.warn(`[stub] parseMcpRegistry — Phase 3`);
-  return { nodes: [], edges: [] };
+  const out = runPythonHelper("parse-system.py", "--only", "mcp");
+  console.log(`parseMcpRegistry: ${out.nodes.length} nodes, ${out.edges.length} edges`);
+  return out;
 }
 
 async function parseTypescript() {
