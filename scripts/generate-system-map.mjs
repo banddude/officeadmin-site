@@ -37,7 +37,9 @@ const SOURCES = {
   mikeshafferPython: process.env.MIKESHAFFER_PATH || path.join(process.env.HOME, "mikeshaffer"),
   launchAgents: process.env.LAUNCH_AGENTS_PATH || path.join(process.env.HOME, "Library", "LaunchAgents"),
   skills: process.env.SKILLS_PATH || path.join(process.env.HOME, ".claude", "skills"),
-  // TypeScript and Swift roots TBD in their phases
+  // TypeScript sources
+  qbCli: process.env.QB_CLI_PATH || path.join(process.env.HOME, ".aiva", "modules", "quickbooks", "qb-cli"),
+  openclaw: process.env.OPENCLAW_PATH || path.join(process.env.HOME, ".openclaw", "workspace"),
 };
 
 // ---------------------------------------------------------------------------
@@ -63,7 +65,7 @@ const EDGE_FIELDS = new Set([
   "source", "target", "type", "weight",
 ]);
 
-const SUBSYSTEMS = new Set(["aiva", "mikeshaffer", "officeadmin-site", "ios-apps"]);
+const SUBSYSTEMS = new Set(["aiva", "mikeshaffer", "officeadmin-site", "ios-apps", "openclaw"]);
 const LANGUAGES = new Set(["python", "typescript", "javascript", "swift", "config", "shell"]);
 
 // ---------------------------------------------------------------------------
@@ -230,9 +232,18 @@ async function parseMcpRegistry() {
 }
 
 async function parseTypescript() {
-  // TODO Phase 4.
-  console.warn(`[stub] parseTypescript — Phase 4`);
-  return { nodes: [], edges: [] };
+  // qb-cli (QuickBooks MCP server) under aiva
+  const qbResult = runPythonHelper("parse-typescript.py", SOURCES.qbCli, "aiva", "--allowlist", "src");
+  console.log(`parseTypescript(qb-cli): ${qbResult.nodes.length} nodes, ${qbResult.edges.length} edges`);
+
+  // openclaw workspace (small, separate subsystem)
+  const ocResult = runPythonHelper("parse-typescript.py", SOURCES.openclaw, "openclaw");
+  console.log(`parseTypescript(openclaw): ${ocResult.nodes.length} nodes, ${ocResult.edges.length} edges`);
+
+  return {
+    nodes: [...qbResult.nodes, ...ocResult.nodes],
+    edges: [...qbResult.edges, ...ocResult.edges],
+  };
 }
 
 async function parseSwift() {

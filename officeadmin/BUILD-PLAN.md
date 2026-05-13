@@ -149,11 +149,16 @@ The generator has a sanitization function that runs on every node and edge befor
 - [x] Search/filter with ancestor expansion
 - [x] Link from main v2 page header
 
-### Phase 4: TypeScript parser
+### Phase 4: TypeScript parser — DONE
 
-- [ ] Identify TS sources (Workers in officeadmin-site, any other TS repos)
-- [ ] Tree-sitter TS grammar, mirror the Python parser shape (imports, calls)
-- [ ] Cross-language edges where a TS Worker hits a Python-backed MCP endpoint
+- [x] `scripts/parse-typescript.py` using tree-sitter + tree-sitter-typescript
+- [x] Parses function_declarations, class_declarations, method_definitions
+- [x] Resolves relative imports (`./foo`, `../bar`) to canonical node IDs
+- [x] Walks qb-cli (QuickBooks MCP server, 154 files, 329 functions) as subsystem "aiva"
+- [x] Walks openclaw workspace (3 files) as subsystem "openclaw"
+- [x] Wired into generate-system-map.mjs via runPythonHelper
+- [x] Data: 3452 nodes, 3645 edges (was 2951/3147)
+- [ ] Cross-language edges where a TS Worker hits a Python-backed MCP endpoint (deferred)
 
 ### Phase 5: Swift parser
 
