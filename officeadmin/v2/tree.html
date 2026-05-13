@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>officeadmin · system tree (accessible)</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>
+    :root {
+      --bg: #0d0e10;
+      --bg-elev: #16181c;
+      --fg: #e4e6eb;
+      --fg-dim: #8b8f96;
+      --accent: #4a9eff;
+      --border: #2a2d33;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--fg); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
+    body { padding: 16px; max-width: 960px; margin: 0 auto; }
+    header { margin-bottom: 20px; }
+    header h1 { font-size: 16px; margin: 0 0 4px 0; }
+    header h1 .dim { color: var(--fg-dim); font-weight: 400; }
+    header p { font-size: 12px; color: var(--fg-dim); margin: 4px 0 0; }
+    nav.links { margin-bottom: 16px; }
+    nav.links a { color: var(--accent); text-decoration: none; font-size: 12px; }
+    #search { background: var(--bg-elev); color: var(--fg); border: 1px solid var(--border); padding: 6px 10px; border-radius: 6px; font-size: 13px; width: 100%; margin-bottom: 16px; }
+    #search:focus { outline: none; border-color: var(--accent); }
+    #stats { font-size: 12px; color: var(--fg-dim); margin-bottom: 12px; }
+
+    /* Tree styles. */
+    .tree { list-style: none; padding-left: 0; }
+    .tree ul { list-style: none; padding-left: 20px; }
+    .tree li { margin: 2px 0; }
+    .tree details { border-left: 2px solid var(--border); padding-left: 10px; }
+    .tree summary { cursor: pointer; padding: 3px 0; font-size: 13px; display: flex; align-items: center; gap: 6px; }
+    .tree summary:focus { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+    .tree summary::marker { content: ""; }
+    .tree summary::before { content: "▶"; font-size: 10px; color: var(--fg-dim); transition: transform 0.15s; display: inline-block; width: 14px; text-align: center; }
+    .tree details[open] > summary::before { transform: rotate(90deg); }
+    .tree .leaf { padding: 3px 0 3px 24px; font-size: 13px; }
+
+    /* Kind badges. */
+    .badge { display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.4; }
+    .badge.subsystem { background: #4a9eff22; color: #4a9eff; }
+    .badge.machine { background: #ef444422; color: #ef4444; }
+    .badge.module { background: #7c5cff22; color: #7c5cff; }
+    .badge.file { background: #d9d9d922; color: #d9d9d9; }
+    .badge.class { background: #f59e0b22; color: #f59e0b; }
+    .badge.function { background: #6b728022; color: #8b8f96; }
+    .badge.launchd_job { background: #10b98122; color: #10b981; }
+    .badge.skill { background: #ec489922; color: #ec4899; }
+    .badge.mcp_tool { background: #06b6d422; color: #06b6d4; }
+    .badge.cli { background: #f9731622; color: #f97316; }
+    .badge.endpoint { background: #94a3b822; color: #94a3b8; }
+
+    /* Edge list in node detail. */
+    .edges { font-size: 11px; color: var(--fg-dim); margin-top: 4px; padding-left: 24px; }
+    .edges span { margin-right: 8px; }
+    .edge-type { font-weight: 600; }
+    .edge-label { color: var(--fg); }
+
+    /* Search highlight. */
+    .highlight { background: #4a9eff33; border-radius: 2px; }
+
+    /* Hidden. */
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>officeadmin <span class="dim">/ system tree</span></h1>
+    <p>Accessible, screen-reader-friendly view of the system graph. Same data as the <a href="./">graph explorer</a>.</p>
+  </header>
+  <nav class="links">
+    <a href="./">&larr; back to graph explorer</a>
+  </nav>
+  <input id="search" type="search" placeholder="filter nodes..." autocomplete="off" aria-label="Filter nodes in the system tree">
+  <div id="stats">loading...</div>
+  <div id="tree" role="tree" aria-label="System hierarchy"></div>
+
+  <script type="module">
+    const KIND_ORDER = { subsystem: 0, machine: 1, module: 2, launchd_job: 3, skill: 4, mcp_tool: 5, file: 6, class: 7, function: 8 };
+
+    async function loadData() {
+      const res = await fetch("../data/system-map.v2.json", { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    }
+
+    function buildTree(data) {
+      const children = new Map();
+      const nodeMap = new Map();
+      const roots = [];
+
+      for (const n of data.nodes) {
+        nodeMap.set(n.id, n);
+        if (n.parent) {
+          if (!children.has(n.parent)) children.set(n.parent, []);
+          children.get(n.parent).push(n);
+        } else {
+          roots.push(n);
+        }
+      }
+
+      // Build edge summaries per node.
+      const edgeSummary = new Map();
+      for (const e of data.edges) {
+        if (e.type === "contained_in") continue;
+        if (!edgeSummary.has(e.source)) edgeSummary.set(e.source, []);
+        edgeSummary.get(e.source).push({ type: e.type, dir: "out", target: e.target });
+        if (!edgeSummary.has(e.target)) edgeSummary.set(e.target, []);
+        edgeSummary.get(e.target).push({ type: e.type, dir: "in", target: e.source });
+      }
+
+      // Sort children by kind, then label.
+      const sortNodes = (nodes) => [...nodes].sort((a, b) => {
+        const ka = KIND_ORDER[a.kind] ?? 9;
+        const kb = KIND_ORDER[b.kind] ?? 9;
+        if (ka !== kb) return ka - kb;
+        return a.label.localeCompare(b.label);
+      });
+
+      function renderNode(n, depth) {
+        const kids = sortNodes(children.get(n.id) || []);
+        const edges = edgeSummary.get(n.id) || [];
+        const hasChildren = kids.length > 0;
+
+        const li = document.createElement("li");
+        li.setAttribute("role", "treeitem");
+        li.dataset.id = n.id;
+        li.dataset.kind = n.kind;
+        li.dataset.label = n.label.toLowerCase();
+
+        if (hasChildren) {
+          const details = document.createElement("details");
+          if (depth < 2) details.open = true; // auto-expand first two levels
+          details.setAttribute("aria-label", `${n.kind}: ${n.label}`);
+
+          const summary = document.createElement("summary");
+          summary.innerHTML = `<span class="badge ${n.kind}">${n.kind}</span> <span class="node-label">${escHtml(n.label)}</span>`;
+          if (n.language) summary.innerHTML += ` <span style="color:var(--fg-dim);font-size:11px">${n.language}</span>`;
+          details.appendChild(summary);
+
+          const ul = document.createElement("ul");
+          ul.setAttribute("role", "group");
+          for (const kid of kids) ul.appendChild(renderNode(kid, depth + 1));
+          details.appendChild(ul);
+
+          // Edge summary if any non-contained edges.
+          if (edges.length > 0) {
+            const edgeDiv = document.createElement("div");
+            edgeDiv.className = "edges";
+            edgeDiv.innerHTML = edges.slice(0, 10).map(e => {
+              const label = nodeMap.has(e.target) ? nodeMap.get(e.target).label : e.target;
+              return `<span><span class="edge-type">${e.type}</span> ${e.dir === "out" ? "→" : "←"} <span class="edge-label">${escHtml(label)}</span></span>`;
+            }).join("");
+            if (edges.length > 10) edgeDiv.innerHTML += `<span>+${edges.length - 10} more</span>`;
+            details.appendChild(edgeDiv);
+          }
+
+          li.appendChild(details);
+        } else {
+          const leaf = document.createElement("div");
+          leaf.className = "leaf";
+          leaf.innerHTML = `<span class="badge ${n.kind}">${n.kind}</span> <span class="node-label">${escHtml(n.label)}</span>`;
+          if (n.language) leaf.innerHTML += ` <span style="color:var(--fg-dim);font-size:11px">${n.language}</span>`;
+
+          if (edges.length > 0) {
+            const edgeDiv = document.createElement("div");
+            edgeDiv.className = "edges";
+            edgeDiv.innerHTML = edges.slice(0, 10).map(e => {
+              const label = nodeMap.has(e.target) ? nodeMap.get(e.target).label : e.target;
+              return `<span><span class="edge-type">${e.type}</span> ${e.dir === "out" ? "→" : "←"} <span class="edge-label">${escHtml(label)}</span></span>`;
+            }).join("");
+            if (edges.length > 10) edgeDiv.innerHTML += `<span>+${edges.length - 10} more</span>`;
+            leaf.appendChild(edgeDiv);
+          }
+
+          li.appendChild(leaf);
+        }
+
+        return li;
+      }
+
+      const ul = document.createElement("ul");
+      ul.className = "tree";
+      ul.setAttribute("role", "tree");
+
+      // Render roots: subsystems first, then machines.
+      const sortedRoots = sortNodes(roots);
+      for (const root of sortedRoots) {
+        ul.appendChild(renderNode(root, 0));
+      }
+
+      return ul;
+    }
+
+    function escHtml(s) {
+      return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    function bindSearch() {
+      const input = document.getElementById("search");
+      const tree = document.getElementById("tree");
+      let timeout;
+
+      input.addEventListener("input", () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          const q = input.value.toLowerCase().trim();
+          filterTree(tree, q);
+        }, 200);
+      });
+    }
+
+    function filterTree(root, query) {
+      if (!query) {
+        // Show all.
+        root.querySelectorAll("li").forEach(li => li.classList.remove("hidden"));
+        root.querySelectorAll(".node-label").forEach(el => {
+          el.innerHTML = el.textContent;
+        });
+        return;
+      }
+
+      const allLis = root.querySelectorAll("li");
+      const matchingIds = new Set();
+
+      // Find all matching nodes.
+      allLis.forEach(li => {
+        if (li.dataset.label.includes(query) || li.dataset.id?.toLowerCase().includes(query)) {
+          matchingIds.add(li.dataset.id);
+          // Also match all ancestors.
+          let parent = li.parentElement?.closest("li");
+          while (parent) {
+            matchingIds.add(parent.dataset.id);
+            parent = parent.parentElement?.closest("li");
+          }
+        }
+      });
+
+      allLis.forEach(li => {
+        const matches = matchingIds.has(li.dataset.id);
+        li.classList.toggle("hidden", !matches);
+
+        // Open parent details of visible items.
+        if (matches) {
+          let details = li.parentElement?.closest("details");
+          while (details) {
+            details.open = true;
+            details = details.parentElement?.closest("details");
+          }
+        }
+      });
+    }
+
+    async function main() {
+      const stats = document.getElementById("stats");
+      try {
+        const data = await loadData();
+        const tree = buildTree(data);
+        document.getElementById("tree").appendChild(tree);
+        stats.textContent = `${data.nodes.length} nodes · ${data.edges.length} edges`;
+        bindSearch();
+      } catch (err) {
+        stats.textContent = `error: ${err.message}`;
+        console.error(err);
+      }
+    }
+
+    main();
+  </script>
+</body>
+</html>

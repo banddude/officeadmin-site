@@ -119,15 +119,13 @@ The generator has a sanitization function that runs on every node and edge befor
 - [ ] Still deferred: `calls` edges between functions (Phase 2.5 part 2)
 - [ ] Still deferred: relative import resolution (`from . import x`)
 
-### Phase 3: Launchd + SKILL.md + MCP parsers ← WE ARE HERE
+### Phase 3: Launchd + SKILL.md + MCP parsers — DONE
 
-### Phase 3: Launchd + SKILL.md + MCP parsers
+- [x] Parse `~/Library/LaunchAgents/*.plist` → `launchd_job` nodes + `schedules` edges to the script they call
+- [x] Parse all SKILL.md files → `skill` nodes + `implements` edges to module they wrap
+- [x] Parse MCP registry → `mcp_tool` nodes + `exposes_tool` edges from module to tool
 
-- [ ] Parse `~/Library/LaunchAgents/*.plist` → `launchd_job` nodes + `schedules` edges to the script they call
-- [ ] Parse all SKILL.md files → `skill` nodes + `implements` edges to module they wrap
-- [ ] Parse MCP registry → `mcp_tool` nodes + `exposes_tool` edges from module to tool
-
-### Phase 6: Renderer — DONE (v1)
+### Phase 6: Renderer — DONE (v2)
 
 - [x] New page at `officeadmin/v2/index.html` — does not disturb the live `/officeadmin`
 - [x] Cytoscape.js + fcose layout via CDN
@@ -140,6 +138,16 @@ The generator has a sanitization function that runs on every node and edge befor
 - [x] Semantic zoom via zoom thresholds: low zoom (z<0.4) shows subsystems/machines only, mid (z<0.8) adds modules/skills/jobs, high adds files/classes/functions. Labels hidden at low zoom.
 - [x] Compound nodes enabled: parent field from JSON passed to Cytoscape. fcose nestingFactor=1.2. Contained_in edges styled subtle (dotted, no arrow).
 - [x] Overview now includes two levels deep so zoom-in reveals more detail without re-layout.
+
+### Accessible tree view — DONE
+
+- [x] `officeadmin/v2/tree.html` renders the same JSON as a nested HTML tree
+- [x] Proper `<details>/<summary>` structure with `role="tree"`, `role="treeitem"`, `role="group"`, `aria-label`
+- [x] Keyboard-navigable expand/collapse, screen-reader-first
+- [x] Semantic headings per subsystem, kind badges with color coding
+- [x] Edge summaries shown inline per node (non-contained_in edges)
+- [x] Search/filter with ancestor expansion
+- [x] Link from main v2 page header
 
 ### Phase 4: TypeScript parser
 
