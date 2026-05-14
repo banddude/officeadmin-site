@@ -1,5 +1,5 @@
 // VERSION_MARKER_2026_05_12_v4 — anchor logic + zoom floor
-window.__EXPLORER_VERSION__ = "2026-05-12-v6-boot";
+window.__EXPLORER_VERSION__ = "2026-05-12-v7-nomodule";
 // Hide the boot diagnostic once explorer module starts executing.
 (function () {
   var b = document.getElementById("boot");

@@ -115,13 +115,24 @@
       update("boot script ran");
       window.__BOOT_LOG__ = log;
       window.__BOOT_UPDATE__ = update;
+      function isExtensionNoise(msg) {
+        if (!msg) return false;
+        var s = String(msg);
+        // Common patterns from Safari extension content scripts that have
+        // nothing to do with our code. Bitwarden, 1Password, ad blockers etc.
+        return /contentScriptData|chrome-extension|safari-extension|moz-extension/i.test(s);
+      }
       window.addEventListener("error", function (e) {
-        update("ERROR: " + (e.message || e.error || "unknown"));
+        var msg = e.message || (e.error && e.error.message) || "unknown";
+        if (isExtensionNoise(msg)) return;
+        update("ERROR: " + msg);
         b.style.color = "#f88";
         b.style.borderColor = "#c00";
       });
       window.addEventListener("unhandledrejection", function (e) {
-        update("UNHANDLED: " + (e.reason && e.reason.message ? e.reason.message : String(e.reason)));
+        var msg = (e.reason && e.reason.message) ? e.reason.message : String(e.reason);
+        if (isExtensionNoise(msg)) return;
+        update("UNHANDLED: " + msg);
         b.style.color = "#f88";
         b.style.borderColor = "#c00";
       });
@@ -139,6 +150,6 @@
   <script src="https://unpkg.com/layout-base@2.0.1/layout-base.js" onload="window.__BOOT_UPDATE__('layout-base loaded')" onerror="window.__BOOT_UPDATE__('layout-base FAILED to load')"></script>
   <script src="https://unpkg.com/cose-base@2.2.0/cose-base.js" onload="window.__BOOT_UPDATE__('cose-base loaded')" onerror="window.__BOOT_UPDATE__('cose-base FAILED to load')"></script>
   <script src="https://unpkg.com/cytoscape-fcose@2.2.0/cytoscape-fcose.js" onload="window.__BOOT_UPDATE__('fcose loaded')" onerror="window.__BOOT_UPDATE__('fcose FAILED to load')"></script>
-  <script src="./explorer.js?v=2026-05-12-v6" type="module"></script>
+  <script src="./explorer.js?v=2026-05-12-v7-nomodule" defer></script>
 </body>
 </html>
