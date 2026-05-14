@@ -2,7 +2,7 @@
 // see "explorer.js script tag fired onload" but not "explorer.js EXECUTING",
 // the file loaded but parse/exec failed before reaching line 1.
 try { window.__BOOT_UPDATE__ && window.__BOOT_UPDATE__("explorer.js EXECUTING"); } catch (e) {}
-window.__EXPLORER_VERSION__ = "2026-05-12-v8";
+window.__EXPLORER_VERSION__ = "2026-05-12-v9-inline";
 // Hide the boot diagnostic 3s after explorer takes over.
 (function () {
   var b = document.getElementById("boot");
