@@ -2,7 +2,7 @@
 // see "explorer.js script tag fired onload" but not "explorer.js EXECUTING",
 // the file loaded but parse/exec failed before reaching line 1.
 try { window.__BOOT_UPDATE__ && window.__BOOT_UPDATE__("explorer.js EXECUTING"); } catch (e) {}
-window.__EXPLORER_VERSION__ = "2026-05-12-v10-abspath";
+window.__EXPLORER_VERSION__ = "2026-05-12-v11-ux";
 // Hide the boot diagnostic 3s after explorer takes over.
 (function () {
   var b = document.getElementById("boot");
@@ -132,18 +132,17 @@ function buildAdjacency(edges) {
 }
 
 function initialSubgraph(data) {
-  const subsystems = data.nodes.filter((n) => n.kind === "subsystem" || n.kind === "machine");
-  const subsystemIds = new Set(subsystems.map((n) => n.id));
-  // First-level children of subsystems/machines.
-  const firstLevel = data.nodes.filter((n) => subsystemIds.has(n.parent));
-  const all = [...subsystems, ...firstLevel];
-  const allIds = new Set(all.map((n) => n.id));
-  // Also include second-level children so they're available for zoom-in reveal.
-  const secondLevel = data.nodes.filter((n) => allIds.has(n.parent));
-  const expanded = [...all, ...secondLevel];
-  const expandedIds = new Set(expanded.map((n) => n.id));
-  const edges = data.edges.filter((e) => expandedIds.has(e.source) && expandedIds.has(e.target));
-  return { nodes: expanded, edges };
+  // The home view shows only structural anchors: subsystems, machines, and
+  // their direct children (modules, skills, launchd jobs, mcp tools). Files,
+  // classes, and functions are too numerous to render usefully here — they
+  // appear when you tap a module to focus it.
+  const STRUCTURAL_KINDS = new Set([
+    "subsystem", "machine", "module", "skill", "launchd_job", "mcp_tool", "cli",
+  ]);
+  const nodes = data.nodes.filter((n) => STRUCTURAL_KINDS.has(n.kind));
+  const nodeIds = new Set(nodes.map((n) => n.id));
+  const edges = data.edges.filter((e) => nodeIds.has(e.source) && nodeIds.has(e.target));
+  return { nodes, edges };
 }
 
 function focusSubgraph(data, focusId, hops = 1) {
@@ -308,26 +307,29 @@ function applySemanticZoom(cy) {
   cy.batch(() => {
     cy.nodes().forEach((node) => {
       const tier = node.data("tier") ?? 2;
+      const kind = node.data("kind");
+      // Tier 0/1 nodes (structural anchors) ALWAYS get labels regardless of
+      // zoom. Tier 2+ (files, classes, functions) only label when zoomed in.
+      const isAnchor = tier <= 1;
+      const labelOn = isAnchor || showLabels;
 
       // Compound parents: always show subsystems/machines as anchors;
       // otherwise visible if any child is at the current tier.
       if (node.isParent()) {
-        const kind = node.data("kind");
         const anchor = kind === "subsystem" || kind === "machine";
         const children = node.children();
         const anyChildVisible = children.some((c) => (c.data("tier") ?? 2) <= maxTier);
         node.style("display", anchor || anyChildVisible ? "element" : "none");
-        node.style("label", showLabels ? "data(label)" : "");
+        node.style("label", labelOn ? "data(label)" : "");
         return;
       }
 
-      const kind = node.data("kind");
       // Subsystems and machines are the orientation anchors — keep them
       // visible at every zoom level. Labels still follow the zoom rule.
       const alwaysVisible = kind === "subsystem" || kind === "machine";
       const visible = alwaysVisible || tier <= maxTier;
       node.style("display", visible ? "element" : "none");
-      node.style("label", showLabels ? "data(label)" : "");
+      node.style("label", labelOn ? "data(label)" : "");
     });
 
     cy.edges().forEach((edge) => {
@@ -502,6 +504,23 @@ function bindSearch() {
   });
 }
 
+function bindZoomButtons() {
+  const zoomBy = (factor) => {
+    if (!state.cy) return;
+    const z = state.cy.zoom();
+    const newZ = Math.max(0.05, Math.min(6, z * factor));
+    const center = { x: state.cy.width() / 2, y: state.cy.height() / 2 };
+    state.cy.zoom({ level: newZ, renderedPosition: center });
+    applySemanticZoom(state.cy);
+  };
+  document.getElementById("zoomIn")?.addEventListener("click", () => zoomBy(1.4));
+  document.getElementById("zoomOut")?.addEventListener("click", () => zoomBy(1 / 1.4));
+  document.getElementById("zoomHome")?.addEventListener("click", () => {
+    state.focus = null;
+    renderView(null);
+  });
+}
+
 function bindReset() {
   document.getElementById("resetBtn").addEventListener("click", () => {
     state.focusStack = [];
@@ -549,6 +568,7 @@ async function main() {
     setStatus(`${state.data.nodes.length} nodes · ${state.data.edges.length} edges`);
     bindSearch();
     bindReset();
+    bindZoomButtons();
     console.log(`loaded ${state.data.nodes.length} nodes, ${state.data.edges.length} edges`);
   } catch (err) {
     showFatal(err);
