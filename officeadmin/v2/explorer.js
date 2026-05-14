@@ -2,7 +2,7 @@
 // see "explorer.js script tag fired onload" but not "explorer.js EXECUTING",
 // the file loaded but parse/exec failed before reaching line 1.
 try { window.__BOOT_UPDATE__ && window.__BOOT_UPDATE__("explorer.js EXECUTING"); } catch (e) {}
-window.__EXPLORER_VERSION__ = "2026-05-12-v11-ux";
+window.__EXPLORER_VERSION__ = "2026-05-12-v12-floor";
 // Hide the boot diagnostic 3s after explorer takes over.
 (function () {
   var b = document.getElementById("boot");
@@ -371,13 +371,17 @@ function renderView(focusId = null) {
     });
     // Floor the initial fit zoom: if fcose auto-fits to a near-invisible
     // level (common on small viewports with many nodes), bump to ZOOM_MID.
-    state.cy.one("layoutstop", () => {
+    // setTimeout because layoutstop sometimes fires before fcose's final fit.
+    const enforceFloor = () => {
+      if (!state.cy) return;
       if (state.cy.zoom() < ZOOM_LOW) {
         state.cy.zoom(ZOOM_MID);
         state.cy.center();
         applySemanticZoom(state.cy);
       }
-    });
+    };
+    state.cy.one("layoutstop", () => setTimeout(enforceFloor, 50));
+    setTimeout(enforceFloor, 1500);  // belt-and-suspenders fallback
   } else {
     state.cy.batch(() => {
       state.cy.elements().remove();
@@ -410,7 +414,8 @@ function renderView(focusId = null) {
   // Apply initial semantic zoom.
   applySemanticZoom(state.cy);
 
-  document.getElementById("stats").textContent = `${sub.nodes.length} nodes · ${sub.edges.length} edges`;
+  const tot = state.data.nodes.length;
+  document.getElementById("stats").textContent = `${sub.nodes.length} of ${tot} nodes · ${sub.edges.length} edges${focusId ? " (focus: " + focusId + ")" : " (home: structural)"}`;
   updateBreadcrumb();
   updateInfoPanel(focusId);
 }
@@ -562,10 +567,10 @@ async function main() {
       throw new Error("cytoscape global not loaded — check CDN scripts");
     }
     state.data = await loadData(setStatus);
-    setStatus(`building graph (${state.data.nodes.length} nodes, ${state.data.edges.length} edges)...`);
+    setStatus(`building graph (${state.data.nodes.length} nodes in dataset)...`);
     await new Promise(r => setTimeout(r, 0)); // let UI paint
     renderView(null);
-    setStatus(`${state.data.nodes.length} nodes · ${state.data.edges.length} edges`);
+    // setStatus is also called inside renderView with the rendered count.
     bindSearch();
     bindReset();
     bindZoomButtons();

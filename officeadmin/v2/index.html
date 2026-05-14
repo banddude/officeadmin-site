@@ -108,7 +108,7 @@
   </div>
 
   <!-- No-JS visible diagnostic; the explorer module replaces this once it starts. -->
-  <div id="boot" style="position:fixed;top:60px;left:8px;right:8px;max-height:50vh;overflow-y:auto;background:#1a1d22;border:1px solid #444;color:#9cf;padding:10px 14px;font-family:monospace;font-size:12px;z-index:10000;white-space:pre-wrap;line-height:1.5;">v11 boot — waiting for scripts to load...</div>
+  <div id="boot" style="position:fixed;top:60px;left:8px;right:8px;max-height:50vh;overflow-y:auto;background:#1a1d22;border:1px solid #444;color:#9cf;padding:10px 14px;font-family:monospace;font-size:12px;z-index:10000;white-space:pre-wrap;line-height:1.5;">v12 boot — waiting for scripts to load...</div>
   <script>
     // Run BEFORE any module imports. Pure script, no dependencies. If you see
     // "boot script ran" but nothing further, the JS engine is fine but the
@@ -118,7 +118,7 @@
       var log = [];
       function update(extra) {
         if (extra) log.push(extra);
-        b.textContent = "v11 boot — " + log.join(" · ");
+        b.textContent = "v12 boot — " + log.join(" · ");
       }
       update("boot script ran");
       window.__BOOT_LOG__ = log;
@@ -159,12 +159,12 @@
   <script src="https://unpkg.com/cose-base@2.2.0/cose-base.js" onload="window.__BOOT_UPDATE__('cose-base loaded')" onerror="window.__BOOT_UPDATE__('cose-base FAILED to load')"></script>
   <script src="https://unpkg.com/cytoscape-fcose@2.2.0/cytoscape-fcose.js" onload="window.__BOOT_UPDATE__('fcose loaded')" onerror="window.__BOOT_UPDATE__('fcose FAILED to load')"></script>
   <script>
-// === INLINED EXPLORER.JS v11 ===
+// === INLINED EXPLORER.JS v12 ===
 // Line 1: signal IMMEDIATELY that explorer.js parsed and executed. If you
 // see "explorer.js script tag fired onload" but not "explorer.js EXECUTING",
 // the file loaded but parse/exec failed before reaching line 1.
 try { window.__BOOT_UPDATE__ && window.__BOOT_UPDATE__("explorer.js EXECUTING"); } catch (e) {}
-window.__EXPLORER_VERSION__ = "2026-05-12-v11-ux";
+window.__EXPLORER_VERSION__ = "2026-05-12-v12-floor";
 // Hide the boot diagnostic 3s after explorer takes over.
 (function () {
   var b = document.getElementById("boot");
@@ -533,13 +533,17 @@ function renderView(focusId = null) {
     });
     // Floor the initial fit zoom: if fcose auto-fits to a near-invisible
     // level (common on small viewports with many nodes), bump to ZOOM_MID.
-    state.cy.one("layoutstop", () => {
+    // setTimeout because layoutstop sometimes fires before fcose's final fit.
+    const enforceFloor = () => {
+      if (!state.cy) return;
       if (state.cy.zoom() < ZOOM_LOW) {
         state.cy.zoom(ZOOM_MID);
         state.cy.center();
         applySemanticZoom(state.cy);
       }
-    });
+    };
+    state.cy.one("layoutstop", () => setTimeout(enforceFloor, 50));
+    setTimeout(enforceFloor, 1500);  // belt-and-suspenders fallback
   } else {
     state.cy.batch(() => {
       state.cy.elements().remove();
@@ -572,7 +576,8 @@ function renderView(focusId = null) {
   // Apply initial semantic zoom.
   applySemanticZoom(state.cy);
 
-  document.getElementById("stats").textContent = `${sub.nodes.length} nodes · ${sub.edges.length} edges`;
+  const tot = state.data.nodes.length;
+  document.getElementById("stats").textContent = `${sub.nodes.length} of ${tot} nodes · ${sub.edges.length} edges${focusId ? " (focus: " + focusId + ")" : " (home: structural)"}`;
   updateBreadcrumb();
   updateInfoPanel(focusId);
 }
@@ -726,10 +731,10 @@ async function main() {
       throw new Error("cytoscape global not loaded — check CDN scripts");
     }
     state.data = await loadData(setStatus);
-    setStatus(`building graph (${state.data.nodes.length} nodes, ${state.data.edges.length} edges)...`);
+    setStatus(`building graph (${state.data.nodes.length} nodes in dataset)...`);
     await new Promise(r => setTimeout(r, 0)); // let UI paint
     renderView(null);
-    setStatus(`${state.data.nodes.length} nodes · ${state.data.edges.length} edges`);
+    // setStatus is also called inside renderView with the rendered count.
     bindSearch();
     bindReset();
     bindZoomButtons();
