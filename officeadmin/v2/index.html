@@ -100,7 +100,7 @@
   </div>
 
   <!-- No-JS visible diagnostic; the explorer module replaces this once it starts. -->
-  <div id="boot" style="position:fixed;top:60px;left:8px;right:8px;max-height:50vh;overflow-y:auto;background:#1a1d22;border:1px solid #444;color:#9cf;padding:10px 14px;font-family:monospace;font-size:12px;z-index:10000;white-space:pre-wrap;line-height:1.5;">v9 boot — waiting for scripts to load...</div>
+  <div id="boot" style="position:fixed;top:60px;left:8px;right:8px;max-height:50vh;overflow-y:auto;background:#1a1d22;border:1px solid #444;color:#9cf;padding:10px 14px;font-family:monospace;font-size:12px;z-index:10000;white-space:pre-wrap;line-height:1.5;">v10 boot — waiting for scripts to load...</div>
   <script>
     // Run BEFORE any module imports. Pure script, no dependencies. If you see
     // "boot script ran" but nothing further, the JS engine is fine but the
@@ -110,7 +110,7 @@
       var log = [];
       function update(extra) {
         if (extra) log.push(extra);
-        b.textContent = "v9 boot — " + log.join(" · ");
+        b.textContent = "v10 boot — " + log.join(" · ");
       }
       update("boot script ran");
       window.__BOOT_LOG__ = log;
@@ -156,7 +156,7 @@
 // see "explorer.js script tag fired onload" but not "explorer.js EXECUTING",
 // the file loaded but parse/exec failed before reaching line 1.
 try { window.__BOOT_UPDATE__ && window.__BOOT_UPDATE__("explorer.js EXECUTING"); } catch (e) {}
-window.__EXPLORER_VERSION__ = "2026-05-12-v9-inline";
+window.__EXPLORER_VERSION__ = "2026-05-12-v10-abspath";
 // Hide the boot diagnostic 3s after explorer takes over.
 (function () {
   var b = document.getElementById("boot");
@@ -245,7 +245,7 @@ const state = {
 
 async function loadData(progress) {
   progress("fetching data...");
-  const res = await fetch("../data/system-map.v2.json", { cache: "no-store" });
+  const res = await fetch("/officeadmin/data/system-map.v2.json", { cache: "no-store" });
   if (!res.ok) throw new Error(`HTTP ${res.status} loading system-map.v2.json`);
   const len = +(res.headers.get("content-length") || 0);
   if (!res.body || !len) {

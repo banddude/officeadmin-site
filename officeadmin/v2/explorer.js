@@ -2,7 +2,7 @@
 // see "explorer.js script tag fired onload" but not "explorer.js EXECUTING",
 // the file loaded but parse/exec failed before reaching line 1.
 try { window.__BOOT_UPDATE__ && window.__BOOT_UPDATE__("explorer.js EXECUTING"); } catch (e) {}
-window.__EXPLORER_VERSION__ = "2026-05-12-v9-inline";
+window.__EXPLORER_VERSION__ = "2026-05-12-v10-abspath";
 // Hide the boot diagnostic 3s after explorer takes over.
 (function () {
   var b = document.getElementById("boot");
@@ -91,7 +91,7 @@ const state = {
 
 async function loadData(progress) {
   progress("fetching data...");
-  const res = await fetch("../data/system-map.v2.json", { cache: "no-store" });
+  const res = await fetch("/officeadmin/data/system-map.v2.json", { cache: "no-store" });
   if (!res.ok) throw new Error(`HTTP ${res.status} loading system-map.v2.json`);
   const len = +(res.headers.get("content-length") || 0);
   if (!res.body || !len) {
