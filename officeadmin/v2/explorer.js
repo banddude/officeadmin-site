@@ -1,12 +1,12 @@
-// VERSION_MARKER_2026_05_12_v4 — anchor logic + zoom floor
-window.__EXPLORER_VERSION__ = "2026-05-12-v7-nomodule";
-// Hide the boot diagnostic once explorer module starts executing.
+// Line 1: signal IMMEDIATELY that explorer.js parsed and executed. If you
+// see "explorer.js script tag fired onload" but not "explorer.js EXECUTING",
+// the file loaded but parse/exec failed before reaching line 1.
+try { window.__BOOT_UPDATE__ && window.__BOOT_UPDATE__("explorer.js EXECUTING"); } catch (e) {}
+window.__EXPLORER_VERSION__ = "2026-05-12-v8";
+// Hide the boot diagnostic 3s after explorer takes over.
 (function () {
   var b = document.getElementById("boot");
-  if (b && window.__BOOT_UPDATE__) {
-    window.__BOOT_UPDATE__("explorer.js module executing");
-    setTimeout(function () { if (b) b.style.display = "none"; }, 2000);
-  }
+  if (b) setTimeout(function () { if (b) b.style.display = "none"; }, 3000);
 })();
 
 // explorer.js — Cytoscape-based renderer for system-map.v2.json.

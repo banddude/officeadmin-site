@@ -100,7 +100,7 @@
   </div>
 
   <!-- No-JS visible diagnostic; the explorer module replaces this once it starts. -->
-  <div id="boot" style="position:fixed;top:60px;left:8px;right:8px;background:#1a1d22;border:1px solid #444;color:#9cf;padding:10px 14px;font-family:monospace;font-size:12px;z-index:10000;white-space:pre-wrap;line-height:1.5;">v6 boot — waiting for scripts to load...</div>
+  <div id="boot" style="position:fixed;top:60px;left:8px;right:8px;max-height:50vh;overflow-y:auto;background:#1a1d22;border:1px solid #444;color:#9cf;padding:10px 14px;font-family:monospace;font-size:12px;z-index:10000;white-space:pre-wrap;line-height:1.5;">v8 boot — waiting for scripts to load...</div>
   <script>
     // Run BEFORE any module imports. Pure script, no dependencies. If you see
     // "boot script ran" but nothing further, the JS engine is fine but the
@@ -110,7 +110,7 @@
       var log = [];
       function update(extra) {
         if (extra) log.push(extra);
-        b.textContent = "v6 boot — " + log.join(" · ");
+        b.textContent = "v8 boot — " + log.join(" · ");
       }
       update("boot script ran");
       window.__BOOT_LOG__ = log;
@@ -139,17 +139,17 @@
       // Timeout: if explorer.js doesn't take over within 15s, declare a stall.
       setTimeout(function () {
         if (!window.__EXPLORER_VERSION__) {
-          update("STALL — explorer.js did not start within 15s. typeof cytoscape=" + typeof window.cytoscape);
+          update("STALL@5s — explorer.js did not run. typeof cytoscape=" + typeof window.cytoscape);
           b.style.color = "#fc6";
           b.style.borderColor = "#a60";
         }
-      }, 15000);
+      }, 5000);
     })();
   </script>
   <script src="https://unpkg.com/cytoscape@3.30.4/dist/cytoscape.min.js" onload="window.__BOOT_UPDATE__('cytoscape loaded')" onerror="window.__BOOT_UPDATE__('cytoscape FAILED to load')"></script>
   <script src="https://unpkg.com/layout-base@2.0.1/layout-base.js" onload="window.__BOOT_UPDATE__('layout-base loaded')" onerror="window.__BOOT_UPDATE__('layout-base FAILED to load')"></script>
   <script src="https://unpkg.com/cose-base@2.2.0/cose-base.js" onload="window.__BOOT_UPDATE__('cose-base loaded')" onerror="window.__BOOT_UPDATE__('cose-base FAILED to load')"></script>
   <script src="https://unpkg.com/cytoscape-fcose@2.2.0/cytoscape-fcose.js" onload="window.__BOOT_UPDATE__('fcose loaded')" onerror="window.__BOOT_UPDATE__('fcose FAILED to load')"></script>
-  <script src="./explorer.js?v=2026-05-12-v7-nomodule" defer></script>
+  <script src="./explorer.js?v=2026-05-12-v8" defer onload="window.__BOOT_UPDATE__ &amp;&amp; window.__BOOT_UPDATE__('explorer.js script tag fired onload')" onerror="window.__BOOT_UPDATE__ &amp;&amp; window.__BOOT_UPDATE__('explorer.js FAILED TO LOAD (404 or network error)')"></script>
 </body>
 </html>
