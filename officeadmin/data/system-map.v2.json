@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-05-15T12:58:32.662Z",
+  "generatedAt": "2026-05-15T13:58:38.564Z",
   "schema": "code-level-graph",
   "nodes": [
     {
@@ -46629,7 +46629,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.format_table",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -46849,7 +46849,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.extract_entity_slugs_from_contact",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -46889,7 +46889,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.resolve_shaffer_entity_via_contact_urls",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -46939,7 +46939,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.parse_message_names",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -46979,7 +46979,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.add_warning",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -47069,7 +47069,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.parse_imessage_output",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -47099,7 +47099,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.parse_conversations_output",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -47154,7 +47154,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.filter_by_from",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -47224,7 +47224,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.collect_email_results",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -47279,7 +47279,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.collect_imessage_results",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -47389,7 +47389,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.collect_chat_results",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -47709,7 +47709,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.hydrate_tsheets_jobcodes",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -47814,7 +47814,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.build_quickbooks_customer_name_index",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -47834,7 +47834,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.load_customer_catalog",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -47899,7 +47899,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.resolve_customer_slug_from_quickbooks_name",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -47964,7 +47964,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.build_repo_crew_schedule",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -48014,7 +48014,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.fetch_tsheets_crew_schedule",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -48109,7 +48109,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.find_matching_task",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -48134,7 +48134,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.build_tsheets_task_record",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -48159,7 +48159,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.shaffer_find_all_records_from_files",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -48314,7 +48314,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.query_shaffer_reminders_from_db",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -48354,7 +48354,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.list_shaffer_tasks_from_reminders_db",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -48404,7 +48404,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.delete_tsheets_task_files",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -48654,7 +48654,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.build_repo_task_index",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -48669,7 +48669,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.build_repo_task_matches",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -48694,7 +48694,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.replace_repo_task_match",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -48714,7 +48714,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.build_reminder_index",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -48784,7 +48784,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.get_reminders_rw_connection",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -48954,7 +48954,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.update_reminder_db_fields",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -49154,7 +49154,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.ensure_grouped_entity_lists",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -49444,7 +49444,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.fetch_reminder_metadata_migration_rows",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -49494,7 +49494,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.migrate_reminder_metadata_row",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -49534,7 +49534,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.shaffer_reminders_migrate_native",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -49609,7 +49609,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.shaffer_reminders_sync",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -49679,7 +49679,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.shaffer_reminders_push",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -49739,7 +49739,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.shaffer_reminders_pull",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -50024,7 +50024,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.shaffer_comms",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -50454,7 +50454,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.dispatch_entities",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -50624,7 +50624,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.entity_dossier.list_open_tasks",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -50639,7 +50639,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.entity_dossier.list_pending_drafts_for",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -50659,7 +50659,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.entity_dossier.list_commitments_for",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -50674,7 +50674,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.entity_dossier.list_mempalace_context",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -50704,7 +50704,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.entity_dossier.resolve_group_voice",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -50779,7 +50779,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.entity_dossier.build_dossier",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -50789,7 +50789,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.entity_dossier.render_markdown",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -50914,7 +50914,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_reconcile.check",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -50999,7 +50999,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.entity_query.load_all",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -51184,7 +51184,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.audit_commitments_json_fate.scan",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -51204,7 +51204,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_protocol.build_body",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -51229,7 +51229,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_protocol.split_aiva_replies",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -51244,7 +51244,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_protocol.build_aiva_section",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -51279,7 +51279,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_protocol.append_aiva_status",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -51304,7 +51304,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_remove_ghosts.load_active_entities",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -51329,7 +51329,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_remove_ghosts.show_contact_urls",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -51354,7 +51354,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_remove_ghosts.find_ghosts",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -51429,7 +51429,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.audit_entity_reminders_readers.scan",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -51564,7 +51564,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_mirror.stamp_commitment_for_draft",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -51699,7 +51699,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_mirror.build_notes",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -51829,7 +51829,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_mirror._mirror_as_action_item",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -51879,7 +51879,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_mirror._mirror_as_fyi",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -51944,7 +51944,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_mirror.mirror_action_item",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -52074,7 +52074,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.migrate_existing_fyi_to_logged.main",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -52179,7 +52179,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.auto_create_entity.add_contact_to_org",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -52209,7 +52209,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.auto_create_entity.auto_create",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -52289,7 +52289,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_sync.clear_pending_draft_reminder",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -52404,7 +52404,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_sync.retire_related_action_drafts",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -52569,7 +52569,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_sync._mike_only_directives",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -52944,7 +52944,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.cleanup_terminal_pending_drafts.run",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -52999,7 +52999,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.shaffer_forwards.search_maricar",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -53034,7 +53034,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.shaffer_forwards.find_forwards_for_subject",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -53054,7 +53054,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.shaffer_forwards.render_markdown",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -53099,7 +53099,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.send_manual_reply.main",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -53129,7 +53129,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_backfill_ids.load_active_entities",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -53179,7 +53179,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_backfill_ids.main",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -53194,7 +53194,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_dedupe.load_active_entities",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -53214,7 +53214,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_dedupe.get_card",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -53239,7 +53239,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_dedupe.merge_card",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -53299,7 +53299,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_dedupe.main",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -53489,7 +53489,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_safe.list_folder",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -53509,7 +53509,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_safe.search",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -53544,7 +53544,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_add_entity_urls.load_linked_entities",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -53559,7 +53559,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_add_entity_urls.get_card_urls",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -53604,7 +53604,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_add_entity_urls.main",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -53634,7 +53634,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.resolver.load_all_entities",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -53714,7 +53714,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.learn_from_corrections.collect_pairs",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -53724,7 +53724,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.learn_from_corrections.render_markdown",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -53809,7 +53809,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.entity_manage.list_pending",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -53884,7 +53884,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.aiva_handoff.fetch_email",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -53994,7 +53994,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.aiva_handoff.forward_email",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -54014,7 +54014,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.aiva_handoff.archive_email",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -54029,7 +54029,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.aiva_handoff.unarchive_email",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -54279,7 +54279,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.tell_aiva.poll",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -54389,7 +54389,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.distill_corrections.parse_diffs",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -54399,7 +54399,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.distill_corrections.parse_dismissals",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -54444,7 +54444,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.distill_corrections.main",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -54464,7 +54464,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_audit.load_active_entities",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -54484,7 +54484,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_audit.search_contacts",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -54504,7 +54504,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_audit.show_contact",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -54534,7 +54534,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_audit.audit_entity",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -54564,7 +54564,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_audit.main",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -54674,7 +54674,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.lib.context.get_context_for",
-      "target": "aiva.modules.open_loops.lib.ledger.Loop.to_dict",
+      "target": "aiva.modules.identity.lib.identity.CanonicalIdentity.to_dict",
       "type": "calls"
     },
     {
@@ -54929,7 +54929,7 @@
     },
     {
       "source": "aiva.modules.notify.services.api_server.talk",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -55059,7 +55059,7 @@
     },
     {
       "source": "aiva.modules.system_inventory.bin.generate_inventory.load_cloudflared_routes",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -55074,7 +55074,7 @@
     },
     {
       "source": "aiva.modules.system_inventory.bin.generate_inventory.load_launchd_rows",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -55134,7 +55134,7 @@
     },
     {
       "source": "aiva.modules.system_inventory.bin.generate_inventory.load_akaunting_agents",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -55199,7 +55199,7 @@
     },
     {
       "source": "aiva.modules.system_inventory.bin.generate_inventory.gen_modules",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -55239,7 +55239,7 @@
     },
     {
       "source": "aiva.modules.system_inventory.bin.generate_inventory.gen_routes",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -55269,7 +55269,7 @@
     },
     {
       "source": "aiva.modules.system_inventory.bin.generate_inventory.gen_launchd",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -55294,7 +55294,7 @@
     },
     {
       "source": "aiva.modules.system_inventory.bin.generate_inventory.gen_openclaw_jobs",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -55324,7 +55324,7 @@
     },
     {
       "source": "aiva.modules.system_inventory.bin.generate_inventory.gen_akaunting",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -55349,7 +55349,7 @@
     },
     {
       "source": "aiva.modules.system_inventory.bin.generate_inventory.gen_listeners",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -55529,7 +55529,7 @@
     },
     {
       "source": "aiva.modules.messages.privileged._legacy.db.fetch_messages_since",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -55569,7 +55569,7 @@
     },
     {
       "source": "aiva.modules.messages.privileged._legacy.db.fetch_messages_since_rowid",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -55689,7 +55689,7 @@
     },
     {
       "source": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.on_message",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -55859,7 +55859,7 @@
     },
     {
       "source": "aiva.modules.memory.runtime.read_daily_notes",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -55954,7 +55954,7 @@
     },
     {
       "source": "aiva.modules.memory.runtime._fetch_contact_cards",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -55969,7 +55969,7 @@
     },
     {
       "source": "aiva.modules.memory.runtime._render_contact_card",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -55979,7 +55979,7 @@
     },
     {
       "source": "aiva.modules.memory.runtime.render_memory_markdown",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -56069,7 +56069,7 @@
     },
     {
       "source": "aiva.modules.memory.runtime.cmd_validate",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -56134,7 +56134,7 @@
     },
     {
       "source": "aiva.modules.memory.runtime.cmd_remove",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -56254,7 +56254,7 @@
     },
     {
       "source": "aiva.modules.gemini.runtime.adapter.GeminiBridgeClient.connect",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -56269,7 +56269,7 @@
     },
     {
       "source": "aiva.modules.gemini.runtime.adapter.GeminiBridgeClient._read_stdout",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -56284,7 +56284,7 @@
     },
     {
       "source": "aiva.modules.gemini.runtime.adapter.GeminiBridgeClient.disconnect",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -56319,7 +56319,7 @@
     },
     {
       "source": "aiva.modules.gemini.runtime.adapter.GeminiBridgeClient.interrupt",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -56334,7 +56334,7 @@
     },
     {
       "source": "aiva.modules.gemini.runtime.adapter.GeminiBridgeClient.query",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -56374,7 +56374,7 @@
     },
     {
       "source": "aiva.modules.gemini.runtime.adapter.GeminiBridgeClient._iter_responses",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -56384,17 +56384,17 @@
     },
     {
       "source": "aiva.modules.gemini.runtime.adapter.GeminiBridgeClient._iter_responses",
-      "target": "aiva.ops.tests.responder.unit.test_claude_client_tools.TextBlock",
+      "target": "aiva.ops.tests.responder.unit.test_claude_stream_processor.TextBlock",
       "type": "calls"
     },
     {
       "source": "aiva.modules.gemini.runtime.adapter.GeminiBridgeClient._iter_responses",
-      "target": "aiva.ops.tests.responder.unit.test_claude_stream_processor.ToolUseBlock",
+      "target": "aiva.ops.tests.responder.unit.test_claude_client_tools.ToolUseBlock",
       "type": "calls"
     },
     {
       "source": "aiva.modules.gemini.runtime.adapter.GeminiBridgeClient._iter_responses",
-      "target": "aiva.ops.tests.responder.unit.test_claude_client_tools.ToolResultBlock",
+      "target": "aiva.ops.tests.responder.unit.test_claude_stream_processor.ToolResultBlock",
       "type": "calls"
     },
     {
@@ -56464,7 +56464,7 @@
     },
     {
       "source": "aiva.modules.identity.tests.test_identity.ident",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -56684,7 +56684,7 @@
     },
     {
       "source": "aiva.modules.identity.lib.identity._build_crm_name_norm_index",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -56694,7 +56694,7 @@
     },
     {
       "source": "aiva.modules.identity.lib.identity._pg_connect",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -56739,7 +56739,7 @@
     },
     {
       "source": "aiva.modules.identity.lib.identity._build_mp_name_norm_index",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -56779,7 +56779,7 @@
     },
     {
       "source": "aiva.modules.identity.lib.identity._record_from_crm",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -56934,7 +56934,7 @@
     },
     {
       "source": "aiva.modules.identity.lib.identity.list_unmatched_crm",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -56964,7 +56964,7 @@
     },
     {
       "source": "aiva.modules.identity.lib.identity.list_unmatched_mempalace",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -57129,7 +57129,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core._auto_close_linked_reminders",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -57169,7 +57169,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core.get_events",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -57299,7 +57299,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core._evaluate_block",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -57509,7 +57509,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core.list_nodes",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -57559,7 +57559,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core.show_node",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -57589,7 +57589,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.projector.rebuild",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -57664,7 +57664,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.schema.validate_entity",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -57689,7 +57689,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.schema.validate_enum",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -57734,7 +57734,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.schema.validate_outcome",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -57784,7 +57784,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.schema.validate_transition",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -57819,7 +57819,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.reconcile.notify.format_digest",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -57854,7 +57854,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.reconcile.notify._find_active_session",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -57969,7 +57969,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.reconcile.decide.queue_for_review",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -58044,7 +58044,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.reconcile.channels._parse_gmail_list",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -58129,7 +58129,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.reconcile.channels.GmailFetcher._fetch_for_account",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -58149,7 +58149,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.reconcile.channels.GmailFetcher.fetch",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -58159,7 +58159,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.reconcile.channels._parse_chat_read",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -58204,7 +58204,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.reconcile.channels._parse_imessage_thread",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -58229,7 +58229,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.reconcile.channels.IMessageFetcher.fetch",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -58284,7 +58284,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.reconcile.channels.VoiceFetcher.fetch",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -58339,7 +58339,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.reconcile.prompt.assemble_prompt",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -58379,7 +58379,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.reconcile.reply_parser.parse_reply",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -58394,7 +58394,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.reconcile.reply_parser.apply_replies",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -58474,7 +58474,7 @@
     },
     {
       "source": "aiva.modules.google.google_workspace_auth._parse_inline_json",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -58564,7 +58564,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.load_personal_oauth_scopes",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -58594,7 +58594,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.CommandInfo.add_option",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -58619,7 +58619,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.WorkspaceArgumentParser.error",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -58634,7 +58634,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.WorkspaceArgumentParser.format_help",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -58664,7 +58664,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.generate_help_from_subcommands",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -58724,7 +58724,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.parse_service_account_inline_json",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -58984,7 +58984,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.services_cmd",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -59169,7 +59169,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.tasks_due_within",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -59214,7 +59214,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_parse_addresses",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -59289,7 +59289,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_collect_parts",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -59309,7 +59309,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_download_attachments",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -59369,7 +59369,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_reply_recipients",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -59394,7 +59394,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_list_messages_cmd",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -59549,7 +59549,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_modify_message_cmd",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -59579,7 +59579,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_archive_message_cmd",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -59639,7 +59639,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_reply_message_cmd",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -59714,7 +59714,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_forward_message_cmd",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -59939,7 +59939,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_list_drafts_cmd",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -60094,7 +60094,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_create_filter_cmd",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -60359,7 +60359,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.calendar_freebusy_cmd",
-      "target": "aiva.modules.codex.runtime.adapter.CodexBridgeClient.query",
+      "target": "aiva.modules.claude.runtime.sdk_runtime.TolerantClaudeSDKClient.query",
       "type": "calls"
     },
     {
@@ -60409,7 +60409,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.docs_collect_text",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -60694,7 +60694,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.sheets_append_values_cmd",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -60784,7 +60784,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.drive_build_query",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -60824,7 +60824,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.drive_list_files_cmd",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -61244,7 +61244,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.get_unread_messages",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -61659,7 +61659,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.tasks_summary",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -61759,7 +61759,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.chat_send",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -61869,7 +61869,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.build_parser",
-      "target": "aiva.modules.google.cli.google_cli.add_option",
+      "target": "aiva.modules.google.cli.google_cli.CommandInfo.add_option",
       "type": "calls"
     },
     {
@@ -61954,7 +61954,7 @@
     },
     {
       "source": "aiva.modules.google.cli.refresh_personal_oauth.load_scopes",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -62024,7 +62024,7 @@
     },
     {
       "source": "aiva.modules.secrets.bin.migrate_keychain_to_vault.get_aiva_conn",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -62089,7 +62089,7 @@
     },
     {
       "source": "aiva.modules.secrets.bin.migrate_keychain_to_vault.build_plan",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -62154,7 +62154,7 @@
     },
     {
       "source": "aiva.modules.secrets.bin.migrate_keychain_to_vault.main",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -62174,7 +62174,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.extract_conversation_commitments._get_aiva_conn",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -62239,7 +62239,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.extract_conversation_commitments._fetch_rows_pg",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -62274,12 +62274,12 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.extract_conversation_commitments._fetch_rows_sqlite",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
       "source": "aiva.modules.open_loops.bin.extract_conversation_commitments._fetch_rows_sqlite",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -62354,7 +62354,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.extract_conversation_commitments.run_extractor",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -62494,7 +62494,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.record_commitment.matching_existing_node",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -62539,7 +62539,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.record_commitment.record",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -62729,7 +62729,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.open_loops.cmd_show",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -62814,7 +62814,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.verify_commitment_wiring.main",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -63099,7 +63099,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.project_waiting_on.run_projector",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -63209,7 +63209,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.follow_through_checker.iter_evidence",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -63499,7 +63499,7 @@
     },
     {
       "source": "aiva.modules.open_loops.tests.test_conversation_extractor.ConversationExtractorTests.make_db",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -63749,7 +63749,7 @@
     },
     {
       "source": "aiva.modules.open_loops.lib.ledger._iter_events",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -63769,7 +63769,7 @@
     },
     {
       "source": "aiva.modules.open_loops.lib.ledger._project_loop",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -63789,7 +63789,7 @@
     },
     {
       "source": "aiva.modules.open_loops.lib.ledger.all_loops",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -64754,7 +64754,7 @@
     },
     {
       "source": "aiva.modules.claude.autocompact.session_compactor.get_lines_up_to_tokens",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -64799,7 +64799,7 @@
     },
     {
       "source": "aiva.modules.claude.autocompact.session_compactor.run_compact_on_copy",
-      "target": "aiva.modules.mikeshaffer.bin.reminders_sync.poll",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.poll",
       "type": "calls"
     },
     {
@@ -64829,7 +64829,7 @@
     },
     {
       "source": "aiva.modules.claude.autocompact.session_compactor.extract_compact_entries",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -64844,7 +64844,7 @@
     },
     {
       "source": "aiva.modules.claude.autocompact.session_compactor.splice_compact_into_session",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -64944,7 +64944,7 @@
     },
     {
       "source": "aiva.modules.claude.autocompact.session_compactor.get_messages_after_line",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -64959,7 +64959,7 @@
     },
     {
       "source": "aiva.modules.claude.autocompact.session_compactor._extract_text_from_content",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -64979,7 +64979,7 @@
     },
     {
       "source": "aiva.modules.claude.autocompact.session_compactor.format_recent_messages_as_text",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -65039,7 +65039,7 @@
     },
     {
       "source": "aiva.modules.claude.autocompact.session_compactor.build_bootstrap_message",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -65064,7 +65064,7 @@
     },
     {
       "source": "aiva.modules.claude.autocompact.session_compactor.build_bootstrap_from_ready",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -65244,7 +65244,7 @@
     },
     {
       "source": "aiva.modules.codex.runtime.adapter.CodexBridgeClient.connect",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -65269,7 +65269,7 @@
     },
     {
       "source": "aiva.modules.codex.runtime.adapter.CodexBridgeClient._read_stdout",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -65284,7 +65284,7 @@
     },
     {
       "source": "aiva.modules.codex.runtime.adapter.CodexBridgeClient._read_stderr",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -65299,7 +65299,7 @@
     },
     {
       "source": "aiva.modules.codex.runtime.adapter.CodexBridgeClient.disconnect",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -65334,7 +65334,7 @@
     },
     {
       "source": "aiva.modules.codex.runtime.adapter.CodexBridgeClient.interrupt",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -65354,7 +65354,7 @@
     },
     {
       "source": "aiva.modules.codex.runtime.adapter.CodexBridgeClient.query",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -65404,12 +65404,12 @@
     },
     {
       "source": "aiva.modules.codex.runtime.adapter.CodexBridgeClient._iter_responses",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
       "source": "aiva.modules.codex.runtime.adapter.CodexBridgeClient._iter_responses",
-      "target": "aiva.ops.tests.responder.unit.test_claude_stream_processor.ToolUseBlock",
+      "target": "aiva.ops.tests.responder.unit.test_claude_client_tools.ToolUseBlock",
       "type": "calls"
     },
     {
@@ -65419,17 +65419,17 @@
     },
     {
       "source": "aiva.modules.codex.runtime.adapter.CodexBridgeClient._iter_responses",
-      "target": "aiva.ops.tests.responder.unit.test_claude_client_tools.ToolResultBlock",
+      "target": "aiva.ops.tests.responder.unit.test_claude_stream_processor.ToolResultBlock",
       "type": "calls"
     },
     {
       "source": "aiva.modules.codex.runtime.adapter.CodexBridgeClient._iter_responses",
-      "target": "aiva.ops.tests.responder.unit.test_claude_client_tools.TextBlock",
+      "target": "aiva.ops.tests.responder.unit.test_claude_stream_processor.TextBlock",
       "type": "calls"
     },
     {
       "source": "aiva.modules.codex.runtime.adapter.CodexBridgeClient._iter_responses",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -65554,7 +65554,7 @@
     },
     {
       "source": "aiva.modules.alpaca.skills.alpaca_trading.speculative_trades.main",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -66174,7 +66174,7 @@
     },
     {
       "source": "aiva.modules.mempalace.cli._pgvector_search",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -66409,7 +66409,7 @@
     },
     {
       "source": "aiva.modules.mempalace.services.daemon._check_stale_socket",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -67159,7 +67159,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_api_backfill_threaded.producer",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -67179,7 +67179,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_api_backfill_threaded.worker",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.Imap",
       "type": "calls"
     },
     {
@@ -67189,7 +67189,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_api_backfill_threaded.worker",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -67229,7 +67229,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_api_backfill_threaded.collector",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -67264,7 +67264,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_api_backfill_threaded.main",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -67304,7 +67304,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_api_backfill_threaded.main",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.Imap",
       "type": "calls"
     },
     {
@@ -68074,7 +68074,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_api_backfill.list_messages_page",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -68109,7 +68109,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_api_backfill.main",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -68134,7 +68134,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_api_backfill.main",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.Imap",
       "type": "calls"
     },
     {
@@ -68209,7 +68209,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.BlogHTMLParser.handle_starttag",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -68229,7 +68229,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.BlogHTMLParser.handle_data",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -68249,7 +68249,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.canonical_external_url",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -68279,7 +68279,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.ordered_tokens",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -68294,7 +68294,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.focus_terms_for_post",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -68324,7 +68324,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.load_posts",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -68374,7 +68374,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.external_sources_by_url",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -68414,7 +68414,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.similar_recent_posts",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -68439,7 +68439,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.load_routes",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -68494,7 +68494,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.business_pages_for_topic",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -68514,7 +68514,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.blog_links_for_topic",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -68544,7 +68544,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.recent_images",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -68554,7 +68554,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.available_images",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -68584,7 +68584,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.search_console_opportunities",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -68664,7 +68664,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.fetch_google_news",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -68724,7 +68724,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.make_research",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -68789,7 +68789,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.validate_post",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -68879,7 +68879,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.command_validate",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -68914,7 +68914,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.audit_built_post",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -68939,7 +68939,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.changed_blog_files_since_upstream",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -68954,7 +68954,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.command_audit",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -69164,7 +69164,7 @@
     },
     {
       "source": "aiva.modules.sendblue.channel.SendblueChannel.on_message",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -69359,7 +69359,7 @@
     },
     {
       "source": "aiva.modules.skill_creator.skills.skill_creator.scripts.init_skill.main",
-      "target": "aiva.modules.skill_creator.skills.skill_creator.scripts.init_skill",
+      "target": "aiva.modules.skill_creator.skills.skill_creator.scripts.init_skill.init_skill",
       "type": "calls"
     },
     {
@@ -69394,7 +69394,7 @@
     },
     {
       "source": "aiva.modules.skill_creator.skills.skill_creator.scripts.package_skill.main",
-      "target": "aiva.modules.skill_creator.skills.skill_creator.scripts.package_skill",
+      "target": "aiva.modules.skill_creator.skills.skill_creator.scripts.package_skill.package_skill",
       "type": "calls"
     },
     {
@@ -70119,7 +70119,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.get_pg_conn",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -70674,7 +70674,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.update_speaker_contact",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -70959,7 +70959,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.process_conversation_optimized",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -71019,7 +71019,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.identify_unknown_speakers_by_combining",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -71084,7 +71084,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.process_conversation",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -71114,7 +71114,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.sync_viaim.get_pg_conn",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -71134,7 +71134,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.sync_viaim.connect_viaim",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -71214,7 +71214,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.sync_viaim.source_audio_for_record",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -71634,7 +71634,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.aiva_voice_monitor.get_pg_conn",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -71699,7 +71699,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.aiva_voice_monitor.main",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -71749,7 +71749,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_job_worker.get_pg_conn",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -72264,7 +72264,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.suggest_speakers.get_pg_conn",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -72304,7 +72304,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.suggest_speakers._entity_roster",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -72339,7 +72339,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.suggest_speakers._conversation_context",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -72364,7 +72364,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.suggest_speakers._format_transcript",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -72374,7 +72374,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.suggest_speakers._build_user_prompt",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -72529,12 +72529,12 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime.send_voice_message",
-      "target": "aiva.modules.sendblue.channel.SendblueChannel.send_attachment",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.send_attachment",
       "type": "calls"
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime.send_voice_message",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -72559,7 +72559,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime._is_blocked_non_admin_recipient",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -72569,7 +72569,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime._latest_incoming_message_for_recipient",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -72589,7 +72589,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime._latest_incoming_message_for_recipient",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -72609,12 +72609,12 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime._send_tapback_via_channel",
-      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.send_reaction",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.send_reaction",
       "type": "calls"
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime._send_tapback_via_channel",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -72634,7 +72634,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime.send_tapback",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -72664,7 +72664,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime.send_custom_tapback_emoji",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -72694,12 +72694,12 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime._markdown_table_to_pdf",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime._markdown_table_to_pdf",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -72714,7 +72714,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime.split_message_on_tables",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -72724,7 +72724,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime.extract_markdown_links",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -72739,7 +72739,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime.extract_effect",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -72749,7 +72749,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime.extract_and_send_tapbacks",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -72779,7 +72779,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime.send_imessage",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -72819,7 +72819,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime.send_skill_activation",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -72844,7 +72844,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.get_last_id",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -72854,7 +72854,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.get_last_id",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -72879,7 +72879,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.get_max_rowid",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -72909,7 +72909,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.set_last_id",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -72919,7 +72919,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.decode_attributed_body",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -72929,7 +72929,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.extract_audio_transcription",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -72964,7 +72964,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.fetch_new_messages",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -72994,7 +72994,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.normalize_image",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -73004,7 +73004,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.normalize_image_to_base64",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -73014,7 +73014,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime._find_attachments_on_disk",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -73029,7 +73029,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.get_attachment_source_path",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -73054,7 +73054,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.save_attachment",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -73164,7 +73164,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli._resolve_contact_via_aiva",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -73229,7 +73229,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli._latest_local_message_ts",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -73314,7 +73314,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli._substitute_params",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -73349,7 +73349,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -73474,7 +73474,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli._open_chat_db",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -73524,7 +73524,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.format_url_balloon",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -73539,7 +73539,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.parse_poll_payload",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -73549,7 +73549,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.format_poll",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -73569,7 +73569,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.parse_edit_history",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -73584,7 +73584,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.format_edit_history",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -73789,7 +73789,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.get_phone_for_contact",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -73894,7 +73894,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.send_message",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -73989,7 +73989,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.extract_text_from_attributed_body",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -73999,7 +73999,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.get_contacts_db_path",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -74069,7 +74069,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.build_name_to_phones_cache",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -74119,7 +74119,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.get_phones_for_contact_name_sqlite",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -74194,7 +74194,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.find_conversations_with_contact",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -74219,7 +74219,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.search_by_contact",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -74294,7 +74294,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.search_by_keyword",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -74369,7 +74369,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.generate_group_name",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -74414,7 +74414,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.list_group_chats",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -74434,7 +74434,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.get_group_messages",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -74529,7 +74529,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.show_thread",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -74644,7 +74644,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.show_group_thread",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -74729,7 +74729,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.export_conversation",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -74794,7 +74794,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.export_group_conversation",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -74929,7 +74929,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.list_attachments",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -75019,7 +75019,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.search_by_date",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -75089,7 +75089,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.search_links",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -75179,7 +75179,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.search_group_by_participant",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -75324,7 +75324,7 @@
     },
     {
       "source": "aiva.modules.sync.hooks.pre_commit_validate.validate_task_or_work",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -75339,7 +75339,7 @@
     },
     {
       "source": "aiva.modules.sync.hooks.pre_commit_validate.check_for_secrets",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -75364,7 +75364,7 @@
     },
     {
       "source": "aiva.modules.sync.hooks.pre_commit_validate.main",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -75474,7 +75474,7 @@
     },
     {
       "source": "aiva.modules.jobs.services.poller.parse_job_definition",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -75494,7 +75494,7 @@
     },
     {
       "source": "aiva.modules.jobs.services.poller.read_calendar_events",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -75669,7 +75669,7 @@
     },
     {
       "source": "aiva.modules.glm.provider.configure_glm_sdk_env",
-      "target": "aiva.modules.mikeshaffer.bin.aiva_handoff.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -75814,7 +75814,7 @@
     },
     {
       "source": "aiva.modules.instagram.oauth_server.store_token",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -76009,7 +76009,7 @@
     },
     {
       "source": "aiva.modules.instagram.mcp_server.src.server.start_gateway",
-      "target": "aiva.modules.mikeshaffer.bin.reminders_sync.poll",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.poll",
       "type": "calls"
     },
     {
@@ -76109,7 +76109,7 @@
     },
     {
       "source": "aiva.modules.instagram.mcp_server.src.server.format_attachment_text",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -76134,7 +76134,7 @@
     },
     {
       "source": "aiva.modules.instagram.mcp_server.src.server.flush_pending_messages",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -76159,7 +76159,7 @@
     },
     {
       "source": "aiva.modules.instagram.mcp_server.src.server.queue_message_for_poke",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -76219,7 +76219,7 @@
     },
     {
       "source": "aiva.modules.instagram.mcp_server.src.server.get_inbox",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -76259,7 +76259,7 @@
     },
     {
       "source": "aiva.modules.instagram.mcp_server.src.server.get_conversation",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -76734,7 +76734,7 @@
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read._pg_conn",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -76799,7 +76799,7 @@
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read._sqlite_messages",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -76874,7 +76874,7 @@
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read._sqlite_unreads",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -76949,7 +76949,7 @@
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read._sqlite_attachments",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -77234,7 +77234,7 @@
     },
     {
       "source": "aiva.modules.talk.services.canvas_talk_listener.listen",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -77609,7 +77609,7 @@
     },
     {
       "source": "aiva.modules.talk.services.aiva_audio_server.AudioHandler.do_POST",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -77884,7 +77884,7 @@
     },
     {
       "source": "aiva.modules.talk.services.canvas_tmux_session.mirror",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -77919,7 +77919,7 @@
     },
     {
       "source": "aiva.modules.talk.services.canvas_push.push",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -77939,7 +77939,7 @@
     },
     {
       "source": "aiva.modules.talk.services.canvas_ask.ask",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -78004,7 +78004,7 @@
     },
     {
       "source": "aiva.ops.reconcile_modules.ensure_runtime_dirs",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78019,7 +78019,7 @@
     },
     {
       "source": "aiva.ops.reconcile_modules.collect_jobs_registry",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78034,7 +78034,7 @@
     },
     {
       "source": "aiva.ops.reconcile_modules.collect_daemon_registry",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78049,7 +78049,7 @@
     },
     {
       "source": "aiva.ops.reconcile_modules.collect_capabilities_registry",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78074,7 +78074,7 @@
     },
     {
       "source": "aiva.ops.reconcile_modules._desired_command_surfaces",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78089,7 +78089,7 @@
     },
     {
       "source": "aiva.ops.reconcile_modules._desired_skill_surfaces",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78169,7 +78169,7 @@
     },
     {
       "source": "aiva.ops.reconcile_modules._reconcile_surface_group",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78209,7 +78209,7 @@
     },
     {
       "source": "aiva.ops.reconcile_modules.reconcile_public_surfaces",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78289,7 +78289,7 @@
     },
     {
       "source": "aiva.ops.reconcile_modules.build_registry",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78449,7 +78449,7 @@
     },
     {
       "source": "aiva.ops.validate_jobs_json.validate",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78494,7 +78494,7 @@
     },
     {
       "source": "aiva.ops.aiva_status.section_launchd",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78539,7 +78539,7 @@
     },
     {
       "source": "aiva.ops.aiva_status.section_orphans",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78564,7 +78564,7 @@
     },
     {
       "source": "aiva.ops.aiva_status.main",
-      "target": "aiva.ops.reconcile_modules.parse_args",
+      "target": "aiva.ops.scripts.mempalace_priority_mine.parse_args",
       "type": "calls"
     },
     {
@@ -78594,7 +78594,7 @@
     },
     {
       "source": "aiva.ops.generate_skills_index.collect",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78614,7 +78614,7 @@
     },
     {
       "source": "aiva.ops.generate_skills_index.render",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78674,7 +78674,7 @@
     },
     {
       "source": "aiva.ops.hydrate_docs.gen_module_catalog",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78684,7 +78684,7 @@
     },
     {
       "source": "aiva.ops.hydrate_docs.gen_launchd_catalog",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78719,7 +78719,7 @@
     },
     {
       "source": "aiva.ops.hydrate_docs.gen_content_catalog",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78729,7 +78729,7 @@
     },
     {
       "source": "aiva.ops.hydrate_docs.gen_skill_content_files",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78749,7 +78749,7 @@
     },
     {
       "source": "aiva.ops.hydrate_docs.main",
-      "target": "aiva.ops.reconcile_modules.parse_args",
+      "target": "aiva.ops.scripts.mempalace_priority_mine.parse_args",
       "type": "calls"
     },
     {
@@ -78759,7 +78759,7 @@
     },
     {
       "source": "aiva.ops.hydrate_docs.main",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78819,7 +78819,7 @@
     },
     {
       "source": "aiva.ops.validate_modules._validate_string_list",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78834,7 +78834,7 @@
     },
     {
       "source": "aiva.ops.validate_modules._validate_hooks",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78884,7 +78884,7 @@
     },
     {
       "source": "aiva.ops.validate_modules._validate_runtime_names",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78904,7 +78904,7 @@
     },
     {
       "source": "aiva.ops.validate_modules._validate_provides",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78924,7 +78924,7 @@
     },
     {
       "source": "aiva.ops.validate_modules.validate_cross_manifest_roles",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78949,7 +78949,7 @@
     },
     {
       "source": "aiva.ops.validate_modules.validate_manifest_dir",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -78989,7 +78989,7 @@
     },
     {
       "source": "aiva.ops.validate_modules.validate_touched_module_dir",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79004,7 +79004,7 @@
     },
     {
       "source": "aiva.ops.validate_modules.validate_required_specs",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79069,7 +79069,7 @@
     },
     {
       "source": "aiva.ops.drift_check_docs.check",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79119,7 +79119,7 @@
     },
     {
       "source": "aiva.ops.drift_check_docs.check_module_catalog_coverage",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79134,7 +79134,7 @@
     },
     {
       "source": "aiva.ops.drift_check_docs.check_module_map_coverage",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79199,12 +79199,12 @@
     },
     {
       "source": "aiva.ops.drift_check_docs.check_mempalace_graph_counts",
-      "target": "aiva.ops.tests.responder.unit.test_codex_adapter._FakeStdin.close",
+      "target": "aiva.ops.codex_jsonl_probe.JsonlLogger.close",
       "type": "calls"
     },
     {
       "source": "aiva.ops.drift_check_docs.check_mempalace_graph_counts",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79224,7 +79224,7 @@
     },
     {
       "source": "aiva.ops.drift_check_docs.check_last_verified_freshness",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79234,7 +79234,7 @@
     },
     {
       "source": "aiva.ops.drift_check_docs.check_canonical_links_resolve",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79244,7 +79244,7 @@
     },
     {
       "source": "aiva.ops.drift_check_docs.check_customers_symlinks",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79274,7 +79274,7 @@
     },
     {
       "source": "aiva.ops.drift_check_docs.check_launchd_agents_loaded",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79289,7 +79289,7 @@
     },
     {
       "source": "aiva.ops.drift_check_docs.check_module_manifest_paths",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79304,7 +79304,7 @@
     },
     {
       "source": "aiva.ops.drift_check_docs.check_validators_pass",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79319,7 +79319,7 @@
     },
     {
       "source": "aiva.ops.drift_check_docs.check_module_public_surfaces_generated",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79344,7 +79344,7 @@
     },
     {
       "source": "aiva.ops.drift_check_docs.check_launchd_agents_resolve",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79359,7 +79359,7 @@
     },
     {
       "source": "aiva.ops.drift_check_docs.check_module_public_entries_resolve",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79369,7 +79369,7 @@
     },
     {
       "source": "aiva.ops.drift_check_docs.main",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79459,7 +79459,7 @@
     },
     {
       "source": "aiva.ops.doctor.check_forbidden_dirs",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79484,7 +79484,7 @@
     },
     {
       "source": "aiva.ops.doctor.check_generated_surfaces",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79499,7 +79499,7 @@
     },
     {
       "source": "aiva.ops.doctor.check_manifest_public_surfaces",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79519,7 +79519,7 @@
     },
     {
       "source": "aiva.ops.doctor.check_stale_paths",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79539,7 +79539,7 @@
     },
     {
       "source": "aiva.ops.doctor._extract_launchd_paths",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79554,7 +79554,7 @@
     },
     {
       "source": "aiva.ops.doctor.check_launchd_targets",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79569,7 +79569,7 @@
     },
     {
       "source": "aiva.ops.doctor.check_claude_skill_mirror",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79599,7 +79599,7 @@
     },
     {
       "source": "aiva.ops.doctor.check_capability_registry",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79619,7 +79619,7 @@
     },
     {
       "source": "aiva.ops.doctor.check_runtime_dirs",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79664,7 +79664,7 @@
     },
     {
       "source": "aiva.ops.scanner_quality_report.load_runs",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79674,7 +79674,7 @@
     },
     {
       "source": "aiva.ops.scanner_quality_report.main",
-      "target": "aiva.ops.reconcile_modules.parse_args",
+      "target": "aiva.ops.scripts.mempalace_priority_mine.parse_args",
       "type": "calls"
     },
     {
@@ -79689,7 +79689,7 @@
     },
     {
       "source": "aiva.ops.scanner_quality_report.main",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79934,7 +79934,7 @@
     },
     {
       "source": "aiva.ops.validate_memory.main",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -79979,7 +79979,7 @@
     },
     {
       "source": "aiva.ops.validate_skills.validate_skill_dir",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -80014,7 +80014,7 @@
     },
     {
       "source": "aiva.ops.bin.trim_logs.trim_log_file",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -80024,7 +80024,7 @@
     },
     {
       "source": "aiva.ops.bin.trim_logs.main",
-      "target": "aiva.ops.reconcile_modules.parse_args",
+      "target": "aiva.ops.scripts.mempalace_priority_mine.parse_args",
       "type": "calls"
     },
     {
@@ -80079,7 +80079,7 @@
     },
     {
       "source": "aiva.ops.bin.safe_capture.main",
-      "target": "aiva.ops.reconcile_modules.parse_args",
+      "target": "aiva.ops.scripts.mempalace_priority_mine.parse_args",
       "type": "calls"
     },
     {
@@ -80449,7 +80449,7 @@
     },
     {
       "source": "aiva.ops.tests.test_provider_golden_reference._materialize_messages",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -80469,7 +80469,7 @@
     },
     {
       "source": "aiva.ops.tests.test_provider_golden_reference._collect_receive_response",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -80689,7 +80689,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_responder_main.test_main_wrapper",
-      "target": "aiva.ops.scanner_quality_report.main",
+      "target": "aiva.ops.bin.trim_logs.main",
       "type": "calls"
     },
     {
@@ -80794,7 +80794,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_state.test_compaction_state_tracks_background_start_and_swap",
-      "target": "aiva.core.compaction.CompactionCoordinator.reset_compaction_state",
+      "target": "aiva.core.compaction.reset_compaction_state",
       "type": "calls"
     },
     {
@@ -80804,7 +80804,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_state.test_compaction_state_tracks_background_start_and_swap",
-      "target": "aiva.core.compaction.maybe_start_background_compaction_for_contact",
+      "target": "aiva.core.compaction.CompactionCoordinator.maybe_start_background_compaction_for_contact",
       "type": "calls"
     },
     {
@@ -80814,7 +80814,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_state.test_compaction_state_tracks_background_start_and_swap",
-      "target": "aiva.core.compaction.clear_compact_ready_after_success_for_contact",
+      "target": "aiva.core.compaction.CompactionCoordinator.clear_compact_ready_after_success_for_contact",
       "type": "calls"
     },
     {
@@ -80824,17 +80824,17 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_state.test_compaction_state_tracks_background_start_and_swap",
-      "target": "aiva.core.compaction.is_compaction_running_for_contact",
+      "target": "aiva.core.compaction.CompactionCoordinator.is_compaction_running_for_contact",
       "type": "calls"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_state.test_compaction_state_tracks_background_start_and_swap",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_state.test_compaction_state_tracks_background_start_and_swap",
-      "target": "aiva.core.compaction.CompactionCoordinator.build_bootstrap_if_ready_for_contact",
+      "target": "aiva.core.compaction.build_bootstrap_if_ready_for_contact",
       "type": "calls"
     },
     {
@@ -81089,12 +81089,12 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_compaction_service.test_trigger_prompt_too_long_compaction_starts_direct_background_job",
-      "target": "aiva.core.compaction.CompactionCoordinator.trigger_prompt_too_long_compaction",
+      "target": "aiva.core.compaction_service.trigger_prompt_too_long_compaction",
       "type": "calls"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_compaction_service.test_trigger_prompt_too_long_compaction_starts_direct_background_job",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -81169,7 +81169,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_responder_commands.test_restart_responder_clears_sessions_by_contact_id",
-      "target": "aiva.core.responder.commands.restart_responder",
+      "target": "aiva.modules.claude.autocompact.session_compactor.restart_responder",
       "type": "calls"
     },
     {
@@ -81859,7 +81859,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_client_manager.test_contact_manager_interrupt_only_drains_queue",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -82334,7 +82334,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_responder_queue._DummyManager.disconnect_client",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -82344,7 +82344,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_responder_queue._DummyManager.reset_client_state",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -82524,7 +82524,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_imessage_sender_extra.test_send_imessage_markdown_headers",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -82549,7 +82549,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_imessage_sender_extra.test_send_imessage_returns_false_on_send_failure",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -83779,7 +83779,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_responder_attachments.test_collect_message_attachments_accepts_legacy_processing_kwargs",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -83884,7 +83884,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_provider_registry.test_provider_adapter_creates_runtime_client",
-      "target": "aiva.core.model_runtime.base.ProviderAdapter.create_client",
+      "target": "aiva.modules.gemini.runtime.adapter.GeminiProviderAdapter.create_client",
       "type": "calls"
     },
     {
@@ -83899,7 +83899,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_provider_registry.test_provider_adapter_rejects_invalid_runtime_client",
-      "target": "aiva.core.model_runtime.base.ProviderAdapter.create_client",
+      "target": "aiva.modules.gemini.runtime.adapter.GeminiProviderAdapter.create_client",
       "type": "calls"
     },
     {
@@ -84419,7 +84419,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_codex_adapter._FakeStdin.write",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -85809,7 +85809,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_imessage_sender.test_send_imessage_formatting",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -85819,7 +85819,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_imessage_sender.test_send_imessage_padding",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -86124,7 +86124,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_client_deep_extra.test_clear_interrupt_flag_runs_before_query_send",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -86184,7 +86184,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_client_results.SequenceQueryClient.query",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -86254,7 +86254,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_client_results.test_ask_claude_prompt_too_long_auto_compact",
-      "target": "aiva.core.compaction.CompactionCoordinator.reset_compaction_state",
+      "target": "aiva.core.compaction.reset_compaction_state",
       "type": "calls"
     },
     {
@@ -86279,7 +86279,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_client_results.test_ask_claude_prompt_too_long_while_compaction_running_does_not_recompact",
-      "target": "aiva.core.compaction.CompactionCoordinator.reset_compaction_state",
+      "target": "aiva.core.compaction.reset_compaction_state",
       "type": "calls"
     },
     {
@@ -86589,7 +86589,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestCompactionStateCRUD.test_reset_compaction_state_single",
-      "target": "aiva.core.compaction.CompactionCoordinator.reset_compaction_state",
+      "target": "aiva.core.compaction.reset_compaction_state",
       "type": "calls"
     },
     {
@@ -86614,7 +86614,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestCompactionStateCRUD.test_reset_compaction_state_all",
-      "target": "aiva.core.compaction.CompactionCoordinator.reset_compaction_state",
+      "target": "aiva.core.compaction.reset_compaction_state",
       "type": "calls"
     },
     {
@@ -87399,7 +87399,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestTriggerPromptTooLongCompaction.test_trigger_already_running_returns_true",
-      "target": "aiva.core.compaction.CompactionCoordinator.trigger_prompt_too_long_compaction",
+      "target": "aiva.core.compaction_service.trigger_prompt_too_long_compaction",
       "type": "calls"
     },
     {
@@ -87419,7 +87419,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestTriggerPromptTooLongCompaction.test_trigger_no_session_returns_false",
-      "target": "aiva.core.compaction.CompactionCoordinator.trigger_prompt_too_long_compaction",
+      "target": "aiva.core.compaction_service.trigger_prompt_too_long_compaction",
       "type": "calls"
     },
     {
@@ -87439,7 +87439,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestTriggerPromptTooLongCompaction.test_trigger_unavailable_returns_false",
-      "target": "aiva.core.compaction.CompactionCoordinator.trigger_prompt_too_long_compaction",
+      "target": "aiva.core.compaction_service.trigger_prompt_too_long_compaction",
       "type": "calls"
     },
     {
@@ -87459,7 +87459,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestTriggerPromptTooLongCompaction.test_trigger_lock_busy_returns_true",
-      "target": "aiva.core.compaction.CompactionCoordinator.trigger_prompt_too_long_compaction",
+      "target": "aiva.core.compaction_service.trigger_prompt_too_long_compaction",
       "type": "calls"
     },
     {
@@ -87484,12 +87484,12 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestTriggerPromptTooLongCompaction.test_trigger_success_sends_notification",
-      "target": "aiva.core.compaction.CompactionCoordinator.trigger_prompt_too_long_compaction",
+      "target": "aiva.core.compaction_service.trigger_prompt_too_long_compaction",
       "type": "calls"
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestTriggerPromptTooLongCompaction.test_trigger_success_sends_notification",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -87509,7 +87509,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestTriggerPromptTooLongCompaction.test_trigger_failure_releases_lock",
-      "target": "aiva.core.compaction.CompactionCoordinator.trigger_prompt_too_long_compaction",
+      "target": "aiva.core.compaction_service.trigger_prompt_too_long_compaction",
       "type": "calls"
     },
     {
@@ -87529,7 +87529,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestTriggerPromptTooLongCompaction.test_trigger_no_recipient_skips_notification",
-      "target": "aiva.core.compaction.CompactionCoordinator.trigger_prompt_too_long_compaction",
+      "target": "aiva.core.compaction_service.trigger_prompt_too_long_compaction",
       "type": "calls"
     },
     {
@@ -87719,7 +87719,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestIsCompactionRunning.test_is_compaction_running_for_contact_sets_compacting",
-      "target": "aiva.core.compaction.is_compaction_running_for_contact",
+      "target": "aiva.core.compaction.CompactionCoordinator.is_compaction_running_for_contact",
       "type": "calls"
     },
     {
@@ -87749,7 +87749,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestClearCompactReadyAfterSuccess.test_clear_compact_ready_unavailable",
-      "target": "aiva.core.compaction.clear_compact_ready_after_success",
+      "target": "aiva.core.compaction.CompactionCoordinator.clear_compact_ready_after_success",
       "type": "calls"
     },
     {
@@ -87769,7 +87769,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestClearCompactReadyAfterSuccess.test_clear_compact_ready_calls_clearer",
-      "target": "aiva.core.compaction.clear_compact_ready_after_success",
+      "target": "aiva.core.compaction.CompactionCoordinator.clear_compact_ready_after_success",
       "type": "calls"
     },
     {
@@ -87789,7 +87789,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestClearCompactReadyAfterSuccess.test_clear_compact_ready_handles_exception",
-      "target": "aiva.core.compaction.clear_compact_ready_after_success",
+      "target": "aiva.core.compaction.CompactionCoordinator.clear_compact_ready_after_success",
       "type": "calls"
     },
     {
@@ -87814,7 +87814,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestClearCompactReadyAfterSuccess.test_clear_for_contact_resets_to_idle",
-      "target": "aiva.core.compaction.clear_compact_ready_after_success_for_contact",
+      "target": "aiva.core.compaction.CompactionCoordinator.clear_compact_ready_after_success_for_contact",
       "type": "calls"
     },
     {
@@ -87849,7 +87849,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestBuildBootstrapForContact.test_sets_swapping_state_on_bootstrap",
-      "target": "aiva.core.compaction.CompactionCoordinator.build_bootstrap_if_ready_for_contact",
+      "target": "aiva.core.compaction.build_bootstrap_if_ready_for_contact",
       "type": "calls"
     },
     {
@@ -87869,7 +87869,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestBuildBootstrapForContact.test_syncs_state_when_no_bootstrap",
-      "target": "aiva.core.compaction.CompactionCoordinator.build_bootstrap_if_ready_for_contact",
+      "target": "aiva.core.compaction.build_bootstrap_if_ready_for_contact",
       "type": "calls"
     },
     {
@@ -88154,7 +88154,7 @@
     },
     {
       "source": "aiva.ops.scripts.mempalace_priority_mine.main",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -88229,7 +88229,7 @@
     },
     {
       "source": "aiva.ops.scripts.rebuild_hnsw.main",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -88299,7 +88299,7 @@
     },
     {
       "source": "aiva.ops.scripts.rebuild_hnsw_simple.main",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -88449,7 +88449,7 @@
     },
     {
       "source": "aiva.core.models.model_entries_for_provider",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -88509,7 +88509,7 @@
     },
     {
       "source": "aiva.core.argparse_hints._collect_flags_at",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -88569,7 +88569,7 @@
     },
     {
       "source": "aiva.core.argparse_hints._build_error_handler",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -88654,7 +88654,7 @@
     },
     {
       "source": "aiva.core.dispatch.MessageDispatcher.dispatch_tool_message",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -88664,7 +88664,7 @@
     },
     {
       "source": "aiva.core.dispatch.MessageDispatcher.dispatch_text_message",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -88819,7 +88819,7 @@
     },
     {
       "source": "aiva.core.client._clear_stale_provider_session",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -88869,7 +88869,7 @@
     },
     {
       "source": "aiva.core.client._drain_queue_for_bootstrap_merge",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -88934,7 +88934,7 @@
     },
     {
       "source": "aiva.core.client.ask_model_with_contact",
-      "target": "aiva.core.compaction.CompactionCoordinator.load_compactor_runtime",
+      "target": "aiva.core.compaction.load_compactor_runtime",
       "type": "calls"
     },
     {
@@ -88949,17 +88949,17 @@
     },
     {
       "source": "aiva.core.client.ask_model_with_contact",
-      "target": "aiva.core.compaction.CompactionCoordinator.build_bootstrap_if_ready_for_contact",
+      "target": "aiva.core.compaction.build_bootstrap_if_ready_for_contact",
       "type": "calls"
     },
     {
       "source": "aiva.core.client.ask_model_with_contact",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
       "source": "aiva.core.client.ask_model_with_contact",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -89044,7 +89044,7 @@
     },
     {
       "source": "aiva.core.client.ask_model_with_contact",
-      "target": "aiva.core.compaction.maybe_start_background_compaction_for_contact",
+      "target": "aiva.core.compaction.CompactionCoordinator.maybe_start_background_compaction_for_contact",
       "type": "calls"
     },
     {
@@ -89079,7 +89079,7 @@
     },
     {
       "source": "aiva.core.client.ask_model_with_contact",
-      "target": "aiva.core.compaction.is_compaction_running_for_contact",
+      "target": "aiva.core.compaction.CompactionCoordinator.is_compaction_running_for_contact",
       "type": "calls"
     },
     {
@@ -89104,7 +89104,7 @@
     },
     {
       "source": "aiva.core.prompting.build_system_prompt",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -89494,7 +89494,7 @@
     },
     {
       "source": "aiva.core.stream_processor._handle_tool_use_block",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -89569,7 +89569,7 @@
     },
     {
       "source": "aiva.core.stream_processor._handle_tool_result_block",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -89654,7 +89654,7 @@
     },
     {
       "source": "aiva.core.stream_processor._handle_result_message",
-      "target": "aiva.core.compaction.clear_compact_ready_after_success",
+      "target": "aiva.core.compaction.CompactionCoordinator.clear_compact_ready_after_success",
       "type": "calls"
     },
     {
@@ -89894,7 +89894,7 @@
     },
     {
       "source": "aiva.core.client_manager.ContactClientManager.interrupt_and_queue",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -90259,7 +90259,7 @@
     },
     {
       "source": "aiva.core.query_runner.send_query_with_optional_images",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -90299,7 +90299,7 @@
     },
     {
       "source": "aiva.core.query_runner.handle_prompt_too_long_recovery",
-      "target": "aiva.core.compaction.CompactionCoordinator.trigger_prompt_too_long_compaction",
+      "target": "aiva.core.compaction_service.trigger_prompt_too_long_compaction",
       "type": "calls"
     },
     {
@@ -90319,7 +90319,7 @@
     },
     {
       "source": "aiva.core.query_runner.handle_prompt_too_long_recovery",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -90709,7 +90709,7 @@
     },
     {
       "source": "aiva.core.compaction.CompactionCoordinator.build_bootstrap_if_ready",
-      "target": "aiva.modules.claude.autocompact.session_compactor.load_compact_ready",
+      "target": "aiva.ops.tests.responder.unit.test_claude_compaction_state._ReadyCompactor.load_compact_ready",
       "type": "calls"
     },
     {
@@ -90744,7 +90744,7 @@
     },
     {
       "source": "aiva.core.compaction.CompactionCoordinator.build_bootstrap_if_ready",
-      "target": "aiva.modules.claude.autocompact.session_compactor.clear_compact_ready",
+      "target": "aiva.ops.tests.responder.unit.test_claude_compaction_state._ReadyCompactor.clear_compact_ready",
       "type": "calls"
     },
     {
@@ -90974,7 +90974,7 @@
     },
     {
       "source": "aiva.core.compaction.CompactionCoordinator.trigger_prompt_too_long_compaction",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -91104,7 +91104,7 @@
     },
     {
       "source": "aiva.core.tool_state.ToolTrackingState._queue_info",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -91264,7 +91264,7 @@
     },
     {
       "source": "aiva.core.tools.send_file_to_user.get_volume_mappings",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -91364,7 +91364,7 @@
     },
     {
       "source": "aiva.core.model_runtime.registry._load_provider_manifests",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -91474,7 +91474,7 @@
     },
     {
       "source": "aiva.core.model_runtime.registry.list_selectable_models",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -92089,7 +92089,7 @@
     },
     {
       "source": "aiva.core.auth.callback_registry.load_module_oauth_callback_routes",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -92519,7 +92519,7 @@
     },
     {
       "source": "aiva.core.responder.service._drain_queued_items_for_restart",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -92564,7 +92564,7 @@
     },
     {
       "source": "aiva.core.responder.service._persist_restart_resume_payload",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -92729,7 +92729,7 @@
     },
     {
       "source": "aiva.core.responder.service.poll_messages_loop",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -92814,7 +92814,7 @@
     },
     {
       "source": "aiva.core.responder.service.async_main",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
+      "target": "aiva.ops.codex_jsonl_probe.JsonlLogger.close",
       "type": "calls"
     },
     {
@@ -92994,7 +92994,7 @@
     },
     {
       "source": "aiva.core.responder.attachments.collect_message_attachments",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -93029,7 +93029,7 @@
     },
     {
       "source": "aiva.core.responder.inject.process_inject_queue",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -93049,7 +93049,7 @@
     },
     {
       "source": "aiva.core.responder.inject.process_inject_queue",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -93129,7 +93129,7 @@
     },
     {
       "source": "aiva.core.responder.message_queue.process_queued_messages",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -93189,7 +93189,7 @@
     },
     {
       "source": "aiva.core.responder.message_queue.process_queued_messages",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -93284,7 +93284,7 @@
     },
     {
       "source": "aiva.core.responder.interrupts.handle_critical_command_bypass",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -93404,7 +93404,7 @@
     },
     {
       "source": "aiva.core.responder.commands._send_command_message",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -93484,7 +93484,7 @@
     },
     {
       "source": "aiva.core.responder.commands.build_help_message",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -93509,7 +93509,7 @@
     },
     {
       "source": "aiva.core.responder.commands._render_model_list",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -93679,7 +93679,7 @@
     },
     {
       "source": "aiva.core.responder.commands.handle_immediate_command",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -93739,7 +93739,7 @@
     },
     {
       "source": "aiva.core.responder.commands.handle_immediate_command",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -93914,7 +93914,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.misc.TodoWriteToolHandler.format_message",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -94314,7 +94314,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.core.render_tool_content",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -94334,7 +94334,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.core.format_websearch_body",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -94519,7 +94519,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.core.EditToolHandler.format_body",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -94554,7 +94554,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.core.WriteToolHandler.extract_content",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -94589,7 +94589,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.core.WriteToolHandler.format_message",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -94644,7 +94644,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.core.BashToolHandler.format_message",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -94764,7 +94764,7 @@
     },
     {
       "source": "aiva.mcp_server.server.list_skills",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
@@ -94794,7 +94794,7 @@
     },
     {
       "source": "aiva.mcp_server.server._share_db",
-      "target": "aiva.ops.tests.responder.unit.test_provider_registry._FakeProviderClient.connect",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.connect",
       "type": "calls"
     },
     {
@@ -94959,12 +94959,12 @@
     },
     {
       "source": "aiva.mcp_server.server.read_file",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
       "source": "aiva.mcp_server.server.read_file",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
+      "target": "aiva.ops.codex_jsonl_probe.JsonlLogger.close",
       "type": "calls"
     },
     {
@@ -94984,7 +94984,7 @@
     },
     {
       "source": "aiva.mcp_server.server.list_directory",
-      "target": "aiva.modules.module_suggester.lib.seen.SeenLog.append",
+      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
       "type": "calls"
     },
     {
