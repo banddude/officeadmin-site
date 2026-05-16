@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "generatedAt": "2026-05-16T01:00:09.097Z",
+  "generatedAt": "2026-05-16T02:00:14.489Z",
   "schema": "code-level-graph",
   "nodes": [
     {
@@ -48581,7 +48581,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.next_reminders_primary_key",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -48846,7 +48846,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.get_reminders_rw_connection",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -48861,7 +48861,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.checkpoint_reminders",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -48876,7 +48876,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.find_recent_reminder_row",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -48896,7 +48896,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.ensure_reminder_section",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -48931,7 +48931,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.set_reminder_section",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -48956,7 +48956,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.set_reminder_section",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -48986,7 +48986,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.update_reminder_db_fields",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -49011,7 +49011,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.update_reminder_db_fields",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -49041,12 +49041,12 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.fetch_reminder_list_rows",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.fetch_reminder_list_rows",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -49076,7 +49076,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.set_reminder_list_parent",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -49091,7 +49091,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.set_reminder_list_parent",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -49111,7 +49111,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.set_reminder_list_group_flag",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -49126,7 +49126,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.set_reminder_list_group_flag",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -49146,7 +49146,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.mark_reminder_list_deleted",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -49161,7 +49161,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.mark_reminder_list_deleted",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -49446,7 +49446,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.create_reminder_from_task",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -49491,7 +49491,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.fetch_reminder_metadata_migration_rows",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -49501,7 +49501,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.fetch_reminder_metadata_migration_rows",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -50531,7 +50531,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.cli.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -50561,7 +50561,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_aiva_log.cmd_set",
-      "target": "aiva.modules.mikeshaffer.bin.entity_manage.show",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe.show",
       "type": "calls"
     },
     {
@@ -50586,7 +50586,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_aiva_log.cmd_append",
-      "target": "aiva.modules.mikeshaffer.bin.entity_manage.show",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe.show",
       "type": "calls"
     },
     {
@@ -50611,7 +50611,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_aiva_log.cmd_show",
-      "target": "aiva.modules.mikeshaffer.bin.entity_manage.show",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe.show",
       "type": "calls"
     },
     {
@@ -50631,7 +50631,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_aiva_log.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -50866,7 +50866,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.entity_dossier.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -51041,7 +51041,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_reconcile.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -51206,7 +51206,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.entity_query.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -51451,7 +51451,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_remove_ghosts.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -51561,7 +51561,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.revise_draft.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -51626,12 +51626,12 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_mirror.stamp_commitment_for_draft",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_mirror.stamp_commitment_for_draft",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -51651,7 +51651,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_mirror.stamp_commitment_for_draft",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -52041,7 +52041,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_mirror.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -52106,7 +52106,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.queue_draft.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -52326,7 +52326,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.auto_create_entity.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -52351,7 +52351,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_sync.clear_pending_draft_reminder",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -52361,7 +52361,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_sync.clear_pending_draft_reminder",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -52371,7 +52371,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_sync.clear_pending_draft_reminder",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -52791,7 +52791,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_sync.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -52961,7 +52961,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.send_one_draft.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -53026,7 +53026,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.cleanup_terminal_pending_drafts.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -53126,7 +53126,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.shaffer_forwards.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -53151,7 +53151,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.send_manual_reply.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -53221,7 +53221,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_backfill_ids.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -53326,7 +53326,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_dedupe.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -53376,7 +53376,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.reminders_safe._serialize",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -53646,7 +53646,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_add_entity_urls.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -53816,7 +53816,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.learn_from_corrections.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -53891,7 +53891,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.entity_manage.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -54161,7 +54161,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.aiva_handoff.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -54356,7 +54356,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.tell_aiva.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -54421,7 +54421,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.process_action_directive.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -54486,7 +54486,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.distill_corrections.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -54606,7 +54606,7 @@
     },
     {
       "source": "aiva.modules.mikeshaffer.bin.contacts_audit.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -55196,7 +55196,7 @@
     },
     {
       "source": "aiva.modules.system_inventory.bin.generate_inventory.load_akaunting_agents",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -55211,7 +55211,7 @@
     },
     {
       "source": "aiva.modules.system_inventory.bin.generate_inventory.load_akaunting_agents",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -55576,7 +55576,7 @@
     },
     {
       "source": "aiva.modules.messages.privileged._legacy.db.get_max_rowid",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -55601,7 +55601,7 @@
     },
     {
       "source": "aiva.modules.messages.privileged._legacy.db.fetch_messages_since",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -55636,7 +55636,7 @@
     },
     {
       "source": "aiva.modules.messages.privileged._legacy.db.fetch_messages_since_rowid",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -55686,7 +55686,7 @@
     },
     {
       "source": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.disconnect",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -56226,7 +56226,7 @@
     },
     {
       "source": "aiva.modules.memory.runtime.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -56316,7 +56316,7 @@
     },
     {
       "source": "aiva.modules.gemini.runtime.adapter.GeminiBridgeClient.connect",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -56331,7 +56331,7 @@
     },
     {
       "source": "aiva.modules.gemini.runtime.adapter.GeminiBridgeClient._read_stdout",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -56346,12 +56346,12 @@
     },
     {
       "source": "aiva.modules.gemini.runtime.adapter.GeminiBridgeClient.disconnect",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
       "source": "aiva.modules.gemini.runtime.adapter.GeminiBridgeClient.disconnect",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -56381,7 +56381,7 @@
     },
     {
       "source": "aiva.modules.gemini.runtime.adapter.GeminiBridgeClient.interrupt",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -56396,7 +56396,7 @@
     },
     {
       "source": "aiva.modules.gemini.runtime.adapter.GeminiBridgeClient.query",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -56436,7 +56436,7 @@
     },
     {
       "source": "aiva.modules.gemini.runtime.adapter.GeminiBridgeClient._iter_responses",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -56446,7 +56446,7 @@
     },
     {
       "source": "aiva.modules.gemini.runtime.adapter.GeminiBridgeClient._iter_responses",
-      "target": "aiva.ops.tests.responder.unit.test_claude_client_tools.TextBlock",
+      "target": "aiva.ops.tests.responder.unit.test_claude_stream_processor.TextBlock",
       "type": "calls"
     },
     {
@@ -56526,12 +56526,12 @@
     },
     {
       "source": "aiva.modules.identity.tests.test_identity.ident",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
       "source": "aiva.modules.identity.tests.test_identity.ident",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -56541,7 +56541,7 @@
     },
     {
       "source": "aiva.modules.identity.tests.test_identity.ident",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -56756,7 +56756,7 @@
     },
     {
       "source": "aiva.modules.identity.lib.identity._pg_connect",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -56776,7 +56776,7 @@
     },
     {
       "source": "aiva.modules.identity.lib.identity._load_mempalace_index",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -56786,7 +56786,7 @@
     },
     {
       "source": "aiva.modules.identity.lib.identity._load_mempalace_index",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -57056,7 +57056,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core.connect",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -57121,7 +57121,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core.get_node",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -57176,7 +57176,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core._auto_close_linked_reminders",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -57211,7 +57211,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core.write_event",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -57236,7 +57236,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core.get_events",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -57281,7 +57281,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core.add_node",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -57326,7 +57326,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core.transition",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -57366,7 +57366,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core._evaluate_block",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -57396,7 +57396,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core._maybe_auto_transition",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -57421,7 +57421,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core.recompute_blocked_for_blocker",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -57451,7 +57451,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core.add_edge",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -57496,7 +57496,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core.remove_edge",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -57521,7 +57521,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core.get_edges",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -57546,7 +57546,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core.append_note",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -57581,7 +57581,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core.list_nodes",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -57626,7 +57626,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.core.show_node",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -57656,7 +57656,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.projector.rebuild",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -57986,7 +57986,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.reconcile.decide._last_reconciliation_flip",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -58016,7 +58016,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.reconcile.decide.flip_who_owes",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -58346,7 +58346,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.reconcile.channels.VoiceFetcher.fetch",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -58356,7 +58356,7 @@
     },
     {
       "source": "aiva.modules.commitments.lib.reconcile.channels.VoiceFetcher.fetch",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -59126,7 +59126,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.raw_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -59156,7 +59156,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.list_tasklists",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -59171,7 +59171,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.list_tasks",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -59301,7 +59301,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_iter_messages",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -59321,7 +59321,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_fetch_metadata",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -59341,7 +59341,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_fetch_message",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -59381,7 +59381,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_download_attachments",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -59551,7 +59551,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_download_message_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -59581,7 +59581,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_send_message_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -59591,7 +59591,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_send_message_cmd",
-      "target": "aiva.modules.reminders.src.eventkit_store.EventKitStore.create",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe.create",
       "type": "calls"
     },
     {
@@ -59621,7 +59621,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_modify_message_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -59651,7 +59651,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_archive_message_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -59711,7 +59711,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_reply_message_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -59731,7 +59731,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_reply_message_cmd",
-      "target": "aiva.modules.reminders.src.eventkit_store.EventKitStore.create",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe.create",
       "type": "calls"
     },
     {
@@ -59786,7 +59786,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_forward_message_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -59806,7 +59806,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_forward_message_cmd",
-      "target": "aiva.modules.reminders.src.eventkit_store.EventKitStore.create",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe.create",
       "type": "calls"
     },
     {
@@ -59836,7 +59836,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_trash_message_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -59861,7 +59861,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_untrash_message_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -59886,7 +59886,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_delete_message_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -59911,7 +59911,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_resolve_draft_id",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -59936,7 +59936,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_send_draft_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -59971,7 +59971,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_delete_draft_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -59996,7 +59996,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_list_drafts_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60036,7 +60036,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_get_draft_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60081,7 +60081,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_list_labels_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60096,7 +60096,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_create_label_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60106,7 +60106,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_create_label_cmd",
-      "target": "aiva.modules.reminders.src.eventkit_store.EventKitStore.create",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe.create",
       "type": "calls"
     },
     {
@@ -60126,7 +60126,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_delete_label_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60156,7 +60156,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_list_filters_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60176,7 +60176,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_create_filter_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60186,7 +60186,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_create_filter_cmd",
-      "target": "aiva.modules.reminders.src.eventkit_store.EventKitStore.create",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe.create",
       "type": "calls"
     },
     {
@@ -60206,7 +60206,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_delete_filter_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60226,7 +60226,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.gmail_get_filter_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60291,7 +60291,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.calendar_list_events_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60306,7 +60306,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.calendar_get_event_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60341,7 +60341,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.calendar_create_event_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60366,7 +60366,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.calendar_update_event_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60396,7 +60396,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.calendar_delete_event_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60421,7 +60421,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.calendar_freebusy_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60451,7 +60451,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.calendar_list_calendars_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60496,7 +60496,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.docs_get_document",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60576,7 +60576,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.docs_export_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60596,7 +60596,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.docs_create_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60611,7 +60611,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.docs_create_cmd",
-      "target": "aiva.modules.reminders.src.eventkit_store.EventKitStore.create",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe.create",
       "type": "calls"
     },
     {
@@ -60641,7 +60641,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.sheets_get_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60666,7 +60666,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.sheets_values_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60691,7 +60691,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.sheets_create_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60701,7 +60701,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.sheets_create_cmd",
-      "target": "aiva.modules.reminders.src.eventkit_store.EventKitStore.create",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe.create",
       "type": "calls"
     },
     {
@@ -60726,7 +60726,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.sheets_update_values_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60756,7 +60756,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.sheets_append_values_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60786,7 +60786,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.sheets_clear_values_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60826,7 +60826,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.drive_find_folder_id",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60846,7 +60846,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.drive_iter_files",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60921,7 +60921,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.drive_get_file_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60946,7 +60946,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.drive_download_file_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60981,7 +60981,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.drive_upload_file_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -60991,7 +60991,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.drive_upload_file_cmd",
-      "target": "aiva.modules.reminders.src.eventkit_store.EventKitStore.create",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe.create",
       "type": "calls"
     },
     {
@@ -61011,7 +61011,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.drive_update_file_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61046,7 +61046,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.drive_delete_file_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61076,7 +61076,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.drive_create_folder_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61086,7 +61086,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.drive_create_folder_cmd",
-      "target": "aiva.modules.reminders.src.eventkit_store.EventKitStore.create",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe.create",
       "type": "calls"
     },
     {
@@ -61111,7 +61111,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.drive_copy_file_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61141,7 +61141,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.drive_move_file_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61181,7 +61181,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.drive_permissions_list_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61196,7 +61196,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.drive_permissions_add_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61206,7 +61206,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.drive_permissions_add_cmd",
-      "target": "aiva.modules.reminders.src.eventkit_store.EventKitStore.create",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe.create",
       "type": "calls"
     },
     {
@@ -61226,7 +61226,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.drive_permissions_remove_cmd",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61256,7 +61256,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.read_chat_messages",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61286,7 +61286,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.get_space_read_state",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61311,7 +61311,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.get_unread_messages",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61366,7 +61366,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.tasks_create_tasklist",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61396,7 +61396,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.tasks_rename_tasklist",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61426,7 +61426,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.tasks_delete_tasklist",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61491,7 +61491,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.tasks_get_task",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61536,7 +61536,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.tasks_create_task",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61571,7 +61571,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.tasks_update_task",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61606,7 +61606,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.tasks_complete_task",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61641,7 +61641,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.tasks_reopen_task",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61671,7 +61671,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.tasks_delete_task",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61711,7 +61711,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.tasks_move_task",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61816,7 +61816,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.chat_send",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61841,7 +61841,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.chat_send",
-      "target": "aiva.modules.reminders.src.eventkit_store.EventKitStore.create",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe.create",
       "type": "calls"
     },
     {
@@ -61876,7 +61876,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.chat_list_spaces",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61901,7 +61901,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.chat_list_members",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -61971,7 +61971,7 @@
     },
     {
       "source": "aiva.modules.google.cli.google_cli.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -62101,7 +62101,7 @@
     },
     {
       "source": "aiva.modules.secrets.bin.migrate_keychain_to_vault.get_aiva_conn",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -62116,12 +62116,12 @@
     },
     {
       "source": "aiva.modules.secrets.bin.migrate_keychain_to_vault.vault_existing_names",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
       "source": "aiva.modules.secrets.bin.migrate_keychain_to_vault.vault_existing_names",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -62141,12 +62141,12 @@
     },
     {
       "source": "aiva.modules.secrets.bin.migrate_keychain_to_vault.vault_create",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
       "source": "aiva.modules.secrets.bin.migrate_keychain_to_vault.vault_create",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -62181,7 +62181,7 @@
     },
     {
       "source": "aiva.modules.secrets.bin.migrate_keychain_to_vault.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -62206,7 +62206,7 @@
     },
     {
       "source": "aiva.modules.secrets.bin.migrate_keychain_to_vault.main",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -62251,7 +62251,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.extract_conversation_commitments._get_aiva_conn",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -62331,12 +62331,12 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.extract_conversation_commitments._fetch_rows_pg",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
       "source": "aiva.modules.open_loops.bin.extract_conversation_commitments._fetch_rows_pg",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -62351,7 +62351,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.extract_conversation_commitments._fetch_rows_sqlite",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -62361,7 +62361,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.extract_conversation_commitments._fetch_rows_sqlite",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -62371,7 +62371,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.extract_conversation_commitments._fetch_rows_sqlite",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -62411,7 +62411,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.extract_conversation_commitments._existing_node_for_reference",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -62431,7 +62431,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.extract_conversation_commitments.run_extractor",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -62441,7 +62441,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.extract_conversation_commitments.run_extractor",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -62486,7 +62486,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.extract_conversation_commitments.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -62566,7 +62566,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.record_commitment.matching_existing_node",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -62616,7 +62616,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.record_commitment.record",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -62631,7 +62631,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.record_commitment.record",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -62656,7 +62656,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.record_commitment.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -62696,7 +62696,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.open_loops.cmd_open",
-      "target": "aiva.modules.open_loops.lib.ledger.open_loop",
+      "target": "aiva.modules.open_loops.tests.test_follow_through_checker.FollowThroughCheckerTests.open_loop",
       "type": "calls"
     },
     {
@@ -62836,7 +62836,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.open_loops.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -63026,7 +63026,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.project_waiting_on.get_nudge_count",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -63176,7 +63176,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.project_waiting_on.run_projector",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -63206,7 +63206,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.project_waiting_on.run_projector",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -63241,7 +63241,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.project_waiting_on.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -63386,7 +63386,7 @@
     },
     {
       "source": "aiva.modules.open_loops.bin.follow_through_checker.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -63576,7 +63576,7 @@
     },
     {
       "source": "aiva.modules.open_loops.tests.test_conversation_extractor.ConversationExtractorTests.make_db",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -63586,7 +63586,7 @@
     },
     {
       "source": "aiva.modules.open_loops.tests.test_conversation_extractor.ConversationExtractorTests.make_db",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -64866,7 +64866,7 @@
     },
     {
       "source": "aiva.modules.claude.autocompact.session_compactor.run_compact_on_copy",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -64876,7 +64876,7 @@
     },
     {
       "source": "aiva.modules.claude.autocompact.session_compactor.run_compact_on_copy",
-      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.poll",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_sync.poll",
       "type": "calls"
     },
     {
@@ -65321,7 +65321,7 @@
     },
     {
       "source": "aiva.modules.codex.runtime.adapter.CodexBridgeClient.connect",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -65346,7 +65346,7 @@
     },
     {
       "source": "aiva.modules.codex.runtime.adapter.CodexBridgeClient._read_stdout",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -65361,7 +65361,7 @@
     },
     {
       "source": "aiva.modules.codex.runtime.adapter.CodexBridgeClient._read_stderr",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -65376,12 +65376,12 @@
     },
     {
       "source": "aiva.modules.codex.runtime.adapter.CodexBridgeClient.disconnect",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
       "source": "aiva.modules.codex.runtime.adapter.CodexBridgeClient.disconnect",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -65411,7 +65411,7 @@
     },
     {
       "source": "aiva.modules.codex.runtime.adapter.CodexBridgeClient.interrupt",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -65431,7 +65431,7 @@
     },
     {
       "source": "aiva.modules.codex.runtime.adapter.CodexBridgeClient.query",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -65481,7 +65481,7 @@
     },
     {
       "source": "aiva.modules.codex.runtime.adapter.CodexBridgeClient._iter_responses",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -65501,7 +65501,7 @@
     },
     {
       "source": "aiva.modules.codex.runtime.adapter.CodexBridgeClient._iter_responses",
-      "target": "aiva.ops.tests.responder.unit.test_claude_client_tools.TextBlock",
+      "target": "aiva.ops.tests.responder.unit.test_claude_stream_processor.TextBlock",
       "type": "calls"
     },
     {
@@ -65876,7 +65876,7 @@
     },
     {
       "source": "aiva.modules.quickbooks.qb_cli.quickbooks_oauth.main",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -66251,7 +66251,7 @@
     },
     {
       "source": "aiva.modules.mempalace.cli._pgvector_search",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -66261,12 +66261,12 @@
     },
     {
       "source": "aiva.modules.mempalace.cli._pgvector_search",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
       "source": "aiva.modules.mempalace.cli._pgvector_search",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -66486,12 +66486,12 @@
     },
     {
       "source": "aiva.modules.mempalace.services.daemon._check_stale_socket",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
       "source": "aiva.modules.mempalace.services.daemon._check_stale_socket",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -66821,7 +66821,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.email_labeler_stalwart.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -67171,7 +67171,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.email_labeler.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -67236,7 +67236,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_api_backfill_threaded.producer",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -67266,7 +67266,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_api_backfill_threaded.worker",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -67306,12 +67306,12 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_api_backfill_threaded.collector",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_api_backfill_threaded.collector",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.state_dir",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.state_dir",
       "type": "calls"
     },
     {
@@ -67336,12 +67336,12 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_api_backfill_threaded.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_api_backfill_threaded.main",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -67396,7 +67396,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_api_backfill_threaded.main",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.state_dir",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.state_dir",
       "type": "calls"
     },
     {
@@ -67671,7 +67671,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.MessageIndex.__init__",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -67686,7 +67686,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.MessageIndex.get_by_message_id",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -67701,7 +67701,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.MessageIndex.get_by_gmail_id",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -67716,7 +67716,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.MessageIndex.upsert",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -67736,7 +67736,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.MessageIndex.count",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -67831,7 +67831,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.ensure_select",
-      "target": "aiva.modules.reminders.src.eventkit_store.EventKitStore.create",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe.create",
       "type": "calls"
     },
     {
@@ -67841,7 +67841,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.find_uid_by_message_id",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -67871,7 +67871,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.Imap.append",
-      "target": "aiva.modules.reminders.src.eventkit_store.EventKitStore.create",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_safe.create",
       "type": "calls"
     },
     {
@@ -68026,7 +68026,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -68151,7 +68151,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_api_backfill.list_messages_page",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -68181,12 +68181,12 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_api_backfill.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_api_backfill.main",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.log",
       "type": "calls"
     },
     {
@@ -68201,7 +68201,7 @@
     },
     {
       "source": "aiva.modules.email_labeler.bin.gmail_api_backfill.main",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.state_dir",
+      "target": "aiva.modules.email_labeler.bin.email_labeler_stalwart.state_dir",
       "type": "calls"
     },
     {
@@ -68516,12 +68516,12 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.load_routes",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.load_routes",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -69061,7 +69061,7 @@
     },
     {
       "source": "aiva.modules.shaffer_blogger.lib.blogger_pipeline.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -70196,7 +70196,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.get_pg_conn",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -70236,7 +70236,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.get_speaker_display_name",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -70246,7 +70246,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.get_speaker_display_name",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -70276,7 +70276,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.verify_speaker",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -70296,7 +70296,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.verify_speaker",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -70326,7 +70326,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.unverify_speaker",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -70346,7 +70346,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.unverify_speaker",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -70366,7 +70366,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.name_speaker",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -70381,7 +70381,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.name_speaker",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -70406,7 +70406,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.link_speaker_to_contact",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -70421,7 +70421,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.link_speaker_to_contact",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -70451,7 +70451,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.unlink_speaker_from_contact",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -70466,7 +70466,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.unlink_speaker_from_contact",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -70491,7 +70491,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.get_speaker_tier_info",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -70501,7 +70501,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.get_speaker_tier_info",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -70521,7 +70521,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.conversation_exists_by_uuid",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -70531,7 +70531,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.conversation_exists_by_uuid",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -70551,7 +70551,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.conversation_exists_by_filename",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -70561,7 +70561,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.conversation_exists_by_filename",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -70591,7 +70591,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.add_speaker",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -70606,7 +70606,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.add_speaker",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -70636,7 +70636,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.add_conversation",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -70646,7 +70646,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.add_conversation",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -70681,7 +70681,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.add_utterance",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -70691,7 +70691,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.add_utterance",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -70716,7 +70716,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.link_conversation_speaker",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -70726,7 +70726,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.link_conversation_speaker",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -70746,7 +70746,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.update_speaker_contact",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -70756,7 +70756,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.update_speaker_contact",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -70781,7 +70781,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.get_speaker_by_contact",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -70791,7 +70791,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.get_speaker_by_contact",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -70811,7 +70811,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.get_conversations_by_contact",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -70821,7 +70821,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.get_conversations_by_contact",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -70871,7 +70871,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.identify_speaker",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -70881,7 +70881,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.identify_speaker",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -70906,7 +70906,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.is_duplicate_embedding",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -70916,7 +70916,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.is_duplicate_embedding",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -70951,7 +70951,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.auto_update_embedding",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -70961,7 +70961,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_id.auto_update_embedding",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -71191,7 +71191,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.sync_viaim.get_pg_conn",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -71211,12 +71211,12 @@
     },
     {
       "source": "aiva.modules.conversations.services.sync_viaim.connect_viaim",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
       "source": "aiva.modules.conversations.services.sync_viaim.connect_viaim",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -71306,7 +71306,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.sync_viaim.read_records",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -71316,7 +71316,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.sync_viaim.read_sentences",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -71336,7 +71336,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.sync_viaim.ensure_speaker",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -71366,7 +71366,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.sync_viaim.existing_conversation",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -71386,7 +71386,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.sync_viaim.existing_utterance_counts",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -71436,7 +71436,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.sync_viaim.create_or_update_conversation",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -71451,7 +71451,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.sync_viaim.delete_viaim_utterances",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -71476,7 +71476,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.sync_viaim.insert_missing_utterances",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -71551,7 +71551,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.sync_viaim.sync_record",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -71601,7 +71601,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.sync_viaim.sync",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -71661,7 +71661,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.sync_viaim.status",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -71671,7 +71671,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.sync_viaim.status",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -71711,7 +71711,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.aiva_voice_monitor.get_pg_conn",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -71761,12 +71761,12 @@
     },
     {
       "source": "aiva.modules.conversations.services.aiva_voice_monitor.main",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
       "source": "aiva.modules.conversations.services.aiva_voice_monitor.main",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -71826,7 +71826,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_job_worker.get_pg_conn",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -71851,7 +71851,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_job_worker.get_pending_jobs",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -71861,7 +71861,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_job_worker.get_pending_jobs",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -71886,12 +71886,12 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_job_worker.update_job_status",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
       "source": "aiva.modules.conversations.services.speaker_job_worker.update_job_status",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -71911,7 +71911,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_job_worker.get_speaker_name",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -71921,7 +71921,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_job_worker.get_speaker_name",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -71966,7 +71966,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_job_worker.update_voice_training_record",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -71976,7 +71976,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_job_worker.update_voice_training_record",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -72011,7 +72011,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_job_worker.process_untrain_voice",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -72021,7 +72021,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_job_worker.process_untrain_voice",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -72046,7 +72046,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_job_worker.remove_voice_training_record",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -72056,7 +72056,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.speaker_job_worker.remove_voice_training_record",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -72341,7 +72341,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.suggest_speakers.get_pg_conn",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -72366,7 +72366,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.suggest_speakers._candidate_roster",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -72401,7 +72401,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.suggest_speakers._conversation_context",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -72431,7 +72431,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.suggest_speakers._format_transcript",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -72516,7 +72516,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.suggest_speakers.suggest_for_conversation",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -72541,7 +72541,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.suggest_speakers.list_unresolved_conversations",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -72551,7 +72551,7 @@
     },
     {
       "source": "aiva.modules.conversations.services.suggest_speakers.list_unresolved_conversations",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -72581,7 +72581,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime._raw_send",
-      "target": "aiva.core.channel_bridge.get_channel",
+      "target": "aiva.core.message_channel.registry.get_channel",
       "type": "calls"
     },
     {
@@ -72596,7 +72596,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime.send_voice_message",
-      "target": "aiva.core.channel_bridge.get_channel",
+      "target": "aiva.core.message_channel.registry.get_channel",
       "type": "calls"
     },
     {
@@ -72611,7 +72611,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime.send_voice_message",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -72636,7 +72636,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime._is_blocked_non_admin_recipient",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -72646,7 +72646,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime._latest_incoming_message_for_recipient",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -72656,7 +72656,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime._latest_incoming_message_for_recipient",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -72666,7 +72666,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime._latest_incoming_message_for_recipient",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -72676,7 +72676,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime._send_tapback_via_channel",
-      "target": "aiva.core.channel_bridge.get_channel",
+      "target": "aiva.core.message_channel.registry.get_channel",
       "type": "calls"
     },
     {
@@ -72686,12 +72686,12 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime._send_tapback_via_channel",
-      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.send_reaction",
+      "target": "aiva.modules.sendblue.channel.SendblueChannel.send_reaction",
       "type": "calls"
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime._send_tapback_via_channel",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -72711,7 +72711,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime.send_tapback",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -72741,7 +72741,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime.send_custom_tapback_emoji",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -72766,12 +72766,12 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime._markdown_table_to_pdf",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime._markdown_table_to_pdf",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -72856,7 +72856,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime.send_imessage",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -72896,7 +72896,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.sender_runtime.send_skill_activation",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -72921,7 +72921,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.get_last_id",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -72931,7 +72931,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.get_last_id",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -72941,7 +72941,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.get_last_id",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -72956,12 +72956,12 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.get_max_rowid",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.get_max_rowid",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -72971,7 +72971,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.get_max_rowid",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -72986,7 +72986,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.set_last_id",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -72996,7 +72996,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.decode_attributed_body",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -73006,7 +73006,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.extract_audio_transcription",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -73031,7 +73031,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.fetch_new_messages",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -73041,7 +73041,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.fetch_new_messages",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -73056,7 +73056,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.fetch_attachments",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -73071,7 +73071,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.normalize_image",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -73081,7 +73081,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.normalize_image_to_base64",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -73106,7 +73106,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.get_attachment_source_path",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -73131,7 +73131,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.db_runtime.save_attachment",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -73201,12 +73201,12 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli._imessage_activity_count",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli._imessage_activity_count",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -73306,7 +73306,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli._latest_local_message_ts",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -73316,12 +73316,12 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli._latest_local_message_ts",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli._latest_local_message_ts",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -73551,7 +73551,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli._open_chat_db",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -73761,12 +73761,12 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.check_imessage_history",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.check_imessage_history",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -73791,7 +73791,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.verify_delivery",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -73801,7 +73801,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.verify_delivery",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -73821,7 +73821,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.delete_last_outgoing_message",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -73831,7 +73831,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.delete_last_outgoing_message",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -74076,7 +74076,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.get_contacts_db_path",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -74086,12 +74086,12 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.get_contacts_db_path",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.get_contacts_db_path",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -74171,7 +74171,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.get_phones_for_contact_name_sqlite",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -74181,7 +74181,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.get_phones_for_contact_name_sqlite",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -74251,12 +74251,12 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.find_conversations_with_contact",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.find_conversations_with_contact",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -74311,7 +74311,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.search_by_contact",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -74321,7 +74321,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.search_by_contact",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -74386,7 +74386,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.search_by_keyword",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -74396,7 +74396,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.search_by_keyword",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -74466,7 +74466,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.list_group_chats",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -74476,7 +74476,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.list_group_chats",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -74516,7 +74516,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.get_group_messages",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -74526,7 +74526,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.get_group_messages",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -74591,7 +74591,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.show_thread",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -74601,7 +74601,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.show_thread",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -74681,7 +74681,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.show_group_thread",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -74696,7 +74696,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.show_group_thread",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -74771,7 +74771,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.export_conversation",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -74781,7 +74781,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.export_conversation",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -74836,7 +74836,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.export_group_conversation",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -74851,7 +74851,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.export_group_conversation",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -74906,7 +74906,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.get_unanswered_messages",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -74916,7 +74916,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.get_unanswered_messages",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -74986,7 +74986,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.list_attachments",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -74996,7 +74996,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.list_attachments",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -75041,7 +75041,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.show_image",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -75051,7 +75051,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.show_image",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -75076,7 +75076,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.search_by_date",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -75086,7 +75086,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.search_by_date",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -75131,7 +75131,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.search_links",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -75141,7 +75141,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.search_links",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -75186,7 +75186,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.get_unread_messages",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -75196,7 +75196,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.get_unread_messages",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -75236,7 +75236,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.search_group_by_participant",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -75246,7 +75246,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.search_group_by_participant",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -75266,7 +75266,7 @@
     },
     {
       "source": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -75746,7 +75746,7 @@
     },
     {
       "source": "aiva.modules.glm.provider.configure_glm_sdk_env",
-      "target": "aiva.modules.email_labeler.bin.gmail_to_stalwart_sync.log",
+      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.log",
       "type": "calls"
     },
     {
@@ -76086,7 +76086,7 @@
     },
     {
       "source": "aiva.modules.instagram.mcp_server.src.server.start_gateway",
-      "target": "aiva.modules.mikeshaffer.bin.tell_aiva.poll",
+      "target": "aiva.modules.mikeshaffer.bin.reminders_sync.poll",
       "type": "calls"
     },
     {
@@ -76811,7 +76811,7 @@
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read._pg_conn",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -76846,12 +76846,12 @@
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read.cmd_messages",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read.cmd_messages",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -76876,12 +76876,12 @@
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read._sqlite_messages",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read._sqlite_messages",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -76891,7 +76891,7 @@
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read._sqlite_messages",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -76921,12 +76921,12 @@
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read.cmd_unreads",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read.cmd_unreads",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -76951,12 +76951,12 @@
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read._sqlite_unreads",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read._sqlite_unreads",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -76966,7 +76966,7 @@
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read._sqlite_unreads",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -76996,12 +76996,12 @@
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read.cmd_attachments",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read.cmd_attachments",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -77026,12 +77026,12 @@
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read._sqlite_attachments",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read._sqlite_attachments",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -77041,7 +77041,7 @@
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read._sqlite_attachments",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.close",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.close",
       "type": "calls"
     },
     {
@@ -77056,7 +77056,7 @@
     },
     {
       "source": "aiva.modules.whatsapp.services.whatsapp_read.main",
-      "target": "aiva.modules.mempalace.cli.parse_args",
+      "target": "aiva.modules.conversations.services.sync_viaim.parse_args",
       "type": "calls"
     },
     {
@@ -77311,7 +77311,7 @@
     },
     {
       "source": "aiva.modules.talk.services.canvas_talk_listener.listen",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -77961,7 +77961,7 @@
     },
     {
       "source": "aiva.modules.talk.services.canvas_tmux_session.mirror",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -77996,7 +77996,7 @@
     },
     {
       "source": "aiva.modules.talk.services.canvas_push.push",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -78016,7 +78016,7 @@
     },
     {
       "source": "aiva.modules.talk.services.canvas_ask.ask",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
@@ -78641,7 +78641,7 @@
     },
     {
       "source": "aiva.ops.aiva_status.main",
-      "target": "aiva.ops.codex_jsonl_probe.parse_args",
+      "target": "aiva.ops.scripts.mempalace_priority_mine.parse_args",
       "type": "calls"
     },
     {
@@ -78826,7 +78826,7 @@
     },
     {
       "source": "aiva.ops.hydrate_docs.main",
-      "target": "aiva.ops.codex_jsonl_probe.parse_args",
+      "target": "aiva.ops.scripts.mempalace_priority_mine.parse_args",
       "type": "calls"
     },
     {
@@ -79271,12 +79271,12 @@
     },
     {
       "source": "aiva.ops.drift_check_docs.check_mempalace_graph_counts",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
       "source": "aiva.ops.drift_check_docs.check_mempalace_graph_counts",
-      "target": "aiva.ops.codex_jsonl_probe.JsonlLogger.close",
+      "target": "aiva.ops.tests.responder.unit.test_codex_adapter._FakeStdin.close",
       "type": "calls"
     },
     {
@@ -79751,7 +79751,7 @@
     },
     {
       "source": "aiva.ops.scanner_quality_report.main",
-      "target": "aiva.ops.codex_jsonl_probe.parse_args",
+      "target": "aiva.ops.scripts.mempalace_priority_mine.parse_args",
       "type": "calls"
     },
     {
@@ -80101,7 +80101,7 @@
     },
     {
       "source": "aiva.ops.bin.trim_logs.main",
-      "target": "aiva.ops.codex_jsonl_probe.parse_args",
+      "target": "aiva.ops.scripts.mempalace_priority_mine.parse_args",
       "type": "calls"
     },
     {
@@ -80156,7 +80156,7 @@
     },
     {
       "source": "aiva.ops.bin.safe_capture.main",
-      "target": "aiva.ops.codex_jsonl_probe.parse_args",
+      "target": "aiva.ops.scripts.mempalace_priority_mine.parse_args",
       "type": "calls"
     },
     {
@@ -80766,7 +80766,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_responder_main.test_main_wrapper",
-      "target": "aiva.ops.hydrate_docs.main",
+      "target": "aiva.ops.generate_skills_index.main",
       "type": "calls"
     },
     {
@@ -80891,7 +80891,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_state.test_compaction_state_tracks_background_start_and_swap",
-      "target": "aiva.core.compaction.CompactionCoordinator.clear_compact_ready_after_success_for_contact",
+      "target": "aiva.core.compaction.clear_compact_ready_after_success_for_contact",
       "type": "calls"
     },
     {
@@ -80911,7 +80911,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_state.test_compaction_state_tracks_background_start_and_swap",
-      "target": "aiva.core.compaction.build_bootstrap_if_ready_for_contact",
+      "target": "aiva.core.compaction.CompactionCoordinator.build_bootstrap_if_ready_for_contact",
       "type": "calls"
     },
     {
@@ -81016,7 +81016,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_contact_client_manager_safe_capture.test_contact_manager_installs_safe_capture_tool_rewriter",
-      "target": "aiva.core.client.ContactClientManager",
+      "target": "aiva.core.client_manager.ContactClientManager",
       "type": "calls"
     },
     {
@@ -81031,7 +81031,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_contact_client_manager_safe_capture.test_contact_manager_uses_claude_provider_extra_args",
-      "target": "aiva.core.client.ContactClientManager",
+      "target": "aiva.core.client_manager.ContactClientManager",
       "type": "calls"
     },
     {
@@ -81046,7 +81046,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_contact_client_manager_safe_capture.test_contact_manager_uses_glm_provider_without_extra_args",
-      "target": "aiva.core.client.ContactClientManager",
+      "target": "aiva.core.client_manager.ContactClientManager",
       "type": "calls"
     },
     {
@@ -81061,7 +81061,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_contact_client_manager_safe_capture.test_contact_manager_gemini_provider_is_stub",
-      "target": "aiva.core.client.ContactClientManager",
+      "target": "aiva.core.client_manager.ContactClientManager",
       "type": "calls"
     },
     {
@@ -81076,7 +81076,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_contact_client_manager_safe_capture.test_contact_manager_codex_provider_creates_bridge_client",
-      "target": "aiva.core.client.ContactClientManager",
+      "target": "aiva.core.client_manager.ContactClientManager",
       "type": "calls"
     },
     {
@@ -81876,7 +81876,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_client_manager.test_contact_manager_queue_multiple",
-      "target": "aiva.core.client.ContactClientManager",
+      "target": "aiva.core.client_manager.ContactClientManager",
       "type": "calls"
     },
     {
@@ -81901,7 +81901,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_client_manager.test_contact_manager_disconnect_client",
-      "target": "aiva.core.client.ContactClientManager",
+      "target": "aiva.core.client_manager.ContactClientManager",
       "type": "calls"
     },
     {
@@ -81916,7 +81916,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_client_manager.test_contact_manager_soft_preempt_does_not_interrupt_client_immediately",
-      "target": "aiva.core.client.ContactClientManager",
+      "target": "aiva.core.client_manager.ContactClientManager",
       "type": "calls"
     },
     {
@@ -81931,7 +81931,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_client_manager.test_contact_manager_interrupt_only_drains_queue",
-      "target": "aiva.core.client.ContactClientManager",
+      "target": "aiva.core.client_manager.ContactClientManager",
       "type": "calls"
     },
     {
@@ -81951,7 +81951,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_client_manager.test_interrupt_and_queue_soft_preempt_does_not_cancel_active_task",
-      "target": "aiva.core.client.ContactClientManager",
+      "target": "aiva.core.client_manager.ContactClientManager",
       "type": "calls"
     },
     {
@@ -82601,7 +82601,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_imessage_sender_extra.test_send_imessage_markdown_headers",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -82626,7 +82626,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_imessage_sender_extra.test_send_imessage_returns_false_on_send_failure",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -83961,7 +83961,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_provider_registry.test_provider_adapter_creates_runtime_client",
-      "target": "aiva.modules.codex.runtime.adapter.CodexProviderAdapter.create_client",
+      "target": "aiva.core.model_runtime.base.ProviderAdapter.create_client",
       "type": "calls"
     },
     {
@@ -83976,7 +83976,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_provider_registry.test_provider_adapter_rejects_invalid_runtime_client",
-      "target": "aiva.modules.codex.runtime.adapter.CodexProviderAdapter.create_client",
+      "target": "aiva.core.model_runtime.base.ProviderAdapter.create_client",
       "type": "calls"
     },
     {
@@ -84586,7 +84586,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_codex_adapter.test_query_forces_working_directory_to_aiva_root",
-      "target": "aiva.ops.tests.responder.unit.test_claude_client_results.SequenceQueryClient.query",
+      "target": "aiva.ops.tests.responder.unit.test_contact_client_manager_safe_capture._FakeClient.query",
       "type": "calls"
     },
     {
@@ -85886,7 +85886,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_imessage_sender.test_send_imessage_formatting",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -85896,7 +85896,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_imessage_sender.test_send_imessage_padding",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -85961,7 +85961,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_client.test_contact_manager_task_lifecycle",
-      "target": "aiva.core.client.ContactClientManager",
+      "target": "aiva.core.client_manager.ContactClientManager",
       "type": "calls"
     },
     {
@@ -85986,7 +85986,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_client.test_contact_manager_client_persistence",
-      "target": "aiva.core.client.ContactClientManager",
+      "target": "aiva.core.client_manager.ContactClientManager",
       "type": "calls"
     },
     {
@@ -86781,7 +86781,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestCompactModelSelection.test_compact_model_anthropic_uses_haiku",
-      "target": "aiva.core.compaction.get_compact_model_for_contact",
+      "target": "aiva.core.compaction.CompactionCoordinator.get_compact_model_for_contact",
       "type": "calls"
     },
     {
@@ -86796,7 +86796,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestCompactModelSelection.test_compact_model_non_anthropic_passthrough",
-      "target": "aiva.core.compaction.get_compact_model_for_contact",
+      "target": "aiva.core.compaction.CompactionCoordinator.get_compact_model_for_contact",
       "type": "calls"
     },
     {
@@ -86811,7 +86811,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestCompactModelSelection.test_compact_model_from_autocompact_override",
-      "target": "aiva.core.compaction.get_compact_model_for_contact",
+      "target": "aiva.core.compaction.CompactionCoordinator.get_compact_model_for_contact",
       "type": "calls"
     },
     {
@@ -86826,7 +86826,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestCompactModelSelection.test_compact_model_autocompact_anthropic_override",
-      "target": "aiva.core.compaction.get_compact_model_for_contact",
+      "target": "aiva.core.compaction.CompactionCoordinator.get_compact_model_for_contact",
       "type": "calls"
     },
     {
@@ -87221,7 +87221,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestBuildBootstrapIfReady.test_build_bootstrap_skips_when_not_available",
-      "target": "aiva.core.compaction.CompactionCoordinator.build_bootstrap_if_ready",
+      "target": "aiva.core.compaction.build_bootstrap_if_ready",
       "type": "calls"
     },
     {
@@ -87241,7 +87241,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestBuildBootstrapIfReady.test_build_bootstrap_builds_and_clears_session",
-      "target": "aiva.core.compaction.CompactionCoordinator.build_bootstrap_if_ready",
+      "target": "aiva.core.compaction.build_bootstrap_if_ready",
       "type": "calls"
     },
     {
@@ -87261,7 +87261,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestBuildBootstrapIfReady.test_build_bootstrap_clears_stale",
-      "target": "aiva.core.compaction.CompactionCoordinator.build_bootstrap_if_ready",
+      "target": "aiva.core.compaction.build_bootstrap_if_ready",
       "type": "calls"
     },
     {
@@ -87281,7 +87281,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestBuildBootstrapIfReady.test_build_bootstrap_ignores_unarmed_ready",
-      "target": "aiva.core.compaction.CompactionCoordinator.build_bootstrap_if_ready",
+      "target": "aiva.core.compaction.build_bootstrap_if_ready",
       "type": "calls"
     },
     {
@@ -87306,7 +87306,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestBuildBootstrapIfReady.test_build_bootstrap_unarmed_ready_with_marker_never_requests_restart_or_bootstrap",
-      "target": "aiva.core.compaction.CompactionCoordinator.build_bootstrap_if_ready",
+      "target": "aiva.core.compaction.build_bootstrap_if_ready",
       "type": "calls"
     },
     {
@@ -87326,7 +87326,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestBuildBootstrapIfReady.test_build_bootstrap_skips_no_compactor",
-      "target": "aiva.core.compaction.CompactionCoordinator.build_bootstrap_if_ready",
+      "target": "aiva.core.compaction.build_bootstrap_if_ready",
       "type": "calls"
     },
     {
@@ -87346,7 +87346,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestBuildBootstrapIfReady.test_build_bootstrap_clears_on_build_failure",
-      "target": "aiva.core.compaction.CompactionCoordinator.build_bootstrap_if_ready",
+      "target": "aiva.core.compaction.build_bootstrap_if_ready",
       "type": "calls"
     },
     {
@@ -87366,7 +87366,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestBuildBootstrapIfReady.test_build_bootstrap_requests_restart_without_system_exit",
-      "target": "aiva.core.compaction.CompactionCoordinator.build_bootstrap_if_ready",
+      "target": "aiva.core.compaction.build_bootstrap_if_ready",
       "type": "calls"
     },
     {
@@ -87736,7 +87736,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestIsCompactionRunning.test_is_compaction_running_started_flag",
-      "target": "aiva.core.compaction.is_compaction_running",
+      "target": "aiva.core.compaction.CompactionCoordinator.is_compaction_running",
       "type": "calls"
     },
     {
@@ -87756,7 +87756,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestIsCompactionRunning.test_is_compaction_running_via_checker",
-      "target": "aiva.core.compaction.is_compaction_running",
+      "target": "aiva.core.compaction.CompactionCoordinator.is_compaction_running",
       "type": "calls"
     },
     {
@@ -87776,7 +87776,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestIsCompactionRunning.test_is_compaction_running_false",
-      "target": "aiva.core.compaction.is_compaction_running",
+      "target": "aiva.core.compaction.CompactionCoordinator.is_compaction_running",
       "type": "calls"
     },
     {
@@ -87891,7 +87891,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestClearCompactReadyAfterSuccess.test_clear_for_contact_resets_to_idle",
-      "target": "aiva.core.compaction.CompactionCoordinator.clear_compact_ready_after_success_for_contact",
+      "target": "aiva.core.compaction.clear_compact_ready_after_success_for_contact",
       "type": "calls"
     },
     {
@@ -87926,7 +87926,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestBuildBootstrapForContact.test_sets_swapping_state_on_bootstrap",
-      "target": "aiva.core.compaction.build_bootstrap_if_ready_for_contact",
+      "target": "aiva.core.compaction.CompactionCoordinator.build_bootstrap_if_ready_for_contact",
       "type": "calls"
     },
     {
@@ -87946,7 +87946,7 @@
     },
     {
       "source": "aiva.ops.tests.responder.unit.test_claude_compaction_coordinator.TestBuildBootstrapForContact.test_syncs_state_when_no_bootstrap",
-      "target": "aiva.core.compaction.build_bootstrap_if_ready_for_contact",
+      "target": "aiva.core.compaction.CompactionCoordinator.build_bootstrap_if_ready_for_contact",
       "type": "calls"
     },
     {
@@ -88301,7 +88301,7 @@
     },
     {
       "source": "aiva.ops.scripts.rebuild_hnsw.main",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -88366,7 +88366,7 @@
     },
     {
       "source": "aiva.ops.scripts.rebuild_hnsw_simple.main",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -89076,7 +89076,7 @@
     },
     {
       "source": "aiva.core.client.ask_model_with_contact",
-      "target": "aiva.core.compaction.CompactionCoordinator.load_compactor_runtime",
+      "target": "aiva.core.compaction.load_compactor_runtime",
       "type": "calls"
     },
     {
@@ -89091,7 +89091,7 @@
     },
     {
       "source": "aiva.core.client.ask_model_with_contact",
-      "target": "aiva.core.compaction.build_bootstrap_if_ready_for_contact",
+      "target": "aiva.core.compaction.CompactionCoordinator.build_bootstrap_if_ready_for_contact",
       "type": "calls"
     },
     {
@@ -89101,7 +89101,7 @@
     },
     {
       "source": "aiva.core.client.ask_model_with_contact",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -89731,7 +89731,7 @@
     },
     {
       "source": "aiva.core.stream_processor._handle_tool_result_block",
-      "target": "aiva.core.tool_handlers.misc.TodoWriteToolHandler.format_message",
+      "target": "aiva.core.tool_handlers.misc.GenericToolHandler.format_message",
       "type": "calls"
     },
     {
@@ -89771,7 +89771,7 @@
     },
     {
       "source": "aiva.core.stream_processor._handle_result_message",
-      "target": "aiva.core.compaction.is_compaction_running",
+      "target": "aiva.core.compaction.CompactionCoordinator.is_compaction_running",
       "type": "calls"
     },
     {
@@ -89976,7 +89976,7 @@
     },
     {
       "source": "aiva.core.client_manager.ContactClientManager.get_or_create_client",
-      "target": "aiva.core.model_runtime.base.ProviderClient.disconnect",
+      "target": "aiva.core.message_channel.base.Channel.disconnect",
       "type": "calls"
     },
     {
@@ -90151,7 +90151,7 @@
     },
     {
       "source": "aiva.core.client_manager.ContactClientManager.disconnect_client",
-      "target": "aiva.core.model_runtime.base.ProviderClient.disconnect",
+      "target": "aiva.core.message_channel.base.Channel.disconnect",
       "type": "calls"
     },
     {
@@ -90461,7 +90461,7 @@
     },
     {
       "source": "aiva.core.query_runner.handle_prompt_too_long_recovery",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -90876,7 +90876,7 @@
     },
     {
       "source": "aiva.core.compaction.CompactionCoordinator.build_bootstrap_if_ready",
-      "target": "aiva.ops.tests.responder.unit.test_claude_compaction_state._ReadyCompactor.build_bootstrap_from_ready",
+      "target": "aiva.modules.claude.autocompact.session_compactor.build_bootstrap_from_ready",
       "type": "calls"
     },
     {
@@ -90886,7 +90886,7 @@
     },
     {
       "source": "aiva.core.compaction.CompactionCoordinator.build_bootstrap_if_ready",
-      "target": "aiva.ops.tests.responder.unit.test_claude_compaction_state._ReadyCompactor.clear_compact_ready",
+      "target": "aiva.modules.claude.autocompact.session_compactor.clear_compact_ready",
       "type": "calls"
     },
     {
@@ -91116,7 +91116,7 @@
     },
     {
       "source": "aiva.core.compaction.CompactionCoordinator.trigger_prompt_too_long_compaction",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -92891,7 +92891,7 @@
     },
     {
       "source": "aiva.core.responder.service.poll_messages_loop",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -92956,7 +92956,7 @@
     },
     {
       "source": "aiva.core.responder.service.async_main",
-      "target": "aiva.ops.codex_jsonl_probe.JsonlLogger.close",
+      "target": "aiva.ops.tests.responder.unit.test_codex_adapter._FakeStdin.close",
       "type": "calls"
     },
     {
@@ -93191,7 +93191,7 @@
     },
     {
       "source": "aiva.core.responder.inject.process_inject_queue",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -93331,7 +93331,7 @@
     },
     {
       "source": "aiva.core.responder.message_queue.process_queued_messages",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -93421,12 +93421,12 @@
     },
     {
       "source": "aiva.core.responder.interrupts.handle_critical_command_bypass",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
       "source": "aiva.core.responder.interrupts.handle_critical_command_bypass",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -93546,7 +93546,7 @@
     },
     {
       "source": "aiva.core.responder.commands._send_command_message",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -93821,7 +93821,7 @@
     },
     {
       "source": "aiva.core.responder.commands.handle_immediate_command",
-      "target": "aiva.modules.imessage.privileged._legacy.send_imessage",
+      "target": "aiva.modules.quickbooks.scripts.tsheets_oauth.send_imessage",
       "type": "calls"
     },
     {
@@ -94206,7 +94206,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.__init__.extract_read_target",
-      "target": "aiva.core.tool_handlers.misc.WebFetchToolHandler.extract_target",
+      "target": "aiva.core.tool_handlers.core.WriteToolHandler.extract_target",
       "type": "calls"
     },
     {
@@ -94246,7 +94246,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.__init__.extract_edit_target",
-      "target": "aiva.core.tool_handlers.misc.WebFetchToolHandler.extract_target",
+      "target": "aiva.core.tool_handlers.core.WriteToolHandler.extract_target",
       "type": "calls"
     },
     {
@@ -94256,7 +94256,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.__init__.extract_write_target",
-      "target": "aiva.core.tool_handlers.misc.WebFetchToolHandler.extract_target",
+      "target": "aiva.core.tool_handlers.core.WriteToolHandler.extract_target",
       "type": "calls"
     },
     {
@@ -94286,7 +94286,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.__init__.extract_webfetch_target",
-      "target": "aiva.core.tool_handlers.misc.WebFetchToolHandler.extract_target",
+      "target": "aiva.core.tool_handlers.core.WriteToolHandler.extract_target",
       "type": "calls"
     },
     {
@@ -94326,7 +94326,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.__init__.format_bash_message",
-      "target": "aiva.core.tool_handlers.misc.TodoWriteToolHandler.format_message",
+      "target": "aiva.core.tool_handlers.misc.GenericToolHandler.format_message",
       "type": "calls"
     },
     {
@@ -94336,7 +94336,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.__init__.format_read_message",
-      "target": "aiva.core.tool_handlers.misc.TodoWriteToolHandler.format_message",
+      "target": "aiva.core.tool_handlers.misc.GenericToolHandler.format_message",
       "type": "calls"
     },
     {
@@ -94346,7 +94346,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.__init__.format_glob_message",
-      "target": "aiva.core.tool_handlers.misc.TodoWriteToolHandler.format_message",
+      "target": "aiva.core.tool_handlers.misc.GenericToolHandler.format_message",
       "type": "calls"
     },
     {
@@ -94356,7 +94356,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.__init__.format_edit_message",
-      "target": "aiva.core.tool_handlers.misc.TodoWriteToolHandler.format_message",
+      "target": "aiva.core.tool_handlers.misc.GenericToolHandler.format_message",
       "type": "calls"
     },
     {
@@ -94366,7 +94366,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.__init__.format_write_message",
-      "target": "aiva.core.tool_handlers.misc.TodoWriteToolHandler.format_message",
+      "target": "aiva.core.tool_handlers.misc.GenericToolHandler.format_message",
       "type": "calls"
     },
     {
@@ -94376,7 +94376,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.__init__.format_websearch_message",
-      "target": "aiva.core.tool_handlers.misc.TodoWriteToolHandler.format_message",
+      "target": "aiva.core.tool_handlers.misc.GenericToolHandler.format_message",
       "type": "calls"
     },
     {
@@ -94386,7 +94386,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.__init__.format_webfetch_message",
-      "target": "aiva.core.tool_handlers.misc.TodoWriteToolHandler.format_message",
+      "target": "aiva.core.tool_handlers.misc.GenericToolHandler.format_message",
       "type": "calls"
     },
     {
@@ -94396,7 +94396,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.__init__.format_todowrite_message",
-      "target": "aiva.core.tool_handlers.misc.TodoWriteToolHandler.format_message",
+      "target": "aiva.core.tool_handlers.misc.GenericToolHandler.format_message",
       "type": "calls"
     },
     {
@@ -94406,7 +94406,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.__init__.format_send_file_to_user_message",
-      "target": "aiva.core.tool_handlers.misc.TodoWriteToolHandler.format_message",
+      "target": "aiva.core.tool_handlers.misc.GenericToolHandler.format_message",
       "type": "calls"
     },
     {
@@ -94426,7 +94426,7 @@
     },
     {
       "source": "aiva.core.tool_handlers.__init__.format_generic_tool_message",
-      "target": "aiva.core.tool_handlers.misc.TodoWriteToolHandler.format_message",
+      "target": "aiva.core.tool_handlers.misc.GenericToolHandler.format_message",
       "type": "calls"
     },
     {
@@ -94936,12 +94936,12 @@
     },
     {
       "source": "aiva.mcp_server.server._share_db",
-      "target": "aiva.modules.commitments.lib.core.connect",
+      "target": "aiva.modules.messages.privileged._legacy.channel.NativeIMessageChannel.connect",
       "type": "calls"
     },
     {
       "source": "aiva.mcp_server.server._share_db",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -94971,7 +94971,7 @@
     },
     {
       "source": "aiva.mcp_server.server.get_file",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -95006,7 +95006,7 @@
     },
     {
       "source": "aiva.mcp_server.server.send_file",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -95036,7 +95036,7 @@
     },
     {
       "source": "aiva.mcp_server.server.upload_route",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -95066,7 +95066,7 @@
     },
     {
       "source": "aiva.mcp_server.server.share_route",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -95086,7 +95086,7 @@
     },
     {
       "source": "aiva.mcp_server.server._share_purge_expired",
-      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBConnection.execute",
+      "target": "aiva.modules.imessage.privileged._legacy.imessage_legacy_cli.RemoteChatDBCursor.execute",
       "type": "calls"
     },
     {
@@ -95106,7 +95106,7 @@
     },
     {
       "source": "aiva.mcp_server.server.read_file",
-      "target": "aiva.ops.codex_jsonl_probe.JsonlLogger.close",
+      "target": "aiva.ops.tests.responder.unit.test_codex_adapter._FakeStdin.close",
       "type": "calls"
     },
     {
