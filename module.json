@@ -1,0 +1,44 @@
+{
+  "id": "officeadmin-site",
+  "name": "OfficeAdmin Site",
+  "version": 1,
+  "kind": "system",
+  "public_commands": [
+    {
+      "name": "generate-docs",
+      "entry": "bin/generate-docs.py",
+      "description": "Regenerate modules-docs.json from ~/.aiva/modules/*/ (MODULE.md + module.json + bin)"
+    },
+    {
+      "name": "watch-modules",
+      "entry": "bin/watch-modules.sh",
+      "description": "Long-running fswatch wrapper that regenerates the catalog on any module change. Normally invoked by launchd."
+    }
+  ],
+  "public_skills": [],
+  "runtime": {
+    "machine": "laptop",
+    "state_dirs": [
+      "officeadmin-site"
+    ],
+    "log_dirs": [
+      "officeadmin-site"
+    ],
+    "launchd": [
+      "com.officeadmin.site.watch-modules"
+    ],
+    "host_requirements": [
+      "python3",
+      "fswatch",
+      "git"
+    ],
+    "core_features": [],
+    "auth_profiles": []
+  },
+  "deploy": {
+    "repo": "https://github.com/banddude/officeadmin-site",
+    "url": "https://officeadmin.io",
+    "host": "github-pages + cloudflare-worker"
+  },
+  "notes": "Public landing + auto-populated documentation site at officeadmin.io. Catalog of modules is generated live from ~/.aiva/modules/ on every file change, but you still need to git push to deploy."
+}

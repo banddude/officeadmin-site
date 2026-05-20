@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-20T11:33:36-07:00",
+  "generated_at": "2026-05-20T12:42:38-07:00",
   "source": "/Users/mikeshaffer/.aiva/modules",
-  "count": 71,
+  "count": 72,
   "modules": [
     {
       "slug": "agent-browser",
@@ -402,7 +402,7 @@
       "name": "Google",
       "title": "Google Module",
       "purpose": "Canonical module owner for Google integrations and Google auth profiles.",
-      "module_md": "# Google Module\n\nCanonical module owner for Google integrations and Google auth profiles.\n\nCurrent status:\n1. This module is compatibility-first.\n2. Live Google CLI implementation now lives at `modules/google/cli/google-cli.py`.\n3. The public `google` command remains stable at top-level `bin/google`.\n4. The public `google` skill remains hand-owned at top-level `skills/google/SKILL.md`.\n5. Shared Google Workspace service-account auth helpers now live at `modules/google/google_workspace_auth.py`.\n\nThis module now owns the architectural boundary for:\n1. the unified `google` CLI surface\n2. Google auth profile definitions\n3. Google API integrations used directly in `.aiva`\n4. shared Google Workspace auth helpers used by Google integrations\n5. future migration of Google implementation under module ownership\n\nCompatibility notes:\n1. Reconcile should not replace the current public `google` command or skill while they remain hand-owned.\n2. Legacy `cli/google/*` wrappers have been removed; module ownership now lives directly under `modules/google` plus the stable public `bin/google` entrypoint.\n\nMigration intent:\n1. keep current `google` behavior stable\n2. establish real module ownership\n3. allow reconcile to track Google as an active module\n4. continue collapsing stale top-level references around the module-owned implementation\n",
+      "module_md": "# Google Module\n\nCanonical module owner for Google integrations and Google auth profiles.\n\nCurrent status:\n1. This module is compatibility-first.\n2. Live Google CLI implementation now lives at `modules/google/cli/google-cli.py`.\n3. The public `google` command remains stable at top-level `bin/google`.\n4. The public `google` skill remains hand-owned at top-level `skills/google/SKILL.md`.\n5. Shared Google Workspace service-account auth helpers now live at `modules/google/google_workspace_auth.py`.\n6. Common account and output flags, including `--personal`, `--user`, and `--json`, are normalized by the CLI so agents can place them before the product, after the product, or after nested commands.\n\nSheets command notes:\n1. `google sheets create-workbook` creates a new spreadsheet with multiple initial tabs.\n2. `google sheets add-sheet` adds a tab to an existing spreadsheet.\n3. `google sheets batch-update` wraps native `spreadsheets.batchUpdate` requests for operations that do not need the full `google raw` fallback.\n4. Raw discovery remains available for endpoints that still do not have a first-class command.\n\nThis module now owns the architectural boundary for:\n1. the unified `google` CLI surface\n2. Google auth profile definitions\n3. Google API integrations used directly in `.aiva`\n4. shared Google Workspace auth helpers used by Google integrations\n5. future migration of Google implementation under module ownership\n\nCompatibility notes:\n1. Reconcile should not replace the current public `google` command or skill while they remain hand-owned.\n2. Legacy `cli/google/*` wrappers have been removed; module ownership now lives directly under `modules/google` plus the stable public `bin/google` entrypoint.\n\nMigration intent:\n1. keep current `google` behavior stable\n2. establish real module ownership\n3. allow reconcile to track Google as an active module\n4. continue collapsing stale top-level references around the module-owned implementation\n",
       "bin": [
         "google"
       ],
@@ -719,6 +719,22 @@
         "notify"
       ],
       "product_category": "output"
+    },
+    {
+      "slug": "officeadmin-site",
+      "path": "~/.aiva/modules/officeadmin-site/",
+      "kind": "system",
+      "notes": "Public landing + auto-populated documentation site at officeadmin.io. Catalog of modules is generated live from ~/.aiva/modules/ on every file change, but you still need to git push to deploy.",
+      "name": "OfficeAdmin Site",
+      "title": "OfficeAdmin Site Module",
+      "module_md_date": "2026-05-20",
+      "purpose": "Owns the public landing + documentation site at\n[officeadmin.io](https://officeadmin.io). The site is the buyer-facing\nstorefront for OfficeAdmin and the live, auto-generated documentation\nsurface for every other AIVA module — same data, two presentations.",
+      "module_md": "# OfficeAdmin Site Module\n\nDate: 2026-05-20\n\n## Purpose\n\nOwns the public landing + documentation site at\n[officeadmin.io](https://officeadmin.io). The site is the buyer-facing\nstorefront for OfficeAdmin and the live, auto-generated documentation\nsurface for every other AIVA module — same data, two presentations.\n\n## What It Does\n\n1. **Landing page (`/`)** — hand-drawn comic-style marketing page with an\n   animated inbound pipeline (\"watch a real message become a reply\"),\n   interactive system graph of all ~70 modules in 10 clusters, mobile\n   drill-down view, trust-tier explanation, dossier examples, comparison\n   table, FAQ.\n2. **Docs page (`/docs.html`)** — auto-rendered card grid of every module\n   in `~/.aiva/modules/`, searchable + filterable, with full `MODULE.md`\n   expansion per module.\n3. **Module catalog (`modules-docs.json`)** — generated by\n   `bin/generate-docs.py` from `MODULE.md` + `module.json` + `bin/` of\n   every module on disk. Consumed by the graph + docs page + cards on the\n   landing page.\n4. **Auto-regen on file change** — `bin/watch-modules.sh` runs under\n   launchd (`com.officeadmin.site.watch-modules`); fswatch on\n   `~/.aiva/modules/` triggers regeneration whenever any `MODULE.md`,\n   `SKILL.md`, `module.json`, or `bin/*` file changes. Output goes\n   straight into the repo so the next `git push` ships the change.\n\n## Boundaries\n\nThis module owns:\n\n1. The marketing landing page, docs page, and module-catalog generator.\n2. The shell + launchd plumbing that keeps the catalog fresh on disk.\n\nIt does NOT own:\n\n1. The `officeadmin/` system atlas — that's a separate generator\n   (`scripts/generate-officeadmin-map.mjs`) on its own hourly launchd\n   cron that auto-commits.\n2. The `architecture.html` interactive diagram — legacy content\n   preserved as-is.\n3. Any module's own documentation — the generator only *reads* MODULE.md,\n   never writes to it. To change what shows up on the site for a given\n   module, edit that module's own `MODULE.md` or `module.json`.\n\n## Public Surface\n\n- `bin/generate-docs.py` — regenerate `modules-docs.json` on demand.\n- `bin/watch-modules.sh` — long-running fswatch wrapper (called by launchd).\n\n## Runtime\n\n- Machine: `laptop` (the watcher only runs on the laptop; aiva doesn't\n  need to run it because the laptop syncs the repo via git).\n- Launchd: `com.officeadmin.site.watch-modules`\n  (plist at `~/.aiva/ops/launchd/com.officeadmin.site.watch-modules.plist`,\n  symlinked into `~/Library/LaunchAgents/`).\n- Logs: `~/.aiva/ops/logs/officeadmin-site/watch-modules.log`.\n\n## Deployment\n\nGitHub Pages serves the `main` branch of\n[github.com/banddude/officeadmin-site](https://github.com/banddude/officeadmin-site),\nand a Cloudflare Worker (`officeadmin-router`) proxies officeadmin.io →\nGitHub Pages.\n\nWorkflow:\n\n```bash\ncd ~/.aiva/modules/officeadmin-site\n# (catalog auto-updates from the watcher; marketing copy edits go in index.html)\ngit add -A && git commit -m \"...\" && git push\n# → GH Pages rebuilds (~30-60s) → CF Worker caches for 5min → live\n```\n\n## URLs\n\n| Path | What |\n|---|---|\n| `/` | Landing page (marketing + interactive system graph) |\n| `/docs.html` | Module documentation, all 70+ modules, searchable |\n| `/architecture.html` | Architecture diagram (legacy, kept for depth) |\n| `/officeadmin/` | Generated system atlas (separate generator) |\n| `/jason/` | One-off customer page |\n| `/modules-docs.json` | Live module catalog (also fetched by the page JS) |\n",
+      "bin": [
+        "generate-docs.py",
+        "watch-modules.sh"
+      ],
+      "product_category": "util"
     },
     {
       "slug": "open-loops",
@@ -1350,7 +1366,7 @@
     ]
   ],
   "category_counts": {
-    "util": 17,
+    "util": 18,
     "infra": 9,
     "macos": 8,
     "business": 4,
