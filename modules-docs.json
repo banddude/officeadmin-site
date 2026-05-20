@@ -1,0 +1,1416 @@
+{
+  "generated_at": "2026-05-20T11:33:36-07:00",
+  "source": "/Users/mikeshaffer/.aiva/modules",
+  "count": 71,
+  "modules": [
+    {
+      "slug": "agent-browser",
+      "path": "~/.aiva/modules/agent-browser/",
+      "kind": "tool",
+      "name": "Agent Browser",
+      "title": "Agent Browser Module",
+      "purpose": "Vercel Labs agent-browser (v0.26.0): AI-native headless Chrome automation CLI.",
+      "module_md": "# Agent Browser Module\n\nVercel Labs agent-browser (v0.26.0): AI-native headless Chrome automation CLI.\n\n## What it does\n\nProvides browser automation through accessibility tree snapshots with deterministic element refs, designed for LLM-driven workflows. Runs a headless Chrome daemon with persistent authenticated profiles.\n\n## Key files\n\n- `bin/agent-browser` - symlink to the Rust binary\n- `~/.agent-browser/config.json` - default profile config\n- `~/.agent-browser/profiles/shaffercon/` - persistent authenticated profile (mike@shaffercon.com)\n\n## Installation\n\n- Laptop: `~/.aiva/bin/agent-browser` (darwin-arm64)\n- AIVA: `/usr/local/bin/agent-browser` (darwin-x64)\n\nBoth use the same config and profile paths under `~/.agent-browser/`.\n",
+      "bin": [
+        "agent-browser"
+      ],
+      "product_category": "util"
+    },
+    {
+      "slug": "agent-router",
+      "path": "~/.aiva/modules/agent-router/",
+      "bin": [
+        "aiva-agent-probe",
+        "aiva-agent-router"
+      ],
+      "product_category": "util"
+    },
+    {
+      "slug": "agents",
+      "path": "~/.aiva/modules/agents/",
+      "kind": "system",
+      "name": "Agents",
+      "title": "Agents Module",
+      "purpose": "Canonical owner for AIVA background-agent runner logic.",
+      "module_md": "# Agents Module\n\nCanonical owner for AIVA background-agent runner logic.\n\nThis module owns:\n- `agents` CLI\n- `agent-revive` CLI\n- `tell` CLI\n- `config/agent-config.sh`\n- `run-agent.sh` service runner\n- `tmux-zombie-check` service logic\n- background-agent skill documentation\n- reference docs for concrete jobs, such as `references/lila-digest.md`\n\nImportant boundary:\n- `~/.aiva/state/agents/runtime/` remains the runtime/workspace tree for per-agent configs, scripts, and workspaces.\n- `modules/agents/` owns the reusable code that operates on that runtime tree.\n\nCompatibility:\n- top-level `bin/agents` and `bin/agent-revive` remain stable public entrypoints\n- top-level `bin/tell` remains a stable public entrypoint\n- top-level `~/.aiva/state/agents/runtime/run-agent.sh` and `~/.aiva/state/agents/runtime/tmux-zombie-check/script.sh` remain compatibility wrappers for existing jobs/hooks\n- launchd/calendar/job definitions should prefer module-owned paths over time\n",
+      "bin": [
+        "agent-revive",
+        "agents",
+        "start-agents.sh",
+        "tell",
+        "tell-local"
+      ],
+      "product_category": "infra"
+    },
+    {
+      "slug": "aiva",
+      "path": "~/.aiva/modules/aiva/",
+      "kind": "system",
+      "name": "AIVA",
+      "title": "AIVA Module",
+      "purpose": "The unified macOS bridge binary, exposed as the `macos` command. Single signed gateway to all macOS system services.",
+      "module_md": "# AIVA Module\n\nThe unified macOS bridge binary, exposed as the `macos` command. Single signed gateway to all macOS system services.\n\n## Why this exists\n\nEvery macOS module used to shell out to its own CLIs (`security`, `osascript`, `afplay`, `pgrep`, `launchctl`, `mdfind`, `say`...). That meant TCC permission prompts scattered across many binaries, keychain ACL prompts re-triggered by every binary rebuild, and every module re-implementing the same boilerplate. Now there is one signed binary, everything routes through it.\n\n## Rule for module authors\n\nIf you need to read or change anything on macOS, call the `macos` binary. Do not shell out to:\n\n| Don't use | Use instead |\n|---|---|\n| `security find/add/delete-generic-password`, `security unlock-keychain` | `macos keychain get/set/delete/list/unlock` |\n| `osascript -e 'tell Messages...'` | `macos messages send` |\n| `osascript -e 'set volume...'` | `macos system volume` |\n| `say \"text\"` | `macos say \"text\"` |\n| `afplay file.aiff` | `macos audio play file.aiff` |\n| `pgrep -x Finder` | `macos system running Finder` |\n| `pgrep -f pattern` | `macos system running pattern --pattern` |\n| `launchctl list/bootstrap/bootout/kickstart` | `macos system launchctl-list/load/unload/kickstart` |\n| `mdfind`, `tag` | `macos spotlight search/find-by-tag/list-tags/tags/set-tags` |\n| EventKit / Contacts / Notes via AppleScript or direct sqlite | `macos calendar/reminders/contacts/notes` |\n| Maps URL building | `macos maps search/geocode/directions` |\n\nIf a CLI you need is missing, add a subcommand to the binary instead of shelling out from your module.\n\n## Commands\n\n```\nmacos messages    search | read | unanswered | thread | send | tapback\nmacos calendar    list-calendars | list | search | show | create | update | delete\nmacos reminders   lists | list | show | search | create | complete | uncomplete | edit | delete | create-list | delete-list\nmacos contacts    search | show | list | add-email | add-phone | add-url | delete-url | add-social | delete-social | add-im | delete-im | set-company | set-note | backup\nmacos notes       list | show | search | folders | create | update | delete\nmacos maps        search | geocode | reverse-geocode | directions\nmacos say         <text> [--voice V] [--rate R] [--output PATH] [--list-voices]\nmacos keychain    get | set | delete | list | unlock\nmacos spotlight   search | metadata | tags | set-tags | add-tags | remove-tags | find-by-tag | list-tags\nmacos system      ps | running | open | launchctl-list | launchctl-load | launchctl-unload | launchctl-kickstart | volume | volume-get | display\nmacos audio       play | devices\n```\n\nAll commands return JSON on stdout. Errors return JSON `{\"error\": \"...\"}` with non-zero exit.\n\n## Layout\n\n- Source: `src/` (Swift, organized by domain)\n- Binary: `bin/AIVA-MacOS.app/Contents/MacOS/aiva` (the actual signed binary)\n- Public command: `macos` (symlink at `~/.aiva/state/bin/macos`)\n- Build script: `./build.sh`\n\n## Signing\n\nThe binary is signed with `Developer ID Application: Michael Shaffer (6D4T7VB2AF)`. Team ID `6D4T7VB2AF` is stable across rebuilds, so keychain ACL partition list entries keep working.\n\nWhen you add a new keychain item that the bridge will read, set its partition list once:\n\n```\nsecurity set-generic-password-partition-list \\\n  -S \"apple-tool:,apple:,teamid:6D4T7VB2AF\" \\\n  -k '<login_password>' \\\n  -s SERVICE_NAME -a aiva \\\n  ~/Library/Keychains/login.keychain-db\n```\n\nOr simpler: create the item using `macos keychain set`, the bridge ends up on the ACL from the start.\n\n## Build\n\n```\ncd ~/.aiva/modules/aiva\n./build.sh\n```\n\n`build.sh` runs `swift build -c release`, copies into the app bundle, and signs with the Developer ID cert. Always use the script, do not run `codesign --sign -` directly. Ad-hoc signing produces a new CDHash every build, which invalidates keychain ACL entries.\n",
+      "product_category": "macos"
+    },
+    {
+      "slug": "aiva-user-chat-session",
+      "path": "~/.aiva/modules/aiva-user-chat-session/",
+      "kind": "utility",
+      "name": "AIVA User Chat Session",
+      "title": "AIVA User Chat Session Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`aiva-user-chat-session` owns the skill surface for inspecting Claude Code chat session JSONL history tied to AIVA responder conversations.",
+      "module_md": "# AIVA User Chat Session Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`aiva-user-chat-session` owns the skill surface for inspecting Claude Code chat session JSONL history tied to AIVA responder conversations.\n\n",
+      "product_category": "util",
+      "short_label": "chat-session"
+    },
+    {
+      "slug": "akaunting",
+      "path": "~/.aiva/modules/akaunting/",
+      "kind": "integration",
+      "name": "Akaunting",
+      "title": "Akaunting Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`akaunting` is the canonical module owner for the Akaunting business hub integration.",
+      "module_md": "# Akaunting Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`akaunting` is the canonical module owner for the Akaunting business hub integration.\n\nIt owns:\n1. the `akaunting` CLI surface in `.aiva`\n2. the `akaunting` skill surface\n3. the integration boundary to the external Akaunting app tree at `/Users/mikeshaffer/services/akaunting-native`\n\nIt does not own:\n1. conversations, contacts, or QuickBooks themselves\n2. the external Akaunting app source tree\n3. the agent/job runtime owned elsewhere in `.aiva`\n\n## Public Surface\n\nCurrent public surface remains:\n1. `bin/akaunting`\n2. `skills/akaunting`\n\nThe live wrapper implementation now lives in:\n1. `modules/akaunting/bin/akaunting`\n\nThe top-level `bin/akaunting` path remains a compatibility wrapper.\n",
+      "bin": [
+        "akaunting"
+      ],
+      "product_category": "business"
+    },
+    {
+      "slug": "alpaca",
+      "path": "~/.aiva/modules/alpaca/",
+      "kind": "integration",
+      "name": "Alpaca Trading",
+      "title": "Alpaca Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`alpaca` owns the public trading skill surface for Alpaca-backed stocks and crypto workflows.",
+      "module_md": "# Alpaca Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`alpaca` owns the public trading skill surface for Alpaca-backed stocks and crypto workflows.\n\n",
+      "product_category": "personal"
+    },
+    {
+      "slug": "apple-maps",
+      "path": "~/.aiva/modules/apple-maps/",
+      "kind": "integration",
+      "name": "Apple Maps",
+      "title": "Apple Maps Module",
+      "module_md_date": "2026-03-23",
+      "purpose": "`apple-maps` is the module-owned Apple Maps integration.",
+      "module_md": "# Apple Maps Module\n\nDate: 2026-03-23\n\n## Purpose\n\n`apple-maps` is the module-owned Apple Maps integration.\n\nIt owns:\n1. the `maps` CLI\n2. the `apple-maps` skill surface\n3. native place search through MapKit\n4. reverse geocoding through CoreLocation\n5. route calculation when an explicit origin is provided\n6. local guide files that package Apple Maps places into reusable collections\n\nIt does not own:\n1. Apple Maps account state\n2. saved Guides inside the Apple Maps app\n3. browser-first map scraping or unofficial Apple Maps APIs\n\n## Public Surface\n\nCurrent public surface is:\n1. `bin/maps`\n2. `skill/SKILL.md`\n\n## Operating Model\n\nThis module is machine-local:\n1. it runs against the local macOS MapKit and CoreLocation frameworks\n2. it depends on Apple Maps network responses at request time\n3. guide files are stored locally under `~/.aiva/state/maps/guides/`\n\n## Notes\n\nApple does not expose a clean public automation API for creating or syncing real Apple Maps Guides from this runtime. The CLI therefore creates local JSON guide files containing resolved places, coordinates, and Apple Maps URLs.\n",
+      "bin": [
+        "maps"
+      ],
+      "product_category": "macos"
+    },
+    {
+      "slug": "calendar",
+      "path": "~/.aiva/modules/calendar/",
+      "kind": "integration",
+      "name": "Calendar",
+      "title": "Calendar Module",
+      "purpose": "Canonical module owner for Apple Calendar CRUD and EventKit-backed calendar access.",
+      "module_md": "# Calendar Module\n\nCanonical module owner for Apple Calendar CRUD and EventKit-backed calendar access.\n\nCurrent status:\n1. Live `icalendar` implementation now lives at `modules/calendar/bin/icalendar`.\n2. The public `icalendar` command remains stable at top-level `bin/icalendar`.\n3. The public `icalendar` skill remains hand-owned at top-level `skills/icalendar/SKILL.md`.\n\nThis module now owns the architectural boundary for:\n1. Apple Calendar CRUD behavior\n2. EventKit-backed event search and listing\n3. recurring event editing and delete semantics\n4. future shared calendar helpers for other modules that need Apple Calendar access\n\nCompatibility notes:\n1. Reconcile should not replace the current public `icalendar` skill while it remains hand-owned.\n2. `bin/icalendar` is now a compatibility wrapper into the module-owned implementation.\n\nMigration intent:\n1. keep current `icalendar` behavior stable\n2. establish real module ownership for calendar behavior\n3. let later cleanup reduce stale top-level ownership around Apple Calendar tools\n",
+      "bin": [
+        "icalendar"
+      ],
+      "product_category": "macos"
+    },
+    {
+      "slug": "callhistory",
+      "path": "~/.aiva/modules/callhistory/",
+      "kind": "tool",
+      "name": "Call History",
+      "title": "Call History",
+      "purpose": "Module-owned privileged reader for macOS CallHistoryDB.",
+      "module_md": "# Call History\n\nModule-owned privileged reader for macOS CallHistoryDB.\n\n## What It Owns\n\n1. `privileged/callhistory.swift`, the Swift plugin code loaded by the AIVA bridge.\n2. Read-only call history stats and listing operations exposed through the plugin namespace.\n3. `bin/handler`, the public CLI layer for `aiva callhistory ...`.\n4. A narrow refresh operation that posts Apple's CallHistory sync notifications, then polls the local database before returning.\n5. The `cap:full-disk-access` requirement needed to read `~/Library/Application Support/CallHistoryDB/CallHistory.storedata`.\n\n## Runtime\n\n1. Machine: laptop.\n2. Source database: `~/Library/Application Support/CallHistoryDB/CallHistory.storedata`.\n3. Access mode: read-only SQLite through the bridge plugin.\n4. Refresh mode: public handler posts `com.apple.callhistorysync.idslaunchnotification` and `com.apple.CallHistoryPluginHelper.launchnotification`, then re-reads the database.\n\n## Verification\n\nUse a read-only stats check:\n\n```bash\naiva callhistory stats\n```\n\nThe command should return total call counts and oldest or newest call timestamps.\n\nFor live questions where the iPhone may not have synced into the Mac database yet, refresh first:\n\n```bash\naiva callhistory list --refresh --limit 10\n```\n\nThe command should include a `refresh` object and current call rows.\n\nWhen a row includes `location`, the handler also adds\n`location_kind: \"number_origin\"` and `location_note`. This location is carrier\nor phone-number origin metadata, not the person's current physical location.\n\nIf Apple has live call activity that has not landed in `CallHistoryDB`, the\n`refresh.freshness` object reports `newer_callservice_activity: true` and\nincludes a warning. The callservicesd log redacts phone numbers, so this is a\nfreshness guard, not a second source for call details.\n",
+      "bin": [
+        "handler"
+      ],
+      "product_category": "macos"
+    },
+    {
+      "slug": "claude",
+      "path": "~/.aiva/modules/claude/",
+      "kind": "model",
+      "name": "Claude",
+      "title": "Claude Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`claude` is the module-owned Claude backend integration boundary.",
+      "module_md": "# Claude Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`claude` is the module-owned Claude backend integration boundary.\n\nCurrent owned public surface:\n1. `claude_code_handler.py`\n\nThe live implementation now lives in:\n1. `modules/claude/bin/claude_code_handler.py`\n\nThe top-level `bin/claude_code_handler.py` path is a compatibility wrapper.\n",
+      "bin": [
+        "claude_code_handler.py"
+      ],
+      "product_category": "ai"
+    },
+    {
+      "slug": "cloudflare",
+      "path": "~/.aiva/modules/cloudflare/",
+      "kind": "integration",
+      "name": "Cloudflare",
+      "title": "Cloudflare Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`cloudflare` owns the skill surface for Cloudflare DNS, tunnel, cache, and zone management workflows.",
+      "module_md": "# Cloudflare Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`cloudflare` owns the skill surface for Cloudflare DNS, tunnel, cache, and zone management workflows.\n\n",
+      "bin": [
+        "wrangler"
+      ],
+      "product_category": "util"
+    },
+    {
+      "slug": "codex",
+      "path": "~/.aiva/modules/codex/",
+      "kind": "model",
+      "name": "Codex",
+      "title": "Codex Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`codex` is the module-owned Codex backend integration boundary.",
+      "module_md": "# Codex Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`codex` is the module-owned Codex backend integration boundary.\n\nCurrent owned public surface:\n1. `codex-auth-profile`\n2. `codex-auto-rotate`\n\nThe live implementation now lives in:\n1. `modules/codex/bin/codex-auth-profile`\n2. `modules/codex/bin/codex-auto-rotate`\n\nThe top-level `bin/codex-auth-profile` and `bin/codex-auto-rotate` paths are compatibility wrappers.\n",
+      "bin": [
+        "codex-auth-profile",
+        "codex-auto-rotate",
+        "codexr"
+      ],
+      "product_category": "ai"
+    },
+    {
+      "slug": "commitments",
+      "path": "~/.aiva/modules/commitments/",
+      "kind": "tool",
+      "name": "Commitments",
+      "title": "commitments",
+      "purpose": "Unified in-flight tracking. One shape for everything between Mike and another entity: conversation balls (loops), blocked chains (waiton), and job lifecycles (work records).",
+      "module_md": "# commitments\n\nUnified in-flight tracking. One shape for everything between Mike and another entity: conversation balls (loops), blocked chains (waiton), and job lifecycles (work records).\n\nSee `~/mikeshaffer/COMMITMENTS_MODEL.md` for the canonical spec.\n\n## Layout\n\n- `schema.json` — canonical schema. Source of truth for enums, transitions, edge constraints. CLI help renders from it.\n- `bin/commitments` — CLI entrypoint\n- `bin/migrate` — one-shot migration from open-loops, waiton, work records\n- `lib/core.py` — public API for other modules\n- `lib/schema.py` — validator (self-teaching errors)\n- `lib/state_machine.py` — transition + auto-block logic\n- `lib/projector.py` — rebuild nodes table from events\n- `skill/SKILL.md` — agent-facing reference\n\n## Storage\n\nSQLite at `~/mikeshaffer/memory/.commitments.sqlite3`. Three tables:\n\n- `nodes` — projected current state\n- `edges` — blocker → blocked relationships, grouped by `or_group`\n- `node_events` — append-only event log\n\nState is always derivable from events. The `nodes` table is a read cache that can be rebuilt with `python3 -c 'from lib.projector import rebuild; ...'` if it ever drifts.\n",
+      "bin": [
+        "backfill-thread-ids",
+        "commitments",
+        "fix-thread-ids",
+        "migrate",
+        "migrate-drafts",
+        "reconcile-channels",
+        "reconcile-gmail-legacy.bak",
+        "test-drafter-dedup",
+        "test-reminder-autoclose"
+      ],
+      "product_category": "memory",
+      "featured_order": 3
+    },
+    {
+      "slug": "comms-expert",
+      "path": "~/.aiva/modules/comms-expert/",
+      "kind": "utility",
+      "name": "Comms Expert",
+      "title": "Comms Expert Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`comms-expert` owns the drafting and wording skill surface that should be used before channel delivery tools.",
+      "module_md": "# Comms Expert Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`comms-expert` owns the drafting and wording skill surface that should be used before channel delivery tools.\n\n",
+      "product_category": "workflow",
+      "featured_order": 9
+    },
+    {
+      "slug": "comms-pipeline",
+      "path": "~/.aiva/modules/comms-pipeline/",
+      "kind": "system",
+      "name": "Communications Pipeline",
+      "title": "Communications Pipeline Module",
+      "module_md_date": "2026-04-23",
+      "purpose": "End-to-end pipeline for processing Mike's incoming communications (email, iMessage, voicemails, Maricar's Google Chat) and producing reviewed drafts or auto-sent responses.",
+      "module_md": "# Communications Pipeline Module\n\nDate: 2026-04-23\n\n## Purpose\n\nEnd-to-end pipeline for processing Mike's incoming communications (email, iMessage, voicemails, Maricar's Google Chat) and producing reviewed drafts or auto-sent responses.\n\n## What It Does\n\n1. Scans Gmail work, Gmail personal, iMessages, Google Chat with Maricar, and voicemail-derived Gmail items deterministically\n2. Filters spam (cold outreach, recruiters, vendor pitches)\n3. Routes legitimate items to Mike or Maricar based on routing rules\n4. Dispatches one-shot LLM drafters only after a deterministic action queue exists\n5. Classifies each draft by tier (1=auto-send, 2=send+notify, 3=review)\n6. Auto-sends Tier 1 items (signed \"- AIVA\" for Maricar messages)\n7. Notifies Mike of pending drafts at 9:30 AM\n8. Tracks every outcome for learning over time\n\n## Architecture\n\n```\n                    +----------+\n                    |  Inbox   |\n                    +-----+----+\n                          |\n              +-----------+-----------+\n              |   action-scan script  |  (module-owned Python, deterministic)\n              |   - Scans live CLIs   |\n              |   - Filters/routes    |\n              |   - Dedupes state     |\n              |   - Max 5 items       |\n              +-----------+-----------+\n                          |\n                          v\n              +------------------------+\n              |  .action-queue.json    |\n              +-----------+------------+\n                          |\n              +-----------+------------+\n              |    Dispatcher          |  (bash, no AI)\n              |    - Max 5 drafters    |\n              |    - One per item      |\n              |    - Records ledger    |\n              +-----------+------------+\n                          |\n              +-----------+------------+\n              |    Drafters (1-5)      |  (one-shot cron, glm-5.1)\n              |    - Read DRAFTING.md  |\n              |    - Verify channels   |\n              |    - Cross-check       |\n              |    - Classify tier     |\n              +-----------+------------+\n                          |\n                          v\n              +------------------------+\n              |  .pending-drafts/      |\n              +-----------+------------+\n                          |\n              +-----------+------------+\n              |  Auto-Sender (9:30AM)  |  (bash, no AI)\n              |  Sends Tier 1          |\n              |  Forwards emails       |\n              +-----------+------------+\n                          |\n                          v\n              +------------------------+\n              |  Draft Review Notify   |  (cron, 9:30 AM)\n              |  Reports to Google     |\n              |  Chat with summary     |\n              +------------------------+\n                          |\n                          v\n              Mike reviews in Google Chat\n              \"send 1, change 2, skip 3\"\n                          |\n                          v\n              +------------------------+\n              |  Draft Tracker         |\n              |  Archives outcomes     |\n              |  Builds approval rates |\n              +------------------------+\n```\n\n## Channel Types Supported\n\nThe dispatcher creates drafts for three response channels:\n\n1. **email** — Reply to incoming email (`google gmail reply MSG_ID`)\n2. **imessage** — Reply to iMessage (`ssh laptop \"imessage send 'PHONE'\"`)\n3. **outbound_email** — Fresh email Mike needs to send (`google gmail send`)\n4. **route_to_maricar** — Google Chat ping to Maricar + email forward (`google chat send` + `google gmail forward`)\n5. **google_chat** — Drafted Google Chat reply from Mike to Maricar (`google chat send --stdin`)\n\n## Tier Classification\n\nEvery draft gets a tier from the drafter (GLM-5.1 via OpenClaw cron with full context):\n\n- **Tier 1 (AUTO-SEND)**: Acknowledgments, Maricar delegations, sub nudges. Zero risk of harm if sent. Auto-sent at 9:30 AM by auto-sender script.\n- **Tier 2 (SEND WITH NOTIFICATION)**: Simple confirmations, scheduling when calendar is clear. Currently routed to review until track record builds, may auto-send later.\n- **Tier 3 (DRAFT AND WAIT)**: Money, pricing, scope, contracts, new clients, judgment calls. Always requires Mike's approval.\n\n## File Locations\n\n### Scripts\n- `~/.aiva/modules/comms-pipeline/bin/action-scan` — Deterministic scanner; writes the canonical queue\n- `~/mikeshaffer/scripts/dispatch-drafters.sh` — Dispatcher (no AI, plumbing)\n- `~/mikeshaffer/scripts/auto-sender.sh` — Auto-sender for Tier 1 items\n- `~/mikeshaffer/scripts/healthcheck.sh` — Outside-OpenClaw healthcheck (launchd)\n\n### Policy Docs (in workspace, agents read these)\n- `~/mikeshaffer/ROUTING.md` — Who goes to Mike vs Maricar vs spam\n- `~/mikeshaffer/DRAFTING.md` — Voice rules, AIVA signature rules\n- `~/mikeshaffer/MEMORY.md` — Active leads, Oval workflow, business context\n- `~/mikeshaffer/TOOLS.md` — Infrastructure references\n\n### State Files\n- `~/mikeshaffer/memory/.action-queue.json` — Current action queue (between scanner and dispatcher)\n- `~/mikeshaffer/memory/.action-queue-archive/` — Processed queue history\n- `~/mikeshaffer/memory/.action-dispatch-ledger.json` — Short-lived ledger of source IDs already handed to async drafters\n- `~/mikeshaffer/memory/.deterministic-action-scanner-state.json` — Last deterministic scan summary\n- `~/mikeshaffer/memory/.scanner-log/` — JSONL scanner run history\n- `~/mikeshaffer/memory/.pending-drafts/` — Drafts awaiting review (one JSON per item)\n- `~/mikeshaffer/memory/.pending-drafts-archive/` — Old drafts\n- `~/mikeshaffer/memory/.draft-history/` — Tracked outcomes (approved, modified, skipped, auto-sent)\n- `~/mikeshaffer/memory/.draft-stats.json` — Aggregated approval rates by channel and action_type\n- `~/mikeshaffer/memory/.email-watcher-state.json` — Tracks surfaced emails to avoid duplicates\n- `~/mikeshaffer/memory/.filter-suggester-state.json` — Tracks proposed Gmail filters\n- `~/mikeshaffer/memory/.mempalace-sync-state.json` — Tracks synced facts to avoid duplicates\n- `~/mikeshaffer/memory/.waiting-on.json` — Dependency chains (managed by `waiton` CLI)\n- `~/mikeshaffer/memory/.auto-sent-log.json` — Log of all Tier 1 auto-sends\n- `~/mikeshaffer/memory/.pending-filter-suggestions.json` — Filter suggestions awaiting approval\n- `~/mikeshaffer/memory/PUNCH-LIST.md` — System todo list\n\n### Daily Notes\n- `~/mikeshaffer/memory/YYYY-MM-DD.md` — Per-day notes appended by cron jobs (briefing, watcher, accountability, auto-sent log)\n\n## Cron Schedule (Pacific Time)\n\n| Time | Job | Model | What it does |\n|------|-----|-------|--------------|\n| 3:00 AM | Memory Dreaming | Native | Promotes durable facts to MEMORY.md (with 30-day temporal decay) |\n| 4:00 AM | mempalace-sync | gpt-5.4-mini | Reads MEMORY.md, writes triples to MemPalace knowledge graph |\n| 7:30 AM | morning-briefing | gpt-5.4 | Reads everything, sends one consolidated briefing to Google Chat |\n| 7:45 AM | action-scanner | glm-5.1 | Runs `action-scan --write --replace`, then dispatches drafters |\n| 9:30 AM (M-F) | draft-review-ready | gpt-5.4-mini | Runs auto-sender first, then notifies Mike of pending drafts |\n| 9:45/11:45/1:45/3:45 (M-F) | email-watcher | gpt-5.4-mini | Mid-day scans, dependency resolution checks |\n| 10:00 AM (M-F) | accountability-check | gpt-5.4-mini | Flags hanging commitments and overdue waiting-on items |\n| 2:30 PM (M-F) | email-filter-suggester | gpt-5.4-mini | Proposes Gmail filters for spam/noise |\n| Every 30 min | healthcheck | bash + Claude Code | Monitors gateway and cron jobs, fires Claude Code to fix breaks |\n\n## Failure Modes Discovered (and Fixed)\n\nThese are all things that have already broken. The fixes are in place but documented here so future-Aiva remembers:\n\n1. **`--at now` fails** — OpenClaw cron requires ISO timestamps, not relative durations. Fixed in dispatcher.\n2. **Empty agent output errors** — Agents must produce some text or OpenClaw treats it as an error. Fixed in scanner and review prompts.\n3. **Agent tries to use internal `message` tool** — When delivery is \"announce\", agents shouldn't try to send via tool calls. Fixed in watcher and review prompts.\n4. **iMessage hallucination from voicemail phone numbers** — Action scanner had to be told to ONLY queue iMessage items that exist in actual iMessage search results.\n5. **iMessage scanner over-eager** — Initial version dumped 37 items including group chats, spam shortcodes, marketing texts. Now filters group chats, shortcodes, toll-free numbers, casual social.\n6. **No dispatcher cap** — Original version would create unlimited drafters. Now capped at MAX_DRAFTERS=5.\n7. **Agentic scanner fragility** — The old scanner depended on an agent to enumerate channels and emit queue JSON. Replaced with `bin/action-scan` so channel enumeration and queue generation are deterministic, testable, and module-owned.\n8. **Async drafter race** — A scanner rerun could rediscover items after dispatcher created one-shot drafters but before draft files existed. Fixed with `.action-dispatch-ledger.json` plus the existing draft/draft-history dedupe.\n9. **Emoji-only iMessage IDs** — Emoji/group-chat names collapsed to `imessage-`. Fixed with a stable SHA-256 fallback slug.\n10. **Maricar handoff verification missed** — Drafter checked Maricar's sent folder for replies to sender, but not for forwards to relevant third party. Fix pending.\n\n## Integration Points\n\nThis pipeline integrates with:\n\n- **dependency-tracker module** — Email watcher checks waiting-on items for resolution; drafters auto-create chains when intermediating\n- **mempalace module** — Dreaming sync feeds the knowledge graph; drafters query MemPalace for context\n- **google module** — All Gmail send/reply/forward, Google Chat send/read operations\n- **imessage module** — iMessage send/read via SSH to laptop\n- **calendar module** — Morning briefing reads daily calendar\n\n## Key Behaviors (Read These Before Modifying)\n\n1. **Routing matters more than model power.** Tier 1 routing decisions don't need GPT-5.4. Sending the wrong person doesn't get fixed by a smarter model.\n\n2. **Cross-channel verification is the difference.** Without checking sent folders + iMessages + Maricar's mail + Google Chat, drafters will create work for things Mike already handled.\n\n3. **Limits prevent runaway behavior.** Max 5 in queue, max 5 drafters dispatched, MAX_DRAFTERS hard cap. Always.\n\n4. **Spam gets archived, not routed.** Cold outreach, recruiters, vendor sales pitches do not go to Maricar. They get filtered.\n\n5. **Mike approves Tier 3, AIVA auto-sends Tier 1.** Tier 2 currently goes to review until track record builds.\n\n6. **Customer-facing messages stay in Mike's voice.** Internal Maricar messages get \"- AIVA\" signature.\n\n## What's NOT Yet Built / Open Items\n\nSee `~/mikeshaffer/memory/PUNCH-LIST.md` for the live list. Highlights:\n\n- Weekend personal briefing (Sat/Sun ~8:30 AM)\n- Drafter awareness of entity workspaces (`~/mikeshaffer/entities/{slug}/` supplementary files; entity data now from Postgres)\n- Multi-attachment Google CLI fix\n- Auto-creation of new entity workspaces for new leads\n- Bidirectional sync between drafts and entity tasks\n\n## How to Test\n\n### Synthetic test (controlled, fast)\n```bash\n# Create a test queue item\ncat > ~/mikeshaffer/memory/.action-queue.json << 'EOF'\n{\"items\": [{\"message_id\":\"test-X\",\"channel\":\"route_to_maricar\",\"from\":\"x@y.com\",\"from_name\":\"Test Person\",\"subject\":\"Test inquiry\",\"account\":\"work\",\"action_type\":\"route_to_maricar\",\"snippet\":\"Test scenario\",\"priority\":\"medium\",\"age_hours\":1}]}\nEOF\nbash ~/mikeshaffer/scripts/dispatch-drafters.sh\n# Wait, then check ~/mikeshaffer/memory/.pending-drafts/\n```\n\n### Live test (real data)\n```bash\nopenclaw cron run 6451ed93-28b4-4759-abe2-5cddf8a373ad --timeout 900000 --expect-final\n# Wait, then check ~/mikeshaffer/memory/.pending-drafts/\n```\n\n### Production test\nJust wait until 7:45 AM PT. The scheduled scanner fires.\n",
+      "bin": [
+        "action-scan",
+        "test_action_scan.py"
+      ],
+      "product_category": "workflow",
+      "star": true,
+      "featured_order": 0
+    },
+    {
+      "slug": "contacts",
+      "path": "~/.aiva/modules/contacts/",
+      "kind": "integration",
+      "name": "Contacts",
+      "title": "Contacts Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`contacts` is the module-owned Apple Contacts integration.",
+      "module_md": "# Contacts Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`contacts` is the module-owned Apple Contacts integration.\n\nIt owns:\n1. the `contacts` CLI\n2. the `contacts` skill surface\n3. machine-local read and write access to the native Contacts database\n4. changelog and backup behavior for Contacts mutations\n5. the shared Contacts runtime in `modules/contacts/runtime.py`\n6. native Contacts helper tooling under `modules/contacts/tools/`\n\nIt does not own:\n1. CRM aggregation logic\n2. responder runtime selection logic\n3. iMessage tool behavior\n\n## Public Surface\n\nCurrent public surface remains:\n1. `bin/contacts`\n2. `skills/contacts`\n\nThe live CLI implementation now lives in:\n1. `modules/contacts/bin/contacts`\n2. `modules/contacts/tools/contacts-native/`\n3. `modules/contacts/tools/contacts-helper/`\n\nThe top-level `bin/contacts` path is a compatibility wrapper.\n\n## Operating Model\n\nThis module is machine-local, not a shared delegated runtime tool:\n1. laptop runs against laptop-local Contacts data and permissions\n2. AIVA runs against AIVA-local Contacts data and permissions\n3. iCloud is the sync layer between machines\n",
+      "bin": [
+        "contacts",
+        "handler"
+      ],
+      "product_category": "memory"
+    },
+    {
+      "slug": "conversations",
+      "path": "~/.aiva/modules/conversations/",
+      "kind": "integration",
+      "name": "Conversations",
+      "title": "Conversations Module",
+      "purpose": "Canonical module owner for voice conversation transcripts, speaker identification, and voice memo processing.",
+      "module_md": "# Conversations Module\n\nCanonical module owner for voice conversation transcripts, speaker identification, and voice memo processing.\n\nCurrent status:\n1. This module is compatibility-first.\n2. The live `conversations` CLI implementation now lives in this module.\n3. The voice memo watcher, processing scripts, speaker worker, and speaker tools now live in this module.\n4. The `voice-memos` and `voice-extract` CLIs now live in this module.\n5. The public command surface is generated into `~/.aiva/state/bin` from this module's manifest.\n6. Service helpers now live under `modules/conversations/services/`.\n7. The public top-level `skills/conversations/SKILL.md` remains hand-owned during migration, while this module also provides a canonical module-local skill doc.\n\nThis module now owns the architectural boundary for:\n1. transcript database access\n2. speaker identification and embedding management\n3. voice memo ingestion and watcher logic\n4. `voice-memos` and `voice-extract`\n5. Phase 1 conversation post-processing through `conversation-pipeline`\n6. AIVA-hosted conversations processing\n7. Viaim call transcript import into the conversations database\n\nCompatibility notes:\n1. Reconcile should not replace the current top-level `conversations` skill while it remains hand-owned.\n2. Launchd and operator references should point at `modules/conversations/services/*`.\n3. Akaunting and other tooling must read the canonical runtime data from the Supabase Postgres tables listed above, not from any SQLite path. The `~/.aiva/state/conversations/` directory still holds non-DB state (logs, watcher bookkeeping, postprocess outputs) but no longer contains a live database file.\n\nMigration intent:\n1. keep current conversations behavior stable\n2. establish `conversations` as the canonical feature owner\n3. keep runtime state outside the repo-owned module tree\n4. move remaining docs and operator surfaces under module ownership in later isolated steps\n\n## Operations — READ THIS BEFORE TOUCHING ANYTHING\n\n### Pipeline overview\n\n```\niPhone (Voice Memos) → iCloud → Laptop → rsync → AIVA disk → watcher → AssemblyAI → Postgres\nViaim app (macOS) → local Notekit call.db → sync_viaim.py → Postgres\n```\n\n- Voice memos recorded on iPhone sync to laptop via iCloud\n- `sync_voice_memos_to_aiva.sh` rsyncs from laptop to AIVA\n- `voice_memo_watcher.py` runs via launchd, detects new files, calls `process_voice_memo.py`\n- `process_voice_memo.py` loads `speaker_id.py`, which uploads to AssemblyAI for transcription + speaker ID\n- Results go into Supabase Postgres (tables: `conversations`, `conversation_turns`, `speakers`, `conversations_speakers`, `speaker_verifications`, `voice_training`, `speaker_jobs`, `voice_embeddings`)\n- `sync_viaim.py` reads Viaim's local SQLite database at\n  `~/Library/Containers/com.viaim.notekit/Data/Documents/CallRecord/call.db`\n  and imports available call transcripts into the same Postgres tables\n\n**Storage backend (since 2026-05-15):** Postgres-only. The legacy SQLite file at\n`~/.aiva/state/conversations/conversations.db` has been renamed to\n`conversations.db.deprecated-pg-only-2026-05-15` and is no longer read or\nwritten. All callers (in-module and downstream) go through the\n`get_pg_conn()` helper defined at the top of `services/speaker_id.py` and\nmirrored in the other service files.\n\n### Launchd service\n\nPlist: `~/.aiva/ops/launchd/com.aiva.voice-memos.plist`\n\n**CRITICAL:** The plist MUST have `EnvironmentVariables` with PATH including `/usr/local/bin` — launchd runs with a minimal PATH and `ffprobe`/`ffmpeg` live in `/usr/local/bin`. Without this, pydub and ffprobe calls silently fail.\n\n**CRITICAL:** `ProgramArguments` uses `aiva-python3` which MUST be a symlink to a real python binary (e.g. pyenv 3.10.13), NOT a bash wrapper script. macOS kernel cannot chain shebangs (script → script → binary). If `aiva-python3` is a bash script, any Python CLI that uses it as a shebang will fail with `Exec format error` when called via `subprocess.run()`.\n\n### Viaim sync service\n\nPlist: `~/.aiva/ops/launchd/com.aiva.viaim-sync.plist`\n\nRuns every 15 minutes on AIVA and calls\n`~/.aiva/modules/conversations/services/sync_viaim.py`. The sync is\nconservative: it imports missing Viaim calls, fills in transcripts that\narrive after the initial metadata import, and inserts only missing stable\nutterances by default. It does not overwrite edited conversation titles\nor edited utterance speaker names unless run manually with `--force`.\n\nCommon commands:\n\n```bash\n~/.aiva/modules/conversations/services/sync_viaim.py --status\n~/.aiva/modules/conversations/services/sync_viaim.py --record-id <viaim-record-id>\n~/.aiva/modules/conversations/services/sync_viaim.py --dry-run\n```\n\n### State files\n\n- `~/.aiva/state/conversations/.known_memos` — filenames the watcher has seen and successfully handled. If a memo is in this file, the watcher skips it. If processing fails but the memo gets added here anyway, it's stuck forever.\n- `~/.aiva/state/conversations/.claims/` — coordination files for multi-machine claim dedup\n- `~/.aiva/state/conversations/postprocess/` — Phase 1 post-processing prompts, structured JSON results, and idempotency run log.\n- `~/.aiva/state/conversations/.viaim_sync_state.json` — Viaim source\n  record signatures and import bookkeeping for the scheduled sync.\n\n### Phase 1 post-processing\n\n`conversation-pipeline` runs the observation-only post-processing layer after a transcript lands in the DB:\n\n1. resolve the conversation context from hints, entity files, and `~/officeadmin-site/*/index.html` prep pages\n2. load the matching entity dossier from Postgres via EntityStore (supplementary files from `~/mikeshaffer/entities/<slug>/` still read for session notes and work records)\n3. parse the transcript into structured JSON using Claude Code CLI when available, with a conservative heuristic fallback\n4. write the full summary to `~/mikeshaffer/memory/conversation-summaries/`\n5. optionally speak the headline through `talk --phone-speak` when confidence clears the configured threshold\n\nIt does not write estimates, reminders, open loops, job records, or customer-facing drafts. Those are later phases.\n\nCommon commands:\n\n```bash\nconversation-pipeline run latest --entity jason-madsen --plan ~/officeadmin-site/jason/index.html\nconversation-pipeline scan --since-hours 24 --limit 5\nconversation-pipeline status\n```\n\n### Known failure modes (things that have broken before)\n\n1. **`aiva-python3` is a bash wrapper instead of a symlink** → pydub/speaker_id imports fail with `ModuleNotFoundError` because the wrapper invokes system Python (3.9) instead of pyenv Python (3.10.13 with deps installed). Fix: `ln -sf ~/.pyenv/versions/3.10.13/bin/python3 ~/.aiva/state/bin/aiva-python3`\n\n2. **Launchd PATH missing `/usr/local/bin`** → ffprobe not found → pydub conversion fails → processing fails. Fix: add `EnvironmentVariables` dict with PATH to the plist.\n\n3. **Memos stuck in `.known_memos` but not in DB** → Old watcher code (before March 2026) marked memos as known even on failure. Current code only marks on success. To unstick: remove the filename from `.known_memos` and the watcher will reprocess on next cycle.\n\n4. **AssemblyAI rejects audio (\"no spoken audio\")** → `process_voice_memo.py` has safe retry logic that returns True (marks known, stops retrying) for API-processed errors. It only retries on network/transient failures. Permanent failures send a notification to Mike.\n\n### Dependencies\n\n`speaker_id.py` requires: `pydub`, `requests`, `psycopg2`, `numpy`, `assemblyai` API key (in keychain), Supabase Postgres credentials (in keychain: `supabase-aiva-project-ref` and `supabase-aiva-db-password`), `modal` endpoint for the speaker-embedding service. All must be installed in the python that `aiva-python3` points to. Pinecone has been decommissioned; embeddings live in the Postgres `voice_embeddings` table with pgvector.\n\n### Debugging checklist\n\n1. Check watcher is running: `launchctl list | grep voice-memos`\n2. Check logs: `tail ~/.aiva/ops/logs/conversations/watcher_stdout.log`\n3. Check errors: `tail ~/.aiva/ops/logs/conversations/watcher_stderr.log`\n4. Check file counts: watcher logs `Current: X, Known: Y, New: Z` every cycle\n5. If `New: 0` but files are missing from DB, check `.known_memos` for stuck entries\n6. Test python env: `aiva-python3 -c \"import pydub; print('ok')\"`\n7. Test ffprobe: `aiva-python3 -c \"import subprocess; subprocess.run(['ffprobe', '-version'])\"`\n8. Check Viaim import status:\n   `~/.aiva/modules/conversations/services/sync_viaim.py --status`\n9. Check Viaim sync logs:\n   `tail ~/.aiva/ops/logs/conversations/viaim_sync_stdout.log`\n",
+      "bin": [
+        "conversation-pipeline",
+        "conversations",
+        "viaim-sync",
+        "voice-extract",
+        "voice-memos"
+      ],
+      "product_category": "inbound",
+      "featured_order": 6
+    },
+    {
+      "slug": "copyparty",
+      "path": "~/.aiva/modules/copyparty/",
+      "kind": "utility",
+      "name": "CopyParty",
+      "title": "copyparty",
+      "purpose": "CopyParty file sharing via a module-declared skill. This module is skill-only — no CLI, no daemon, just the SKILL.md that agents reference when they need to hand Mike a link to a file.",
+      "module_md": "# copyparty\n\nCopyParty file sharing via a module-declared skill. This module is skill-only — no CLI, no daemon, just the SKILL.md that agents reference when they need to hand Mike a link to a file.\n\n## Why this module exists\n\nCopyParty (the underlying server at port 3100) lets Mike access files on the AIVA Mac from anywhere via `files.officeadmin.io` or from the LAN via `192.168.1.242:3100`. When an agent produces a file that Mike needs to see, the right move is a CopyParty link rather than a verbose text dump or a broken /tmp path.\n\nThis module exposes that pattern as a first-class skill so agents see it in their skill index and use it consistently.\n\n## What you get\n\n- `SKILL.md`: the skill file agents consult for volume mappings, URL formats, and external vs LAN tradeoffs.\n- No binary. Nothing to run, install, or configure inside this module. The CopyParty server itself is managed separately outside `.aiva`.\n\n## Integration\n\nAlso listed in `ops/specs/module-map.md` as a skill-owned module, alongside the other no-runtime references like `mcporter`, `shaffer-blogger`, and `skatefit-github`.\n",
+      "skill_description": "Share files via CopyParty links. Use when you need to send Mike a link to any file on AIVA, the laptop, or /tmp. Generates either an external URL (files.officeadmin.io) or a LAN URL (IP:3100).",
+      "product_category": "util"
+    },
+    {
+      "slug": "dependency-tracker",
+      "path": "~/.aiva/modules/dependency-tracker/",
+      "kind": "tool",
+      "name": "Dependency Tracker",
+      "title": "Dependency Tracker Module",
+      "module_md_date": "2026-04-16",
+      "purpose": "Tracks chains where Mike is waiting on one person's reply before he can respond to someone else. These are the balls that get dropped when a subcontractor, vendor, or team member is slow to respond and the original client question ages out of Mike's working memory.",
+      "module_md": "# Dependency Tracker Module\n\nDate: 2026-04-16\n\n## Purpose\n\nTracks chains where Mike is waiting on one person's reply before he can respond to someone else. These are the balls that get dropped when a subcontractor, vendor, or team member is slow to respond and the original client question ages out of Mike's working memory.\n\nIt owns:\n1. The `waiton` CLI for managing dependency chains\n2. The `dependency-tracker` skill surface\n3. The data file at `~/mikeshaffer/memory/.waiting-on.json`\n\nIt integrates with:\n1. The email watcher cron job (checks incoming mail/iMessages for resolved dependencies)\n2. The accountability check cron job (flags stale dependencies for follow-up)\n3. The draft response system (dispatches drafters when dependencies resolve)\n\n## How It Works\n\nA dependency chain has these parts:\n- **waiting_on**: The person Mike is waiting to hear back from\n- **about**: What Mike asked them\n- **then_reply_to**: Who Mike needs to get back to once he has the answer\n- **follow_up_after_hours**: When to start nudging if no reply\n\nThe email watcher checks for incoming replies from anyone Mike is waiting on. When it finds one, the chain resolves and a drafter gets dispatched with the full context to draft a response to the original person.\n\nThe accountability check flags chains that have exceeded their follow-up window and offers to nudge the person.\n\n## Public Surface\n\n1. `bin/waiton` - CLI for managing dependencies\n2. `bin/draft-tracker` - CLI for tracking draft dependencies and review queues\n3. `skill/SKILL.md` - Skill file for agent sessions\n",
+      "bin": [
+        "draft-tracker",
+        "waiton"
+      ],
+      "product_category": "memory",
+      "short_label": "dep-tracker"
+    },
+    {
+      "slug": "docs",
+      "path": "~/.aiva/modules/docs/",
+      "kind": "utility",
+      "name": "System Documentation",
+      "title": "docs module",
+      "purpose": "System documentation for AIVA and OpenClaw. This module is the canonical\nsource of truth for how the whole system works. Every other agent working on\nthis codebase should read from and write to this module.",
+      "module_md": "# docs module\n\nSystem documentation for AIVA and OpenClaw. This module is the canonical\nsource of truth for how the whole system works. Every other agent working on\nthis codebase should read from and write to this module.\n\n## Status\n\nThis module is always a work in progress. As the system changes, docs here\ndrift from reality. Every document in `content/` carries a header with three\nfields:\n\n- `status:` — always `work-in-progress`\n- `last-verified:` — ISO date when someone confirmed the doc matches reality\n- `confidence:` — `HIGH`, `MEDIUM`, or `LOW`\n\n`HIGH` means the author checked the source code, ran the commands, read the\nconfigs, and the doc reflects what they observed. `MEDIUM` means the author\nread enough to be confident in the shape but not every detail. `LOW` means\nthe doc is a sketch or placeholder that has not been verified against the\nsystem and should not be trusted as a reference.\n\nNew docs default to `LOW`. A doc moves up only after someone does the\nverification work and writes what they checked into the verification log\nat `content/VERIFICATION-LOG.md`.\n\n## Files\n\n- `MODULE.md` — this file.\n- `module.json` — module manifest.\n- `skill/SKILL.md` — instructions for agents on how to use and maintain\n  these docs.\n- `content/` — the actual documentation tree. Each file is a focused topic\n  that links out to existing spec docs, module READMEs, and implementation\n  files rather than duplicating them.\n\n## Maintenance rules\n\n1. When any agent changes something about AIVA or OpenClaw, update the\n   relevant doc in `content/` in the same change.\n2. When a doc is read and found to still be accurate, bump its\n   `last-verified` date and note the check in `VERIFICATION-LOG.md`.\n3. When a doc is found to be wrong, fix it or mark it `confidence: LOW`\n   until fixed.\n4. Never delete a doc. Archive outdated docs under\n   `content/archive/YYYY-MM-DD/`.\n5. Never truncate or summarize away content during edits. Add, correct,\n   or mark stale. Do not remove.\n",
+      "product_category": "infra"
+    },
+    {
+      "slug": "electrical-estimating",
+      "path": "~/.aiva/modules/electrical-estimating/",
+      "kind": "tool",
+      "name": "Electrical Estimating",
+      "title": "Electrical Estimating Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`electrical-estimating` owns the estimating skill surface for Shaffer Construction electrical bids and service pricing.",
+      "module_md": "# Electrical Estimating Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`electrical-estimating` owns the estimating skill surface for Shaffer Construction electrical bids and service pricing.\n\n",
+      "product_category": "business",
+      "short_label": "estimating",
+      "featured_order": 5
+    },
+    {
+      "slug": "email-labeler",
+      "path": "~/.aiva/modules/email-labeler/",
+      "kind": "integration",
+      "name": "Email Labeler",
+      "title": "Email Labeler Module",
+      "module_md_date": "2026-04-23",
+      "purpose": "`email-labeler` owns local Gmail classification and Gmail-to-Stalwart\narchive sync tooling.",
+      "module_md": "# Email Labeler Module\n\nDate: 2026-04-23\n\n## Purpose\n\n`email-labeler` owns local Gmail classification and Gmail-to-Stalwart\narchive sync tooling.\n\nIt exists for two related but distinct jobs:\n\n1. **Additive Gmail labeling.** Classify Gmail messages locally and apply\n   only additive `auto/*` labels. It never archives, deletes, marks read,\n   removes labels, or truncates message content.\n2. **Local email archive sync.** Mirror Gmail message changes into the\n   local Stalwart archive while preserving full RFC822 bytes, attachments,\n   and Gmail label semantics.\n\n## Public surface\n\nModule-owned executable scripts live in `bin/`:\n\n- `email-labeler.py` — local Gmail classifier using the Google CLI and\n  local model/image processing.\n- `email-labeler-stalwart.py` — Stalwart-oriented classifier tooling.\n- `gmail-to-stalwart-sync.py` — incremental Gmail history sync into the\n  local Stalwart archive.\n- `gmail-api-backfill.py` — resumable Gmail API backfill into Stalwart.\n- `gmail-api-backfill-threaded.py` — parallel Gmail API backfill.\n- `gmail-stalwart-sync-runner.sh` — launchd runner that syncs work and\n  personal accounts sequentially.\n\nThe reconciled command surface should expose wrapper names without\n`.py` where appropriate:\n\n- `email-labeler`\n- `email-labeler-stalwart`\n- `gmail-to-stalwart-sync`\n- `gmail-api-backfill`\n- `gmail-api-backfill-threaded`\n\n## Runtime\n\n- Machine: `aiva`.\n- Launchd: `com.aiva.gmail-stalwart-sync`.\n- Runner: `~/.aiva/modules/email-labeler/bin/gmail-stalwart-sync-runner.sh`.\n- Interval observed on 2026-04-23: every 300 seconds.\n- State:\n  - `~/.aiva/state/email-labeler/`\n  - `~/.aiva/state/email-labeler-stalwart/`\n  - `~/.aiva/state/gmail-to-stalwart-sync/`\n- Logs:\n  - `~/.aiva/ops/logs/email-labeler/`\n  - `~/.aiva/ops/logs/gmail-to-stalwart-sync/`\n\n## Dependencies\n\n- `google` module and its configured Gmail access for work and personal\n  accounts.\n- Local Stalwart IMAP server reachable from aiva.\n- Local model/runtime dependencies used by the labeler path, including\n  Ollama model availability when running `email-labeler.py`.\n- Python runtime via `~/.aiva/state/bin/aiva-python3` or the configured\n  fallback Python.\n\n## Source-of-truth boundaries\n\n- Gmail remains the source of truth for live email.\n- Stalwart is the local archive mirror.\n- State files under `~/.aiva/state/` track sync cursors, processed\n  message ids, scratch files, and resumable backfill progress.\n- This module owns code, runner scripts, and docs only. It does not own\n  Gmail account configuration or the Stalwart server itself.\n\n## Safety rules\n\n- No destructive Gmail actions in this module. Labeling is additive.\n- No content caps when archiving. Preserve full RFC822 bytes,\n  attachments, and labels.\n- Do not expose archive credentials in docs or chat output. Move runtime\n  secrets toward Keychain or launchd-managed secret injection over time.\n- Backfill and incremental sync must be resumable and idempotent.\n\n## Production-readiness notes\n\nThis module was registered on 2026-04-23 after the docs drift checker\nfound live files under `~/.aiva/modules/email-labeler/` without a\n`module.json` or `MODULE.md`.\n\nFollow-up hardening:\n\n1. Move Stalwart sync credentials out of inline runner configuration and\n   into a Keychain-backed or otherwise centrally managed secret path.\n2. Add an explicit restore/read verification command for the archive.\n3. Document the Stalwart server owner, data path, backup path, and\n   disaster recovery procedure.\n4. Add health-check output that proves the sync cursor advances and IMAP\n   append/search operations work.\n\n",
+      "bin": [
+        "email-labeler-stalwart.py",
+        "email-labeler.py",
+        "gmail-api-backfill-threaded.py",
+        "gmail-api-backfill.py",
+        "gmail-stalwart-sync-runner.sh",
+        "gmail-to-stalwart-sync.py"
+      ],
+      "product_category": "inbound"
+    },
+    {
+      "slug": "entities-db",
+      "path": "~/.aiva/modules/entities-db/",
+      "bin": [
+        "import_file_entities.py",
+        "sync_apple_contacts.py",
+        "sync_apple_contacts_full.sh"
+      ],
+      "product_category": "util"
+    },
+    {
+      "slug": "family",
+      "path": "~/.aiva/modules/family/",
+      "kind": "utility",
+      "name": "Family",
+      "title": "Family Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`family` owns the family relationship skill surface and related guidance context.",
+      "module_md": "# Family Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`family` owns the family relationship skill surface and related guidance context.\n\n",
+      "product_category": "personal"
+    },
+    {
+      "slug": "frontend-design",
+      "path": "~/.aiva/modules/frontend-design/",
+      "kind": "utility",
+      "name": "Frontend Design",
+      "title": "Frontend Design Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`frontend-design` owns the frontend design skill surface for high-quality UI and component generation work.",
+      "module_md": "# Frontend Design Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`frontend-design` owns the frontend design skill surface for high-quality UI and component generation work.\n\n",
+      "product_category": "util",
+      "short_label": "fe-design"
+    },
+    {
+      "slug": "g2c",
+      "path": "~/.aiva/modules/g2c/",
+      "kind": "utility",
+      "name": "GLM to Claude Session Cleanup",
+      "title": "g2c Module",
+      "module_md_date": "2026-04-27",
+      "purpose": "`g2c` cleans up a GLM session file so it can be resumed by Claude.",
+      "module_md": "# g2c Module\n\nDate: 2026-04-27\n\n## Purpose\n\n`g2c` cleans up a GLM session file so it can be resumed by Claude.\n\nOwned command:\n1. `bin/g2c`\n\nBehavior:\n1. Makes a backup of the target session file before any mutation.\n2. Rewrites assistant `thinking` blocks into plain text wrapped in `<thinking>...</thinking>`.\n3. Leaves the original session id in place.\n4. Resumes the same session with `claude -r <session-id>`.\n\n## Notes\n\n1. This module is a utility wrapper, not a skill.\n2. The command is intended for local session repair only.\n",
+      "bin": [
+        "g2c"
+      ],
+      "product_category": "util"
+    },
+    {
+      "slug": "gemini",
+      "path": "~/.aiva/modules/gemini/",
+      "kind": "model",
+      "name": "Gemini",
+      "title": "Gemini Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`gemini` is the module-owned Gemini backend integration boundary.",
+      "module_md": "# Gemini Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`gemini` is the module-owned Gemini backend integration boundary.\n\nCurrent owned runtime surface:\n1. model metadata in `module.json`\n2. provider bridge/runtime under `core/providers/gemini/` during the current migration phase\n\nNotes:\n1. Gemini model names and runtime model identifiers must come from this module manifest, not `core/`.\n2. Authentication should use the Gemini CLI login flow, not provider API key handling inside generic core runtime.\n",
+      "product_category": "ai"
+    },
+    {
+      "slug": "glm",
+      "path": "~/.aiva/modules/glm/",
+      "kind": "model",
+      "name": "GLM",
+      "title": "GLM Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`glm` is the module-owned GLM backend integration boundary.",
+      "module_md": "# GLM Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`glm` is the module-owned GLM backend integration boundary.\n\nCurrent owned runtime surface:\n1. model metadata in `module.json`\n2. provider bridge/runtime under `core/providers/glm.py` during the current migration phase\n\nNotes:\n1. GLM model names and runtime model identifiers must come from this module manifest, not `core/`.\n2. GLM is currently the explicit exception that still relies on external proxy/key environment.\n",
+      "product_category": "ai"
+    },
+    {
+      "slug": "google",
+      "path": "~/.aiva/modules/google/",
+      "kind": "integration",
+      "name": "Google",
+      "title": "Google Module",
+      "purpose": "Canonical module owner for Google integrations and Google auth profiles.",
+      "module_md": "# Google Module\n\nCanonical module owner for Google integrations and Google auth profiles.\n\nCurrent status:\n1. This module is compatibility-first.\n2. Live Google CLI implementation now lives at `modules/google/cli/google-cli.py`.\n3. The public `google` command remains stable at top-level `bin/google`.\n4. The public `google` skill remains hand-owned at top-level `skills/google/SKILL.md`.\n5. Shared Google Workspace service-account auth helpers now live at `modules/google/google_workspace_auth.py`.\n\nThis module now owns the architectural boundary for:\n1. the unified `google` CLI surface\n2. Google auth profile definitions\n3. Google API integrations used directly in `.aiva`\n4. shared Google Workspace auth helpers used by Google integrations\n5. future migration of Google implementation under module ownership\n\nCompatibility notes:\n1. Reconcile should not replace the current public `google` command or skill while they remain hand-owned.\n2. Legacy `cli/google/*` wrappers have been removed; module ownership now lives directly under `modules/google` plus the stable public `bin/google` entrypoint.\n\nMigration intent:\n1. keep current `google` behavior stable\n2. establish real module ownership\n3. allow reconcile to track Google as an active module\n4. continue collapsing stale top-level references around the module-owned implementation\n",
+      "bin": [
+        "google"
+      ],
+      "product_category": "inbound"
+    },
+    {
+      "slug": "grandma-mac",
+      "path": "~/.aiva/modules/grandma-mac/",
+      "kind": "integration",
+      "name": "Grandma Mac Remote",
+      "title": "Grandma Mac Remote Module",
+      "module_md_date": "2026-05-07",
+      "purpose": "`grandma` is the remote-control module for Mike's grandmother's Mac (formerly the 2019 16\" MBP that hosted AIVA).",
+      "module_md": "# Grandma Mac Remote Module\n\nDate: 2026-05-07\n\n## Purpose\n\n`grandma` is the remote-control module for Mike's grandmother's Mac (formerly the 2019 16\" MBP that hosted AIVA).\n\nIt owns:\n1. The `grandma` CLI for one-shot remote operations\n2. The `grandma` skill surface\n3. SSH/VNC convenience over Tailscale\n\nIt does not own:\n1. Setup / bootstrap of her Mac (one-time, see `~/grandma-setup-final.sh`)\n2. The watchdog daemon on her box (already installed at `/usr/local/bin/grandma-watchdog.sh`)\n3. Tailscale auth keys or rotation policy\n\n## Public Surface\n\n1. `bin/grandma` (CLI)\n2. `skill/SKILL.md`\n\n## Operating Model\n\nThis module is laptop-local. It runs entirely from Mike's laptop and reaches her Mac via:\n- Tailscale hostname `grandma-mac` (IP `100.79.213.1`)\n- SSH alias `grandma` in `~/.ssh/config`, key `~/.ssh/aiva_laptop`\n- Plain OpenSSH on her box (Tailscale's `--ssh` flag was disabled because it triggered web auth)\n\nNo state stored. Outputs (screenshots, log dumps) go to `~/.aiva/state/tmp/grandma/`.\n\n## What's running on her Mac\n\n- `tailscaled` system daemon (`/usr/local/bin/tailscaled`)\n- `com.mike.grandma-watchdog` LaunchDaemon, runs every 5 min:\n  - Re-auths Tailscale if disconnected\n  - Re-enables Screen Sharing via `launchctl kickstart`\n  - Re-enables Remote Login if off\n  - Re-asserts `pmset sleep 0`\n  - Reads auth key from `/usr/local/etc/grandma-watchdog.authkey` (90-day reusable, mode 600 root)\n- Screen Sharing enabled (port 5900)\n- Remote Login enabled (port 22)\n- System sleep disabled (display sleep allowed at 15 min)\n\n## When the auth key expires (every 90 days)\n\n1. Generate a new reusable, pre-approved Tailscale auth key in admin console\n2. `grandma rotate-key tskey-auth-NEW...` (writes it to `/usr/local/etc/grandma-watchdog.authkey`)\n3. Watchdog will use the new key on the next disconnect\n\n## Notes\n\n- Her account: `chloe` (admin), password `1199dartford` at time of setup\n- If SSH ever stops working, fall back to VNC (`grandma vnc`) and re-enable Remote Login from System Settings, OR use the local network: `ssh chloe@chloe.local` (her local hostname on her LAN, password auth)\n",
+      "bin": [
+        "grandma"
+      ],
+      "product_category": "personal"
+    },
+    {
+      "slug": "habits",
+      "path": "~/.aiva/modules/habits/",
+      "kind": "tool",
+      "name": "Habits",
+      "title": "Habits Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`habits` is the module-owned daily habit tracking tool.",
+      "module_md": "# Habits Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`habits` is the module-owned daily habit tracking tool.\n\nIt owns:\n1. the `habits` CLI\n2. the module-local `habits` skill surface\n3. the runtime data under `~/.aiva/state/habits`\n\nIt does not own:\n1. Akaunting dashboards that consume habits data\n2. responder injection semantics beyond calling the shared runtime path\n\n## Public Surface\n\nCurrent public surface remains:\n1. `bin/habits`\n2. `skills/habits`\n\nThe live CLI implementation now lives in:\n1. `modules/habits/bin/habits`\n\nThe top-level `bin/habits` path is a compatibility wrapper.\n",
+      "bin": [
+        "habits"
+      ],
+      "product_category": "personal"
+    },
+    {
+      "slug": "identity",
+      "path": "~/.aiva/modules/identity/",
+      "kind": "utility",
+      "name": "Identity Resolver",
+      "title": "Identity Resolver Module",
+      "module_md_date": "2026-04-19",
+      "purpose": "The `identity` module is the bridge between AIVA's separate entity stores. It takes any reference to a person or company (a CRM slug, a MemPalace ID, an email, a phone number, a QuickBooks customer ID, an Apple contact ID, a GitHub username, or a free-form display name) and returns one canonical record with every known alias.",
+      "module_md": "# Identity Resolver Module\n\nDate: 2026-04-19\n\n## Purpose\n\nThe `identity` module is the bridge between AIVA's separate entity stores. It takes any reference to a person or company (a CRM slug, a MemPalace ID, an email, a phone number, a QuickBooks customer ID, an Apple contact ID, a GitHub username, or a free-form display name) and returns one canonical record with every known alias.\n\nIt is Phase 1 of the Unified Entity Graph Plan at `~/mikeshaffer/memory/UNIFIED-ENTITY-GRAPH-PLAN.md`.\n\n## What it owns\n\n1. The `identity` CLI for ad-hoc resolution from the shell.\n2. The `lib/identity.py` module that other AIVA code imports.\n3. The overrides file at `config/overrides.json` where Mike records manual alias mappings for cases the fuzzy matcher cannot figure out on its own.\n\n## What it does NOT own\n\n1. It does not modify the CRM entity folders.\n2. It does not modify the MemPalace database.\n3. It does not do embedding-based fuzzy matching yet. That is a Phase 4 concern. For now it is string normalization plus a manual overrides file.\n4. It does not own QB sync, Contacts sync, or any of the other integrations. Those integrations import this module as a library when they need to bridge IDs.\n\n## Operating Model\n\nOne function, `resolve(anything)`, that returns a `CanonicalIdentity` record:\n\n```python\nfrom identity import resolve\n\nrec = resolve(\"jason-madsen\")       # CRM slug\nrec = resolve(\"jason_madsen\")        # MemPalace ID\nrec = resolve(\"jason@example.com\")   # email\nrec = resolve(\"+1 555 123 4567\")     # phone\nrec = resolve(\"Jason Madsen\")        # display name\n# All five return the same CanonicalIdentity record\n```\n\nThe record always has at least these fields:\n\n- `canonical_slug`: the CRM-style dashed slug, which AIVA treats as the primary key. If the lookup matched only in MemPalace and no CRM entry exists, this is the best-effort dashed version of the MemPalace ID.\n- `mempalace_id`: the underscored MemPalace ID if one is known, otherwise None.\n- `display_name`: a human-readable name. Pulls from CRM `entity.json` first, falls back to MemPalace `name`, finally falls back to a title-cased version of the slug.\n- `match_type`: a short string like `exact_crm_slug`, `exact_mempalace_id`, `email`, `phone`, `naive_transform`, `name_normalization`, `override`, or `none`. Useful for debugging and for logging confidence downstream.\n- `sources`: list of the stores the identity was found in. Subset of `['crm', 'mempalace']` for Phase 1.\n- `aliases`: dict of all known identifiers by kind, e.g. `{\"crm_slug\": \"jason-madsen\", \"mempalace_id\": \"jason_madsen\", \"emails\": [...], \"phones\": [...]}`.\n\nIf nothing matches, `resolve()` returns `None`. Callers must handle that.\n\n## Resolution Order\n\n1. If the input is already a known CRM slug: return the CRM record (with MemPalace ID added if present).\n2. If the input is already a known MemPalace ID: return that record (with CRM slug added if present).\n3. If the input looks like an email: delegate to the existing `~/.aiva/modules/mikeshaffer/bin/resolver.py` which already does email → CRM slug. If that hits, continue with step 1.\n4. If the input looks like a phone number: same path through the existing resolver.\n5. If the input is in the overrides file: use the mapped canonical slug and continue with step 1.\n6. Naive dash ↔ underscore transform: if the input is `foo-bar`, try `foo_bar` in MemPalace (and vice versa).\n7. Name-normalization: strip all non-alphanumeric characters, lowercase, and look up by normalized name in both stores.\n8. If nothing works, return None.\n\n## Overrides file\n\n`config/overrides.json` is hand-maintained. Format:\n\n```json\n{\n  \"nano\": { \"canonical_slug\": \"nano\", \"mempalace_id\": \"nano_tissera\" },\n  \"don-bozem\": { \"canonical_slug\": \"don-bozem\", \"mempalace_id\": \"don\" },\n  \"shaffer-construction\": {\n    \"canonical_slug\": \"shaffer-construction\",\n    \"mempalace_id_aliases\": [\"shaffer_construction\", \"shaffer_construction,_inc.\"]\n  }\n}\n```\n\nOverrides always win. When the resolver detects an ambiguous name match during normal operation (two MemPalace entities whose normalized name collides with one CRM slug), it does not guess. It returns a record with `match_type = \"ambiguous\"` and a list of candidates, and logs the ambiguity so Mike can add an override.\n\n## Non-goals for Phase 1\n\n- Writing back to MemPalace. The resolver is read-only.\n- Merging MemPalace duplicates. The data quality work (1,991 unknown-typed entities, `shaffer_construction` vs. `shaffer_construction,_inc.`) is a separate task tracked in the plan.\n- Embedding-based name matching. Deferred to Phase 4.\n- Resolving QuickBooks customer IDs, Apple contact IDs, GitHub usernames. Hooks exist in the record schema (`aliases`) but no resolution paths yet.\n\n## Testing\n\nTests live at `tests/test_identity.py`. They exercise the naive transform, the name-normalization path, the overrides file, ambiguous matches, and the no-match case. Run with `pytest ~/.aiva/modules/identity/tests/`.\n\n## CLI\n\n```bash\nidentity resolve \"jason-madsen\"        # pretty output\nidentity resolve \"jason_madsen\" --json  # machine-readable\nidentity list --unmatched-crm          # CRM entities with no MemPalace record\nidentity list --unmatched-mempalace    # MemPalace entities with no CRM record\nidentity overrides list\nidentity overrides add <canonical_slug> <mempalace_id>\n```\n\n## Related\n\n- `~/mikeshaffer/memory/UNIFIED-ENTITY-GRAPH-PLAN.md` is the roadmap.\n- `~/.aiva/modules/mikeshaffer/bin/resolver.py` is the existing email/phone → CRM resolver. Identity delegates to it for those two input types and preserves its behavior.\n",
+      "bin": [
+        "identity"
+      ],
+      "product_category": "memory",
+      "featured_order": 7
+    },
+    {
+      "slug": "imessage",
+      "path": "~/.aiva/modules/imessage/",
+      "kind": "tool",
+      "name": "iMessage",
+      "title": "iMessage Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`imessage` is the user-facing Messages tool module.",
+      "module_md": "# iMessage Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`imessage` is the user-facing Messages tool module.\n\nIt owns:\n1. the `imessage` CLI\n2. the `imessage` skill surface\n3. read, search, and send operations against Mike's Messages data\n4. the iMessage chat database runtime used for message reads and attachment normalization\n5. the current responder-facing iMessage sender runtime during migration\n\nIt does not own:\n1. responder runtime selection logic\n2. the default responder message client implementation\n3. BlueBubbles transport behavior\n\n## Public Surface\n\nCurrent public surface remains:\n1. `bin/imessage`\n2. `skills/imessage`\n\nThe live CLI implementation now lives in:\n1. `modules/imessage/bin/imessage`\n2. `modules/imessage/db_runtime.py`\n3. `modules/imessage/sender_runtime.py`\n\nThe top-level `bin/imessage` path is a compatibility wrapper.\n\n## Ownership Notes\n\nThis module is intentionally separate from:\n1. `modules/messages` for the default responder client\n2. `modules/bluebubbles` for the alternate responder client\n\nThat keeps the user tool boundary separate from the responder transport boundary.\n",
+      "bin": [
+        "handler",
+        "imessage"
+      ],
+      "product_category": "inbound"
+    },
+    {
+      "slug": "instagram",
+      "path": "~/.aiva/modules/instagram/",
+      "kind": "integration",
+      "name": "Instagram",
+      "title": "Instagram Module",
+      "purpose": "Read and respond to Instagram DMs. Forward incoming DMs into iMessage so Mike sees them inline.",
+      "module_md": "# Instagram Module\n\nRead and respond to Instagram DMs. Forward incoming DMs into iMessage so Mike sees them inline.\n\n## Status: Setup In Progress\n\nGateway binary is built, MCP server deps installed, module scaffolded. Needs session cookies to go live.\n\n## Architecture\n\nTwo approaches are available. The active one uses session cookies (no Meta approval needed).\n\n### Active: Cookie-Based MCP Server (instagram-dms-mcp)\n\n```\nGo gateway (ig-gateway)  ← talks to Instagram's private API via session cookies\n       ↓\nPython MCP server        ← exposes get_inbox, get_conversation, send_message, react\n       ↓\nAIVA MCP config          ← AIVA calls tools directly\n       ↓\ninject_queue/            ← DM polling drops messages as [IG DM from @user]: \"text\"\n       ↓\nresponder                ← AIVA processes like any other message\n```\n\n**Location:** `modules/instagram/mcp-server/`\n**Binary:** `mcp-server/gateway/ig-gateway` (pre-built, Go 1.22+)\n**Server:** `mcp-server/src/server.py`\n**Port:** MCP server on 8000, gateway on 29391\n\n### Alternate: Official Meta Graph API (requires App Review)\n\n```\nwebhook_server.py  ← Meta pushes DM events here (port 7790)\n       ↓\ninject_queue/      ← formatted as [IG DM from @user]: \"text\"\n       ↓\nresponder          ← AIVA processes like any other message\n```\n\n**Location:** `modules/instagram/services/webhook_server.py`, `api.py`, `oauth_server.py`\n**Meta App:** \"Shaffercon.com-IG\" (App ID: 441169528846834)\n**Redirect URI:** `https://aiva.officeadmin.io/instagram/callback`\n**Cloudflare tunnel:** `aiva.officeadmin.io` → `localhost:7791` (already configured)\n\nRequired Meta permissions (Advanced Access, requires app review):\n- `instagram_business_basic`\n- `instagram_business_content_publish`\n- `instagram_business_manage_comments`\n- `instagram_business_manage_messages`\n\n## Setup: Cookie-Based (Current)\n\n### Step 1: Get Instagram Session Cookies\n\n1. Go to instagram.com in a browser, log in\n2. Open DevTools (Cmd+Option+I) → Application → Cookies → `https://www.instagram.com`\n3. Copy these 6 values:\n   - `sessionid`\n   - `ds_user_id`\n   - `csrftoken`\n   - `datr`\n   - `ig_did`\n   - `mid`\n\n### Step 2: Store Cookies\n\n```bash\n# Store in Keychain (preferred)\nsecurity add-generic-password -s \"instagram-cookies\" -a \"mikejshaffer\" -w '{\"sessionid\":\"...\",\"ds_user_id\":\"...\",\"csrftoken\":\"...\",\"datr\":\"...\",\"ig_did\":\"...\",\"mid\":\"...\"}'\n\n# Or set as env vars\nexport IG_SESSION_ID=\"...\"\nexport IG_USER_ID=\"...\"\nexport IG_CSRF_TOKEN=\"...\"\nexport IG_DATR=\"...\"\nexport IG_DID=\"...\"\nexport IG_MID=\"...\"\n```\n\n### Step 3: Test the MCP Server\n\n```bash\ncd ~/.aiva/modules/instagram/mcp-server\npython3 src/server.py\n# Should print \"Gateway ready - logged in as @yourusername\"\n```\n\n### Step 4: Add to AIVA MCP Config\n\nAdd to `.mcp.json` or equivalent:\n```json\n{\n  \"instagram-dms\": {\n    \"command\": \"python3\",\n    \"args\": [\"~/.aiva/modules/instagram/mcp-server/src/server.py\"],\n    \"env\": {\n      \"IG_SESSION_ID\": \"<from keychain>\",\n      \"IG_USER_ID\": \"<from keychain>\",\n      \"IG_CSRF_TOKEN\": \"<from keychain>\"\n    }\n  }\n}\n```\n\n### Step 5: Wire DM Polling into iMessage\n\nModify `mcp-server/src/server.py` to write to AIVA's inject queue instead of Poke webhook:\n- Replace the `flush_pending_messages` Poke POST with a JSON write to `~/.aiva/state/responder/inject_queue/`\n- Format: `{\"sender\": \"+13105969154\", \"text\": \"[Instagram DM from @user]: message\", \"source\": \"instagram\"}`\n\n## Setup: Official Meta API (Deferred)\n\n### Step 1: Get App Review Approval\n\n1. Go to [developers.facebook.com/apps/441169528846834](https://developers.facebook.com/apps/441169528846834)\n2. Under App Review → Permissions and Features, request Advanced Access for `instagram_business_manage_messages`\n3. Submit use case (customer support / business messaging)\n4. Wait for approval (days to weeks)\n\n### Step 2: Run OAuth Flow\n\n```bash\ncd ~/.aiva/modules/instagram\npython3 oauth_server.py\n# Opens auth URL, captures callback, stores long-lived token in Keychain\n```\n\n### Step 3: Start Webhook Server\n\n```bash\npython3 services/webhook_server.py\n# Listens on port 7790, receives Meta webhook events\n```\n\n### Step 4: Register Webhook in Meta Dashboard\n\n1. Go to Meta Developer Dashboard → Your App → Webhooks\n2. Callback URL: `https://aiva.officeadmin.io/instagram/webhook` (needs tunnel route update to 7790)\n3. Verify Token: stored in Keychain under `instagram-webhook` / `verify_token`\n4. Subscribe to: `messages`\n\n## CLI\n\n```bash\ninstagram read                    # recent DMs across all accounts\ninstagram read @username          # DMs with specific user\ninstagram send @username \"text\"   # send a DM\ninstagram accounts                # list connected accounts\ninstagram setup                   # configure OAuth tokens (official API)\n```\n\n## File Map\n\n```\nmodules/instagram/\n  module.json                    # module manifest\n  MODULE.md                      # this file\n  api.py                         # Meta Graph API client (official API path)\n  oauth_server.py                # OAuth callback server (official API path)\n  bin/instagram                  # CLI\n  services/\n    webhook_server.py            # Meta webhook listener (official API path)\n  skills/instagram/\n    SKILL.md                     # Claude skill definition\n  mcp-server/                    # Cookie-based MCP approach (active)\n    gateway/\n      ig-gateway                 # Pre-built Go binary\n      build.sh                   # Rebuild with: cd gateway && ./build.sh\n      cmd/                       # Go source\n      pkg/                       # Go source\n    src/\n      server.py                  # FastMCP server\n    requirements.txt             # Python deps: fastmcp, httpx, python-dotenv\n```\n\n## Credentials\n\n| Item | Location |\n|------|----------|\n| Meta App ID | `441169528846834` |\n| Meta App Secret | Keychain: `instagram-app` / `app_secret` |\n| IG Session Cookies | Keychain: `instagram-cookies` / `mikejshaffer` (not yet stored) |\n| Webhook Verify Token | Keychain: `instagram-webhook` / `verify_token` (generated during setup) |\n| Cloudflare Tunnel | `aiva.officeadmin.io` → `localhost:7791` |\n\n## Risks & Notes\n\n- Cookie-based approach: cookies expire periodically, Instagram may flag automation. Use a dedicated account if possible.\n- Official API: 24-hour messaging window (resets when user responds), 200 DM/hr rate limit, requires Business/Creator account.\n- Both approaches only work with accounts Mike controls. Can't read DMs from arbitrary accounts.\n",
+      "bin": [
+        "instagram"
+      ],
+      "product_category": "inbound"
+    },
+    {
+      "slug": "ios",
+      "path": "~/.aiva/modules/ios/",
+      "kind": "tool",
+      "name": "iOS App Pipeline",
+      "title": "iOS Module",
+      "module_md_date": "2026-04-25",
+      "purpose": "`ios` is the module-owned iOS app pipeline tool.",
+      "module_md": "# iOS Module\n\nDate: 2026-04-25\n\n## Purpose\n\n`ios` is the module-owned iOS app pipeline tool.\n\nIt owns:\n1. the `ios` CLI (build, test, archive, upload, submit, simulator control)\n2. the canonical iOS skill that documents the toolkit and standard workflows\n\n## Public Surface\n\n1. `bin/ios` (canonical at `modules/ios/bin/ios`)\n2. `skills/ios/SKILL.md`\n\nThe top-level `~/bin/ios` path, when present, is a compatibility symlink.\n\n## Underlying Tools\n\nThe module is a thin wrapper. It does NOT bundle its own implementations.\nIt calls these host tools, which must be installed:\n\n| Tool | Purpose | Install |\n|---|---|---|\n| Xcode 26.3+ | SDK, simulators, signing | App Store |\n| `xcrun mcpbridge` | Apple's official Xcode MCP (ships with Xcode) | bundled |\n| `xcodegen` | Generate `.xcodeproj` from `project.yml` | brew |\n| `fastlane` | Optional. Cert/profile sync via `match` | brew |\n| `asc` | App Store Connect API CLI (Rork) | brew |\n| `maestro` | E2E test runner | brew tap mobile-dev-inc/tap |\n| `kintsugi` | pbxproj merge driver | gem (system Ruby) |\n| `mcporter` | MCP server toolkit | brew |\n| `XcodeTools` MCP | 13 build/sim/UI tools (already in `.cursor/mcp.json`) | mise-managed |\n\n## Credentials\n\n| Cred | Location | Notes |\n|---|---|---|\n| ASC API key | macOS Keychain, profile `shaffer-default` | Key ID `648T4ZFBK4`, registered via `asc auth login` |\n| ASC API key (legacy) | `~/.appstoreconnect/private_keys/AuthKey_7DZ8CUJ587.p8` | Older key, not active |\n| Apple Development cert | login.keychain-db | `Apple Development: Michael Shaffer (RYNCU3P567)` |\n| Provisioning profiles | `~/Library/Developer/Xcode/UserData/Provisioning Profiles/` | Managed by Xcode automatic signing |\n| Apple Team ID | `6D4T7VB2AF` | |\n\n## State\n\n- `~/.aiva/state/ios/` — module-managed state (created on demand)\n- `~/.aiva/logs/ios/` — module logs\n",
+      "bin": [
+        "ios"
+      ],
+      "product_category": "util"
+    },
+    {
+      "slug": "jobs",
+      "path": "~/.aiva/modules/jobs/",
+      "kind": "system",
+      "name": "Jobs",
+      "title": "Jobs Module",
+      "purpose": "Canonical module owner for AIVA's shared jobs system.",
+      "module_md": "# Jobs Module\n\nCanonical module owner for AIVA's shared jobs system.\n\nCurrent status:\n1. This module is compatibility-first.\n2. Live jobs implementation now lives in this module.\n3. Generated public commands in `state/bin/` point into this module.\n4. The poller lives at `modules/jobs/services/poller.py`.\n5. Generated public skills in `state/skills/` include the `calendar-cron` alias for compatibility.\n\nThis module now owns the architectural boundary for:\n1. `aiva-jobs`\n2. `aiva-jobs-backup`\n3. the jobs poller\n4. jobs runtime state under `state/jobs`, `ops/logs/jobs`, and `state/tmp/jobs`\n5. the canonical `jobs` product name\n\nCompatibility notes:\n1. `calendar-cron` remains a compatibility and historical name.\n2. Reconcile v1 does not replace top-level public skill surfaces yet.\n3. Legacy `calendar-cron` runtime directories are migrated into canonical `jobs` directories and replaced with compatibility symlinks when possible.\n\nMigration intent:\n1. keep current `aiva-jobs` behavior stable\n2. keep compatibility wrappers at stable public paths\n3. add reconcile and registry support\n4. migrate legacy runtime path names in a later isolated step\n",
+      "bin": [
+        "aiva-jobs",
+        "aiva-jobs-backup"
+      ],
+      "product_category": "infra"
+    },
+    {
+      "slug": "know",
+      "path": "~/.aiva/modules/know/",
+      "kind": "utility",
+      "name": "Know",
+      "title": "know",
+      "module_md_date": "2026-05-16",
+      "purpose": "`know` is the unified knowledge front-end. One CLI that resolves a reference (email, phone, slug, display name), fans out across every knowledge backend in parallel, and returns a merged dossier with a synthesized status header at the top.",
+      "module_md": "# know\n\nDate: 2026-05-16\n\n## Purpose\n\n`know` is the unified knowledge front-end. One CLI that resolves a reference (email, phone, slug, display name), fans out across every knowledge backend in parallel, and returns a merged dossier with a synthesized status header at the top.\n\nIt owns:\n1. The `know` CLI surface (main dossier command + cross-entity views)\n2. Reference resolution: email / phone / slug / name (with loose matching and via-org fallback for unknown senders at known domains)\n3. Parallel fan-out and per-backend timeouts\n4. The synthesis layer: derives `headline`, `last_action` (channel + direction + date), `waiting_on` (inferred from commitments + most-recent message direction), and per-backend counts\n5. Output modes: full markdown (default), `--brief` compact summary, `--json` structured\n6. Caching of dossiers (5-minute TTL)\n7. The `--summarize` LLM synthesis layer (off by default; see SKILL.md for rules)\n\nIt does not own:\n1. Any underlying knowledge data. Each backend remains the source of truth for its data.\n2. Backend-specific CRUD beyond passthroughs. Use the backend's own CLI (or `notes`, `mempalace`, etc.) for admin work.\n\n## Public Surface\n\n| Command | Purpose |\n|---|---|\n| `know <ref>` | Full dossier across all 15 backends |\n| `know <ref> --brief` | Compact summary (synthesis header, counts, workspace docs, pending drafts), no raw backend dumps |\n| `know <ref> --json` | Structured JSON for agents |\n| `know <ref> -b <backend>` | Filter to one backend |\n| `know --waiting-on-me` | Open commitments where Mike owes the next move |\n| `know --waiting-on-them` | Open commitments where the other party owes the next move |\n| `know --active --days N` | Entities whose workspace files were touched in the last N days |\n| `know search <query>` | Free-text search across backends |\n| `know tasks <ref>` | Tasks for an entity |\n| `know commitments <...>` | Passthrough to commitments CLI |\n| `know entities <...>` | Passthrough to entities CLI |\n| `know graph <...>` | Passthrough to mempalace CLI |\n| `know notes <...>` | Passthrough to notes CLI |\n| `know voice <...>` | Passthrough to conversations CLI |\n| `know sessions <...>` | Passthrough to session-search CLI |\n| `know calls <...>` | Passthrough to aiva callhistory |\n\n## Backends `know` delegates to\n\nCore (always queried):\n\n| Backend | Source | What it provides |\n|---|---|---|\n| entities | `mikeshaffer` entity store | Structured records on people, orgs, pets, vehicles, places, projects |\n| graph | `mempalace` | Bi-temporal triples from the knowledge graph |\n| notes | `notes` | Apple Notes content (text search) |\n| voice | `conversations` | Voice memo transcripts with speaker ID |\n| sessions | `session-search` | Cross-machine session log search |\n\nEntity-scoped (queried once the ref is resolved to an entity, using its emails / phones / display name):\n\n| Backend | Source | What it provides |\n|---|---|---|\n| commitments | `commitments` | Open and historical commitments where Mike or the entity owes the next move |\n| calls | `callhistory` | Recent matching calls |\n| drafts | `~/mikeshaffer/memory/.pending-drafts/` | Every pending draft queued for this sender (by entity_slug or from-email match). Critical for dedup. |\n| gmail | `google gmail` (work + personal) | Up to 15 recent Gmail threads to/from any of this entity's emails |\n| imessage | `imessage thread <phone>` | Last ~12 messages in the iMessage thread for each entity phone |\n| calendar | `google raw calendar events list` (work + personal) | Calendar events from the last 14d + next 30d involving this entity by name / email / location |\n| quickbooks | `quickbooks get-customer`, `search-estimates`, `search-invoices` | Customer record + 10 most recent estimates and invoices (only when entity has `quickbooks_customer_id`) |\n| chat | `google chat read` | Recent Maricar↔Mike Google Chat messages mentioning this entity |\n| reminders | `reminders search` | macOS Reminders matching this entity name |\n| files | local filesystem | Listing of `entities/<slug>/` plus markdown excerpts (BID-STATUS.md, WALK-NOTE-*.md, etc.) up to 3 levels deep |\n\nThe underlying CLIs are kept alive. `know` calls them via subprocess. Agents should default to `know`; reach for a backend CLI directly only when you need a write or admin op that doesn't fit the unified surface.\n\n## Synthesis\n\nEvery dossier includes a `synthesis` field computed locally from the backend results. It contains:\n\n- `headline`: a one-line status string (e.g. \"waiting on Mike (last_gmail_inbound); last gmail 2026-05-15 ← them; 2 pending draft(s)\")\n- `waiting_on`: `{who: \"mike\"|\"them\", basis: \"open_commitment\"|\"last_gmail_inbound\"|...}` inferred from open commitments first, then from the direction of the most recent message\n- `last_action`: `{channel, direction (mike|them), date, snippet}` across gmail / imessage / calls\n- `counts`: per-backend counts (gmail_threads, open_drafts, open_commitments_mike_owes, etc.)\n- `workspace_docs`: paths of any *.md files in the entity workspace\n- `open_commitment_subjects`, `open_draft_subjects`\n\nThe synthesis is cheap (no extra I/O) and always included. Agents should read it before walking individual backend payloads.\n\n## Resolution\n\nResolution flow: ref → `entities resolve <ref>` → canonical slug. Supports:\n\n- Email: `know nung@charlesdunn.com` → `nathan-ung`\n- Phone (any format): `know +16263765528` → `nathan-ung`\n- Slug: `know nathan-ung`\n- Display name with loose matching: `know \"Charles Dunn\"` → `charlesdunn` (lowercases + strips punctuation for matching)\n- Via-org fallback: `know stranger@charlesdunn.com` → `charlesdunn` (org) when no person matches but the domain is a known org\n\nWhen multiple entities match a name, `know` returns the candidates list and asks the caller to disambiguate.\n\n## Architecture\n\nSingle Python script at `/Users/mikeshaffer/.aiva/state/bin/know`. Fan-out via ThreadPoolExecutor with per-backend timeouts:\n\n- entities: 30s\n- graph: 20s, notes: 15s, voice: 15s, sessions: 20s\n- commitments: 15s, calls: 20s\n- drafts: 5s (local filesystem)\n- gmail: 25s, imessage: 15s\n- calendar: 20s\n- quickbooks: 20s\n- chat: 20s, reminders: 10s, files: 5s\n\nCaching is in-memory per-process (LRU keyed by ref + backend) with a 5-minute TTL. Use `--no-cache` or `--refresh` to bypass.\n\n## Operating Model\n\nThis module is machine-local but read-only-from-anywhere:\n1. `know` runs on whichever machine invokes it, calls local backend CLIs in parallel\n2. The `sessions` backend handles cross-machine via session-search's existing SSH delegation\n3. No daemon, no service, no port. Just a CLI that runs on demand.\n\n## Related\n\n- CLI: `/Users/mikeshaffer/.aiva/state/bin/know` (single Python file)\n- Agent skill: `skill/SKILL.md` (canonical reference for agents)\n- Spec: `~/mikeshaffer/KNOWLEDGE_MODEL.md` (older design doc; some sections superseded by current implementation)\n",
+      "bin": [
+        "know"
+      ],
+      "product_category": "memory",
+      "star": true,
+      "featured_order": 1
+    },
+    {
+      "slug": "launchd",
+      "path": "~/.aiva/modules/launchd/",
+      "kind": "system",
+      "name": "Launchd",
+      "title": "Launchd Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`launchd` owns the public guidance skill for launchd work while the actual maintenance files stay under `ops/launchd`.",
+      "module_md": "# Launchd Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`launchd` owns the public guidance skill for launchd work while the actual maintenance files stay under `ops/launchd`.\n\n",
+      "product_category": "infra"
+    },
+    {
+      "slug": "macos-automator",
+      "path": "~/.aiva/modules/macos-automator/",
+      "kind": "integration",
+      "name": "macOS Automator",
+      "title": "macOS Automator",
+      "purpose": "Wraps the [`@steipete/macos-automator-mcp`](https://github.com/steipete/macos-automator-mcp) MCP server as a standalone AIVA CLI. Lets agents run AppleScript or JXA against any Mac app (Finder, Safari, Chrome, Terminal, Mail, Notes, Calendar, Keynote, Xcode, etc.) and browse a 490+ entry knowledge base of pre-built scripts.",
+      "module_md": "# macOS Automator\n\nWraps the [`@steipete/macos-automator-mcp`](https://github.com/steipete/macos-automator-mcp) MCP server as a standalone AIVA CLI. Lets agents run AppleScript or JXA against any Mac app (Finder, Safari, Chrome, Terminal, Mail, Notes, Calendar, Keynote, Xcode, etc.) and browse a 490+ entry knowledge base of pre-built scripts.\n\n## How it was built\n\nGenerated from the upstream MCP server using `mcporter generate-cli --compile`:\n\n```\nmcporter generate-cli --server macos-automator --compile ~/.aiva/modules/macos-automator/bin/macos-automator\n```\n\nThe compiled binary is a self-contained Bun-built arm64 Mach-O executable. It spawns the npx-distributed MCP server under the hood for each invocation, so the first run on a fresh machine downloads `@steipete/macos-automator-mcp@latest` via npm.\n\nTo regenerate after an upstream release, rerun the same `generate-cli --compile` command.\n\n## Commands\n\n`macos-automator` exposes two subcommands, mirroring the MCP tools:\n\n- `macos-automator execute-script` — run inline AppleScript/JXA (`--script-content`), a script file (`--script-path`), or a knowledge-base script by id (`--kb-script-id`). Supports `--language applescript|javascript`, `--arguments`, plus `--raw <json>` for advanced fields like `input_data`, `timeout_seconds`, `output_format_mode`.\n- `macos-automator get-scripting-tips` — browse the knowledge base. `--list-categories true` for the top-level taxonomy, `--category <name>` to drill in, `--search-term \"...\"` to fuzzy search across all tips.\n\nEvery call prints a stderr banner like `MacOS Automator MCP v0.4.1, started at ...`. That is not an error.\n\n## Host requirements\n\n- macOS (the bundled MCP server only runs on Darwin).\n- Node.js >= 24 on `PATH` for the npx-spawned server.\n- macOS Privacy & Security permissions for whichever process invokes the CLI (Terminal, iTerm, or the agent's tmux/launchd host):\n  - **Automation** → for controlling target apps (System Events, Finder, Safari, etc.). First-time control of a new app triggers a TCC prompt.\n  - **Accessibility** → required for UI scripting via System Events.\n\n## Relationship to `osascript-shim`\n\n`osascript-shim` serializes raw `/usr/bin/osascript` calls behind a system-wide flock. This module is a different layer: it runs scripts via the MCP server's own osascript driver, not through the shim. If concurrent AppleScript wedging becomes a problem here, the fix is to add a flock wrapper around this binary's entry, not to route it through the existing shim (which only intercepts the `osascript` command name).\n",
+      "bin": [
+        "macos-automator"
+      ],
+      "product_category": "util"
+    },
+    {
+      "slug": "macos-file-tags",
+      "path": "~/.aiva/modules/macos-file-tags/",
+      "kind": "tool",
+      "name": "macOS File Tags",
+      "title": "macOS File Tags Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`macos-file-tags` owns the Finder tagging skill surface for searching and managing macOS file tags.",
+      "module_md": "# macOS File Tags Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`macos-file-tags` owns the Finder tagging skill surface for searching and managing macOS file tags.\n\n",
+      "product_category": "macos",
+      "short_label": "file-tags"
+    },
+    {
+      "slug": "mcporter",
+      "path": "~/.aiva/modules/mcporter/",
+      "kind": "utility",
+      "name": "McPorter",
+      "title": "McPorter Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`mcporter` owns the MCP discovery and CLI generation skill surface.",
+      "module_md": "# McPorter Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`mcporter` owns the MCP discovery and CLI generation skill surface.\n\n",
+      "product_category": "util"
+    },
+    {
+      "slug": "memory",
+      "path": "~/.aiva/modules/memory/",
+      "kind": "system",
+      "name": "Memory (deprecated)",
+      "title": "Memory Module (DEPRECATED)",
+      "module_md_date": "2026-03-08",
+      "purpose": "## Status",
+      "module_md": "# Memory Module (DEPRECATED)\n\nDate: 2026-03-08\nDeprecated: 2026-04-23\n\n## Status\n\nDEPRECATED. The Apple-Notes-backed \"Memory\" and \"Soul\" note hydration\npipeline was too slow and painful to maintain from iOS, and Mike does\nnot need the rendered contents often enough to justify the active\nplugin footprint.\n\nWhat actually happened:\n\n1. `hydrate()` (fetch Memory + Soul notes from Apple Notes, compose\n   AGENTS.md/CLAUDE.md) stopped running in practice. Hydrated files at\n   `~/.aiva/state/modules/memory/` froze at 2026-03-09.\n2. `~/.claude/CLAUDE.md` (the file Claude Code actually reads at\n   startup) is maintained by hand now, at about 1.3 KB.\n3. The `update-memory-date.py` launchd job (`com.aiva.update-claude-date`,\n   every 600s) was unloaded 2026-04-23. Its stale \"THIS SESSION STARTED\n   ON SATURDAY March 7th, 2026\" banner showed the job was not keeping\n   the date fresh either.\n\nDo not use this module as an active plugin. The hydrated files and\ncode are preserved in place for potential future revival as a\nread-only mirror surfaced through OpenClaw (e.g. as a canvas snapshot\nof the Apple Notes Memory and Soul notes) rather than a hot-reload\nruntime pipeline.\n\n## Preserved artifacts (do not delete)\n\n- `bin/memory` — legacy CLI\n- `bin/update-memory-date.py` — date-banner updater (agent disabled)\n- `runtime.py` — the hydrate/read_artifact code path\n- `references/memory-module-intent.md` — original design intent\n- Hydrated files at `~/.aiva/state/modules/memory/AGENTS.md`,\n  `CLAUDE.md`, `sources.json`, `status.json` (frozen 2026-03-09)\n\n## Active consumer to watch\n\n- `~/.aiva/modules/claude/provider.py` still imports\n  `read_artifact` from this module. Today that returns the frozen\n  March 9 AGENTS.md contents. When we formally remove the module,\n  `provider.py` needs to read the maintained file at\n  `~/.claude/CLAUDE.md` directly (or read nothing and rely on the\n  Claude Code runtime to pick up its local CLAUDE.md).\n\n## Original intent (kept for reference)\n\nThe sections below describe the original design. They are retained so\na future revival has a clear starting point.\n\n### Purpose (original)\n\n`memory` was the module-owned runtime context hydration layer.\n\nIt owned:\n1. the source-of-truth memory model for agent identity and long-lived context\n2. reading canonical `Memory` and `Soul` notes from Apple Notes via the AIVA contact's linked note IDs\n3. rendering hydrated runtime instruction files for agent runtimes\n4. hot-reload policy for memory and soul updates\n5. `update-memory-date` for keeping hydrated session-date context current\n\n### Source Of Truth (original)\n\nCanonical source of truth lived in Apple Notes only:\n1. the note linked as `memory` on the AIVA contact\n2. the note linked as `soul` on the AIVA contact\n\nThese notes were the only human-maintained source files for this layer.\n\n### Operating Model (original)\n\nHydration flow:\n1. read `memory` and `soul` from the Apple Notes links stored on the AIVA contact\n2. compose provider-specific instruction wrappers\n3. write hydrated `AGENTS.md` and `CLAUDE.md` into module state\n4. launch or refresh provider runtimes against those hydrated files\n\nHot reload was the intended behavior:\n1. `Memory` edits defaulted to soft reload\n2. `Soul` edits defaulted to hard reload\n\n### Why it did not stick\n\n- Editing long multi-section notes on iPhone Notes was slow and error-prone.\n- The hydrate path depended on osascript-driven Notes reads that were fragile across macOS versions.\n- Claude Code already reads its own `~/.claude/CLAUDE.md` at startup, so a short hand-maintained file covers the 90% case.\n\n### Revival sketch (not scheduled)\n\nA later iteration could flip this module from active-hydrator to\npassive-mirror:\n\n1. OpenClaw (or a similar surface) watches the Apple Notes \"Memory\"\n   and \"Soul\" notes.\n2. On change, it writes a timestamped snapshot under\n   `state/modules/memory/history/` and updates a single current\n   mirror file.\n3. Provider runtimes decide whether to read the mirror. Nothing hot\n   reloads automatically.\n\nThis preserves Apple Notes as the human edit surface without\nrequiring a provider pipeline to keep up.\n",
+      "bin": [
+        "memory",
+        "update-memory-date.py"
+      ],
+      "product_category": "memory"
+    },
+    {
+      "slug": "mempalace",
+      "path": "~/.aiva/modules/mempalace/",
+      "kind": "tool",
+      "name": "MemPalace",
+      "title": "MemPalace",
+      "purpose": "Thin module-owned CLI for Mike's single local MemPalace.",
+      "module_md": "# MemPalace\n\nThin module-owned CLI for Mike's single local MemPalace.\n\nThis module does not replace upstream MemPalace storage or schema. It owns:\n- the public `mempalace` command surface inside AIVA\n- priority ingest ordering for high-signal rooms\n- launchd start/stop helpers for the local sync runner\n\nCurrent priority order:\n1. `.openclaw/agents/main/sessions`\n2. `.openclaw/memory`\n3. `.openclaw/cron/runs`\n4. `.claude/projects`\n5. `.claude/sessions`\n6. `.codex/sessions`\n7. `.codex/memories`\n\nCompatibility notes:\n1. The module proxies unknown arguments straight to the upstream `~/.local/bin/mempalace` binary.\n2. The single shared palace remains `~/.mempalace/palace`.\n3. Existing sync scripts keep running, but now call this module-owned CLI for memory-focused passes only.\n",
+      "bin": [
+        "mempalace",
+        "mempalace-extract",
+        "mempalace-extract.bak-pre-haiku-disable-20260419T202016Z",
+        "mempalace-extract.bak-pre-pg-only-2026-05-14",
+        "mempalace-extract.bak-pre-pg-sanitize-fix-2026-05-14",
+        "mempalace-extract.bak-pre-prompt-swap-2026-05-14",
+        "mempalace-extract.bak-pre-strict-validator-20260514",
+        "mempalace-query",
+        "migrate_neo4j_to_mempalace.py"
+      ],
+      "product_category": "memory",
+      "featured_order": 2
+    },
+    {
+      "slug": "messages",
+      "path": "~/.aiva/modules/messages/",
+      "kind": "integration",
+      "name": "Messages",
+      "title": "Messages Client Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`messages` is the default responder message-client module.",
+      "module_md": "# Messages Client Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`messages` is the default responder message-client module.\n\nIt owns:\n1. the default Apple Messages client behavior used when no alternate client is selected\n2. the `message_client` provider metadata for the default responder client\n3. future default-client implementation code for responder-facing send and typing behavior\n4. the mapping from `message_client=messages` to the native `modules.messages.channel` transport\n\nIt does not own:\n1. the `imessage` CLI tool\n2. the core responder runtime\n3. BlueBubbles alternate transport behavior\n4. contact system ownership\n\n## Message Client Role\n\nThis module declares:\n1. `provides.message_client.client_id = messages`\n2. `provides.message_client.channel_module = modules.messages.channel`\n3. `default = true`\n\nThat makes it the default message client until another client is explicitly selected.\n",
+      "bin": [
+        "handler"
+      ],
+      "product_category": "inbound"
+    },
+    {
+      "slug": "mikeshaffer",
+      "path": "~/.aiva/modules/mikeshaffer/",
+      "kind": "tool",
+      "name": "Mike Shaffer OS",
+      "title": "mikeshaffer",
+      "purpose": "CLI for Mike Shaffer's operating repos. Currently supports the `shaffer` namespace for Shaffer Construction task, job, and bid management.",
+      "module_md": "# mikeshaffer\n\nCLI for Mike Shaffer's operating repos. Currently supports the `shaffer` namespace for Shaffer Construction task, job, and bid management.\n\n## Namespaces\n\n### shaffer\nManages Shaffer Construction's operating system repo at `~/mikeshaffer/shaffer/`. Provides CRUD operations on tasks, jobs, and bids stored as JSON in customer folders, plus a dashboard view.\n\n## Data Location\nRecords live as JSON files in the customer folder structure:\n- `customers/{customer-slug}/tasks/{task-id}.json`\n- `customers/{customer-slug}/jobs/{job-id}.json`\n- `customers/{customer-slug}/bids/{bid-id}.json`\n\n## Config\n- `SHAFFER_REPO_PATH` env var overrides the default repo path\n",
+      "bin": [
+        "aiva-handoff",
+        "aiva_handoff.py",
+        "audit_commitments_json_fate.py",
+        "audit_entity_reminders_readers.py",
+        "auto_create_entity.py",
+        "auto_create_entity.py.bak-pre-schema-2026-05-14",
+        "cleanup_terminal_pending_drafts.py",
+        "commitments_mirror.py",
+        "contacts_add_entity_urls.py",
+        "contacts_audit.py",
+        "contacts_backfill_ids.py",
+        "contacts_dedupe.py",
+        "contacts_remove_ghosts.py",
+        "distill_corrections.py",
+        "entities",
+        "entity_dossier.py",
+        "entity_manage.py",
+        "entity_query.py",
+        "learn_from_corrections.py",
+        "migrate_existing_fyi_to_logged.py",
+        "mikeshaffer",
+        "process_action_directive.py",
+        "queue_draft.py",
+        "reminders_aiva_log.py",
+        "reminders_mirror.py",
+        "reminders_protocol.py",
+        "reminders_reconcile.py",
+        "reminders_safe.py",
+        "reminders_sync.py",
+        "resolver.py",
+        "revise_draft.py",
+        "send_manual_reply.py",
+        "send_one_draft.py",
+        "shaffer_forwards.py",
+        "tell_aiva.py"
+      ],
+      "product_category": "business"
+    },
+    {
+      "slug": "module-suggester",
+      "path": "~/.aiva/modules/module-suggester/",
+      "kind": "system",
+      "name": "Module Suggester",
+      "title": "module-suggester",
+      "purpose": "Background agent that reviews completed AIVA sessions and proposes reusable skills as new modules or updates to existing ones. All processing runs on aiva; proposals land in a staging area colocated with modules/ but deliberately invisible to the module reconciler so nothing auto-ships.",
+      "module_md": "# module-suggester\n\nBackground agent that reviews completed AIVA sessions and proposes reusable skills as new modules or updates to existing ones. All processing runs on aiva; proposals land in a staging area colocated with modules/ but deliberately invisible to the module reconciler so nothing auto-ships.\n\n## Layout\n\n```\nmodules/module-suggester/\n  bin/module-suggester            # the CLI (run|list|show|accept|reject|stats)\n  lib/\n    __init__.py\n    scanner.py                  # discover candidate session JSONLs\n    seen.py                     # append-only dedupe log\n    analyzer.py                 # call Gemini (default) or Claude CLI, parse JSON\n    guard.py                    # regex reject-pattern scanner\n    proposal.py                 # write/read/validate proposals\n    materializer.py             # accept moves files + reconciles; reject archives\n  config/\n    analyzer-prompt.md          # the system prompt for the analyzer model\n    reject-patterns.json        # safety regexes\n  skill/SKILL.md                # agent-facing documentation\n```\n\n## Staging area\n\n`~/.aiva/modules/.module-suggester-staging/<proposal-id>/`\n\nThe dot prefix and depth-2 layout both make this invisible to `modules/*/module.json` glob used by reconcile and validate. Proposals are fully-formed module trees ready to move.\n\n## State\n\n`~/.aiva/state/module-suggester/`\n\n- `seen.jsonl` — append-only log of (session path, mtime, size, model, result)\n- `logs/` — one file per day with run output\n- `accepted/<id>.PROPOSAL.md` — audit trail of accepted proposals\n- `accepted-backups/<timestamp>-<target>/` — original files of update-type accepts, in case we need to revert\n- `rejected/<id>/` — archived rejected proposals (full tree preserved)\n- `rejected-by-guard/<id>/` — proposals that tripped the safety scanner\n\n## Design choices\n\n**Default backend: Gemini.** The analyzer calls `gemini -p <system-prompt> -o json` with the full session on stdin. 1M-token context means most sessions don't need trimming. The alternative Claude backend (via `claude --print --bare`) is retained as a fallback.\n\n**Conservative trim caps.** Gemini sessions are capped at 1.5MB and Claude sessions at 400KB as defense against pathological session files. Normal sessions are well under these limits.\n\n**Skipped sessions.** The scanner skips files that are smaller than 4KB, modified within the last 5 minutes (may still be writing), older than 14 days (configurable), or already analyzed at their current mtime+size.\n\n**Guard is conservative.** Reject patterns include generic credential shapes, anthropic/openai/aws key prefixes, `rm -rf` on home or root, DROP/TRUNCATE without IF EXISTS, curl-pipe-shell, eval-of-variable, SSL-verify-off, global git config writes, launchctl-wildcard-unload, git-force-push-without-lease, aiva state deletion, and mempalace deletion. False positives are preferred over false negatives. Diverted proposals stay fully readable in `rejected-by-guard/` for inspection.\n\n**No auto-acceptance.** Every proposal waits for `module-suggester accept <id>` or `reject <id>`. This is the explicit design choice Mike made: we build/test/stage, human gates ship.\n\n## Automation\n\nAn OpenClaw cron job (`module-suggester-scan`, id `8d73c0b8-2f53-42f0-b4a6-23130b133bd8`) runs every 6 hours in an isolated agent session. The agent invokes `module-suggester run --limit 3 --backend gemini --no-notify`, reviews each pending proposal via `show`, assigns ACCEPT / REVIEW / REJECT verdicts, and then AUTO-EXECUTES every REJECT by calling `module-suggester reject <id>` so those proposals never appear in future Mike-facing reports. The remaining ACCEPT and REVIEW items are delivered to Mike's AIVA bot Google Chat space (`spaces/yueRxUAAAAE`) with the auto-reject list shown once (with reasons) so Mike can veto if he disagrees. Archived rejects live at `state/module-suggester/rejected/<id>/` and can be manually restored. Scheduling + delivery live entirely in OpenClaw; there is no launchd component and no BlueBubbles/iMessage path. The CLI also exposes a `--no-notify` flag for direct invocation that skips any legacy CLI-level notification (which no longer exists).\n\nThe timer is optional. Ad-hoc manual usage works fine without it.\n\n## Evolution\n\n- (DONE) Scanner reads laptop-mirrored sessions at `~/laptop-mount/.claude/projects` and `~/laptop-mount/.codex/sessions`, populated every 30min by the existing `com.aiva.mempalace-laptop-sync` launchd agent.\n- If we accumulate false-positive guard rejects, tighten patterns in `reject-patterns.json`.\n- If Gemini's JSON-envelope format changes or a better flag exists for raw structured output, update `call_gemini` in `analyzer.py`.\n- If we want proposal diffing across runs (same session revisited, different proposal), add a `state/module-suggester/history/` keyed by session path.\n",
+      "bin": [
+        "module-suggester"
+      ],
+      "product_category": "infra",
+      "short_label": "mod-suggester"
+    },
+    {
+      "slug": "n8n",
+      "path": "~/.aiva/modules/n8n/",
+      "kind": "integration",
+      "name": "n8n",
+      "title": "n8n Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`n8n` owns the skill surface for n8n workflow building, validation, and troubleshooting.",
+      "module_md": "# n8n Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`n8n` owns the skill surface for n8n workflow building, validation, and troubleshooting.\n\n",
+      "product_category": "util"
+    },
+    {
+      "slug": "notes",
+      "path": "~/.aiva/modules/notes/",
+      "kind": "integration",
+      "name": "Notes",
+      "title": "Notes Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`notes` is the module-owned Apple Notes integration.",
+      "module_md": "# Notes Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`notes` is the module-owned Apple Notes integration.\n\nIt owns:\n1. the `notes` CLI\n2. the `notes` skill surface\n3. machine-local read and write access to Apple Notes\n4. export and rich-body helper behavior for Notes\n\nIt does not own:\n1. responder runtime logic\n2. generic document storage outside Apple Notes\n\n## Public Surface\n\nCurrent public surface remains:\n1. `bin/notes`\n2. `skills/notes`\n\nThe live CLI implementation now lives in:\n1. `modules/notes/bin/notes`\n\nThe top-level `bin/notes` path is a compatibility wrapper.\n\n## Operating Model\n\nThis module is machine-local, not a shared delegated runtime tool:\n1. laptop runs against laptop-local Apple Notes data and permissions\n2. AIVA runs against AIVA-local Apple Notes data and permissions\n3. iCloud is the sync layer between machines\n",
+      "bin": [
+        "notes"
+      ],
+      "product_category": "macos"
+    },
+    {
+      "slug": "notify",
+      "path": "~/.aiva/modules/notify/",
+      "kind": "integration",
+      "name": "Notify",
+      "title": "Notify Module",
+      "purpose": "Canonical module owner for AIVA notifications and remote ingress.",
+      "module_md": "# Notify Module\n\nCanonical module owner for AIVA notifications and remote ingress.\n\nCurrent status:\n1. This module is compatibility-first.\n2. The live `notify` CLI implementation now lives in this module.\n3. The live API server implementation now lives in this module.\n4. The generated `state/bin/notify` command now points into this module.\n5. The HTTP API server lives at `modules/notify/services/api_server.py`.\n6. The generated `state/skills/notify` surface points at this module.\n\nThis module now owns the architectural boundary for:\n1. queued notifications into the responder inject queue\n2. direct notify-to-Mike behavior\n3. remote HTTP ingress for `notify`, `imessage send`, and `talk`\n4. notify runtime state under `state/notify`, `ops/logs/notify`, and `state/tmp/notify`\n\nCompatibility notes:\n1. Launchd should point directly at `modules/notify/services/api_server.py`.\n2. The generated skill surface is derived from module ownership.\n3. The API server reads config from `state/notify/api_config.json`.\n\nMigration intent:\n1. keep current `notify` behavior stable\n2. establish `notify` as a real module with both CLI and HTTP fronts\n3. preserve existing launchd and public command paths during migration\n4. move remaining notify-owned docs and config under module ownership in later isolated steps\n",
+      "bin": [
+        "notify"
+      ],
+      "product_category": "output"
+    },
+    {
+      "slug": "open-loops",
+      "path": "~/.aiva/modules/open-loops/",
+      "kind": "tool",
+      "name": "Open Loops Ledger",
+      "title": "Open Loops Ledger Module",
+      "purpose": "A single append-only ledger that tracks every active back-and-forth between Mike and another person as a small two-state machine. Answers the one question Mike asks himself all day: \"where is the ball right now, on every open conversation?\"",
+      "module_md": "# Open Loops Ledger Module\n\n**Date:** 2026-04-20\n**Status:** shipped v1\n\n## Purpose\n\nA single append-only ledger that tracks every active back-and-forth between Mike and another person as a small two-state machine. Answers the one question Mike asks himself all day: \"where is the ball right now, on every open conversation?\"\n\nDifferent from the dependency-tracker module (`waiton`). That module tracks specific blocked chains: \"waiting on X before I can reply to Y.\" Open-loops is broader: every open thread, regardless of whether it's blocked on someone else.\n\n## Data model\n\nSingle JSONL file at `~/mikeshaffer/memory/.open-loops.jsonl`. One event per line. Append-only. Never deletes, never truncates.\n\nEvery event is one of:\n\n- `open` — a new loop opened\n- `ball_flip` — the ball moved from one side to the other\n- `nudge` — Mike sent a nudge but the ball is still on them\n- `note` — free-form note attached to the loop\n- `close` — loop resolved\n\nThe current state of any loop is derived by replaying its events in order. Two loop states: `waiting_on: mike` or `waiting_on: them`.\n\n## Core shape\n\n```\n{\n  \"event_id\": \"uuid\",\n  \"ts\": \"2026-04-20T10:57:00Z\",\n  \"type\": \"open | ball_flip | nudge | note | close\",\n  \"loop_id\": \"slug-or-uuid\",          // stable across events in one loop\n  \"counterparty\": \"Tina Marie\",       // the other person\n  \"counterparty_id\": \"+13236109399\",  // phone, email, or canonical ref\n  \"channel\": \"imessage | email | chat | phone | in-person\",\n  \"subject\": \"1012 Marion Dr Glendale can lights\",  // human-readable\n  \"waiting_on\": \"mike | them\",        // state AFTER this event\n  \"reference_id\": \"ext-id\",           // message-id, thread-id, etc.\n  \"deadline\": \"2026-04-23\",           // optional\n  \"note\": \"free-form context\",        // optional\n  \"source\": \"manual | aiva-handoff | scanner | email-watcher\"\n}\n```\n\n## Public CLI\n\n`open-loops` (also aliased as `loops`):\n\n- `open-loops open --who \"Tina Marie\" --subject \"Marion Dr cans\" --waiting-on them` — open a new loop\n- `open-loops flip <loop-id> --to mike` — flip the ball\n- `open-loops nudge <loop-id>` — record a nudge, ball stays on them\n- `open-loops close <loop-id> --reason \"resolved\"` — close a loop\n- `open-loops list` — show all open loops sorted by age on current side\n- `open-loops list --waiting-on mike` — only loops where Mike owes a reply\n- `open-loops show <loop-id>` — full event history of one loop\n\n`record-commitment`:\n\n- Deterministic wrapper for scanners and per-email processors.\n- Writes the same append-only ledger shape as `open-loops open`.\n- Idempotent by `reference_id` / `idempotency_key`, or by open loop with the\n  same counterparty and subject.\n- Preferred LLM usage is stdin JSON:\n\n```\nrecord-commitment --from-stdin-json <<'JSON'\n{\n  \"counterparty\": \"Maricar\",\n  \"counterparty_id\": \"maricar@shaffercon.com\",\n  \"subject\": \"Return Roberts Bros proposal to Alicia\",\n  \"waiting_on\": \"them\",\n  \"channel\": \"email\",\n  \"reference_id\": \"gmail-message-id\",\n  \"deadline\": \"2026-04-29\",\n  \"note\": \"Mike forwarded the signed-proposal task to Maricar.\",\n  \"source\": \"per-email-processor\"\n}\nJSON\n```\n\n`project-waiting-on`:\n\n- Deterministic projector from `.open-loops.jsonl` to Apple Reminders list\n  `AIVA — Waiting On`.\n- Projects only open loops with `waiting_on=them` and `deadline <= today`.\n- Keeps future waiting-on state in the ledger only.\n- Completing a Waiting On reminder records a `nudge` event in the ledger and\n  suppresses re-projection until a newer ledger event appears for that loop.\n- Uses state file `~/mikeshaffer/memory/.waiting-on-projector-state.json`.\n\n`follow-through-checker`:\n\n- Applies deterministic evidence rows to the ledger.\n- Evidence source:\n  `~/mikeshaffer/memory/.follow-through-evidence.jsonl`.\n- State file:\n  `~/mikeshaffer/memory/.follow-through-state.json`.\n- Supported evidence kinds: `counterparty_replied`, `mike_replied`,\n  `resolved`, `dependency_satisfied`, `nudge_no_response`, `dismissed`.\n- Unit tests cover open, flip-to-Mike, flip-to-them, closed-by-evidence,\n  dependency-satisfied, nudge-fired-no-response, and dismissal.\n\n`extract-conversation-commitments`:\n\n- Conservative deterministic extractor for\n  `~/.aiva/state/conversations/conversations.db`.\n- Skips generic speakers unless the speaker is Mike.\n- Uses strong action-verb patterns, then calls `record-commitment`.\n- Scheduled through launchd every 15 minutes.\n\n`synthetic-commitment-e2e`:\n\n- Real synthetic test that writes a disposable commitment, runs the\n  projector, verifies Reminders creation/idempotency, completes the\n  reminder, verifies suppression, and closes the disposable loop.\n\n## Integrations\n\n- `aiva-handoff` writes an `open` event when a handoff is created (`waiting_on: them`).\n- Morning briefing reads the ledger and surfaces loops where ball-on-mike is older than N hours at the top of the briefing.\n- Waiting On projector reads due `waiting_on=them` loops and mirrors them to\n  the `AIVA — Waiting On` Reminders list.\n- `record-commitment` lets email processors and future commitment extractors\n  write real loop entries without reimplementing ledger rules.\n- Follow-through checker applies channel evidence rows back into the ledger.\n- Conversations extractor reads viaim / voice memo transcripts from\n  `conversations.db` and writes conservative commitments.\n- Action-scanner will read the ledger in a future update to avoid re-queueing items that are already tracked.\n\n## Why append-only\n\nMike's hard rule: never delete data, never truncate. Events accumulate forever. The \"current state\" of a loop is a projection over its events, not a mutable row. Replay is always possible.\n\n## Public Surface\n\n1. `bin/open-loops` — CLI for managing the ledger\n2. `bin/record-commitment` — idempotent writer wrapper for processors\n3. `bin/project-waiting-on` — deterministic Reminders projector\n4. `bin/follow-through-checker` — applies deterministic evidence rows\n5. `bin/extract-conversation-commitments` — conversations.db source\n6. `bin/synthetic-commitment-e2e` — real end-to-end validation\n7. `bin/verify-commitment-wiring` — prompt/script wiring audit\n8. `lib/ledger.py` — Python library for programmatic access (imported by aiva-handoff)\n9. `skill/SKILL.md` — Skill file for agent sessions\n",
+      "bin": [
+        "extract-conversation-commitments",
+        "extract_conversation_commitments.py",
+        "follow-through-checker",
+        "follow_through_checker.py",
+        "loops-for-briefing",
+        "open-loops",
+        "open_loops.py",
+        "project-waiting-on",
+        "project_waiting_on.py",
+        "record-commitment",
+        "record_commitment.py",
+        "synthetic-commitment-e2e",
+        "synthetic_commitment_e2e.py",
+        "verify-commitment-wiring",
+        "verify_commitment_wiring.py"
+      ],
+      "product_category": "memory"
+    },
+    {
+      "slug": "opendesk",
+      "path": "~/.aiva/modules/opendesk/",
+      "kind": "integration",
+      "name": "opendesk",
+      "title": "opendesk",
+      "purpose": "Screen-aware desktop control for AIVA. Wraps the [`vitalops/opendesk`](https://github.com/vitalops/opendesk) MCP server as a standalone CLI plus a Gemma-driven self-loop wrapper.",
+      "module_md": "# opendesk\n\nScreen-aware desktop control for AIVA. Wraps the [`vitalops/opendesk`](https://github.com/vitalops/opendesk) MCP server as a standalone CLI plus a Gemma-driven self-loop wrapper.\n\n## Why this exists alongside `macos-automator`\n\n`macos-automator` is great when an app has a clean AppleScript dictionary or its UI is fully exposed to the Accessibility API. It falls down when:\n\n- A button only appears on hover (the X on a notification banner).\n- The relevant control is owned by a non-focused process (Background Task Management banners, Control Center popovers).\n- You need to act based on what is *visually* on screen, not what the a11y tree happens to expose.\n\n`opendesk` covers that gap. It can screenshot the screen, overlay numbered Set-of-Marks boxes on every clickable element, OCR arbitrary regions, and drive mouse/keyboard at pixel precision. Same a11y layer underneath for the easy cases, vision + coordinates as a fallback.\n\n## How it was built\n\nThe MCP server backend is the upstream JS implementation (`@vitalops/opendesk-sdk`), which is meaningfully more active than the Python side and has its own OCR (tesseract.js based, avoids the Python OCR bug `ocr_image() takes 1 positional argument but 3 were given`).\n\n```\n# JS MCP server (used by the compiled CLI and by Claude via mcporter)\ncd ~/.aiva/modules/opendesk && npm install @vitalops/opendesk-sdk\nmcporter generate-cli --server opendesk --compile bin/opendesk-cli\n\n# Python venv (kept ONLY for the opendesk-gemma OpenAI-compat agent loop)\nuv venv ~/.aiva/modules/opendesk/.venv\nuv pip install 'opendesk[core,mcp]' openai\n```\n\n`~/.mcporter/mcporter.json` points the `opendesk` server at `node_modules/.bin/opendesk-js-mcp`. The compiled CLI is a Bun-built arm64 Mach-O, regenerate with the `mcporter generate-cli` line above after upstream updates (`npm update @vitalops/opendesk-sdk`).\n\n## Tools\n\n17 subcommands mirroring the MCP tools. Most-used:\n\n- `screenshot` — capture screen, optionally with `--marks true` for Set-of-Marks numbered boxes, or `--zoom` to crop.\n- `mouse` — move/click/scroll/drag. Always pass `image_width`/`image_height` (via `--raw`) when clicking from a screenshot to get correct Retina coordinate scaling.\n- `keyboard` — type strings, press single keys, or send hotkeys like `cmd+w`.\n- `app` — open / close / focus / list applications by name.\n- `ui` — click/type by Accessibility name (`--action click --app Safari --title \"Close\"`) — preferred over `mouse` when the element is in the a11y tree.\n- `clipboard` — read/write the macOS clipboard.\n- `ocr` — extract text from a screen region via Apple Vision or tesseract.\n- `learn` — record/replay macro-style procedures.\n- `schedule` — register recurring background tasks.\n\n## Gemma self-loop mode\n\n`bin/opendesk-gemma` runs opendesk's standalone OpenAI-compatible agent loop against the local Ollama instance (`http://localhost:11434/v1`, model `gemma4:e4b`).\n\nUse this for short, well-scoped, low-stakes tasks where a small local model is enough:\n\n```\nopendesk-gemma \"dismiss the notification banner in the top right\"\nopendesk-gemma \"open System Settings, click Notifications, scroll to find Background Task Management\"\n```\n\nDo **not** use it for multi-step planning or anything that touches important data. 8B Gemma will hallucinate marks, misread the screen, and stall on dialogs. For real work, keep Claude in the driver's seat via MCP mode.\n\n## Gemma terminal helper\n\n`bin/gemma` is a tiny terminal wrapper around the local Ollama Gemma endpoint. It sends whatever Mike types after `gemma`, prints the answer or generated command, and copies the final text to the macOS clipboard.\n\nIt defaults to `gemma4:e4b`, matching the lightweight Claude Code wrapper so Ollama can keep one shared model loaded. Set `GEMMA_MODEL` or pass `--model` to use a different tag.\n\nImage files can be attached anywhere in the prompt with `@path/to/image.png`. The wrapper removes the file reference from the text and sends the image bytes to Ollama.\n\nUse `--no-copy` or `--no-clipboard` when calling it from scripts that should only read stdout.\n\nFor command style requests, it runs normal zsh commands but blocks a small unsafe executable list in code. Blocked commands are copied, then the CLI prints a note that they are not safe for Gemma to run itself.\n\n## Host requirements\n\n- macOS with Screen Recording + Accessibility granted to the terminal/launchd process that invokes the CLI. Already granted on this machine (confirmed via `opendesk check`).\n- Python 3.12 (bundled in the module's `.venv`).\n- Ollama running locally with `gemma4:e4b` pulled, for the Gemma loop only.\n\n## Relationship to other modules\n\n- `macos-automator` — use first when you can write the action as AppleScript / JXA / a knowledge-base script. Cheaper and faster than the screenshot loop.\n- `opendesk` — reach for this when the target is hover-only, owned by a system agent, or only identifiable by visual position.\n- `osascript-shim` — orthogonal. Serializes raw `osascript` calls. Not in the opendesk path.\n",
+      "bin": [
+        "gemma",
+        "opendesk-cli",
+        "opendesk-gemma"
+      ],
+      "product_category": "util"
+    },
+    {
+      "slug": "osascript-shim",
+      "path": "~/.aiva/modules/osascript-shim/",
+      "kind": "tool",
+      "name": "osascript shim",
+      "title": "osascript-shim",
+      "purpose": "Universal serialization wrapper around `/usr/bin/osascript` that prevents concurrent AppleScript calls from wedging macOS automation daemons.",
+      "module_md": "# osascript-shim\n\nUniversal serialization wrapper around `/usr/bin/osascript` that prevents concurrent AppleScript calls from wedging macOS automation daemons.\n\n## Why this module exists\n\n`osascript` talks to system automation services like Contacts, Calendar, Mail, Reminders, and Finder. Those services do not handle many simultaneous clients gracefully. When several Claude sessions, cron jobs, or background agents all run `osascript` at once, Apple's daemons (contactsd, CalNCService, etc) can stall or lock up, and the calling processes hang indefinitely.\n\nThe shim fixes that by taking an exclusive file lock before running the real `/usr/bin/osascript`. Only one shim-wrapped call executes at a time across the whole machine. Concurrent callers wait for their turn and then proceed in order.\n\n## How it works\n\nThe shim is a tiny Swift binary compiled from `src/osascript-shim.swift`. It:\n\n1. Opens a system-wide lock file at `/tmp/osascript-shim.lock`\n2. Calls `flock(LOCK_EX)` to block until it holds the lock\n3. Execs `/usr/bin/osascript` with the caller's argv intact\n4. Releases the lock automatically when the child process exits\n\nBecause it is `exec` (not fork + wait), the caller's exit code, stdout, and stderr pass through unchanged. Existing scripts that call `osascript` by name through `$PATH` get serialized transparently.\n\n## Install\n\nA symlink at `~/bin/osascript` points to `bin/osascript` inside this module. `~/bin` is earlier in `$PATH` than `/usr/bin`, so every unqualified `osascript` call goes through the shim. Scripts that explicitly call `/usr/bin/osascript` bypass it, which is occasionally useful when debugging.\n\n## Build\n\n```\nswiftc -O src/osascript-shim.swift -o bin/osascript\n```\n\nRe-build after any change to the Swift source. The repo commits the compiled binary so fresh checkouts do not need Swift.\n\n## Observability\n\nLock contention is visible in `ops/logs/osascript-shim/` when needed. A lock wait longer than 30 seconds is worth investigating since it usually means a Contacts or Calendar daemon is itself stuck.\n\n## Related\n\n- `modules/contacts/` uses `osascript` heavily for writes that the CNContactStore API rejects\n- `modules/reminders/` uses EventKit directly now, but had an `osascript` path historically\n- `modules/imessage/` uses `osascript` for sending on the responder laptop\n",
+      "bin": [
+        "osascript"
+      ],
+      "product_category": "macos"
+    },
+    {
+      "slug": "pidog",
+      "path": "~/.aiva/modules/pidog/",
+      "kind": "tool",
+      "name": "PiDog Robot",
+      "title": "PiDog Module",
+      "purpose": "SunFounder PiDog robot CLI and skill surface for AIVA.",
+      "module_md": "# PiDog Module\n\nSunFounder PiDog robot CLI and skill surface for AIVA.\n\n## What it does\n\nProvides a CLI (`pidog`) for controlling a SunFounder PiDog robot over HTTP. Supports commands, movements, sounds, and status queries through a REST API hosted on the robot's Raspberry Pi.\n\n## Key files\n\n- `bin/pidog` - CLI binary (Python with click)\n- `skills/pidog/SKILL.md` - Skill surface for Claude Code\n\n## Runtime\n\n- Machine: split (laptop for CLI, robot hosts the API)\n- Robot endpoints: `http://192.168.1.74:8888`, `http://pidog.local:8888`, `http://100.94.160.110:8888`, `https://pidog.officeadmin.io`\n- Config: `~/.config/pidog.yaml`\n\n## Dependencies\n\n- Python 3 with click, requests, rich\n- PiDog robot REST API running on the Raspberry Pi\n",
+      "bin": [
+        "pidog"
+      ],
+      "product_category": "personal"
+    },
+    {
+      "slug": "quickbooks",
+      "path": "~/.aiva/modules/quickbooks/",
+      "kind": "integration",
+      "name": "QuickBooks",
+      "title": "QuickBooks Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`quickbooks` is the module-owned QuickBooks and QuickBooks Time integration.",
+      "module_md": "# QuickBooks Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`quickbooks` is the module-owned QuickBooks and QuickBooks Time integration.\n\nIt owns:\n1. the `quickbooks` CLI surface\n2. the `quickbooks` skill surface\n3. QuickBooks Online OAuth initiation helpers\n4. QuickBooks Time / TSheets OAuth initiation helpers\n\nIt does not own:\n1. the shared OAuth callback server\n2. responder runtime logic\n\n## Public Surface\n\nCurrent public surface remains:\n1. `bin/quickbooks`\n2. `skills/quickbooks`\n\nThe live command wrapper now lives in:\n1. `modules/quickbooks/bin/quickbooks`\n\nThe top-level `bin/quickbooks` path is a compatibility wrapper.\n\n## Ownership Notes\n\nThis module currently remains compatibility-first:\n1. the main CLI implementation now lives under `modules/quickbooks/qb-cli`\n2. responder-side QuickBooks OAuth initiators now live under `modules/quickbooks/scripts`\n3. the shared callback server now lives under `core/auth/oauth_callback_server.py`\n",
+      "bin": [
+        "quickbooks"
+      ],
+      "product_category": "business",
+      "star": true,
+      "featured_order": 4
+    },
+    {
+      "slug": "reminders",
+      "path": "~/.aiva/modules/reminders/",
+      "kind": "integration",
+      "name": "Reminders",
+      "title": "Reminders Module",
+      "module_md_date": "2026-05-07",
+      "purpose": "`reminders` is the module-owned Apple Reminders integration.",
+      "module_md": "# Reminders Module\n\nDate: 2026-05-07\n\n## Purpose\n\n`reminders` is the module-owned Apple Reminders integration.\n\nIt owns:\n1. the `aiva reminders ...` plugin CLI surface (Phase 2)\n2. the legacy `reminders` CLI (still operational, retired in Phase 5)\n3. the `reminders-subtask` helper\n4. the `reminders` skill surface\n5. machine-local read and write access to Apple Reminders\n\nIt does not own:\n1. jobs scheduling logic\n2. responder runtime logic\n\n## Plugin Status (Phase 2)\n\nThis module is now a plugin for the new AIVA CLI dispatcher:\n1. `module.json` declares the full Reminders CRUD surface under a `cli` block (namespace `reminders`).\n2. `bin/handler` is the Python 3 dispatcher entrypoint. The dispatcher invokes it as `bin/handler <op> --json '<parsed_args>'`.\n3. `bin/handler` delegates every operation to `macos reminders ...` (the bridge) for now. When the bridge is refactored to auth-only in Phase 3, the handler will switch to `aiva exec eventkit ...` calls without changing the public CLI surface.\n4. `requires` declares the `cap:reminders` capability so `aiva modules check` can verify TCC + iCloud account availability.\n\n## Public Surface\n\nCurrent public surface:\n1. `aiva reminders <op> [args]`, served by `bin/handler` via the dispatcher (new, preferred)\n2. `bin/reminders` (legacy Python CLI, direct SQLite reads, retained until Phase 5)\n3. `bin/aiva-reminders` (Swift EventKit binary used by `bin/reminders` for writes, retained until Phase 5)\n4. `skills/reminders`\n\nThe live CLI implementation files live in:\n1. `modules/reminders/bin/handler` (dispatcher entrypoint, Phase 2)\n2. `modules/reminders/bin/reminders` (legacy CLI)\n3. `modules/reminders/tools/reminders-subtask`\n\nThe top-level `bin/reminders` and `bin/reminders-subtask` paths are compatibility wrappers for the legacy CLI.\n\n## Operating Model\n\nThis module is machine-local, not a shared delegated runtime tool:\n1. laptop runs against laptop-local Apple Reminders data and permissions\n2. AIVA runs against AIVA-local Apple Reminders data and permissions\n3. iCloud is the sync layer between machines\n",
+      "bin": [
+        "aiva-reminders",
+        "aiva-reminders.bak.20260506175151",
+        "handler",
+        "reminders"
+      ],
+      "product_category": "macos"
+    },
+    {
+      "slug": "schedule-send",
+      "path": "~/.aiva/modules/schedule-send/",
+      "kind": "tool",
+      "name": "Schedule Send",
+      "title": "Schedule Send Module",
+      "module_md_date": "2026-04-19",
+      "purpose": "`schedule-send` is the module that lets you schedule a message to be sent at a future time, then forget about it. The send fires once at the target time, logs what happened, and cleans itself up afterward.",
+      "module_md": "# Schedule Send Module\n\nDate: 2026-04-19\n\n## Purpose\n\n`schedule-send` is the module that lets you schedule a message to be sent at a future time, then forget about it. The send fires once at the target time, logs what happened, and cleans itself up afterward.\n\nIt owns:\n1. the `schedule-send` CLI\n2. the `schedule-send` skill surface\n3. one-shot LaunchAgent plists for scheduled jobs\n4. the log directory for scheduled sends\n\nIt does not own:\n1. the transports it uses (it delegates to `imessage`, Google Chat, etc.)\n2. recurring schedules (use launchd directly for those)\n3. any persistent daemons\n\n## Operating Model\n\nThis module is aiva-only. Scheduling happens on aiva. The actual send still uses whatever transport you pick (for `imessage`, that routes through BlueBubbles to the iMessage laptop, same as a manual `imessage send`).\n\nJobs are implemented as one-shot macOS LaunchAgents:\n1. One plist per scheduled send, with a unique label\n2. The plist points to a generated shell script\n3. The script runs the transport's send command, logs the result, then boots the LaunchAgent out of launchd and deletes both the plist and itself\n4. Log file stays so you can audit what fired\n\n## Public Surface\n\n1. `bin/schedule-send`\n2. `skill/schedule-send`\n\n## Paths\n\n| Purpose | Path |\n|---------|------|\n| Module root | `~/.aiva/modules/schedule-send` |\n| Job scripts | `~/.aiva/state/schedule-send/jobs/<job-id>.sh` |\n| LaunchAgents | `~/Library/LaunchAgents/com.aiva.schedule-send.<job-id>.plist` |\n| Logs | `~/.aiva/ops/logs/schedule-send/<job-id>.log` |\n\n## Job ID\n\nFormat: `<transport>-<recipient-slug>-<YYYYMMDD-HHMM>`.\n\nExample: `imessage-19549143969-20260422-0800`.\n\nIf a job with the same ID already exists, the CLI errors out unless `--force` is passed.\n\n## Supported transports\n\n1. `imessage` - sends via the `imessage send` CLI\n2. More can be added by extending `TRANSPORTS` in `bin/schedule-send`\n\n## CLI usage\n\nSee `schedule-send --help` for the live usage. Common patterns:\n\n```bash\n# Send an iMessage at a specific future time\nschedule-send imessage +19549143969 \"Heads up about tomorrow\" --at \"2026-04-22 08:00\"\n\n# Relative time\nschedule-send imessage +19549143969 \"Heads up\" --in 2h\n\n# Natural language time (best effort)\nschedule-send imessage +19549143969 \"Heads up\" --at \"tomorrow 8am\"\n\n# Preview without creating anything\nschedule-send imessage +19549143969 \"Heads up\" --at \"tomorrow 8am\" --dry-run\n\n# List all pending scheduled sends\nschedule-send list\n\n# Show one job\nschedule-send show imessage-19549143969-20260422-0800\n\n# Cancel a pending job\nschedule-send cancel imessage-19549143969-20260422-0800\n\n# Tail a job's log\nschedule-send logs imessage-19549143969-20260422-0800\n```\n\n## Failure modes and recovery\n\n1. If aiva is asleep at the fire time, launchd fires the job on wake. The send will be late but it will happen.\n2. If the transport command fails, the script still cleans up. Check the log to see why.\n3. If a job is cancelled mid-flight (very rare), the LaunchAgent is booted out and the files are removed.\n4. If the machine is fully off at the fire time, the job fires when the machine next boots and the user logs in.\n\n## Security notes\n\n1. Scripts run under the user's account with `LimitLoadToSessionType=Aqua` so they inherit the user's TCC grants.\n2. The message contents are stored in plaintext on disk inside the generated script until the job fires. Do not schedule messages containing secrets you would not otherwise write to `~/.aiva/state/`.\n3. Scripts are owned and readable only by the user.\n",
+      "bin": [
+        "schedule-send"
+      ],
+      "product_category": "workflow",
+      "featured_order": 8
+    },
+    {
+      "slug": "secrets",
+      "path": "~/.aiva/modules/secrets/",
+      "kind": "tool",
+      "name": "Secrets",
+      "title": "Secrets",
+      "purpose": "Read and write API keys, OAuth tokens, and other secrets from a single place,\nbacked by Supabase Vault so cloud workloads can reach them.",
+      "module_md": "# Secrets\n\nRead and write API keys, OAuth tokens, and other secrets from a single place,\nbacked by Supabase Vault so cloud workloads can reach them.\n\n## What It Owns\n\n1. `aiva secrets {get|set|list|delete}` CLI.\n2. `keychain_aliases.json`, the canonical-name -> Keychain `(service, account)` mapping used by the laptop fallback.\n3. Bootstrap deny list: `supabase-aiva-project-ref` and `supabase-aiva-db-password` are Keychain-only on the laptop. They are how we reach Vault, so they cannot live in Vault.\n\n## Read order\n\n`aiva secrets get NAME`:\n\n1. Vault first via `get_aiva_conn()`. Reads `vault.decrypted_secrets`.\n2. On miss or unreachable, falls back to `security find-generic-password -s <kc-service> -w` using the alias map.\n3. `--source vault` skips the fallback and errors out instead. `--source keychain` skips Vault entirely. Bootstrap secrets always go to Keychain.\n\n## Write path\n\n`aiva secrets set NAME VALUE` writes Vault only. The Mac Keychain remains the laptop's durable source for migrated secrets and is not touched. Bootstrap secrets refuse to be set via this CLI.\n\n## Cloud VM access\n\nSet `AIVA_SECRETS_ROLE=reader` on the cloud VM. The handler then connects as `aiva_secrets_reader` (a restricted Postgres role with `SELECT` on `vault.decrypted_secrets` only) using a separate password stored in the VM's host secret store. `service_role` is never given to the VM.\n\n## Verification\n\n```bash\naiva secrets list                  # all Vault entries\naiva secrets list --include-keychain\naiva secrets get OPENAI_API_KEY    # Vault first, Keychain fallback\naiva secrets get OPENAI_API_KEY --source keychain\n```\n",
+      "bin": [
+        "handler",
+        "migrate_keychain_to_vault.py"
+      ],
+      "product_category": "util"
+    },
+    {
+      "slug": "sendblue",
+      "path": "~/.aiva/modules/sendblue/",
+      "kind": "integration",
+      "name": "Sendblue iMessage",
+      "title": "Sendblue Module",
+      "purpose": "Canonical module owner for AIVA's Sendblue iMessage channel. Sendblue is the primary `AIVA_MESSAGE_CLIENT` for sending iMessage to Mike from AIVA, and is the channel of record for `notify mike`.",
+      "module_md": "# Sendblue Module\n\nCanonical module owner for AIVA's Sendblue iMessage channel. Sendblue is the primary `AIVA_MESSAGE_CLIENT` for sending iMessage to Mike from AIVA, and is the channel of record for `notify mike`.\n\n## Current state\n\n1. Outbound iMessage is live. Production sends via `sendblue-send` and via `notify mike` routing through `core/channel_bridge` once `AIVA_MESSAGE_CLIENT=sendblue` is selected in `state/modules/runtime.env`.\n2. Inbound iMessage replies arrive via a Cloudflare Worker webhook (`https://sendblue-webhook.mikejshaffer.workers.dev`) which pushes directly to the AIVA notify HTTP api at `https://jobs-aiva.officeadmin.io/aiva`. No KV buffering, no polling.\n3. Worker-to-AIVA auth uses a Cloudflare Access service token bound as worker secrets `AIVA_ACCESS_CLIENT_ID` and `AIVA_ACCESS_CLIENT_SECRET`. Endpoint URL is in worker secret `AIVA_INJECT_URL`.\n\n## Architecture\n\n1. `bin/sendblue-send` (CLI) calls Sendblue's `/api/send-message` and writes a context file to `state/sendblue/pending_contexts/` so an inbound reply can be attributed to the originating provider, session, and project path.\n2. The `sendblue-webhook` Cloudflare Worker handles inbound. On a POST from Sendblue, it verifies the message is from `MIKE_PHONE` and POSTs the message to AIVA's notify api `/aiva` endpoint with a header line `[iMessage from Mike via Sendblue]` plus message handle and timestamp metadata.\n3. AIVA's notify api server (`com.aiva.api-server`, port 4500, exposed via cloudflared tunnel at `jobs-aiva.officeadmin.io`) writes the message to `state/responder/inject_queue/` for the responder to pick up.\n4. `channel.py` implements the `core.message_channel.base.Channel` interface so the responder can select Sendblue alongside `messages` and `bluebubbles` via the standard channel registry.\n5. `lib/sendblue_client.py` is the shared HTTP client. It prefers macOS Keychain credentials, falls back to environment variables, and fails closed if neither is set. It includes a curl fallback path for environments with broken Python SSL trust.\n\n## Public surfaces\n\n1. `sendblue-send` (alias `sb-send`) for outbound messages with optional provider, session, and path metadata.\n\nThis module deliberately does not own a public skill surface. Sendblue is documented inside the `notify` skill body so that there is exactly one agent-facing notify entry point covering all delivery channels.\n\n## Dependencies\n\n1. `notify` module for the `/aiva` HTTP endpoint that injects messages into the responder queue.\n2. `core.message_channel` for the channel registration that wires Sendblue into responder client selection.\n3. Cloudflare Worker `sendblue-webhook` (Cloudflare account `8e83fee9ba5b2bf423d5ffddaaee74c6`) for inbound push.\n4. Cloudflare Access service token `sendblue-webhook` for worker-to-AIVA auth on the `aiva jobs api` Access app.\n\n## Configuration\n\nRuntime configuration lives at `config/sendblue.json` (gitignored, with a tracked `config/sendblue.json.example`). The Sendblue API key and secret are stored in macOS Keychain under generic password entries `SENDBLUE_API_KEY` and `SENDBLUE_API_SECRET` for account `aiva`. Environment variables `SENDBLUE_API_KEY` and `SENDBLUE_API_SECRET` are honored as a fallback.\n\nWorker-side secrets (`SENDBLUE_API_KEY`, `SENDBLUE_API_SECRET`, `SENDBLUE_NUMBER`, `MIKE_PHONE`, `AIVA_INJECT_URL`, `AIVA_ACCESS_CLIENT_ID`, `AIVA_ACCESS_CLIENT_SECRET`) are bound to the Cloudflare Worker via the Workers API and stored encrypted at rest by Cloudflare.\n\n## Runtime state\n\n1. `state/sendblue/pending_contexts/` holds outbound context files awaiting matched replies.\n2. `state/sendblue/inbound/` (legacy, unused since the worker stopped buffering).\n3. `state/sendblue/seen_handles.json` (legacy from poller era).\n4. `state/sendblue/poller.log` (legacy from poller era).\n\n## Known gaps\n\n1. The inbound context-tracking match key is currently the most recent outbound context file. With concurrent agents sending in quick succession, an inbound reply could attach to the wrong outbound. The durable fix is to match by Sendblue `message_handle`. The worker now passes the handle through to AIVA, so the matching can happen in the responder when context-attribution code is wired up there.\n2. Legacy `state/sendblue/inbound/`, `seen_handles.json`, and `poller.log` are unused but not yet purged. Safe to delete during the next state cleanup pass.\n",
+      "bin": [
+        "analyze-media",
+        "expressive",
+        "sendblue-send",
+        "status",
+        "voicenote"
+      ],
+      "product_category": "output"
+    },
+    {
+      "slug": "session-search",
+      "path": "~/.aiva/modules/session-search/",
+      "kind": "utility",
+      "name": "Session Search",
+      "title": "session-search",
+      "purpose": "Unified text search across every session and conversation log AIVA touches.",
+      "module_md": "# session-search\n\nUnified text search across every session and conversation log AIVA touches.\n\n## Contents\n\n- bin/session-search — Python CLI, parallelizes source adapters with a thread pool, handles cross-machine SSH delegation.\n- skill/SKILL.md — agent-facing documentation.\n\n## What problem this solves\n\nPast context was fragmented across five stores: Claude Code JSONLs, Codex JSONLs, OpenClaw agent logs, voice conversations DB, iMessage chat.db. Answering \"what did I discuss with Peter about the Natick panel\" previously meant opening three tools. Now one command does it.\n\n## Architecture\n\nSingle Python entrypoint. No daemons, no cache, no index — reads source-of-truth files on every invocation via ripgrep. Simple and correct at the cost of repeated scans. If it ever gets slow, add an sqlite FTS layer per source under state/session-search/ and have the CLI read from that with a fallback to live scan.\n\nSource adapters live inline to keep the dependency surface tiny. Each adapter returns a uniform Hit dataclass so the renderer does not care where results came from.\n\n## Cross-machine design\n\n--machine both (default) runs local adapters in parallel and SSH delegates to the other host for adapters that live only there. --machine-local is an internal flag the remote invocation uses to prevent recursion. SSH aliases resolved via ~/.ssh/config; override via SESSION_SEARCH_LAPTOP_HOST and SESSION_SEARCH_AIVA_HOST.\n\n## What it depends on\n\n- ripgrep on both machines\n- conversations module CLI (aiva) for voice search\n- imessage module CLI (laptop) for message search\n- SSH connectivity between aiva and laptop via the existing laptop and aiva SSH aliases\n\n## Known limitations\n\n- Timestamp extraction is best-effort. Hits without a resolvable timestamp pass through rather than being dropped.\n- Snippet extraction assumes roughly-conventional JSON fields (content, text, message). Oddly-structured session JSONLs will show raw JSON as the snippet.\n- No Gmail yet. Can be added as a gmail source wrapping the google module.\n- No ranking. Results are newest-first within each source.\n",
+      "bin": [
+        "session-search"
+      ],
+      "product_category": "memory",
+      "short_label": "sessions"
+    },
+    {
+      "slug": "shaffer-blogger",
+      "path": "~/.aiva/modules/shaffer-blogger/",
+      "kind": "integration",
+      "name": "Shaffer Blogger",
+      "title": "Shaffer Blogger Module",
+      "module_md_date": "2026-05-06",
+      "purpose": "`shaffer-blogger` owns the shaffercon.com industry insights publishing workflow.",
+      "module_md": "# Shaffer Blogger Module\n\nDate: 2026-05-06\n\n## Purpose\n\n`shaffer-blogger` owns the shaffercon.com industry insights publishing workflow.\n\n## Canonical Runtime\n\nThe canonical daily entrypoint is:\n\n`~/.aiva/modules/shaffer-blogger/bin/shaffer-blogger-daily`\n\nThe health check is:\n\n`~/.aiva/modules/shaffer-blogger/bin/shaffer-blogger-health`\n\n## Research, Brief, and Validation Pipeline\n\nThe active daily job now generates a research feed and a writing brief before\nit sends the blogger prompt:\n\n`~/.aiva/modules/shaffer-blogger/bin/shaffer-blogger-research`\n\nFetches and scores recent EV charging news candidates from Google News RSS.\nThis is a no-key research feed for testing. It is meant to give the writer a\nstarting set of timely stories, not to replace source review.\n\n`~/.aiva/modules/shaffer-blogger/bin/shaffer-blogger-brief`\n\nBuilds a writing brief from the existing website. It ranks money pages by\nbusiness value, topical relevance, and current internal-link need. It also\nreads the latest Search Console opportunity CSV when present, recommends pages\nthat are close to ranking or click-through gains, recommends related blog\nlinks, recent posts to avoid repeating, and image rotation guidance.\n\n`~/.aiva/modules/shaffer-blogger/bin/shaffer-blogger-validate-post`\n\nValidates blog JSON files against publishing rules: required fields, slug and\ncanonical shape, content length, heading structure, allowed HTML, internal link\nvalidity, money-page links, related blog links, Los Angeles angle, Shaffer CTA,\nimage existence, reused external source URLs, source-domain quality, focus-term\ncoverage, and external-link safety attributes.\n\n`~/.aiva/modules/shaffer-blogger/bin/shaffer-blogger-audit-post`\n\nAudits the built static output for a post. It can run `npm run build`, then\nchecks the generated article HTML, metadata, canonical/article URL, OG image,\nschema presence, sitemap entry, and generated LLM indexes.\n\n`~/.aiva/modules/shaffer-blogger/git-hooks-next/pre-commit`\n\nStrict publishing hook. It runs the validator on staged blog JSON files, then\nregenerates and stages `llms.txt` and `llms-full.txt`. The daily job installs\nthis hook path before sending the blogger prompt.\n\nThe active launchd job is:\n\n`~/Library/LaunchAgents/com.mikeshaffer.shaffer-blogger.plist`\n\nIt fires every day at 4:00 AM and starts or messages the `blogger` tmux session.\n\nLegacy compatibility path:\n\n`~/.claude/skills/shaffer-blogger/` symlinks to this module through `~/.aiva/state/skills/shaffer-blogger/`.\n\n## What tmux and tell Do\n\n`tmux` keeps a named terminal session alive after launchd exits. The daily job uses a session named `blogger` so Claude can keep working after the scheduler has finished.\n\n`tell` is the message bridge from the `agents` module. It sends a text prompt into a named tmux session and presses enter. The daily blogger uses it to deliver the daily publishing request.\n\n## Git Hooks\n\nThis module owns the website repo hook path:\n\n`~/.aiva/modules/shaffer-blogger/git-hooks/`\n\n`shaffer-blogger-daily` sets the website repo's `core.hooksPath` to this directory before sending the blog request.\n\nThe active hook is:\n\n`~/.aiva/modules/shaffer-blogger/git-hooks-next/pre-commit`\n\nThe previous lightweight hook remains at:\n\n`~/.aiva/modules/shaffer-blogger/git-hooks/pre-commit`\n\nThe active pre-commit hook validates changed `content/industry-insights/*.json`\nfiles and regenerates `site/public/llms.txt` and\n`site/public/llms-full.txt` before the commit lands.\n\nThe active pre-push hook runs the heavier build audit for changed blog posts.\nIt verifies the generated HTML, sitemap, and LLM indexes before a blog change\ncan be pushed.\n\n## Logs\n\nPrimary logs:\n\n`~/AIVA/blogger/daily.log`\n\nLaunchd logs:\n\n`~/AIVA/blogger/launchd.log`\n`~/AIVA/blogger/launchd.err`\n\nLegacy request log:\n\n`~/agents/blogger/blog_automation.log`\n",
+      "bin": [
+        "shaffer-blogger-audit-post",
+        "shaffer-blogger-brief",
+        "shaffer-blogger-daily",
+        "shaffer-blogger-health",
+        "shaffer-blogger-research",
+        "shaffer-blogger-validate-post"
+      ],
+      "product_category": "personal"
+    },
+    {
+      "slug": "skatefit-github",
+      "path": "~/.aiva/modules/skatefit-github/",
+      "kind": "integration",
+      "name": "SkateFit GitHub",
+      "title": "SkateFit GitHub Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`skatefit-github` owns the skill surface for syncing and managing SkateFit GitHub-backed data.",
+      "module_md": "# SkateFit GitHub Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`skatefit-github` owns the skill surface for syncing and managing SkateFit GitHub-backed data.\n\n",
+      "product_category": "personal"
+    },
+    {
+      "slug": "skill-creator",
+      "path": "~/.aiva/modules/skill-creator/",
+      "kind": "utility",
+      "name": "Skill Creator",
+      "title": "Skill Creator Module",
+      "module_md_date": "2026-03-07",
+      "purpose": "`skill-creator` owns the public guidance skill for creating and updating Codex and Claude skills.",
+      "module_md": "# Skill Creator Module\n\nDate: 2026-03-07\n\n## Purpose\n\n`skill-creator` owns the public guidance skill for creating and updating Codex and Claude skills.\n\n",
+      "product_category": "util"
+    },
+    {
+      "slug": "snapshots",
+      "path": "~/.aiva/modules/snapshots/",
+      "product_category": "util"
+    },
+    {
+      "slug": "start-here",
+      "path": "~/.aiva/modules/start-here/",
+      "kind": "utility",
+      "name": "Start Here Navigation",
+      "title": "Start Here Module",
+      "purpose": "Navigation module for fresh AIVA agents. Provides a task-to-skill routing table so agents pick the right skill on the first try instead of guessing from the full skill list.",
+      "module_md": "# Start Here Module\n\nNavigation module for fresh AIVA agents. Provides a task-to-skill routing table so agents pick the right skill on the first try instead of guessing from the full skill list.\n\nThis module has no runtime, no state, and no commands. It exists solely as an orientation skill.\n",
+      "product_category": "infra"
+    },
+    {
+      "slug": "sync",
+      "path": "~/.aiva/modules/sync/",
+      "kind": "tool",
+      "name": "Sync",
+      "title": "Sync Module",
+      "module_md_date": "2026-04-19",
+      "purpose": "The sync module manages bidirectional git synchronization between aiva and laptop across two repositories: ~/mikeshaffer/ and ~/.aiva/. It ensures both machines stay in sync without manual intervention, handles merge conflicts automatically, and validates data before pushing to GitHub.",
+      "module_md": "# Sync Module\n\nDate: 2026-04-19\n\n## Purpose\n\nThe sync module manages bidirectional git synchronization between aiva and laptop across two repositories: ~/mikeshaffer/ and ~/.aiva/. It ensures both machines stay in sync without manual intervention, handles merge conflicts automatically, and validates data before pushing to GitHub.\n\n## Operating Model\n\nThis module is aiva-only in terms of LaunchAgent installation and orchestration. The sync daemons run on both machines but are managed and installed from aiva.\n\nKey components:\n1. Auto-commit daemon: watches for file changes, debounces 30s, commits via fswatch\n2. Auto-pull daemon: fetches and pulls changes every 120s\n3. Auto-push daemon: pushes commits, handling divergence with merge strategies\n4. Merge handler: resolves conflicts per file-type strategy\n5. Pre-commit validation: prevents bad data (malformed JSON, secrets) from reaching git\n\n## Public Surface\n\n1. bin/sync - Main CLI with subcommands: status, doctor, start, stop\n2. skill/sync - Skill surface for integration\n\n## Paths\n\n| Purpose | Path |\n|---------|------|\n| Module root | ~/.aiva/modules/sync |\n| Config | ~/.aiva/ops/config/sync.yaml |\n| Auto-commit script | ~/.aiva/modules/sync/bin/sync-autocommit |\n| Push/pull loop | ~/.aiva/modules/sync/bin/sync-loop |\n| Merge resolver | ~/.aiva/modules/sync/bin/sync-merge-resolve |\n| Main CLI | ~/.aiva/modules/sync/bin/sync |\n| Validation hook | ~/.aiva/modules/sync/hooks/pre-commit-validate.py |\n| Logs | ~/.aiva/ops/logs/sync-*.log |\n| Conflicts | ~/.sync-conflicts/ |\n\n## Symlink Setup\n\nEach user-facing executable gets a three-level symlink chain:\n\n```\n~/.aiva/modules/sync/bin/<cmd>              (source of truth, in git)\n  ^\n  |\n~/.aiva/state/bin/<cmd> -> ../../modules/sync/bin/<cmd>\n  ^\n  |\n~/bin/<cmd> -> ~/.aiva/state/bin/<cmd>\n```\n\nUser-facing executables that get this chain:\n- sync\n- sync-autocommit\n- sync-loop\n- sync-merge-resolve\n\nThe pre-commit-validate.py hook stays in modules/sync/hooks/ and is referenced directly by .git/hooks/pre-commit symlinks in each repo.\n\n## Merge Strategy\n\nDefault strategies by file type:\n- entities/*/tasks/*.json: theirs (most recent auto-commit wins)\n- entities/*/work/*.json: theirs\n- memory/*.md: ours (human-edited docs)\n- modules/*: ours\n- core/*: ours\n\nConflicts are copied to ~/.sync-conflicts/ with timestamp for forensic review.\n\n## LaunchAgents\n\nInstalled on both machines but managed from aiva:\n- com.aiva.sync-autocommit-mikeshaffer: watches ~/mikeshaffer/\n- com.aiva.sync-autocommit-aiva: watches ~/.aiva/\n- com.aiva.sync-loop: periodic fetch/pull/push every 120s\n\nAll use LimitLoadToSessionType=Aqua for TCC compatibility.\n\n## Security Notes\n\nPre-commit validation rejects commits containing:\n- Malformed JSON in tracked files\n- Missing required keys in task/work JSONs\n- API keys, bearer tokens, private keys\n\n## Failure Modes\n\n1. Network down: commits happen locally, push fails cleanly, succeeds on reconnect\n2. Conflict in merge: file moves to ~/.sync-conflicts/, user notified\n3. Validation failure: change stays in working tree, validation error logged\n4. Other machine offline: pulls fail gracefully, retry on next tick\n",
+      "bin": [
+        "sync",
+        "sync-autocommit",
+        "sync-loop",
+        "sync-merge-resolve",
+        "test-conflict-guard.sh"
+      ],
+      "product_category": "infra"
+    },
+    {
+      "slug": "system-fixes",
+      "path": "~/.aiva/modules/system-fixes/",
+      "kind": "tool",
+      "name": "System Fixes",
+      "title": "System Fixes",
+      "purpose": "Tracks every systemic correction made to AIVA. When something breaks and gets fixed (a skill updated, a CLI patched, a rule added), the fix gets logged here with what broke, what changed, and which module was affected.",
+      "module_md": "# System Fixes\n\nTracks every systemic correction made to AIVA. When something breaks and gets fixed (a skill updated, a CLI patched, a rule added), the fix gets logged here with what broke, what changed, and which module was affected.\n\nThis creates a permanent history of why the system is the way it is. The log grows over time and can be searched, filtered by module, and summarized with stats.\n\n## Quick Reference\n\n```bash\nsfix log \"what broke\" --fixed \"what changed\" --module MODULE\nsfix list\nsfix stats\n```\n\nSee `skills/system-fixes/SKILL.md` for full docs.\n",
+      "bin": [
+        "system-fixes"
+      ],
+      "product_category": "infra",
+      "short_label": "sys-fixes"
+    },
+    {
+      "slug": "system-inventory",
+      "path": "~/.aiva/modules/system-inventory/",
+      "kind": "system",
+      "name": "System Inventory",
+      "title": "System Inventory Module",
+      "module_md_date": "2026-04-23",
+      "purpose": "`system-inventory` owns the living map of AIVA and OfficeAdmin.",
+      "module_md": "# System Inventory Module\n\nDate: 2026-04-23\n\n## Purpose\n\n`system-inventory` owns the living map of AIVA and OfficeAdmin.\n\nIt exists so future agents do not have to rediscover the system by\ndigging through `docs/`, launchd, Cloudflared, OpenClaw, Akaunting, and\nrandom local services. The module provides one starting point, one\ninventory refresh path, and one machine-readable place for manual owner\nhints that cannot be inferred from live state.\n\n## Public Surface\n\n- `system-inventory` — small CLI for printing paths and refreshing the\n  inventory.\n- `system-inventory` skill — the first skill to use when working on AIVA\n  production readiness, service ownership, public routes, schedulers,\n  backups, or Phase 1 health checks.\n\n## Owned Files\n\n- `VISION.md` — one-page orientation for fresh agents.\n- `SYSTEM-CAPABILITY-INVENTORY.md` — semi-generated live inventory.\n- `config/overrides.json` — manual owner, status, and gap hints for live\n  facts that cannot be inferred safely.\n- `bin/generate-inventory.py` — generator used by `hydrate-docs.py`.\n- `bin/system-inventory` — operator CLI.\n- `skills/system-inventory/SKILL.md` — discoverable skill surface.\n\n## Runtime\n\n- Machine: `aiva`.\n- Refresh scheduler: `~/Library/LaunchAgents/com.aiva.hydrate-docs.plist`.\n- Logs: `~/.aiva/ops/logs/system-inventory/`.\n- State: `~/.aiva/state/system-inventory/`.\n\n## Source Model\n\nLive sources:\n\n1. `~/.aiva/modules/*/module.json`\n2. `~/.aiva/modules/*/MODULE.md`\n3. `~/.aiva/state/skills/*/SKILL.md`\n4. `launchctl list`\n5. `~/Library/LaunchAgents/*.plist`\n6. `~/.aiva/ops/launchd/*.plist`\n7. `~/.cloudflared/config.yml`\n8. `~/.openclaw/cron/jobs.json`\n9. Akaunting MySQL table `tc9_agents`\n10. `lsof -nP -iTCP -sTCP:LISTEN`\n\nManual source:\n\n1. `~/.aiva/modules/system-inventory/config/overrides.json`\n\n## Boundaries\n\n- This module owns inventory generation and AIVA production-readiness\n  orientation.\n- The `docs` module still owns the broad documentation system and\n  `hydrate-docs.py` framework.\n- Individual modules own their own service behavior and recovery docs.\n- External services without modules should be promoted into modules or\n  explicit external-service records after they are traced.\n\n## Refresh\n\nRun either command:\n\n```\nsystem-inventory refresh\npython3 ~/.aiva/ops/hydrate-docs.py --section system-capability-inventory\n```\n\nRun validation after structural changes:\n\n```\npython3 ~/.aiva/ops/hydrate-docs.py\npython3 ~/.aiva/ops/validate-modules.py\npython3 ~/.aiva/ops/validate-skills.py\npython3 ~/.aiva/ops/validate-memory.py\npython3 ~/.aiva/ops/drift-check-docs.py\n```\n",
+      "bin": [
+        "generate-inventory.py",
+        "system-inventory"
+      ],
+      "product_category": "infra",
+      "short_label": "sys-inventory"
+    },
+    {
+      "slug": "talk",
+      "path": "~/.aiva/modules/talk/",
+      "kind": "system",
+      "name": "Talk",
+      "title": "Talk Module",
+      "purpose": "Canonical module owner for AIVA speech output and target routing.",
+      "module_md": "# Talk Module\n\nCanonical module owner for AIVA speech output and target routing.\n\nCurrent status:\n1. This module is compatibility-first.\n2. The live `talk` CLI implementation now lives in this module.\n3. The live audio server implementation now lives in this module.\n4. The top-level `bin/talk` command is now a compatibility wrapper into this module.\n5. The audio server lives at `modules/talk/services/aiva-audio-server.py`.\n6. The public `talk` skill remains hand-owned at top-level `skills/talk/SKILL.md`.\n7. The tracked APNS service config now lives at `modules/talk/services/apns-config.json`.\n\nThis module now owns the architectural boundary for:\n1. the `talk` command surface\n2. talk target routing and topology state\n3. the audio server daemon\n4. phone/laptop/AIVA speech delivery behavior\n\nCompatibility notes:\n1. Reconcile should not replace the current public `talk` skill while it remains hand-owned.\n2. Launchd should point directly at `modules/talk/services/aiva-audio-server.py`.\n\nMigration intent:\n1. keep current `talk` behavior stable\n2. establish `talk` as a real daemon-backed module\n3. let reconcile track its runtime namespace and daemon metadata\n4. keep runtime-only state outside the repo-owned module tree\n",
+      "bin": [
+        "push",
+        "talk"
+      ],
+      "product_category": "output"
+    },
+    {
+      "slug": "transcribe",
+      "path": "~/.aiva/modules/transcribe/",
+      "kind": "utility",
+      "name": "Transcribe",
+      "title": "transcribe",
+      "purpose": "Module for turning audio, video, and YouTube URLs into text transcripts using whisper-cpp.",
+      "module_md": "# transcribe\n\nModule for turning audio, video, and YouTube URLs into text transcripts using whisper-cpp.\n\n## What's in here\n\n- `bin/transcribe` — local file → transcript.\n- `bin/yt-transcribe` — URL → transcript (downloads audio via yt-dlp, pipes through transcribe).\n- `lib/common.sh` — shared helpers (PATH fix-up, whisper detection, ffmpeg conversion, timestamp stripping).\n- `skill/SKILL.md` — agent-facing guide.\n\n## Machine layout\n\nThis module is declared `\"machine\": \"split\"` because the scripts run on both aiva and the laptop. In practice the compute (whisper-cli, model) currently only exists on the laptop, so invocations from aiva SSH-delegate to the laptop automatically. The laptop host is resolved via `$TRANSCRIBE_LAPTOP_HOST` (default: `laptop`, the SSH config alias for Tailscale `100.84.100.63`).\n\nIf whisper-cpp is ever installed on aiva, no code change is needed. `have_local_whisper` will start returning true and the scripts will run locally there.\n\n## History\n\nOriginally a single `/opt/homebrew/bin/transcribe` bash wrapper Mike had written on the laptop, with no packaging, no aiva-side story, and no YouTube front-end. This module consolidates that into the synced `.aiva/` tree so:\n\n1. Both machines see the same version (via the existing git sync between aiva and laptop).\n2. `state/bin/transcribe` and `state/bin/yt-transcribe` are on PATH on both machines after reconcile.\n3. The homebrew install at `/opt/homebrew/bin/transcribe` is superseded and can be removed; `~/.aiva/state/bin` is earlier on PATH.\n\n## Dependencies not owned here\n\n- `whisper-cpp` (homebrew): provides `whisper-cli`.\n- `~/.whisper-models/ggml-base.en.bin`: default model, not checked into the repo.\n- `ffmpeg` and `yt-dlp`: homebrew, same.\n\nNone of these are installed or auto-fetched by this module. The scripts fail fast with a clear error if something is missing.\n",
+      "bin": [
+        "transcribe",
+        "yt-transcribe"
+      ],
+      "product_category": "util"
+    },
+    {
+      "slug": "whatsapp",
+      "path": "~/.aiva/modules/whatsapp/",
+      "kind": "integration",
+      "name": "WhatsApp",
+      "title": "WhatsApp Module",
+      "purpose": "Canonical module owner for the WhatsApp CLI, daemon, and runtime state.",
+      "module_md": "# WhatsApp Module\n\nCanonical module owner for the WhatsApp CLI, daemon, and runtime state.\n\nCurrent status:\n1. This module is compatibility-first.\n2. The live `whatsapp` CLI implementation now lives in this module.\n3. The live daemon implementation and package metadata now live in this module.\n4. The top-level `bin/whatsapp` path remains a compatibility wrapper into this module.\n5. The daemon lives at `modules/whatsapp/services/whatsapp_daemon.js`.\n6. The public `skills/whatsapp/SKILL.md` remains hand-owned during migration, while this module also provides a canonical module-local skill doc.\n\nThis module now owns the architectural boundary for:\n1. the `whatsapp` command surface\n2. the daemon lifecycle and runtime state\n3. WhatsApp auth/db/media storage under `~/.aiva/state/whatsapp`\n4. WhatsApp message and attachment ingestion\n\nCompatibility notes:\n1. Reconcile should not replace the current public top-level `whatsapp` skill while it remains hand-owned.\n2. Existing launchd can keep calling `~/.aiva/state/bin/whatsapp daemon-run` during migration.\n3. launchd and operator flows should target the module-owned service path directly\n",
+      "bin": [
+        "whatsapp"
+      ],
+      "product_category": "inbound"
+    }
+  ],
+  "edges": [
+    [
+      "aiva",
+      "apple-maps"
+    ],
+    [
+      "aiva",
+      "calendar"
+    ],
+    [
+      "aiva",
+      "callhistory"
+    ],
+    [
+      "aiva",
+      "contacts"
+    ],
+    [
+      "aiva",
+      "notes"
+    ],
+    [
+      "aiva",
+      "reminders"
+    ],
+    [
+      "callhistory",
+      "aiva"
+    ],
+    [
+      "claude",
+      "comms-expert"
+    ],
+    [
+      "claude",
+      "comms-pipeline"
+    ],
+    [
+      "codex",
+      "comms-expert"
+    ],
+    [
+      "comms-pipeline",
+      "commitments"
+    ],
+    [
+      "comms-pipeline",
+      "comms-expert"
+    ],
+    [
+      "comms-pipeline",
+      "google"
+    ],
+    [
+      "comms-pipeline",
+      "identity"
+    ],
+    [
+      "comms-pipeline",
+      "know"
+    ],
+    [
+      "comms-pipeline",
+      "notify"
+    ],
+    [
+      "comms-pipeline",
+      "schedule-send"
+    ],
+    [
+      "comms-pipeline",
+      "sendblue"
+    ],
+    [
+      "comms-pipeline",
+      "talk"
+    ],
+    [
+      "contacts",
+      "identity"
+    ],
+    [
+      "conversations",
+      "comms-pipeline"
+    ],
+    [
+      "conversations",
+      "mempalace"
+    ],
+    [
+      "conversations",
+      "talk"
+    ],
+    [
+      "copyparty",
+      "mcporter"
+    ],
+    [
+      "copyparty",
+      "shaffer-blogger"
+    ],
+    [
+      "copyparty",
+      "skatefit-github"
+    ],
+    [
+      "dependency-tracker",
+      "commitments"
+    ],
+    [
+      "electrical-estimating",
+      "comms-expert"
+    ],
+    [
+      "email-labeler",
+      "aiva"
+    ],
+    [
+      "email-labeler",
+      "comms-pipeline"
+    ],
+    [
+      "email-labeler",
+      "google"
+    ],
+    [
+      "g2c",
+      "claude"
+    ],
+    [
+      "gemini",
+      "comms-expert"
+    ],
+    [
+      "glm",
+      "comms-expert"
+    ],
+    [
+      "google",
+      "comms-pipeline"
+    ],
+    [
+      "imessage",
+      "comms-pipeline"
+    ],
+    [
+      "instagram",
+      "comms-pipeline"
+    ],
+    [
+      "instagram",
+      "messages"
+    ],
+    [
+      "ios",
+      "mcporter"
+    ],
+    [
+      "know",
+      "callhistory"
+    ],
+    [
+      "know",
+      "commitments"
+    ],
+    [
+      "know",
+      "contacts"
+    ],
+    [
+      "know",
+      "conversations"
+    ],
+    [
+      "know",
+      "google"
+    ],
+    [
+      "know",
+      "identity"
+    ],
+    [
+      "know",
+      "imessage"
+    ],
+    [
+      "know",
+      "mempalace"
+    ],
+    [
+      "know",
+      "mikeshaffer"
+    ],
+    [
+      "know",
+      "notes"
+    ],
+    [
+      "know",
+      "quickbooks"
+    ],
+    [
+      "know",
+      "reminders"
+    ],
+    [
+      "know",
+      "session-search"
+    ],
+    [
+      "macos-automator",
+      "mcporter"
+    ],
+    [
+      "macos-automator",
+      "osascript-shim"
+    ],
+    [
+      "messages",
+      "comms-pipeline"
+    ],
+    [
+      "messages",
+      "imessage"
+    ],
+    [
+      "mikeshaffer",
+      "akaunting"
+    ],
+    [
+      "module-suggester",
+      "claude"
+    ],
+    [
+      "module-suggester",
+      "gemini"
+    ],
+    [
+      "module-suggester",
+      "session-search"
+    ],
+    [
+      "notify",
+      "imessage"
+    ],
+    [
+      "notify",
+      "talk"
+    ],
+    [
+      "open-loops",
+      "commitments"
+    ],
+    [
+      "opendesk",
+      "macos-automator"
+    ],
+    [
+      "opendesk",
+      "mcporter"
+    ],
+    [
+      "opendesk",
+      "osascript-shim"
+    ],
+    [
+      "quickbooks",
+      "know"
+    ],
+    [
+      "quickbooks",
+      "mikeshaffer"
+    ],
+    [
+      "reminders",
+      "aiva"
+    ],
+    [
+      "schedule-send",
+      "imessage"
+    ],
+    [
+      "schedule-send",
+      "messages"
+    ],
+    [
+      "schedule-send",
+      "sendblue"
+    ],
+    [
+      "secrets",
+      "aiva"
+    ],
+    [
+      "sendblue",
+      "aiva"
+    ],
+    [
+      "sendblue",
+      "messages"
+    ],
+    [
+      "sendblue",
+      "notify"
+    ],
+    [
+      "shaffer-blogger",
+      "agents"
+    ],
+    [
+      "system-inventory",
+      "aiva"
+    ],
+    [
+      "system-inventory",
+      "docs"
+    ],
+    [
+      "whatsapp",
+      "comms-pipeline"
+    ]
+  ],
+  "category_counts": {
+    "util": 17,
+    "infra": 9,
+    "macos": 8,
+    "business": 4,
+    "personal": 7,
+    "ai": 4,
+    "memory": 9,
+    "workflow": 3,
+    "inbound": 7,
+    "output": 3
+  },
+  "categories": {
+    "inbound": {
+      "label": "Inbound",
+      "tint": "#d9e7f1",
+      "stroke": "#4d6f95"
+    },
+    "memory": {
+      "label": "Memory",
+      "tint": "#d9eccf",
+      "stroke": "#5b8a3a"
+    },
+    "workflow": {
+      "label": "Workflow",
+      "tint": "#fdf1bd",
+      "stroke": "#c98b2b"
+    },
+    "business": {
+      "label": "Business",
+      "tint": "#fce5b9",
+      "stroke": "#b3492f"
+    },
+    "macos": {
+      "label": "macOS",
+      "tint": "#e4dcca",
+      "stroke": "#3a3733"
+    },
+    "ai": {
+      "label": "AI engines",
+      "tint": "#e4d2eb",
+      "stroke": "#7a4f99"
+    },
+    "output": {
+      "label": "Output",
+      "tint": "#f3d2bf",
+      "stroke": "#c98b2b"
+    },
+    "infra": {
+      "label": "Infra",
+      "tint": "#e0d8c6",
+      "stroke": "#6a665e"
+    },
+    "util": {
+      "label": "Utilities",
+      "tint": "#dcd6c3",
+      "stroke": "#7a7568"
+    },
+    "personal": {
+      "label": "Personal",
+      "tint": "#ead7bf",
+      "stroke": "#8a6a1f"
+    }
+  }
+}

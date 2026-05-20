@@ -1,0 +1,502 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OfficeAdmin — Module documentation</title>
+  <meta name="description" content="Auto-generated docs for every module in the AIVA / OfficeAdmin codebase. Pulled from MODULE.md and module.json on disk." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Kalam:wght@400;700&family=Patrick+Hand&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><text y='50' font-size='52' font-family='Georgia'>OA</text></svg>" />
+  <style>
+    /* docs-specific styling, layered on top of styles.css */
+    .docs-page { max-width: 1100px; margin: 0 auto; padding: 32px 24px 64px; }
+    .docs-head {
+      display: flex; flex-wrap: wrap; align-items: baseline;
+      gap: 14px; margin-bottom: 16px;
+      border-bottom: 2px dashed var(--ink-3);
+      padding-bottom: 14px;
+    }
+    .docs-head h1 {
+      font-family: var(--hand-display);
+      font-size: clamp(36px, 5vw, 56px);
+      margin: 0;
+      line-height: 1;
+    }
+    .docs-head__meta {
+      font-family: var(--hand-accent);
+      font-size: 13px;
+      color: var(--ink-3);
+      letter-spacing: 0.4px;
+    }
+    .docs-head__back {
+      margin-left: auto;
+      font-family: var(--hand);
+      font-size: 15px;
+      padding: 6px 14px;
+      border: 1.5px solid var(--ink);
+      background: var(--paper);
+      border-radius: 10px 12px 9px 11px / 12px 9px 11px 10px;
+      color: var(--ink);
+      text-decoration: none;
+      box-shadow: 2px 2px 0 rgba(26,26,26,0.10);
+    }
+    .docs-head__back:hover { background: var(--highlight); }
+
+    /* toolbar (search + filters) sticky at top */
+    .docs-tools {
+      position: sticky; top: 0;
+      background: rgba(244,238,224,0.94);
+      backdrop-filter: blur(6px);
+      padding: 14px 0 12px;
+      margin: 0 0 18px;
+      z-index: 10;
+      border-bottom: 1.5px dashed var(--ink-3);
+    }
+    .docs-tools__row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .docs-search {
+      flex: 1 1 240px; min-width: 200px;
+      font-family: var(--hand);
+      font-size: 16px;
+      color: var(--ink);
+      background: var(--paper);
+      border: 1.6px solid var(--rule);
+      border-radius: 14px 12px 16px 11px / 12px 16px 11px 14px;
+      padding: 9px 14px;
+      box-shadow: var(--shadow);
+      outline: none;
+    }
+    .docs-search:focus { border-color: var(--accent); }
+    .docs-search::placeholder { color: var(--ink-3); font-style: italic; }
+    .docs-filters { display: flex; gap: 6px; flex-wrap: wrap; }
+    .docs-filter {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--hand-accent);
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 5px 10px;
+      border: 1.4px solid var(--ink);
+      background: var(--paper);
+      color: var(--ink);
+      border-radius: 10px 12px 9px 11px / 12px 9px 11px 10px;
+      cursor: pointer;
+      box-shadow: 1.5px 2px 0 rgba(26,26,26,0.10);
+    }
+    .docs-filter.is-on { background: var(--ink); color: var(--paper); }
+    .docs-filter:hover { transform: translate(-1px, -1px); }
+    .docs-count {
+      font-family: var(--hand-accent);
+      font-size: 13px;
+      color: var(--ink-3);
+      margin-left: auto;
+    }
+
+    /* module list */
+    .docs-list { display: grid; gap: 14px; }
+    .doc-mod {
+      background: var(--paper);
+      border: 1.6px solid var(--rule);
+      border-radius: 18px 14px 22px 12px / 12px 22px 14px 18px;
+      padding: 16px 20px 14px;
+      box-shadow: var(--shadow);
+    }
+    .doc-mod:nth-child(odd)  { transform: rotate(-0.15deg); }
+    .doc-mod:nth-child(even) { transform: rotate(0.15deg); background: var(--paper-2); }
+    .doc-mod.is-hidden { display: none; }
+
+    .doc-mod__head {
+      display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px;
+      margin-bottom: 6px;
+    }
+    .doc-mod__slug {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+      background: var(--paper-3);
+      padding: 3px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--ink-3);
+      word-break: break-all;
+    }
+    .doc-mod__title {
+      font-family: var(--hand-display);
+      font-size: 22px;
+      color: var(--ink);
+      margin: 0;
+      line-height: 1.1;
+    }
+    .doc-mod__pills { display: flex; gap: 6px; flex-wrap: wrap; margin-left: auto; }
+    .doc-pill {
+      font-family: var(--hand-accent);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border: 1.2px solid currentColor;
+      border-radius: 999px;
+    }
+    .doc-pill--kind { color: var(--accent-2); }
+    .doc-pill--machine { color: var(--good); }
+    .doc-pill--missing { color: var(--ink-3); border-style: dashed; }
+
+    .doc-mod__purpose {
+      font-family: var(--hand);
+      font-size: 16px;
+      color: var(--ink-2);
+      margin: 6px 0 10px;
+      line-height: 1.55;
+    }
+    .doc-mod__meta {
+      display: grid; gap: 4px;
+      grid-template-columns: 110px 1fr;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+      color: var(--ink-2);
+      margin: 8px 0 0;
+    }
+    .doc-mod__meta > div { display: contents; }
+    .doc-mod__meta dt {
+      font-family: var(--hand-accent);
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--ink-3);
+    }
+    .doc-mod__meta dd { margin: 0; word-break: break-all; }
+    .doc-mod__meta code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11.5px;
+      background: var(--paper-3);
+      padding: 1px 5px;
+      border-radius: 3px;
+      border: 1px solid var(--ink-3);
+      margin-right: 3px;
+    }
+
+    .doc-mod__toggle {
+      margin-top: 12px;
+      font-family: var(--hand);
+      font-size: 14px;
+      color: var(--accent-2);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 0;
+      text-decoration: underline wavy var(--accent);
+      text-underline-offset: 3px;
+    }
+    .doc-mod__toggle:hover { color: var(--ink); }
+
+    .doc-mod__full {
+      margin-top: 12px;
+      padding: 14px 16px 8px;
+      background: var(--paper);
+      border: 1.4px dashed var(--ink-3);
+      border-radius: 10px;
+      font-family: var(--hand);
+      font-size: 15px;
+      color: var(--ink-2);
+      line-height: 1.55;
+      max-height: 520px;
+      overflow-y: auto;
+    }
+    .doc-mod__full h1 {
+      font-family: var(--hand-display);
+      font-size: 24px; margin: 0 0 6px; color: var(--ink);
+    }
+    .doc-mod__full h2 {
+      font-family: var(--hand-display);
+      font-size: 20px; margin: 16px 0 6px; color: var(--ink);
+    }
+    .doc-mod__full h3 {
+      font-family: var(--hand-display);
+      font-size: 17px; margin: 12px 0 4px; color: var(--ink);
+    }
+    .doc-mod__full p { margin: 6px 0; }
+    .doc-mod__full ul, .doc-mod__full ol { margin: 6px 0; padding-left: 20px; }
+    .doc-mod__full li { margin: 2px 0; }
+    .doc-mod__full code {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      background: var(--paper-3);
+      padding: 0 4px;
+      border-radius: 3px;
+      border: 1px solid var(--ink-3);
+    }
+    .doc-mod__full pre {
+      background: #1a1410;
+      color: #e8dec7;
+      padding: 10px 12px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+      line-height: 1.45;
+    }
+    .doc-mod__full pre code { background: none; border: none; padding: 0; color: inherit; }
+    .doc-mod__full a {
+      color: var(--ink);
+      text-decoration: underline wavy var(--accent);
+      text-underline-offset: 3px;
+    }
+
+    .doc-empty {
+      text-align: center;
+      font-family: var(--hand-accent);
+      font-size: 16px;
+      color: var(--ink-3);
+      padding: 40px;
+    }
+
+    @media (max-width: 600px) {
+      .doc-mod__pills { margin-left: 0; width: 100%; }
+      .doc-mod__meta { grid-template-columns: 90px 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="docs-page">
+
+    <header class="docs-head">
+      <h1>Module documentation</h1>
+      <span class="docs-head__meta" id="docsHeadMeta">loading…</span>
+      <a class="docs-head__back" href="/index.html">← back to landing</a>
+    </header>
+
+    <div class="docs-tools">
+      <div class="docs-tools__row">
+        <input class="docs-search" id="docsSearch" type="search" placeholder="search by slug, title, or text…" aria-label="Search modules" />
+        <div class="docs-filters" id="docsFilters" role="group" aria-label="Filter by kind"></div>
+        <span class="docs-count" id="docsCount"></span>
+      </div>
+    </div>
+
+    <div class="docs-list" id="docsList">
+      <div class="doc-empty">Loading modules…</div>
+    </div>
+  </main>
+
+  <script>
+  // -------------------------------------------------------------
+  //  Auto-populated from modules-docs.json
+  //  Regenerate with:  python3 bin/generate-docs.py
+  // -------------------------------------------------------------
+  (function () {
+    const listEl   = document.getElementById('docsList');
+    const headMeta = document.getElementById('docsHeadMeta');
+    const filtersEl= document.getElementById('docsFilters');
+    const searchEl = document.getElementById('docsSearch');
+    const countEl  = document.getElementById('docsCount');
+
+    // tiny safe markdown renderer (headings, paragraphs, lists, code, links)
+    function md(text) {
+      if (!text) return '';
+      const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+      const lines = text.split('\n');
+      const out = [];
+      let inCode = false, inList = false, listType = '';
+      let codeBuf = [];
+
+      function closeList() { if (inList) { out.push(listType === 'ol' ? '</ol>' : '</ul>'); inList = false; } }
+      function flushCode() {
+        if (inCode) {
+          out.push('<pre><code>' + esc(codeBuf.join('\n')) + '</code></pre>');
+          codeBuf = []; inCode = false;
+        }
+      }
+
+      for (let i = 0; i < lines.length; i++) {
+        const raw = lines[i];
+        // code fence
+        if (/^```/.test(raw)) {
+          if (inCode) { flushCode(); }
+          else { closeList(); inCode = true; }
+          continue;
+        }
+        if (inCode) { codeBuf.push(raw); continue; }
+
+        const line = raw;
+        // heading
+        const h = /^(#{1,6})\s+(.+?)\s*$/.exec(line);
+        if (h) { closeList(); const lv = h[1].length; out.push(`<h${lv}>${esc(h[2])}</h${lv}>`); continue; }
+        // ordered list
+        const ol = /^(\s*)(\d+)[.)]\s+(.+)$/.exec(line);
+        if (ol) {
+          if (!inList || listType !== 'ol') { closeList(); out.push('<ol>'); inList = true; listType = 'ol'; }
+          out.push('<li>' + inline(ol[3]) + '</li>'); continue;
+        }
+        // unordered list
+        const ul = /^\s*[-*]\s+(.+)$/.exec(line);
+        if (ul) {
+          if (!inList || listType !== 'ul') { closeList(); out.push('<ul>'); inList = true; listType = 'ul'; }
+          out.push('<li>' + inline(ul[1]) + '</li>'); continue;
+        }
+        // blank line
+        if (/^\s*$/.test(line)) { closeList(); continue; }
+        // paragraph
+        closeList();
+        out.push('<p>' + inline(line) + '</p>');
+      }
+      flushCode(); closeList();
+      return out.join('\n');
+
+      function inline(s) {
+        let h = esc(s);
+        // inline code
+        h = h.replace(/`([^`]+)`/g, (_, c) => `<code>${c}</code>`);
+        // links [text](url) — only http/https/relative
+        h = h.replace(/\[([^\]]+)\]\(((?:https?:|\/|\.\/|\.\.\/|~\/)[^)]+)\)/g, (_, t, u) => `<a href="${u}">${esc(t)}</a>`);
+        // bold/italic
+        h = h.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+        h = h.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, '<em>$1</em>');
+        return h;
+      }
+    }
+
+    let docs = null;
+    let modulesByKind = {};
+    let activeKinds = new Set();
+
+    async function load() {
+      try {
+        const res = await fetch('modules-docs.json', { cache: 'no-cache' });
+        if (!res.ok) throw new Error(res.status);
+        docs = await res.json();
+      } catch (e) {
+        listEl.innerHTML = `<div class="doc-empty">Could not load <code>modules-docs.json</code>. Run <code>python3 bin/generate-docs.py</code> to (re)generate it.</div>`;
+        headMeta.textContent = 'generator output missing';
+        return;
+      }
+      headMeta.textContent = `${docs.count} modules · generated ${new Date(docs.generated_at).toLocaleString()}`;
+      buildFilters();
+      render();
+    }
+
+    function buildFilters() {
+      modulesByKind = {};
+      for (const m of docs.modules) {
+        const k = m.kind || 'unknown';
+        (modulesByKind[k] = modulesByKind[k] || []).push(m);
+      }
+      activeKinds = new Set(Object.keys(modulesByKind));
+      filtersEl.innerHTML = '';
+      // "all" button first
+      const all = document.createElement('button');
+      all.type = 'button';
+      all.className = 'docs-filter';
+      all.textContent = 'all';
+      all.style.borderStyle = 'dashed';
+      all.addEventListener('click', () => {
+        activeKinds = new Set(Object.keys(modulesByKind));
+        if (searchEl) searchEl.value = '';
+        syncFilterButtons();
+        render();
+      });
+      filtersEl.appendChild(all);
+
+      const order = ['system', 'tool', 'integration', 'utility', 'model', 'unknown'];
+      Object.keys(modulesByKind).sort((a, b) => (order.indexOf(a) + 100) - (order.indexOf(b) + 100)).forEach(k => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'docs-filter is-on';
+        b.dataset.kind = k;
+        b.textContent = `${k} · ${modulesByKind[k].length}`;
+        b.addEventListener('click', () => {
+          const allK = Object.keys(modulesByKind);
+          if (activeKinds.size === allK.length) {
+            // first solo
+            activeKinds = new Set([k]);
+          } else {
+            if (activeKinds.has(k)) activeKinds.delete(k); else activeKinds.add(k);
+            if (activeKinds.size === 0) activeKinds = new Set(allK);
+          }
+          syncFilterButtons();
+          render();
+        });
+        filtersEl.appendChild(b);
+      });
+    }
+
+    function syncFilterButtons() {
+      filtersEl.querySelectorAll('.docs-filter[data-kind]').forEach(b => {
+        b.classList.toggle('is-on', activeKinds.has(b.dataset.kind));
+      });
+    }
+
+    function render() {
+      if (!docs) return;
+      const q = (searchEl.value || '').toLowerCase().trim();
+      const items = docs.modules.filter(m => {
+        const kind = m.kind || 'unknown';
+        if (!activeKinds.has(kind)) return false;
+        if (!q) return true;
+        const blob = (m.slug + ' ' + (m.title||'') + ' ' + (m.purpose||'') + ' ' + (m.module_md||'')).toLowerCase();
+        return blob.includes(q);
+      });
+
+      countEl.textContent = `${items.length} / ${docs.modules.length} shown`;
+
+      if (!items.length) {
+        listEl.innerHTML = '<div class="doc-empty">No modules match those filters.</div>';
+        return;
+      }
+
+      listEl.innerHTML = items.map(mod => {
+        const pills = [
+          mod.kind ? `<span class="doc-pill doc-pill--kind">${esc(mod.kind)}</span>` : '',
+          mod.machine ? `<span class="doc-pill doc-pill--machine">${esc(mod.machine)}</span>` : '<span class="doc-pill doc-pill--missing">no machine</span>',
+        ].join('');
+        const surface = (mod.public_surface || []).map(s => `<code>${esc(s)}</code>`).join('');
+        const bins = (mod.bin || []).map(s => `<code>${esc(s)}</code>`).join('');
+        const reqs = (mod.host_requirements || []).map(s => `<code>${esc(s)}</code>`).join('');
+        const purpose = mod.purpose || mod.notes || mod.skill_description || '<em>No description yet.</em>';
+        const title = mod.title || mod.name || mod.slug;
+        return `
+          <article class="doc-mod" data-slug="${esc(mod.slug)}" id="${esc(mod.slug)}">
+            <header class="doc-mod__head">
+              <code class="doc-mod__slug">${esc(mod.slug)}</code>
+              <h2 class="doc-mod__title">${esc(title)}</h2>
+              <div class="doc-mod__pills">${pills}</div>
+            </header>
+            <p class="doc-mod__purpose">${esc(purpose)}</p>
+            <dl class="doc-mod__meta">
+              <div><dt>path</dt><dd><code>${esc(mod.path || '—')}</code></dd></div>
+              ${surface ? `<div><dt>public</dt><dd>${surface}</dd></div>` : ''}
+              ${bins ? `<div><dt>bin</dt><dd>${bins}</dd></div>` : ''}
+              ${reqs ? `<div><dt>needs</dt><dd>${reqs}</dd></div>` : ''}
+              ${mod.module_md_date ? `<div><dt>updated</dt><dd>${esc(mod.module_md_date)}</dd></div>` : ''}
+            </dl>
+            ${mod.module_md ? `
+              <button class="doc-mod__toggle" type="button" data-expand>Show full MODULE.md ↓</button>
+              <div class="doc-mod__full" hidden>${md(mod.module_md)}</div>
+            ` : ''}
+          </article>
+        `;
+      }).join('');
+
+      // wire expand/collapse
+      listEl.querySelectorAll('[data-expand]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const full = btn.nextElementSibling;
+          const open = !full.hasAttribute('hidden');
+          if (open) { full.setAttribute('hidden', ''); btn.textContent = 'Show full MODULE.md ↓'; }
+          else      { full.removeAttribute('hidden');  btn.textContent = 'Hide MODULE.md ↑'; }
+        });
+      });
+    }
+
+    function esc(s) {
+      return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    }
+
+    searchEl.addEventListener('input', render);
+    load();
+  })();
+  </script>
+</body>
+</html>
