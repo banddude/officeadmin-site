@@ -5,7 +5,9 @@ Date: 2026-05-20
 ## Purpose
 
 Owns the public landing + documentation site at
-[officeadmin.io](https://officeadmin.io). The site is the buyer-facing
+[landing.officeadmin.io](https://landing.officeadmin.io) (moved off the
+officeadmin.io apex on 2026-06-11; the apex now serves the Books app on
+Vercel, and officeadmin.io/landingpage redirects here). The site is the buyer-facing
 storefront for OfficeAdmin and the live, auto-generated documentation
 surface for every other AIVA module — same data, two presentations.
 
