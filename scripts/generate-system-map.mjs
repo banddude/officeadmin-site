@@ -92,7 +92,6 @@ const DENY_PATTERNS = [
 // Strings that show up in node IDs/labels and ARE safe (public infra)
 const PUBLIC_ALLOWLIST = [
   "officeadmin.io",
-  "mcp.officeadmin.io",
   "terminal.officeadmin.io",
   "files.officeadmin.io",
 ];
