@@ -19,6 +19,10 @@ installation. What may be published is defined by
   viewing; the files are gitignored.
 - The retired deep-dive `architecture.html` and the `/officeadmin/` atlas UI
   are stubs; their previous content exists only in git history.
+- Customer source under `jason/` is retained in this repository but excluded
+  from GitHub Pages by `_config.yml`. Do not add `.nojekyll`, which bypasses
+  that exclusion. Repository files and Git history are not made private by
+  this site-publication rule; no history rewrite is part of this change.
 
 `scripts/test-public-boundary.py` enforces all of the above and must pass
 before anything is committed or pushed (`scripts/regenerate.sh` runs it;
@@ -48,7 +52,7 @@ bin/
 architecture.html       Stub — the legacy deep-dive diagram is no longer published
 officeadmin/            Stub — the internal system atlas is no longer published
 scripts/                Generation + boundary tooling (local)
-jason/                  One-off customer deliverable (3105 Ledgewood WiFi plan)
+jason/                  Retained customer source; excluded from site publication
 favicon.svg
 ```
 
@@ -56,6 +60,8 @@ favicon.svg
 
 - Plain HTML/CSS/JS. No build step, no framework, no dependencies.
 - GitHub Pages serves static files from the `main` branch.
+- Its legacy Jekyll build reads the JSON-form `_config.yml` and excludes the
+  private `jason/` directory and all descendants from the published output.
 - A Cloudflare Worker (`officeadmin-router`) proxies officeadmin.io → GitHub Pages.
 
 ## Updating the landing page
@@ -111,7 +117,7 @@ cf_set_zone officeadmin.io
 | `/docs.html` | Public module documentation (allowlisted modules only) |
 | `/architecture.html` | Stub (legacy deep-dive retired from publication) |
 | `/officeadmin/` | Stub (internal system atlas is local-only) |
-| `/jason/` | One-off customer page |
+| `/jason/` | Not published; customer source is retained only in the repository |
 
 ## Design decisions
 

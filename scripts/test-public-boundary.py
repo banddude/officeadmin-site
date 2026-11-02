@@ -33,6 +33,9 @@ What it enforces (issue banddude/officeadmin-books#3963):
      manifests (module.json, scripts/public-allowlist.json).
   6. No tracked files under officeadmin/data/ other than nothing at all —
      a new generated data file fails until a human rules on it.
+  7. Customer source under jason/ stays in the repository, but GitHub Pages
+     must exclude the entire directory. A .nojekyll bypass or a publication
+     configuration override fails closed.
 
 Run from the repo root:  python3 scripts/test-public-boundary.py
 Exit 0 = boundary holds. Exit 1 = violations (printed). Exit 2 = setup error.
@@ -84,6 +87,33 @@ TILDE_ANCHORS = ["~/.aiva", "~/.claude", "~/.openclaw", "~/mikeshaffer", "~/Libr
 ATLAS_MARKERS = ["generatedOnHost", "refreshCommand", "generatedSources"]
 
 INTERNAL_ATLAS_DIR = "officeadmin/data/"
+PRIVATE_SITE_DIRS = {"jason"}
+
+
+def check_pages_publication(violations: list[str]) -> None:
+    # JSON is valid YAML. Keep this small Pages config in JSON form so this
+    # dependency-free guard checks its meaning without an ad-hoc YAML parser.
+    # GitHub Pages uses the legacy Jekyll build on main at the repository root.
+    if (SITE_ROOT / ".nojekyll").exists():
+        violations.append(".nojekyll bypasses the private-directory exclusion")
+    try:
+        config = json.loads((SITE_ROOT / "_config.yml").read_text())
+    except (OSError, ValueError) as error:
+        violations.append(f"_config.yml: readable JSON-form Pages config required: {error}")
+        return
+    if not isinstance(config, dict) or set(config) - {"exclude"}:
+        violations.append("_config.yml: only the reviewed exclude setting is allowed")
+        return
+    excluded = config.get("exclude")
+    if not isinstance(excluded, list) or not all(
+        isinstance(entry, str) and entry and not Path(entry).is_absolute()
+        and ".." not in Path(entry).parts for entry in excluded
+    ):
+        violations.append("_config.yml: exclude must contain relative directory names")
+        return
+    for private_dir in PRIVATE_SITE_DIRS:
+        if private_dir not in {entry.rstrip("/") for entry in excluded}:
+            violations.append(f"_config.yml: {private_dir}/ must be excluded from publication")
 
 
 def tracked_files() -> list[Path]:
@@ -201,6 +231,7 @@ def main() -> int:
     allow = json.loads(ALLOWLIST_PATH.read_text())
 
     violations: list[str] = []
+    check_pages_publication(violations)
 
     # The internal atlas must not be published at all.
     for f in files:
@@ -213,8 +244,13 @@ def main() -> int:
         check_modules_docs("modules-docs.json", allow, violations)
 
     # Pattern scans.
-    strict_count = source_count = 0
+    strict_count = source_count = private_count = 0
     for rel in files:
+        if rel.parts and rel.parts[0] in PRIVATE_SITE_DIRS:
+            # Do not read or print customer material. The mandatory Pages
+            # exclusion above, rather than a hidden link, keeps it off-site.
+            private_count += 1
+            continue
         p = SITE_ROOT / rel
         if not p.is_file():
             continue
@@ -242,7 +278,8 @@ def main() -> int:
 
     print(f"public-boundary: OK — {strict_count} served artifacts + "
           f"{source_count} tooling files scanned, "
-          f"{len(allow['modules'])} public modules allowlisted, atlas untracked")
+          f"{len(allow['modules'])} public modules allowlisted, atlas untracked, "
+          f"{private_count} private source files excluded from Pages")
     return 0
 
 
