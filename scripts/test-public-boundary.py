@@ -22,8 +22,8 @@ What it enforces (issue banddude/officeadmin-books#3963):
      blocks anywhere in the published tree. One documented exemption: the
      FAKE OpenAI-shaped fixture inside scripts/test-audit-privacy.py, which
      exists to test the privacy auditor.
-  4. No username-qualified absolute filesystem paths (/Users/<name>/,
-     /home/<name>/, /root/) anywhere in the published tree, and no internal
+  4. No username-qualified absolute filesystem paths (Mac user homes,
+     Linux user homes and the root home) anywhere in the published tree, and no internal
      home anchors (~/.aiva, ~/.claude, ~/mikeshaffer, ~/Library, ~/.openclaw)
      inside SERVED artifacts (HTML/JS/CSS/JSON). Generator tooling legitimately
      resolves the home directory at runtime and README documents the flow, so
@@ -195,7 +195,7 @@ def scan_text(rel: str, text: str, strict: bool, violations: list[str]) -> None:
         violations.append(f"{rel}: private key block")
 
     # Absolute filesystem paths: everywhere in the published tree, except the
-    # documented fixture file (its fake /Users/totally-not-real/ path is the
+    # documented fixture file (its fake Mac user-home path is the
     # test data for the privacy auditor).
     if rel != FIXTURE_EXEMPT:
         for name, pat in ABS_PATH_PATTERNS.items():
