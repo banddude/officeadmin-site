@@ -12,6 +12,15 @@ Outputs a single JSON consumed by both:
   - script.js       (system graph catalog, sub-set)
   - docs.html       (auto-populated docs page)
 
+PUBLIC BOUNDARY (issue banddude/officeadmin-books#3963): this JSON is
+published to a PUBLIC GitHub repository and served from it. Before writing,
+the output is projected through scripts/public-allowlist.json: only
+allowlisted module topics and fields survive. Full MODULE.md bodies, bin
+inventories, machine placement, paths and internal-only modules never reach
+the committed file. scripts/test-public-boundary.py enforces the same
+boundary on the committed repo; scripts/redact-modules-docs.py re-projects
+an already-committed file.
+
 Run from the site dir:  python3 bin/generate-docs.py
 """
 from __future__ import annotations
@@ -21,6 +30,7 @@ from datetime import datetime
 
 MODULES_DIR = Path.home() / ".aiva" / "modules"
 OUT_PATH    = Path(__file__).resolve().parent.parent / "modules-docs.json"
+ALLOWLIST_PATH = Path(__file__).resolve().parent.parent / "scripts" / "public-allowlist.json"
 
 H1_RE      = re.compile(r"^#\s+(.+?)\s*$", re.M)
 DATE_RE    = re.compile(r"^Date:\s*(\d{4}-\d{2}-\d{2})", re.M)
@@ -244,6 +254,68 @@ def derive_edges(modules: list) -> list:
     return sorted(edges)
 
 
+
+def load_allowlist(path: Path | None = None) -> dict:
+    """Load the public boundary allowlist (shared with the boundary test)."""
+    p = path or ALLOWLIST_PATH
+    if not p.is_file():
+        raise SystemExit(f"error: public allowlist not found: {p}")
+    return json.loads(p.read_text())
+
+
+def public_filter(data: dict, allowlist: dict | None = None) -> dict:
+    """Project a fully generated catalog down to the public allowlist.
+
+    Keeps only allowlisted module topics and fields. Free-form text (titles,
+    purposes, MODULE.md prose, agent-facing notes) is never taken from the
+    private sources: the description of each published module comes from its
+    curated, public-safe entry in scripts/public-allowlist.json. Also prunes
+    edges whose endpoints are no longer public, recomputes category counts,
+    and drops top-level fields that are not allowlisted (notably `source`,
+    which is a local filesystem path). Deterministic: the committed
+    modules-docs.json must never contain anything the allowlist does not name.
+    """
+    al = allowlist or load_allowlist()
+    entries = {e["slug"]: e for e in al["modules"]}
+    module_fields = list(al["module_fields"])
+    top_fields = list(al["top_level_fields"])
+
+    by_slug = {m.get("slug"): m for m in data.get("modules", []) if m.get("slug")}
+    modules = []
+    for slug, entry in entries.items():
+        if slug not in by_slug:
+            print(f"warning: allowlisted module '{slug}' not found in sources; skipping", file=sys.stderr)
+            continue
+        m = by_slug[slug]
+        out = {k: m[k] for k in module_fields if k in m and k != "description"}
+        if "description" in module_fields:
+            desc = entry.get("description")
+            if not desc:
+                raise SystemExit(
+                    f"error: public allowlist entry '{slug}' has no curated description; "
+                    "free-form internal text is never published")
+            out["description"] = desc
+        modules.append(out)
+
+    keep = set(entries)
+    edges = [e for e in data.get("edges", []) if len(e) == 2 and e[0] in keep and e[1] in keep]
+
+    cat_counts: dict = {}
+    for m in modules:
+        c = m.get("product_category", "util")
+        cat_counts[c] = cat_counts.get(c, 0) + 1
+
+    full = {
+        "generated_at": data.get("generated_at"),
+        "count": len(modules),
+        "modules": modules,
+        "edges": edges,
+        "category_counts": cat_counts,
+        "categories": data.get("categories", {}),
+    }
+    return {k: full[k] for k in top_fields if k in full}
+
+
 def main() -> int:
     if not MODULES_DIR.is_dir():
         print(f"error: {MODULES_DIR} not found", file=sys.stderr)
@@ -283,8 +355,10 @@ def main() -> int:
             "personal": {"label": "Personal",   "tint": "#ead7bf", "stroke": "#8a6a1f"},
         },
     }
+    out = public_filter(out)
     OUT_PATH.write_text(json.dumps(out, indent=2, ensure_ascii=False))
-    print(f"wrote {OUT_PATH}  ({len(modules)} modules, {len(edges)} edges)")
+    print(f"wrote {OUT_PATH}  ({out['count']} public modules, {len(out['edges'])} edges; "
+          f"internal-only modules and fields withheld)")
     return 0
 
 

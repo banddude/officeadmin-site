@@ -1,18 +1,30 @@
 #!/usr/bin/env bash
-# regenerate.sh — pull officeadmin-site, regenerate v2 system map, commit, push.
+# regenerate.sh — pull officeadmin-site, regenerate the v2 system map LOCALLY.
 #
 # Designed to be invoked from:
 #   - a post-commit hook in ~/.aiva or ~/mikeshaffer (detached, fire-and-forget)
 #   - a launchd safety-net job (hourly)
 #   - a human running it directly
 #
+# PUBLIC BOUNDARY (issue banddude/officeadmin-books#3963): the system atlas
+# (officeadmin/data/system-map*.json) is an internal view of the operator's
+# machine — hosts, paths, repos, launchd jobs — and is NO LONGER PUBLISHED.
+# This script regenerates it for local viewing only. It NEVER commits or
+# pushes: the data files are gitignored and scripts/test-public-boundary.py
+# fails the tree if they are ever added back. modules-docs.json is projected
+# onto scripts/public-allowlist.json by bin/generate-docs.py before it is
+# written; publishing changes to it stays a deliberate manual commit.
+#
 # Behavior:
-#   - Acquires a flock so concurrent invocations queue rather than racing
+#   - Acquires a lock so concurrent invocations queue rather than racing
 #   - Pulls latest officeadmin-site (rebase)
-#   - Runs the generator
-#   - Commits and pushes only if system-map.v2.json actually changed
-#   - Logs every run to ~/.aiva/state/officeadmin-map/last-run.log (truncated to last 200 lines)
-#   - Exits 0 if nothing changed, 0 if changed and pushed, non-zero only on real errors
+#   - Runs the generator (writes the gitignored local atlas data)
+#   - Runs the privacy audit AND the public-boundary guard; a failure leaves
+#     the local file in place but logs FATAL (and the boundary guard fails
+#     any tree that tries to publish atlas data)
+#   - Logs every run to ~/.aiva/state/officeadmin-map/last-run.log (truncated
+#     to last 200 lines)
+#   - Exits 0 when the local regeneration succeeded
 
 set -euo pipefail
 
@@ -50,60 +62,37 @@ log "----- regenerate (trigger=$trigger) -----"
 
 cd "$REPO" || { log "FATAL: $REPO not found"; exit 1; }
 
-# Pull latest. If the working tree is dirty in unrelated files, bail loudly.
-if [[ -n "$(git status --porcelain | grep -v 'officeadmin/data/system-map.v2.json' || true)" ]]; then
-  log "WARN: working tree dirty in unexpected files; will not push"
+# Pull latest. If the working tree is dirty in tracked files, bail loudly:
+# only untracked (gitignored, locally generated) files may be dirty.
+if [[ -n "$(git status --porcelain | grep -v '^??' || true)" ]]; then
+  log "FATAL: working tree dirty in tracked files; not regenerating"
   log "$(git status --short)"
-  DIRTY=1
-else
-  DIRTY=0
+  exit 1
 fi
 
-if [[ "$DIRTY" -eq 0 ]]; then
-  # Reset the map file before pull — we're about to regenerate it anyway,
-  # so any local diff would just block the rebase.
-  git checkout -- officeadmin/data/system-map.v2.json 2>/dev/null || true
-  if ! git pull --rebase --quiet 2>>"$LOG"; then
-    log "FATAL: git pull failed"
-    exit 1
-  fi
+if ! git pull --rebase --quiet 2>>"$LOG"; then
+  log "FATAL: git pull failed"
+  exit 1
 fi
 
-# Run the generator
+# Run the generator. The atlas data files are gitignored; this only refreshes
+# the LOCAL copies for local viewing.
 if ! /usr/local/bin/node scripts/generate-system-map.mjs >>"$LOG" 2>&1; then
   log "FATAL: generator failed"
   exit 1
 fi
 
-# Privacy audit: read local entity DB, assert no leaks in published JSON.
-# Aborts the push if anything sensitive sneaked in.
+# Privacy audit: read local entity DB, assert no contact/entity leaks in the
+# locally generated atlas JSON (defense in depth for the local file too).
 if ! /usr/bin/python3 scripts/audit-privacy.py >>"$LOG" 2>&1; then
-  log "FATAL: privacy audit failed — NOT pushing"
-  # Reset the file we generated, since we won't be using it.
-  git checkout -- officeadmin/data/system-map.v2.json 2>/dev/null || true
+  log "FATAL: privacy audit failed"
   exit 1
 fi
 
-# Did the map change? Ignore the generatedAt line so trivial reruns are no-ops.
-if git diff --quiet -I '"generatedAt"' -- officeadmin/data/system-map.v2.json; then
-  log "no content changes to system-map.v2.json — nothing to push"
-  git checkout -- officeadmin/data/system-map.v2.json
-  exit 0
+# Public-boundary guard: the PUBLISHED tree must stay inside the allowlist.
+if ! /usr/bin/python3 scripts/test-public-boundary.py >>"$LOG" 2>&1; then
+  log "FATAL: public-boundary guard failed — the tree is not publishable"
+  exit 1
 fi
 
-if [[ "$DIRTY" -eq 1 ]]; then
-  log "map changed but tree was dirty — leaving change uncommitted"
-  exit 0
-fi
-
-git add officeadmin/data/system-map.v2.json
-SKIP_DRIFT_CHECK=1 git commit --quiet -m "officeadmin: auto-regenerate system map ($trigger)" >>"$LOG" 2>&1 || {
-  log "FATAL: commit failed"
-  exit 1
-}
-git push --quiet 2>>"$LOG" || {
-  log "WARN: push failed (commit is local, will retry on next run)"
-  exit 1
-}
-
-log "pushed updated system-map.v2.json"
+log "regenerated local atlas data (untracked, local-only); nothing committed or pushed"

@@ -1,3 +1,8 @@
 screenshots/
 .playwright-mcp/
 *.output
+# Internal system atlas: generated locally (scripts/generate-officeadmin-map.mjs,
+# scripts/regenerate.sh) and NEVER published. Enforced by scripts/test-public-boundary.py
+# (issue banddude/officeadmin-books#3963).
+officeadmin/data/*.json
+__pycache__/

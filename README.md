@@ -5,6 +5,32 @@ small business, built on the AIVA engine.
 
 Live at [officeadmin.io](https://officeadmin.io).
 
+## Public boundary (READ THIS FIRST)
+
+This is a **public** repository generated from a **private** assistant
+installation. What may be published is defined by
+[`scripts/public-allowlist.json`](scripts/public-allowlist.json):
+
+- `modules-docs.json` may contain **only** the allowlisted product-facing
+  module topics and fields (no full MODULE.md bodies, no bin inventories, no
+  machine placement, no filesystem paths).
+- The internal system atlas (`officeadmin/data/system-map*.json`) is **never
+  published**. It is generated locally by `scripts/regenerate.sh` for local
+  viewing; the files are gitignored.
+- The retired deep-dive `architecture.html` and the `/officeadmin/` atlas UI
+  are stubs; their previous content exists only in git history.
+
+`scripts/test-public-boundary.py` enforces all of the above and must pass
+before anything is committed or pushed (`scripts/regenerate.sh` runs it;
+wire it into any CI the same way):
+
+```bash
+python3 scripts/test-public-boundary.py
+```
+
+If it fails, the named file/field is outside the allowlist — fix the
+generator or the allowlist, not the guard.
+
 ## Structure
 
 ```
@@ -12,20 +38,16 @@ index.html              Landing page (marketing + interactive system graph + doc
 styles.css              Site styles (hand-drawn comic aesthetic)
 script.js               Auto-populated graph + animated pipeline + mobile drill-down
 docs.html               Auto-generated module documentation page
-modules-docs.json       Module catalog, generated from ~/.aiva/modules/
+modules-docs.json       Public module catalog, generated from ~/.aiva/modules/
 
 bin/
-  generate-docs.py      Reads ~/.aiva/modules/*/, writes modules-docs.json
+  generate-docs.py      Reads ~/.aiva/modules/*/, projects onto the public
+                        allowlist, writes modules-docs.json
   watch-modules.sh      fswatch wrapper that regenerates JSON on every change
 
-architecture.html       Interactive architecture diagram (kept from prior site)
-js/architecture.js      Diagram interactivity
-
-officeadmin/            Internal system atlas — read-only generated map (Mike's)
-js/officeadmin*.js      Atlas rendering
-css/officeadmin-atlas.css
-scripts/                Atlas generation scripts (Node + Python)
-
+architecture.html       Stub — the legacy deep-dive diagram is no longer published
+officeadmin/            Stub — the internal system atlas is no longer published
+scripts/                Generation + boundary tooling (local)
 jason/                  One-off customer deliverable (3105 Ledgewood WiFi plan)
 favicon.svg
 ```
@@ -40,10 +62,12 @@ favicon.svg
 
 The interactive graph, the modules cards, and the docs page all read from
 `modules-docs.json`, which is generated from `~/.aiva/modules/*/` (the source
-of truth for what the system actually does).
+of truth for what the system actually does) and projected onto the public
+allowlist before it is written.
 
 ```bash
-python3 bin/generate-docs.py    # regenerates modules-docs.json from disk
+python3 bin/generate-docs.py           # regenerates the public-safe catalog
+python3 scripts/test-public-boundary.py
 git add -A
 git commit -m "..."
 git push                        # GitHub Pages rebuilds, CF Worker proxies
@@ -59,17 +83,17 @@ For marketing copy (hero, trust tiers, FAQ, dossier examples, comparison
 table, Mike's letter), edit `index.html` directly. Those sections are
 intentionally hand-written.
 
-## Updating the /officeadmin atlas
+## Regenerating the local atlas (NOT published)
 
-Separate generator, separate cadence (a launchd hourly cron handles this
-automatically and auto-commits):
+Separate generator, local-only:
 
 ```bash
-node scripts/generate-officeadmin-map.mjs
+node scripts/generate-officeadmin-map.mjs   # writes officeadmin/data/system-map.json
+scripts/regenerate.sh                       # v2 map + privacy audit + boundary guard
 ```
 
-Reads AIVA docs, module tree, repo state, and runtime/archive paths, then
-writes `officeadmin/data/system-map.json`.
+The output under `officeadmin/data/` is gitignored and must stay that way;
+the boundary guard fails the tree if it is ever added.
 
 ## Cache purge
 
@@ -84,9 +108,9 @@ cf_set_zone officeadmin.io
 | Path | What |
 |---|---|
 | `/` | Landing page (marketing + interactive system graph) |
-| `/docs.html` | Module documentation, all 70+ modules, searchable |
-| `/architecture.html` | Architecture diagram (legacy, kept for depth) |
-| `/officeadmin/` | Generated system atlas (Mike's internal view) |
+| `/docs.html` | Public module documentation (allowlisted modules only) |
+| `/architecture.html` | Stub (legacy deep-dive retired from publication) |
+| `/officeadmin/` | Stub (internal system atlas is local-only) |
 | `/jason/` | One-off customer page |
 
 ## Design decisions
@@ -97,3 +121,5 @@ cf_set_zone officeadmin.io
 - Content is based on what the code actually does, not marketing fluff.
 - Specific stats are pulled live from `modules-docs.json` so they never
   drift out of sync with the codebase.
+- Default-deny publication: anything not allowlisted stays private, and a
+  committed guard fails the tree when that would change.

@@ -435,7 +435,7 @@
         const kind = m.kind || 'unknown';
         if (!activeKinds.has(kind)) return false;
         if (!q) return true;
-        const blob = (m.slug + ' ' + (m.title||'') + ' ' + (m.purpose||'') + ' ' + (m.module_md||'')).toLowerCase();
+        const blob = (m.slug + ' ' + (m.title||'') + ' ' + (m.description||'') + ' ' + (m.module_md||'')).toLowerCase();
         return blob.includes(q);
       });
 
@@ -449,13 +449,13 @@
       listEl.innerHTML = items.map(mod => {
         const pills = [
           mod.kind ? `<span class="doc-pill doc-pill--kind">${esc(mod.kind)}</span>` : '',
-          mod.machine ? `<span class="doc-pill doc-pill--machine">${esc(mod.machine)}</span>` : '<span class="doc-pill doc-pill--missing">no machine</span>',
+          mod.machine ? `<span class="doc-pill doc-pill--machine">${esc(mod.machine)}</span>` : '',
         ].join('');
         const surface = (mod.public_surface || []).map(s => `<code>${esc(s)}</code>`).join('');
         const bins = (mod.bin || []).map(s => `<code>${esc(s)}</code>`).join('');
         const reqs = (mod.host_requirements || []).map(s => `<code>${esc(s)}</code>`).join('');
-        const purpose = mod.purpose || mod.notes || mod.skill_description || '<em>No description yet.</em>';
-        const title = mod.title || mod.name || mod.slug;
+        const purpose = mod.description || mod.purpose || mod.notes || mod.skill_description || '<em>Description not published.</em>';
+        const title = mod.title || mod.name || mod.slug; // title/name absent in public data; falls back to slug
         return `
           <article class="doc-mod" data-slug="${esc(mod.slug)}" id="${esc(mod.slug)}">
             <header class="doc-mod__head">
