@@ -7,7 +7,7 @@
     {
       "name": "generate-docs",
       "entry": "bin/generate-docs.py",
-      "description": "Regenerate modules-docs.json from ~/.aiva/modules/*/ (MODULE.md + module.json + bin)"
+      "description": "Regenerate modules-docs.json from the local modules directory (MODULE.md + module.json + bin)"
     },
     {
       "name": "watch-modules",
@@ -40,5 +40,5 @@
     "url": "https://landing.officeadmin.io",
     "host": "github-pages (custom domain landing.officeadmin.io)"
   },
-  "notes": "Public landing + auto-populated documentation site at landing.officeadmin.io (moved off the officeadmin.io apex 2026-06-11; the apex now serves the Books app on Vercel, with /landingpage redirecting here). Catalog of modules is generated live from ~/.aiva/modules/ on every file change, but you still need to git push to deploy."
+  "notes": "Public landing + auto-populated documentation site at landing.officeadmin.io (moved off the officeadmin.io apex 2026-06-11; the apex now serves the Books app on Vercel, with /landingpage redirecting here). Catalog of modules is generated live from the local modules directory on every file change, but you still need to git push to deploy."
 }

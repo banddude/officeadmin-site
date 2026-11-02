@@ -887,16 +887,15 @@
           <p class="eyebrow">How it all wires together · interactive docs</p>
           <h3 class="h3">The whole system, every module.</h3>
           <p class="hood__sub">
-            All 65+ modules in the AIVA codebase, grouped by what they do.
-            Click any module to see its description, machine, and
+            The product-facing modules of the AIVA engine, grouped by
+            what they do. Click any module to see its description and
             relationships. Use the filters to focus a cluster, or search
             by name. <em>The orchestrator at the center is
-            <code>comms-pipeline</code>; the engine ring is AIVA; you sit
-            outside, in control.</em>
+            <code>comms-pipeline</code>; you sit outside, in control.</em>
           </p>
           <p class="hood__docs-link">
             <a href="/docs.html">Open the full module docs →</a>
-            <span class="hood__docs-note">Auto-generated from <code>MODULE.md</code> on disk. Re-run <code>python3 bin/generate-docs.py</code> to refresh.</span>
+            <span class="hood__docs-note">Auto-generated from the module catalog.</span>
           </p>
         </header>
 
@@ -922,9 +921,8 @@
               </div>
               <p class="panel__desc"></p>
               <dl class="panel__meta">
-                <div><dt>machine</dt><dd class="panel__machine"></dd></div>
+                <div hidden><dt>machine</dt><dd class="panel__machine"></dd></div>
                 <div><dt>kind</dt><dd class="panel__kind"></dd></div>
-                <div><dt>path</dt><dd class="panel__path"></dd></div>
               </dl>
               <p class="panel__edges"></p>
             </div>
@@ -951,7 +949,7 @@
         <ul class="mods" role="list" id="modulesAutoList">
           <li class="mod" aria-hidden="true">
             <code class="mod__name">loading…</code>
-            <p class="mod__job">Pulling from <code>~/.aiva/modules/</code>.</p>
+            <p class="mod__job">Pulling from the live module catalog.</p>
           </li>
         </ul>
 

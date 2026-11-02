@@ -1,0 +1,58 @@
+{
+  "_comment": [
+    "Public boundary allowlist for generated site data (issue officeadmin-books#3963).",
+    "modules-docs.json may only contain the modules listed here and only the",
+    "fields listed under module_fields. Free-form text (titles, purposes,",
+    "MODULE.md prose) is NEVER taken from the private sources: every public",
+    "module carries a curated, public-safe 'description' defined right here,",
+    "which the generator prefers over any internal text. Internal-only module",
+    "topics (secrets, agents, sync, launchd, jobs, AI engine bridges, personal",
+    "modules, the macOS automation bridge, ...) stay out of the public repo.",
+    "system-map.json / system-map.v2.json (the internal atlas) are not",
+    "published at all and must stay untracked (see test-public-boundary.py).",
+    "bin/generate-docs.py and scripts/test-public-boundary.py both read this",
+    "file; edit here, never in the code, to change the boundary."
+  ],
+  "modules": [
+    { "slug": "comms-pipeline", "description": "The orchestrator. Scans inbound mail, texts and voicemail, resolves who is who, drafts replies and routes everything to the right lane." },
+    { "slug": "comms-expert", "description": "Interactive drafting brain. Researches context across channels and drafts messages; never sends." },
+    { "slug": "schedule-send", "description": "Schedules messages and follow-ups to go out at the right time." },
+    { "slug": "know", "description": "Unified dossier CLI. One lookup that fans out across every knowledge source in under a second." },
+    { "slug": "mempalace", "description": "Long-term knowledge graph built from sessions, notes and conversations." },
+    { "slug": "identity", "description": "Resolves any name, slug, email or phone to one canonical entity." },
+    { "slug": "memory", "description": "Memory hydration across Apple Notes and the knowledge graph." },
+    { "slug": "contacts", "description": "Apple Contacts integration: search and maintain canonical contact records." },
+    { "slug": "session-search", "description": "Search across AI sessions, conversations and messages." },
+    { "slug": "commitments", "description": "Tracks every in-flight commitment between you and someone else: open, blocked, done, dead." },
+    { "slug": "conversations", "description": "Voice memos and calls become searchable transcripts with speaker identification." },
+    { "slug": "google", "description": "Google integrations: Gmail, Calendar, Drive, Sheets, Docs and Tasks behind one auth layer." },
+    { "slug": "imessage", "description": "Reads and sends iMessages, with real-time search." },
+    { "slug": "instagram", "description": "Reads Instagram DMs within the messaging window; replies stay manual." },
+    { "slug": "messages", "description": "Message client for Apple Messages." },
+    { "slug": "whatsapp", "description": "WhatsApp CLI and daemon for reading and answering WhatsApp chats." },
+    { "slug": "quickbooks", "description": "QuickBooks Online integration: estimates, invoices, payments and AR aging." },
+    { "slug": "electrical-estimating", "description": "Electrical estimating skill: the pricing reference behind quotes." },
+    { "slug": "calendar", "description": "Apple Calendar integration: list and manage events." },
+    { "slug": "notes", "description": "Apple Notes integration across folders." },
+    { "slug": "reminders", "description": "Apple Reminders integration." },
+    { "slug": "transcribe", "description": "Transcribes audio, video and YouTube URLs." }
+  ],
+  "module_fields": [
+    "slug",
+    "kind",
+    "product_category",
+    "short_label",
+    "featured_order",
+    "star",
+    "module_md_date",
+    "description"
+  ],
+  "top_level_fields": [
+    "generated_at",
+    "count",
+    "modules",
+    "edges",
+    "category_counts",
+    "categories"
+  ]
+}

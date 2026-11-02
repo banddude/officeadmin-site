@@ -1,171 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OfficeAdmin Map — OfficeAdmin</title>
-  <meta name="description" content="Generated read only system map for OfficeAdmin. Current roots, repos, docs, progress, and system status.">
-  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/officeadmin-atlas.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OfficeAdmin — system atlas (local only)</title>
+  <meta name="robots" content="noindex" />
+  <style>
+    body { font-family: Georgia, serif; background: #f4eee0; color: #1a1a1a;
+           display: grid; place-items: center; min-height: 90vh; margin: 0; }
+    main { max-width: 560px; padding: 32px; text-align: center; }
+    a { color: #1a1a1a; }
+  </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="nav-inner">
-      <a href="../index.html" class="nav-logo">officeadmin<span>.io</span></a>
-      <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-      </button>
-      <ul class="nav-links">
-        <li><a href="../index.html">Home</a></li>
-        <li><a href="../architecture.html">Architecture</a></li>
-        <li><a href="../modules.html">Modules</a></li>
-        <li><a href="../stack.html">Stack</a></li>
-        <li><a href="index.html" class="active">OfficeAdmin</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <div class="page">
-    <section class="hero officeadmin-hero">
-      <div class="container">
-        <div class="hero-label">Generated System Map</div>
-        <h1>/officeadmin</h1>
-        <p>A generated atlas of the system, where it lives, what owns truth, and how the parts connect.</p>
-        <div class="officeadmin-meta">
-          <div class="officeadmin-meta-item">
-            <div class="officeadmin-meta-label">Snapshot</div>
-            <div class="officeadmin-meta-value" id="generatedAt">Loading...</div>
-          </div>
-          <div class="officeadmin-meta-item">
-            <div class="officeadmin-meta-label">Host</div>
-            <div class="officeadmin-meta-value" id="generatedHost">Loading...</div>
-          </div>
-          <div class="officeadmin-meta-item">
-            <div class="officeadmin-meta-label">Refresh</div>
-            <div class="officeadmin-meta-value"><code>node scripts/generate-officeadmin-map.mjs</code></div>
-          </div>
-        </div>
-        <div class="officeadmin-warning-list" id="warningList"></div>
-      </div>
-    </section>
-
-    <section class="section" style="padding-top: 0;">
-      <div class="container">
-        <h2 class="section-title">Snapshot</h2>
-        <p class="section-subtitle">A compact live read on the system before you drill in.</p>
-        <div class="officeadmin-stats" id="snapshotStats"></div>
-      </div>
-    </section>
-
-    <section class="section officeadmin-map-section">
-      <div class="container">
-        <h2 class="section-title">Explorer</h2>
-        <p class="section-subtitle">Follow the map, pick a stop, then drill into how it connects and what it owns.</p>
-        <div class="officeadmin-explorer-shell">
-          <div class="officeadmin-explorer-toolbar">
-            <div class="officeadmin-lane-rail" id="laneRail"></div>
-            <div class="officeadmin-journey-rail" id="journeyRail"></div>
-            <div class="officeadmin-search-wrap">
-              <input class="officeadmin-search" id="nodeSearch" type="search" placeholder="Jump to AIVA, MemPalace, Google Workspace, archives..." />
-              <div class="officeadmin-search-results" id="searchResults"></div>
-            </div>
-          </div>
-          <div class="officeadmin-journey-board" id="journeyBoard"></div>
-          <div class="officeadmin-atlas-card">
-            <div class="officeadmin-atlas-head">
-              <div>
-                <div class="officeadmin-detail-label">System atlas</div>
-                <h3>Five lanes, generated routes, one focused stop at a time.</h3>
-              </div>
-              <p>Colored lines show the active journey and the selected stop’s direct links, without turning the whole map into spaghetti.</p>
-            </div>
-            <div class="officeadmin-atlas" id="systemAtlas">
-              <svg class="officeadmin-atlas-lines" id="atlasLines" aria-hidden="true"></svg>
-              <div class="officeadmin-atlas-lanes" id="atlasLanes"></div>
-            </div>
-          </div>
-          <div class="officeadmin-breadcrumbs" id="breadcrumbs"></div>
-          <div class="officeadmin-explorer-layout">
-            <div class="officeadmin-scene-card">
-              <div class="officeadmin-scene" id="focusScene">
-                <svg class="officeadmin-scene-lines" id="focusSceneLines" aria-hidden="true"></svg>
-                <div class="officeadmin-scene-column officeadmin-scene-column-left" id="focusLeft"></div>
-                <div class="officeadmin-scene-center" id="focusCenter"></div>
-                <div class="officeadmin-scene-column officeadmin-scene-column-right" id="focusRight"></div>
-              </div>
-              <div class="officeadmin-related-strip" id="focusRelated"></div>
-            </div>
-            <div class="officeadmin-detail-card officeadmin-explorer-detail">
-              <div class="officeadmin-detail-tabs" id="detailTabs"></div>
-              <div class="officeadmin-detail-panel" id="detailPanel">
-                <div class="officeadmin-detail-empty">Select a part of the system to inspect it.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title">Reference Shelves</h2>
-        <p class="section-subtitle">Secondary detail that stays available without taking over the whole page.</p>
-        <div class="officeadmin-reference-list">
-          <details class="officeadmin-reference-item">
-            <summary>Tracked surfaces</summary>
-            <div class="officeadmin-repo-grid" id="repoGrid"></div>
-          </details>
-          <details class="officeadmin-reference-item">
-            <summary>Authority model</summary>
-            <div class="officeadmin-two-col">
-              <div class="overview-card">
-                <h3>Source Of Truth Rules</h3>
-                <ul class="officeadmin-bullet-list" id="sourceOfTruthList"></ul>
-              </div>
-              <div class="overview-card">
-                <h3>Generated Inputs</h3>
-                <ul class="officeadmin-bullet-list" id="generatedSourcesList"></ul>
-              </div>
-            </div>
-            <div class="officeadmin-authority-grid" id="authorityCards"></div>
-            <div class="officeadmin-center-action">
-              <button class="officeadmin-toggle-button" id="authorityToggle" type="button" hidden>Show more authorities</button>
-            </div>
-          </details>
-          <details class="officeadmin-reference-item">
-            <summary>Progress and health</summary>
-            <div class="officeadmin-workstreams" id="workstreams"></div>
-            <div class="officeadmin-center-action">
-              <button class="officeadmin-toggle-button" id="workstreamToggle" type="button" hidden>Show more workstreams</button>
-            </div>
-            <div class="officeadmin-two-col officeadmin-reference-health">
-              <div class="overview-card">
-                <h3>Docs Health</h3>
-                <div id="docsSummary"></div>
-              </div>
-              <div class="overview-card">
-                <h3>Module Topology</h3>
-                <div id="moduleSummary"></div>
-              </div>
-            </div>
-          </details>
-          <details class="officeadmin-reference-item">
-            <summary>Machines</summary>
-            <div class="officeadmin-machine-grid" id="machineGrid"></div>
-          </details>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <footer class="footer">
-    <p>Generated from the live system snapshot, not from hand edited status copy.</p>
-  </footer>
-
-  <script src="../js/main.js?v=5"></script>
-  <script src="../js/officeadmin-atlas.js"></script>
+  <main>
+    <h1>The system atlas is not published</h1>
+    <p>
+      OfficeAdmin's internal system map is generated on the operator's machine
+      and is not part of the public site. The public module documentation lives
+      at <a href="https://landing.officeadmin.io/docs.html">landing.officeadmin.io/docs.html</a>.
+    </p>
+    <p><a href="/">← back to the landing page</a></p>
+  </main>
 </body>
 </html>
