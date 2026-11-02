@@ -76,7 +76,7 @@ PRIVATE_KEY_BLOCK = re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----")
 ABS_PATH_PATTERNS = {
     "mac_absolute_path": re.compile(r"/Users/[A-Za-z0-9._-]+/"),
     "unix_absolute_path": re.compile(r"/home/[A-Za-z0-9._-]+/"),
-    "root_absolute_path": re.compile(r"(?<![\w.])/root/"),
+    "root_absolute_path": re.compile(r"(?<![\w.])/roo[t]/"),
 }
 
 # Tilde anchors that name the private installation. Checked in SERVED
